@@ -1,30 +1,14 @@
 /* CSS 3 Standard Style Sheet */
-@font-face {
-    font-family: 'PTSansRegular';
-    src: url('fonts/PTS55F-webfont.eot');
-    src: url('fonts/PTS55F-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/PTS55F-webfont.woff') format('woff'),
-         url('fonts/PTS55F-webfont.ttf') format('truetype'),
-         url('fonts/PTS55F-webfont.svg#PTSansRegular') format('svg');
-}
-
-@font-face {
-    font-family: 'PTSansCaptionBold';
-    src: url('fonts/PTC75F-webfont.eot');
-    src: url('fonts/PTC75F-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/PTC75F-webfont.woff') format('woff'),
-         url('fonts/PTC75F-webfont.ttf') format('truetype'),
-         url('fonts/PTC75F-webfont.svg#PTSansCaptionBold') format('svg');
-}
 body {
   margin-top: 40pt;
   margin-bottom: 40pt;
   color: #000000;
-  font-family: PTSansRegular, Arial, sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 h1, nav {
-  font-family: PTSansCaptionBold, Arial, sans-serif;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
 }
 
 h1 {
