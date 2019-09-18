@@ -1,4 +1,6 @@
-*.css   text
-*.html  text
-*.md    text
-*.py    text
+*.css     text
+*.html    text
+*.md      text
+*.toml    text
+*.xml     text
+*.txt     text

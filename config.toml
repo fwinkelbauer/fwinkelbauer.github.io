@@ -1,0 +1,17 @@
+baseURL = "https://florianwinkelbauer.com/"
+languageCode = "en-us"
+title = "Florian Winkelbauer"
+theme = "contrast-hugo"
+copyright = "Copyright 2019, Florian Winkelbauer. All rights reserved."
+
+[author]
+  name = "Florian Winkelbauer"
+
+[params]
+  description = "The blog of Florian Winkelbauer"
+
+[menus]
+  main = [
+      { Name = "About", URL = "/about" },
+      { Name = "Github", URL = "https://github.com/fwinkelbauer" }
+  ]
