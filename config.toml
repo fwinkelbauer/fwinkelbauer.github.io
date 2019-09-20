@@ -12,6 +12,6 @@ copyright = "Copyright 2019, Florian Winkelbauer. All rights reserved."
 
 [menus]
   main = [
-      { Name = "About", URL = "/about" },
-      { Name = "Github", URL = "https://github.com/fwinkelbauer" }
+    { Name = "About", URL = "/about" },
+    { Name = "Github", URL = "https://github.com/fwinkelbauer" }
   ]
