@@ -31,11 +31,12 @@ some people even suggested that I should detect versions that are scattered
 among [several lines of text][request]. In the end, I decided that a different
 approach seemed simpler and more flexible: Why not build a "search and replace
 text" tool? So I wrote a prototype in Python, because its `.ini` library comes
-with a ton of interesting features. You can still find the code and a few
-examples [here][niles] (or see the complete code at the end of this post). This
-little Python tool uses one config file to describe where to find text snippets
-and another config file to describe the desired content for these snippets.
-Here's a quick example:
+with a ton of interesting features. You can still find the initial code and a
+few examples [here][niles]. This first version of "niles" used two config files
+to describe where to find text snippets and to describe the desired content for
+these snippets. After a while, I found it cumbersome to manage two files, so I
+redesigned the tool, while also adding more commands. Here's the final script
+together which a short example:
 
 **hello.txt:**
 
@@ -43,34 +44,71 @@ Here's a quick example:
 Hello! My name is Florian. How are you?
 ```
 
-**nilesconfig.ini:**
+**name.txt:**
 
-``` ini
-[DEFAULT]
-charset = utf-8
-end_of_line = crlf
-
-[**/hello*.txt]
-regex = My name is (?P<name>[A-za-z]+(\s[A-za-z]+)?)
+``` text
+My name is Florian.
 ```
 
-**nilesstore.ini:**
+**niles.ini:**
 
 ``` ini
+# Python's .ini library comes with a ton of features such as referencing
+# values or defined default values for other sections
+
 [DEFAULT]
+# Optional parameters. If not set, niles will use the default encoding and
+# line ending defined by the operating system
+_charset = utf-8
+_end_of_line = crlf
+
+[**/{hello,name}.txt]
+_regex = My name is (?P<name>[A-za-z]+(\s[A-za-z]+)?)
 first_name = Max
 second_name = Mustermann
 name = %(first_name)s %(second_name)s
 ```
 
-Applying these configuration files would create:
+Niles offers these commands:
+
+- **files:** To show all files which match the defined glob patterns
+- **values:** To list all values which are grabbed through the regular expressions
+- **apply:** To replace all declared values
+
+Running `niles apply`would create:
 
 ``` text
 Hello! My name is Max Mustermann. How are you?
 ```
 
+and
+
+``` text
+My name is Max Mustermann.
+```
+
+Here's a final example of a config file which can be used to manage versions in
+C# projects:
+
+**niles.ini (C#):**
+
+``` ini
+[DEFAULT]
+major = 5
+minor = 10
+patch = 0
+
+[**/AssemblyInfo.cs]
+_regex = ^\[assembly: Assembly(File)?Version\("(?P<assembly_version>.+)"\)\]$
+assembly_version = %(major)s.%(minor)s.%(patch)s.0
+
+[**/*.nuspec]
+_regex = ^\s*<version>(?P<semantic_version>.+)<\/version>$
+semantic_version = %(major)s.%(minor)s.%(patch)s
+```
+
 So, is this the "right" approach? To be honest, I'm not sure. At the moment I
-like the simplicity of a search and replace tool compared to a elobarate tool
+like the simplicity of a search and replace tool compared to a elaborate tool
 which can perform specific operations on versions.
 
 **niles.py:**
@@ -86,16 +124,8 @@ import re
 
 
 class Config(collections.namedtuple(
-        'Config', 'file_names charset end_of_line regex_list')):
+        'Config', 'file_names charset end_of_line regex_list values')):
     __slots__ = ()
-
-
-def parse_arguments():
-    arg_parser = argparse.ArgumentParser(
-        description='Search and replace text in files')
-    arg_parser.add_argument(
-        '-p', '--profile', help='The store profile', default='DEFAULT')
-    return arg_parser.parse_args()
 
 
 def expand_curly(line):
@@ -126,8 +156,8 @@ def parse_config(text):
     for section in config_parser.sections():
         file_names = fetch_files(section)
         section_data = config_parser[section]
-        charset = section_data.get('charset')
-        end_of_line_text = section_data.get('end_of_line')
+        charset = section_data.get('_charset')
+        end_of_line_text = section_data.get('_end_of_line')
         if end_of_line_text is None:
             end_of_line = None
         elif end_of_line_text == 'lf':
@@ -137,17 +167,16 @@ def parse_config(text):
         else:
             raise ValueError(
                 "Supported end of line characters: 'lf' and 'crlf'")
-        regex_list_text = section_data.get('regex', '').splitlines()
+        regex_list_text = section_data.get('_regex', '').splitlines()
         regex_list = [re.compile(r) for r in regex_list_text]
-        config_list.append(
-            Config(file_names, charset, end_of_line, regex_list))
+        config_list.append(Config(file_names, charset, end_of_line,
+                                  regex_list, dict(config_parser[section])))
     return tuple(config_list)
 
 
-def parse_store(text, section_name):
-    config_parser = configparser.ConfigParser()
-    config_parser.read_string(text)
-    return dict(config_parser[section_name])
+def load_config():
+    with open('niles.ini', 'r') as f:
+        return parse_config(f.read())
 
 
 def read_file_lines(file_name, charset, end_of_line):
@@ -161,7 +190,7 @@ def write_file_lines(file_name, lines, charset, end_of_line):
             f.write(line + '\n')
 
 
-def replace_line(regex, line, store):
+def replace_line(regex, line, values):
     match = regex.search(line)
     replaced_line = line
     line_changed = False
@@ -169,9 +198,9 @@ def replace_line(regex, line, store):
     if match is not None:
         group_dict = match.groupdict()
         for group_name in group_dict.keys():
-            if group_name in store:
+            if group_name in values:
                 old_value_len = len(match.group(group_name))
-                new_value = store[group_name]
+                new_value = values[group_name]
                 start_index = offset + match.start(group_name)
                 end_index = start_index + old_value_len
                 start = replaced_line[:start_index]
@@ -182,7 +211,19 @@ def replace_line(regex, line, store):
     return line_changed, replaced_line
 
 
-def search_and_replace(config, store, read_file, write_file, log):
+def list_values(config, read_file, log):
+    for entry in config:
+        for file_name in entry.file_names:
+            for line in read_file(file_name, entry.charset, entry.end_of_line):
+                for regex in entry.regex_list:
+                    match = regex.search(line)
+                    if match is not None:
+                        for group_name in match.groupdict().keys():
+                            log("{}: {}".format(
+                                file_name, match.group(group_name)))
+
+
+def apply_changes(config, read_file, write_file, log):
     for entry in config:
         for file_name in entry.file_names:
             new_lines = []
@@ -191,25 +232,50 @@ def search_and_replace(config, store, read_file, write_file, log):
                 new_line = line
                 for regex in entry.regex_list:
                     line_changed, new_line = replace_line(
-                        regex, new_line, store)
+                        regex, new_line, entry.values)
                     file_dirty |= line_changed
                 new_lines.append(new_line)
             if file_dirty:
                 write_file(
                     file_name, new_lines, entry.charset, entry.end_of_line)
-                log("Wrote file '{}'".format(file_name))
+                print("Wrote file '{}'".format(file_name))
             else:
-                log("Skipped file '{}'".format(file_name))
+                print("Skipped file '{}'".format(file_name))
+
+
+def list_files(config, log):
+    for entry in config:
+        for file_name in entry.file_names:
+            log(file_name)
+
+
+def list_values_cmd():
+    list_values(load_config(), read_file_lines, print)
+
+
+def apply_changes_cmd():
+    apply_changes(load_config(), read_file_lines, write_file_lines, print)
+
+
+def list_files_cmd():
+    list_files(load_config(), print)
 
 
 def main():
-    args = parse_arguments()
-    with open('nilesstore.ini', 'r') as f:
-        store = parse_store(f.read(), args.profile)
-    with open('nilesconfig.ini', 'r') as f:
-        config = parse_config(f.read())
-    search_and_replace(
-        config, store, read_file_lines, write_file_lines, print)
+    arg_parser = argparse.ArgumentParser(
+        description='Search and replace text in files')
+    subparsers = arg_parser.add_subparsers()
+    values_parser = subparsers.add_parser('values', help='List all values')
+    values_parser.set_defaults(func=list_values_cmd)
+    apply_parser = subparsers.add_parser('apply', help='Writes values to files')
+    apply_parser.set_defaults(func=apply_changes_cmd)
+    files_parser = subparsers.add_parser('files', help='List all files')
+    files_parser.set_defaults(func=list_files_cmd)
+    args = arg_parser.parse_args()
+    if hasattr(args, 'func'):
+        args.func()
+    else:
+        arg_parser.print_help()
 
 
 if __name__ == '__main__':
