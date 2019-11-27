@@ -31,12 +31,11 @@ some people even suggested that I should detect versions that are scattered
 among [several lines of text][request]. In the end, I decided that a different
 approach seemed simpler and more flexible: Why not build a "search and replace
 text" tool? So I wrote a prototype in Python, because its `.ini` library comes
-with a ton of interesting features. You can still find the initial code and a
-few examples [here][niles]. This first version of "niles" used two config files
-to describe where to find text snippets and to describe the desired content for
-these snippets. After a while, I found it cumbersome to manage two files, so I
-redesigned the tool, while also adding more commands. Here's the final script
-together which a short example:
+with a ton of interesting features. This first version of "niles" used two
+config files to describe where to find text snippets and to describe the desired
+content for these snippets. After a while, I found it cumbersome to manage two
+files, so I redesigned the tool, while also adding more commands. Here's the
+final script together which a short example:
 
 **hello.txt:**
 
@@ -292,4 +291,3 @@ if __name__ == '__main__':
 [chocolatey]: https://chocolatey.org/packages/bumpy.portable
 [pr]: https://github.com/fwinkelbauer/Bumpy/pull/25
 [request]: https://github.com/cake-contrib/Cake.Bumpy/issues/7
-[niles]: https://github.com/fwinkelbauer/python_tools/tree/296c9aad5e2a7ae6069ac48b0ad2c503b66613b6/niles
