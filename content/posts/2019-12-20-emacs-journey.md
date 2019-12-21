@@ -1,0 +1,68 @@
+---
+title: "My Emacs Journey 2019"
+date: 2019-12-20
+---
+
+Let me start my saying that yes, I am still use Emacs. What a surprise. In fact,
+Emacs is one of my most used tools besides other stables such as a browser. What
+has changed though, is how I am using some aspects of this little editor.
+
+## What Has Not Changed
+
+I still believe, that Emacs is not the "right" tool for everything. I'm still
+jumping into Notepad++ if I want to do a very quick edit on a Windows machine.
+I'm also not thinking about moving tasks such as e-mail into Emacs.
+
+## Terrific Task Management
+
+Org-mode is great. It has replaced all other note taking or calendar management
+software that I was using. Everything (well, 90%) lives in org-mode. I have one
+"big" (300 lines-ish) file which contains everything I'd like to remember or
+would like to do.
+
+## Underwhelming Windows Performance
+
+My Windows machines run a native version of Emacs, which is... just ok. Some
+actions take a few seconds, which just feels sluggish, but that's something that
+I have to live with for now.
+
+One of my biggest pain points was setting up spell checking on Windows. It might
+sound too simple, but it took me several attempts before I pulled it off. Thanks
+[WSL][wsl].
+
+## Literate Dotfiles
+
+Most of my config files and custom scripts live in an org file inside a git
+repository. Using a simple shortcut, I can create "real" config files based on
+this org file. I have mentioned this process in a [previous post][dotfiles].
+
+## Keybindings
+
+Emacs keybindings can feel clunky and some people even feel pain after using
+them for too long. Based on several resources (such as [this one][voit]), I have
+created a whole set of custom keybindings which are based on sequences instead
+of chords. Instead of pressing "Control + x" and "Control + f" (`C-x C-f`) I can
+now press "Apps" and "f" to search for a file. It took me some time to get used
+to some of these bindings, but I think it was worth the effort. And if I ever
+end up in a situation where I have to use a keyboard without an "Apps" key, I
+can still fallback to the "normal" keybindings.
+
+## Strong Stables
+
+I'd like to make a quick shout out to some fantastic packages which I use
+everyday:
+
+- elfeed (my RSS reader)
+- ivy, counsel, swiper (improved search and navigation)
+- magit (hands down, the best git client I have ever used)
+- neotree (a tree based file viewer)
+
+## The Journey Continues
+
+Even though the learning curve started out steep, I'm glad that I picked up
+Emacs. For now, I don't have any specific goals on how this journey should
+continue. Instead, I'll just have to see where things take me.
+
+[wsl]: https://florianwinkelbauer.com/posts/2019-04-10-emacs-wsl/
+[dotfiles]: https://florianwinkelbauer.com/posts/2019-08-10-literate-dotfiles/
+[voit]: https://karl-voit.at/2018/07/08/emacs-key-bindings/
