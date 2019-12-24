@@ -30,7 +30,7 @@ $ErrorActionPreference = 'Stop'
 Import-Module '.\task.psm1'
 
 Register-Task -Name 'Help' {
-    Format-TaskOverview
+    Write-TaskOverview
 }
 
 $firstTask = Register-Task -Name 'First' -PassThru {
@@ -46,7 +46,7 @@ Register-Task -Name 'Third' -DependsOn $firstTask, $secondTask {
 }
 
 Get-Task $Target | Invoke-Task
-Format-TaskReport
+Write-TaskReport
 ```
 
 We can run any task by passing its name:
@@ -141,7 +141,7 @@ function Invoke-Task {
     } While($runnableTasks.Length -ne 0)
 }
 
-function Format-TaskReport {
+function Write-TaskReport {
     $totalDuration = [timespan]::Zero
     $results = New-Object System.Collections.Generic.List[TaskResult]
 
@@ -159,7 +159,7 @@ function Format-TaskReport {
     $results | Format-Table
 }
 
-function Format-TaskOverview {
+function Write-TaskOverview {
     $tasks = New-Object System.Collections.Generic.List[TaskObject]
 
     foreach ($key in $registeredTasks.Keys) {
