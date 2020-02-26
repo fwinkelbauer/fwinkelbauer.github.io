@@ -1,5 +1,5 @@
 ---
-title: "Dreaming about Git with Chunks"
+title: "Dreaming of Git with Chunks"
 date: 2020-02-08
 ---
 
