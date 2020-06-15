@@ -154,6 +154,6 @@ reported the similar problems on [superuser][superuser_sfx] and
 [choco_msi]: https://chocolatey.org/docs/installation#why-isnt-there-an-msi
 [7z]: https://www.7-zip.org/
 [doc_sfx]: https://sevenzip.osdn.jp/chm/cmdline/switches/sfx.htm
-[fw_provision]: https://florianwinkelbauer.com/posts/2019-01-21-powershell-provision/
+[fw_provision]: 2019-01-21-powershell-provision.md
 [superuser_sfx]: https://superuser.com/questions/730242/7zip-self-extracting-executables-require-admin-privileges-and-trigger-compatib
 [stackoverflow_sfx]: https://stackoverflow.com/questions/9229581/how-to-do-vista-uac-aware-self-extract-installer
