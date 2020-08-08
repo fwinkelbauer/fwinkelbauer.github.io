@@ -147,8 +147,8 @@ dialog to start the install process.
 
 There's currently only one drawback that I'm aware of: After running the
 installer, Windows might pop up a "This program might not have installed
-correctly", even if the overall installation might be successful. Others have
-reported the similar problems on [superuser][superuser_sfx] and
+correctly" message, even if the overall installation might be successful. Others
+have reported similar problems on [superuser][superuser_sfx] and
 [stackoverflow][stackoverflow_sfx].
 
 [choco_msi]: https://chocolatey.org/docs/installation#why-isnt-there-an-msi
