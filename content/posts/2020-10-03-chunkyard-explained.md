@@ -24,8 +24,8 @@ After the initial password prompt Chunkyard will perform the following
 operations:
 
 - The file `hello-world.txt` is read and split it into pieces (chunks) using the
-  FastCdc algorithm. Since text files tend to be rather small, we'll most likely
-  end up with a single chunk
+  [FastCdc][fastcdc] algorithm. Since text files tend to be rather small, we'll
+  most likely end up with a single chunk
 - Each chunk will be AES (Galois/Counter Mode) encrypted using a 256 bit key
   which is derived from the password. **Note:** These choices are based on this
   [NDC Conference talk][ndc-talk] by Stephen Haunts
@@ -47,10 +47,10 @@ directory:
 chunkyard-repository/
   content/
     sha256/
-      85/
-        85cb74e8eef5359f413813d558445141e07f5ede892ddf774a682bfd6458a6ae
-      f3/
-        f33b5ee4010bdf6212034c7c3b0790ac81eddbaa898327b179fd69c9892ca075
+      11/
+        116d11f1a1a7301a720848382893cb931e781f31f93eeae3cbb88106b3d88ba5
+      58/
+        58c767a0b5c211fd26d2869ea36691b98270b7db5f22038d9c902ecdc8a818d8
   reflog/
       0.json
 ```
@@ -81,8 +81,11 @@ when it is decrypted:
 }
 ```
 
-Finally `0.json` contains a reference to the above snapshot as well as the
-information needed to create our cryptographic key:
+In this example the snapshot contains a single file which consists of a single
+chunk (`116d11f1a1a7301a720848382893cb931e781f31f93eeae3cbb88106b3d88ba5`).
+
+Finally `0.json` contains a reference to the above snapshot as well as the salt
+and hashing iterations parameters needed to create our cryptographic key:
 
 ``` json
 {
@@ -194,4 +197,5 @@ of how these other tools work.
 
 [project-intro]: {{< ref "2020-03-13-building-chunkyard.md" >}}
 [chunkyard]: https://github.com/fwinkelbauer/chunkyard
+[fastcdc]: https://www.usenix.org/system/files/conference/atc16/atc16-paper-xia.pdf
 [ndc-talk]: https://www.youtube.com/watch?v=mY4ifhgpbf8
