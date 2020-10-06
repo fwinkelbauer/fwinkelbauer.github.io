@@ -112,17 +112,17 @@ Let's change the content of our `hello-world.txt` example and re-run the
 
 ``` text
 chunkyard-repository/
-  content
-    sha256
-      11
+  content/
+    sha256/
+      11/
         116d11f1a1a7301a720848382893cb931e781f31f93eeae3cbb88106b3d88ba5
-      30
+      30/
         30a54e8cda4e6cc66a92eb93e28d8b9ca646c71b7d9414c120d6ebb7e34dea2f
-      58
+      58/
         58c767a0b5c211fd26d2869ea36691b98270b7db5f22038d9c902ecdc8a818d8
-      5b
+      5b/
         5b9d6713a8cba3ecaa8b68fa71a11a2dab88ec266bbb42660fb3a1dbfb34b401
-  reflog
+  reflog/
     0.json
     1.json
 ```
