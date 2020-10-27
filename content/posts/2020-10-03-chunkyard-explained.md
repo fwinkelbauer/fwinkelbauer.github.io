@@ -23,7 +23,7 @@ chunkyard create -r ~/chunkyard-repository -f ~/Documents/hello-world.txt
 After the initial password prompt Chunkyard will perform the following
 operations:
 
-- The file `hello-world.txt` is read and split it into pieces (chunks) using the
+- The file `hello-world.txt` is read and split into pieces (chunks) using the
   [FastCdc][fastcdc] algorithm. Since text files tend to be rather small, we'll
   most likely end up with a single chunk
 - Each chunk will be AES (Galois/Counter Mode) encrypted using a 256 bit key
