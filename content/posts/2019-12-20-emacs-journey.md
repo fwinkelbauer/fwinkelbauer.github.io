@@ -3,7 +3,7 @@ title: "My Emacs Journey 2019"
 date: 2019-12-20
 ---
 
-Let me start my saying that yes, I am still use Emacs. What a surprise. In fact,
+Let me start my saying that yes, I still use Emacs. What a surprise. In fact,
 Emacs is one of my most used tools besides other stables such as a browser. What
 has changed though, is how I am using some aspects of this little editor.
 
