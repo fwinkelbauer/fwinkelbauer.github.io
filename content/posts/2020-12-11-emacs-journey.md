@@ -1,0 +1,83 @@
+---
+title: "My Emacs Journey 2020"
+date: 2020-12-11
+---
+
+I guess I am not alone when I'll say that COVID-19 made this year go by in an
+instant. It's time to write a small report on my Emacs usage.
+
+## Org-Mode & Magit
+
+Even if some fancy editor would make me consider to stop using Emacs, I'd still
+use it just for org-mode and magit. Both tools are mentioned over and over on
+the internet and I can understand why (even if it starts to become boring).
+Those tools are just that good.
+
+A few months ago I finally started to use org-capture to create entries in my
+"inbox/notes" file without switching my current context. For some reason this
+feature didn't appeal to me for a long time and I preferred to do things
+manually. I still wouldn't consider myself a org power-user, so it might take
+some more time to dive deeper into other more involved features.
+
+Magit became even better after I had discovered `magit-file-dispatch`. Calling
+this function while looking at a file gives you an option menu where you can
+access functions such as listing all commits this file was changed in. It also
+offers the possibility to step through different versions of the opened file.
+
+## Hydra
+
+I started to use abo-abo's hydra package to create custom sets of keybindings,
+which I have previously mentioned in my journey write-up last year. Here a few
+examples of my current setup:
+
+- `<apps>` or `<menu>` with `<f5>` as a fallback: Show a hydra with my most
+  common used commands such as "find file", "search in directory" or "switch
+  buffer"
+- `<f9>`: Open a shell in the current directory
+- `<S-f9>`: Show a hydra with "project" or "directory" related commands such as
+  "compile project" or "open this directory in a native file manager"
+- `<f10>`: Open magit
+- `<S-f10>`: Show a hydra with several magit related features (including
+  `magit-file-dispatch`)
+- `<f12>`: Open my org agenda
+- `<S-f12>`: Show a hydra which offers `org-capture`, `org-babel-tangle` and
+  many other org functions
+
+## Custom Elisp
+
+I became proficient enough to write my own (very) simple elisp functions. Here
+are few examples:
+
+- Open a shell for the current directory. If this directory is inside a git
+  repository, open a shell at the git "root" directory
+- Run a git pull operation for all my repositories in parallel
+- Copy the absolute or relative path of the currently opened file
+
+Most of the time I'll start with a snippet I find on the internet, which I'll
+adjust to my needs.
+
+## Windows Performance
+
+Sadly not much has changed regarding performance on Windows. Some operations
+might take one or two seconds, which is inconvenient but not too bad. For the
+most part I get irritated when I'm on a Linux machine as everything just happens
+instantaneously.
+
+I know that I could try running Emacs in WSL 2, but I couldn't bring myself to
+go down that rabbit hole.
+
+## .NET Development
+
+Chunkyard is a backup software that I develop as a hobby. As a form of personal
+challenge I decided to write it in Emacs instead of Visual Studio or Visual
+Studio Code. No code completion, no red error highlighting, no debugging. To
+pull this off I started to use the `compile` and `recompile` functions which run
+shell commands such as `dotnet build`. I wouldn't do this in a professional
+setting, as I still believe that a dedicated IDE offers a better developer
+experience.
+
+## Next Steps
+
+Like last year I don't have any specific topics which I would like to focus on.
+Most of the improvements of this year happened in tiny steps, which is how I'll
+approach further improvements as well.
