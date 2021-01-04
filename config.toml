@@ -2,7 +2,7 @@ baseURL = "https://florianwinkelbauer.com/"
 languageCode = "en-us"
 title = "Florian Winkelbauer"
 theme = "contrast-hugo"
-copyright = "Copyright 2020, Florian Winkelbauer. All rights reserved."
+copyright = "Copyright 2021, Florian Winkelbauer. All rights reserved."
 
 [author]
   name = "Florian Winkelbauer"
