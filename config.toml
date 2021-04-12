@@ -2,6 +2,7 @@ baseURL = "https://florianwinkelbauer.com/"
 title = "Florian Winkelbauer"
 copyright = "Copyright 2021, Florian Winkelbauer. All rights reserved."
 pygmentsCodefences = false
+disableKinds = ["taxonomy", "term"]
 
 [author]
   name = "Florian Winkelbauer"
