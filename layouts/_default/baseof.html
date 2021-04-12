@@ -14,8 +14,7 @@
 {{ if .IsHome }}
 <link rel="alternate" type="application/rss+xml" href="{{ with .OutputFormats.Get "RSS" }}{{ .Permalink }}{{ end }}" title="{{ .Site.Title }}">
 {{ end }}
-<link rel="stylesheet" href="{{ .Site.BaseURL }}css/theme.css">
-<link rel="stylesheet" href="{{ .Site.BaseURL }}css/classes.css">
+<link rel="stylesheet" href="{{ .Site.BaseURL }}main.css">
 
 <header class="{{ if .Site.Params.brightheader }}bright{{ else }}dark{{ end }}">
   <h2><a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a></h2>
