@@ -9,15 +9,15 @@
   border-bottom: 1px solid #fff1;
 }
 
-.archive li {
+.overview li {
   padding: .3em 0;
 }
 
-.archive a {
+.overview a {
   font-size: 1.1em;
 }
 
-.archive time {
+.overview time {
   display: inline-block;
   font-size: 1.05em;
   width: 6em;
