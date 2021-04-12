@@ -1,33 +1,36 @@
 <!DOCTYPE html>
 <html lang="{{ .Site.LanguageCode | default "en" }}">
-<title>{{ .Title }}</title>
-<meta charset="utf-8">
-{{ hugo.Generator }}
-{{- if or .Description .Site.Author.name }}
-<meta name="author" content="{{ .Site.Author.name }}">
-{{- end }}
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="canonical" href="{{ .Permalink }}">
-{{ if .IsHome }}
-<link rel="alternate" type="application/rss+xml" href="{{ with .OutputFormats.Get "RSS" }}{{ .Permalink }}{{ end }}" title="{{ .Site.Title }}">
-{{ end }}
-<link rel="stylesheet" href="{{ .Site.BaseURL }}main.css">
+  <head>
+    <title>{{ .Title }}</title>
+    <meta charset="utf-8">
+    {{ hugo.Generator }}
+    {{- if or .Description .Site.Author.name }}
+    <meta name="author" content="{{ .Site.Author.name }}">
+    {{- end }}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="{{ .Permalink }}">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ .Site.BaseURL }}index.xml">
+    <link rel="stylesheet" href="{{ .Site.BaseURL }}main.css">
+  </head>
 
-<header class="{{ if .Site.Params.brightheader }}bright{{ else }}dark{{ end }}">
-  <h2><a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a></h2>
-  <nav>
-    {{ range .Site.Menus.main }}
-      <a href="{{ .URL }}">{{ .Name }}</a>
-    {{ end }}
-  </nav>
-</header>
+  <body>
+    <header class="dark">
+      <h2><a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a></h2>
+      <nav>
+        {{ range .Site.Menus.main }}
+        <a href="{{ .URL }}">{{ .Name }}</a>
+        {{ end }}
+      </nav>
+    </header>
 
-{{- block "main" . }}{{- end }}
+    <main>
+      {{- block "main" . }}{{- end }}
+    </main>
 
-{{- if .Site.Copyright }}
-<footer>
-  <p>{{ .Site.Copyright }}</p>
-</footer>
-{{- end }}
-
+    {{- if .Site.Copyright }}
+    <footer>
+      <p>{{ .Site.Copyright }}</p>
+    </footer>
+    {{- end }}
+  </body>
 </html>
