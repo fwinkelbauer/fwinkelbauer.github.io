@@ -5,9 +5,6 @@ copyright = "Copyright 2021, Florian Winkelbauer. All rights reserved."
 [author]
   name = "Florian Winkelbauer"
 
-[params]
-  description = "The blog of Florian Winkelbauer"
-
 [menus]
   main = [
     { Name = "About", URL = "/about" },

@@ -3,9 +3,6 @@
 <title>{{ .Title }}</title>
 <meta charset="utf-8">
 {{ hugo.Generator }}
-{{- if or .Description .Site.Params.description }}
-<meta name="description" content="{{ .Description | default .Site.Params.description }}">
-{{- end }}
 {{- if or .Description .Site.Author.name }}
 <meta name="author" content="{{ .Site.Author.name }}">
 {{- end }}
