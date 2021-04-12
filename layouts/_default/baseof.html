@@ -4,7 +4,7 @@
     <title>{{ .Title }}</title>
     <meta charset="utf-8">
     {{ hugo.Generator }}
-    {{- if or .Description .Site.Author.name }}
+    {{- if .Site.Author.name }}
     <meta name="author" content="{{ .Site.Author.name }}">
     {{- end }}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
