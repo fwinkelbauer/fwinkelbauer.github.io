@@ -74,7 +74,7 @@ function Get-VsixData {
 
 Here's the console output for the Cake extension:
 
-``` plaintext
+``` text
 Get-VsixData 'https://marketplace.visualstudio.com/items?itemName=vs-publisher-1392591.CakeforVisualStudio' 'sha256'
 
 Name                           Value

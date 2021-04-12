@@ -7,7 +7,7 @@ I have started to use a few of org-mode's link features to help me stay
 organized in my day job. The top of my "main" org file now includes these
 statements:
 
-```
+``` org
 #+LINK: issue https://company.issue.tracker.com/ticket?id=
 #+LINK: tree elisp:(neotree-dir "%s")
 #+LINK: dir elisp:(setq default-directory "%s")
@@ -15,7 +15,7 @@ statements:
 
 Now I can write outlines that look something like this:
 
-```
+``` org
 * [[tree:D:/Projects/SomeProject][Some Project]]
 
 ** [[issue:42][Major Bug]]

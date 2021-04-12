@@ -11,7 +11,7 @@ I was even more impressed when a user called "asiledeneg" posted some elisp code
 to use the all-the-icons Emacs package. Thank you kind internet strangers for
 your code samples. You made my org-agenda glorious:
 
-``` markdown
+``` emacs-lisp
 (defun fw/agenda-icon-material (name)
   "Returns an all-the-icons-material icon"
   (list (all-the-icons-material name)))

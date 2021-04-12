@@ -15,7 +15,7 @@ This snippet is inspired by [a blog post][hackeryarn] which I've found on
 /r/emacs. The elisp function calls the PowerShell function `Invoke-Formatter`,
 which is part of the [PSScriptAnalyzer][analyzer] PowerShell module:
 
-``` elisp
+``` emacs-lisp
 (defun fw/pspretty-buffer ()
   (interactive)
   (shell-command-on-region (point-min) (point-max) "powershell.exe -Command \"$script = $input | Out-String; Invoke-Formatter $script\" " t t))
@@ -29,7 +29,7 @@ while I am at work. The custom view show my scheduled tasks for the next three
 days, as well as all unscheduled tasks, sorted by their TODO statement (e.g.
 "TODO", "WAIT" or "DONE"):
 
-``` elisp
+``` emacs-lisp
 (setq org-agenda-custom-commands
       '(("." "Overview (Custom)"
          ((agenda ""
@@ -53,7 +53,7 @@ The custom headers make the agenda look like a regular org-mode file. Enabling
 
 I haven't come around to like `org-capture`, so for now I've created this:
 
-``` elisp
+``` emacs-lisp
 (defun fw/home ()
   (interactive)
   (delete-other-windows)

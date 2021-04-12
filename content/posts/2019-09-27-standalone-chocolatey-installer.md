@@ -38,7 +38,7 @@ ExecuteFile="install.bat"
 `install.bat` is a simple wrapper script which calls `install.ps1`. I found this
 to be more convenient than trying to let the 7-zip SFX module call PowerShell directly.
 
-``` batchfile
+``` cmd
 @ECHO OFF
 PowerShell.exe -NoProfile -ExecutionPolicy Bypass -Command "& '%~dpn0.ps1'"
 PAUSE
