@@ -1,5 +1,5 @@
 ---
-title: "Org-mode Calendar Notifications"
+title: "Org-Mode Calendar Notifications"
 date: 2020-05-02
 ---
 
