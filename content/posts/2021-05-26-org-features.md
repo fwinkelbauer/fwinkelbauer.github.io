@@ -5,29 +5,6 @@ date: 2021-05-26
 
 This post builds upon a previous post about [org-mode links][org-links].
 
-## Elisp Link Handlers
-
-My previous approach to custom links defined elisp code inside a .org file,
-which was rather annoying as it pops up a warning dialog to notify the user
-about the code which is about to get executed. It turns out that you can
-configure elisp link handlers inside your .emac.d without any warning popups:
-
-``` emacs-lisp
-(defun fw/open-git (path)
-  "Opens magit at `path'"
-  (magit-status path))
-
-(org-add-link-type "git" 'fw/open-git)
-```
-
-Here's an example:
-
-``` org
-* [[git:D:/Projects/SomeProject][Some Project]]
-```
-
-Clicking the headline will open "D:/Projects/SomeProject" using Magit.
-
 ## Custom Links
 
 The in-buffer setting
