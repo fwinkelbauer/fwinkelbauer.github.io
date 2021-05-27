@@ -1,5 +1,5 @@
 ---
-title: "Notes On Building Chunkyard"
+title: "Notes on Building Chunkyard"
 date: 2020-03-13
 ---
 

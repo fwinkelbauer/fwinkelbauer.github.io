@@ -1,5 +1,5 @@
 ---
-title: "Minor Org-Mode features"
+title: "Minor Org-Mode Features"
 date: 2021-05-26
 ---
 

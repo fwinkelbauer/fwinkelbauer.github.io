@@ -1,5 +1,5 @@
 ---
-title: "Storing Git Repositories Using Chunkyard"
+title: "Storing Git Repositories using Chunkyard"
 date: 2021-04-04
 ---
 

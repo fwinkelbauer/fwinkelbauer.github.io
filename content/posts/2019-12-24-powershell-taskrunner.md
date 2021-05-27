@@ -1,5 +1,5 @@
 ---
-title: "Building A Barebones Task Runner"
+title: "Building a Barebones Task Runner"
 date: 2019-12-24
 ---
 
