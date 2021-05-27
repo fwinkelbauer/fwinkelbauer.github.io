@@ -1,0 +1,35 @@
+---
+title: "Using Git with GNOME Keyring"
+date: 2021-05-27
+---
+
+Since GitHub has deprecated password-based authentication when using the Git CLI
+I have been searching for a solution to store GitHub's personal access tokens
+(HTTPS authentication) in a safe manner on Linux. My Xubuntu installation uses
+GNOME Keyring, which is unlocked when I log onto the system, so using this
+keyring seemed to be the most reasonable approach.
+
+A default Git installation ships with several credential helpers, so we need to
+configure Git to use one of these helpers. But this story wouldn't be about
+Linux if we could get away without running a `make` command. The directory
+`/usr/share/doc/git/contrib/credential` contains several helpers, including
+`libsecret` and `gnome-keyring`. According to [this][stackoverflow]
+StackOverflow post we should use `libsecret`, so lets configure Git to use it:
+
+``` shell
+sudo apt-get install make gcc libsecret-1-0 libsecret-1-dev
+cd /usr/share/doc/git/contrib/credential/libsecret
+sudo make
+git config --global credential.helper /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
+```
+
+The next time we call `git push` the provided credentials (GitHub username +
+personal access token) are stored in the keyring. Tools such as `seahorse` (GUI)
+or `secret-tool` (CLI) can be used to search or manage stored keys:
+
+``` shell
+sudo apt-get install seahorse
+sudo apt-get install libsecret-tools
+```
+
+[stackoverflow]: https://stackoverflow.com/questions/36585496/error-when-using-git-credential-helper-with-gnome-keyring-as-sudo
