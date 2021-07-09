@@ -1,0 +1,39 @@
+---
+title: "Psake Enhancements"
+date: 2021-07-09
+---
+
+[Psake][psake] is `make`-like tool written in PowerShell. Instead of a
+`makefile` you write a `psakefile.ps1` which consists of a set of tasks. Calling
+`psake <task name>` searches for a `psakefile.ps1` in the current directory to
+then call the given task. Most of the time I store my `psakefile.ps1` in the
+root of my git project, which means that I have to set the working directory of
+my terminal to this directory. I have recently created a small PowerShell script
+which helps me to remember task names (using [fzf][fzf]) while also giving me
+the option to call `psake` anywhere in my git projects:
+
+``` powershell
+$root = git rev-parse --show-toplevel
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+try {
+    Push-Location $root
+
+    # This search approach is not perfect, but works for my needs
+    $tasks = Get-Content 'psakefile.ps1' |
+      Select-String -Pattern '^task\s+(.+?)\s+' -AllMatches |
+      ForEach-Object { $_.Matches.Groups[1].Value }
+
+    $selectedTask = $tasks | fzf
+
+    if ($selectedTask) {
+        psake $selectedTask
+    }
+}
+finally {
+    Pop-Location
+}
+```
+
+[psake]: https://github.com/psake/psake
+[fzf]: https://github.com/junegunn/fzf
