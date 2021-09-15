@@ -12,7 +12,7 @@ between two possibilities:
   systems (e.g. by using PowerShell Core)
 
 I've recently experimented with the second approach. But which portable language
-should one use? Well, I went done the crazy road and opened up my good old
+should one use? Well, I went down the crazy road and opened up my good old
 friend Emacs. Let's start with two Bash examples:
 
 A script to run `git pull` in several directories:
