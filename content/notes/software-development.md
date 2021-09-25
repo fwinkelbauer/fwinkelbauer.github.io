@@ -154,12 +154,26 @@ that neither CAP nor PACELC are a good way to think about distributed systems.
 
 ## [Idealcast Podcast](https://itrevolution.com/the-idealcast-podcast/)
 
-Episode 14:
+### Jeffrey Fredrick (Episode 14)
 
 Employee satisfaction can indicate the performance of an organization. Ask:
 
 - Are you happy?
 - Are you able to do work that you are proud of?
+
+### Scott Havens (Episode 22 & 23)
+
+- State management techniques used in functional programming can be used to
+  scale large architecture such as Wal-Mart's warehouse system
+- Working with event streams as input and output makes a system decoupled,
+  easier to test and more understandable
+- A pure function can be replaced by a lookup table
+- Scott mentions a story about how they recovered from a disaster involving the
+  death of a Kafka cluster
+- He also tells the story of how he replaced a synchronous call graph involving
+  23 procedures with asynchronous computation
+- Category theory is not too important in your day-to-day use of functional
+  patterns
 
 ## Believes
 
