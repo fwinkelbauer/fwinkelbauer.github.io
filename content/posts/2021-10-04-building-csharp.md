@@ -55,11 +55,12 @@ finally {
 }
 ```
 
-This script changes the above `dotnet run` command to something like this:
+This script (let's call it `make.ps1`) changes the above `dotnet run` command to
+something like this:
 
 ``` powershell
-./csake clean
-./csake build
+./make.ps1 clean
+./make.ps1 build
 ```
 
 You could even copy this script to a place which is in your PATH variable so
