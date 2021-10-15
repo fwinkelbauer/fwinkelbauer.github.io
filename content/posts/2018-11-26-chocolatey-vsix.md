@@ -28,8 +28,8 @@ We will start with the package definition:
 </package>
 ```
 
-Notice the declared dependency: [chocolatey-visualstudio.extension][choco_vsix]
-allows us to install a VSIX file using PowerShell.
+Notice the declared dependency [chocolatey-visualstudio.extension][choco_vsix]
+which allows us to install a VSIX file using PowerShell.
 
 To create the install/uninstall scripts we will need the following information:
 

@@ -6,7 +6,7 @@ date: 2019-12-24
 Several people have already build a bazillion frameworks or libraries in which
 you can define and run a set of tasks and their dependencies. PowerShell has
 [psake][psake] and [Invoke-Build][invoke-build]. I was curious how these systems
-work, so I wrote a simple PowerShell library which only showcases a trivial
+work, so I wrote a small PowerShell library which only showcases a trivial
 implementation.
 
 Tasks and their dependencies form a directed acyclic graph (DAG). We only want

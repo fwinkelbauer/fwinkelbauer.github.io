@@ -12,7 +12,7 @@ then I have improved my process step by step.
 
 A `csproj` file can contain pre- and post-build snippets. I have used this
 feature to create an automated deployment when switching the build configuration
-from "Debug" to "Release". While this solution worked, I never felt at easy, as
+from "Debug" to "Release". While this solution worked, I never felt at ease, as
 I could run these snippets on accident when testing something in Visual Studio.
 
 ## Custom MSBuild Scripts

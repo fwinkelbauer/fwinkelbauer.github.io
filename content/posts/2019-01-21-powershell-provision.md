@@ -5,12 +5,12 @@ date: 2019-01-21
 
 I'm a fan of "infrastructure as code", which is why I have scripts which help me
 to setup my own computers. Instead of relying on "heavy hitters" such as Chef,
-Ansible or Puppet, my Windows provisioning script rely on PowerShell and
+Ansible or Puppet, my Windows provisioning scripts rely on PowerShell and
 Chocolatey. I am aware of other tools such as Boxstarter, but I deliberately
 choose a more manual and bare bones approach in favor of improved error
 handling.
 
-I have created two PowerShell functions which help me to keep my provisioning
+I have created three PowerShell functions which help me to keep my provisioning
 scripts simple and well-arranged:
 
 ## Step
@@ -78,7 +78,7 @@ step 'Write important config file' -If {
 ## Once
 
 Sometimes I'd like to run a block of code once, but I don't have any decent way
-of checking if the block was already executed. The "once" function is a
+of checking if the block was already executed. The `once` function is a
 specialized step, which uses a "checkpoint file" to give a step the "executed
 just once" property:
 
@@ -120,7 +120,7 @@ once 'Write important config file' {
 
 ## Exec
 
-Exec makes sure that I can monitor the exit code of a command line tool:
+`exec` makes sure that I can monitor the exit code of a command line tool:
 
 ```powershell
 function exec {

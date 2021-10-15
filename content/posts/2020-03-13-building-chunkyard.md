@@ -8,7 +8,7 @@ Based on my previous blog post I have started a new C# project called
 addressable storage and content defined chunking. This project is highly
 experimental and my goal is to implement a backup application with a limited set
 of features. Chunkyard gathers files in a given directory and stores a
-deduplicated and encrypted snapshot. In this post I'd like to highlight a few
+de-duplicated and encrypted snapshot. In this post I'd like to highlight a few
 topics that came up while figuring out how to implement Chunkyard.
 
 ## Encryption
@@ -24,7 +24,7 @@ Storing an initial piece of data (a file) is easy:
 - Calculate the hash of all chunks and store them using the hash information
 
 Storing an existing file becomes more interesting. In order to gain any
-deduplication effect (which is the primary reason why we would use content
+de-duplication effect (which is the primary reason why we would use content
 defined chunking in the first place) we need to check if a given file has been
 stored before, so that we can re-use its IV. Re-using an IV reduces the strength
 of our encryption algorithm, so we cannot simply use a single IV for all our

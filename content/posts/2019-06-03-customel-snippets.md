@@ -4,10 +4,10 @@ date: 2019-06-03
 ---
 
 My Emacs configuration contains a `custom.el` file, which should contain custom
-code, that is only relevant on a specific machine. That's why this file is not
-tracked via git. More and more bits of useful snippets show up in my `custom.el`
-file and I'd like to jot down some examples which I might expand on in the
-future.
+code that is only relevant on a specific machine. That's why this file is not
+tracked using git. More and more bits of useful snippets show up in my
+`custom.el` file and I'd like to jot down some examples which I might expand on
+in the future.
 
 ## Calling Command Line Tools
 

@@ -3,7 +3,7 @@ title: "Install a Visual Studio Extension using Powershell"
 date: 2019-03-07
 ---
 
-One of my previous posts outlined how to manage Visual Studio extensions
+One of my previous posts outlined how to manage Visual Studio extension
 installations by creating Chocolatey packages for each and every VSIX file you
 want to install. This works fine in an environment where you are already using
 an existing Chocolatey repository to hold custom or internalized packages. The

@@ -23,11 +23,11 @@ that I'll encounter.
 Emacs is different than most editors or IDEs that I have used in the past.
 Concepts such as buffer management, the "everything is text" philosophy or the
 tinkering aspects were rather new to me. It took me a few days to internalize
-the common vocabulary (e.g. `M-x foobar`, minibuffer, killing and yanking, well
-known package names...), which made re-reading several resources pretty
+the common vocabulary (e.g. `M-x foobar`, minibuffer, killing and yanking or
+well known package names), which made re-reading several resources pretty
 important. The [/r/emacs][reddit] subreddit has helped me a lot.
 
-I intentionally decided to start with the plain vanilla version of GNU Emacs so
+I intentionally decided to start with a plain vanilla version of GNU Emacs so
 that I could start with the "original" way of how to use to editor. Pretty soon
 some aspects started to itch, which is where I either had to learn the "intended
 way" or I had to bring in some external packages (extensions).

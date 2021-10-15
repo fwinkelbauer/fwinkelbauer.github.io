@@ -56,7 +56,7 @@ caused Git to error out when trying to clone the repository. The fix is rather
 easy:
 
 ``` text
-cd ~/restored/my-git-project
+cd ~/Restored/my-git-project
 mkdir refs
 ```
 

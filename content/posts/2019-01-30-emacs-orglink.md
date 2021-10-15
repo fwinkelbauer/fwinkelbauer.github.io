@@ -4,7 +4,7 @@ date: 2019-01-30
 ---
 
 I have started to use a few of org-mode's link features to help me stay
-organized in my day job. The top of my "main" org file now includes these
+organized in my job. The top of my "main" org file now includes these
 statements:
 
 ``` org

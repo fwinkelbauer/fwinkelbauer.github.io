@@ -36,9 +36,9 @@ Git uses four components to build its internal data structure:
 
 - Blobs to store the actual file content
 - Trees to create a "snapshot" of a repository
-- Commits to add meta information to trees and to create the actual repository
-  history
-- References (branches and tags) to point to a commit graph
+- Commits to add meta information to trees and to create the repository history
+- References (branches and tags) to point to a specific point in the commit
+  graph
 
 The major difference between Git and a CDC-based DVCS would be, that a single
 file might be split into one more chunks. This leaves us with two new problems:

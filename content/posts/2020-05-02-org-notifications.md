@@ -3,7 +3,7 @@ title: "Org-Mode Calendar Notifications"
 date: 2020-05-02
 ---
 
-I was wondering if I could create notifactions for my calendar entries in
+I was wondering if I could create notifications for my calendar entries in
 org-mode on Windows and Linux and it turns out, that the setup isn't that
 complex.
 
@@ -25,9 +25,9 @@ need to export org-mode entries as appointments:
 ```
 
 The above snippet will create appointments when Emacs boots up and every time
-when we open `org-agenda`. The `appt` notifactions appear in a mini-buffer,
-which disappears after a few seconds. We can get persistant notifactions by
-using a different "backend" such as the Windows 10 notifactions area (via the
+when we open `org-agenda`. The `appt` notifications appear in a mini-buffer,
+which disappears after a few seconds. We can get persistent notifications by
+using a different "backend" such as the Windows 10 notifications area (via the
 PowerShell module [BurntToast][burnt]) or the Linux command line tool
 `notify-send`:
 

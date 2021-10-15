@@ -9,8 +9,8 @@ command line option such as `myapp.exe --update` looks nice, but the update
 process is tricky, as we cannot simply replace the application while its
 running.
 
-A very minimalistic approach, which can work for command line tools, relies on
-the Chocolatey package manager. Here's an example:
+A very minimalist approach, which can work for command line tools, relies on the
+Chocolatey package manager. Here's an example:
 
 **Package structure:**
 
@@ -67,7 +67,7 @@ The technique works like this:
 - Calling `choco install myapp` installs the `myapp.zip` file to the Chocolatey
   lib directory (`$env:ChocolateyInstall\lib\myapp\tools`) and extracts the
   archive to `C:\SomeFolder\myapp\1.0.0\`
-- The install script creates a batch and a Powershell file, which point to
+- The install script creates a cmd and a Powershell file, which point to
   `C:\SomeFolder\myapp\1.0.0\myapp.exe`
 - The application can now be called in PowerShell and cmd by typing `myapp`
 - We can now update the application using `choco upgrade myapp`, even while it

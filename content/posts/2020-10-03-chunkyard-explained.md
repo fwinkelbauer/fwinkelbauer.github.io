@@ -191,7 +191,7 @@ chunkyard restore -r ~/chunkyard-repository -d ~/chunkyard-restored
 
 Chunkyard is by far not as sophisticated as other modern backup tools, but
 building the project helped me to learn more about encryption, chunking and
-content addressable storages. I would not recommend anyone to use or rely on
+content addressable storage. I would not recommend anyone to use or rely on
 Chunkyard, but to rather use it as an opportunity to get a basic understanding
 of how these other tools work.
 

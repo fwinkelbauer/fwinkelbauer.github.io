@@ -4,9 +4,9 @@ date: 2018-12-23
 ---
 
 I have recently had the need to copy files from one Windows machine to another
-in a Cake build script task. A rather easy way to achieve this is to use the
-`net` command line tool, which I have wrapped into a few lines of C#. Here's how
-you use the code:
+in a Cake build task. A rather easy way to achieve this is to use the `net`
+command line tool, which I have wrapped into a few lines of C#. Here's how to
+use the code:
 
 ```csharp
 readonly var target = Argument("target", "Default");
