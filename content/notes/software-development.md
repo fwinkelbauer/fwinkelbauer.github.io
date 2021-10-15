@@ -126,6 +126,50 @@ Five Ideals
 - Psychological Safety
 - Customer Focus
 
+## Accelerate (Nicole Forsgren PhD, Jez Humble and Gene Kim)
+
+The book outlines 24 capabilities that drive improvements software delivery
+performance:
+
+### Continuous Delivery
+
+- Version control
+- Deployment automation
+- Continuous integration
+- Trunk-based development
+- Test automation
+- Test data management
+- Shift left on security
+- Continuous delivery
+
+### Architecture
+
+- Loosely coupled architecture
+- Empowered teams
+
+### Product and Process
+
+- Customer feedback
+- Value stream
+- Working in small batches
+- Team experimentation
+
+### Lean Management and Monitoring
+
+- Change approval processes
+- Monitoring
+- Proactive notifications
+- WIP limits
+- Visualizing work
+
+### Cultural
+
+- Westrum organizational culture
+- Supporting learning
+- Collaboration among teams
+- Job satisfaction
+- Transformational leadership
+
 ## CAP Theorem
 
 - **C**onsistency
