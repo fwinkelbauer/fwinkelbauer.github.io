@@ -83,7 +83,7 @@ post][architecture-decisions]:
   - Make the system right
 - **Obvious:** (Automation) You can automate these steps
 
-## Four Kinds of Documentation
+## [Four Kinds of Documentation](https://www.writethedocs.org/videos/eu/2017/the-four-kinds-of-documentation-and-why-you-need-to-understand-what-they-are-daniele-procida/)
 
 - **Tutorial:** learning-oriented; a getting started guide
 - **How-To Guide:** goal-oriented; how to solve a specific problem
