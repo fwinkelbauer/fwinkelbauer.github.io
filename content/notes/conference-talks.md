@@ -725,3 +725,13 @@ SQL has changed a lot, though most developers only know the 1992 standard
 - **OVER**: window functions
 - **System Versioning**: Can be used to show tables at a given time. Adds audit
   features to destructive changes such as INSERT, UPDATE or DELETE
+
+## [Testing as an equal 1st class citizen to coding (Jon Jagger)](https://www.youtube.com/watch?v=1u6DdiFFH6Q)
+
+- The Equilibrium law: stable systems tend to oppose their own proper function
+- All changes can be understood as the effort to maintain some constancy, and
+  all constancy as maintained through change
+- You will not increase the speed of your car if you think that your brakes are
+  unreliable
+- Tests are as brakes when developing software
+- Are you confident enough to delete "dead" code?
