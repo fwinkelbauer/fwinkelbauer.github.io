@@ -15,7 +15,7 @@ that are already installed through plugin dependencies.
 # One Transient To Rule Them All
 
 All of my custom keybindings are accessible using the `<apps>` or `<menu>` keys.
-`<f5>` is used as a fallback for keyboards which don't have neither of these
+`<f5>` is used as a fallback for keyboards which don't have either of these
 keys. The major change to last year is that I have switched from the hydra
 package to transient, which is already installed if you are using magit. This
 change reduced the overall packages I need to install while also making my
@@ -30,7 +30,7 @@ available by pressing `<apps> g`:
 
 # Goodbye Ivy
 
-Ivy, counsel and swiper were one of my most used packages. They have some
+Ivy, counsel and swiper were some of my most used packages. They have some
 quirks, but the overall feature set is just fantastic (thanks abo-abo!). Over
 the last few months several people have tried to use some of the newer
 completion frameworks, which made me curious. I'm now using a combination of
