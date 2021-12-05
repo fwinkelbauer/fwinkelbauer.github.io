@@ -83,6 +83,11 @@ post][architecture-decisions]:
   - Make the system right
 - **Obvious:** (Automation) You can automate these steps
 
+## Write Documentation If
+
+- The thing you are documenting does not change often
+- Your documentation will be useful to a large group of people
+
 ## [Four Kinds of Documentation](https://www.writethedocs.org/videos/eu/2017/the-four-kinds-of-documentation-and-why-you-need-to-understand-what-they-are-daniele-procida/)
 
 - **Tutorial:** learning-oriented; a getting started guide
