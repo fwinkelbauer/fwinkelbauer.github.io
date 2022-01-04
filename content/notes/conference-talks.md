@@ -735,3 +735,16 @@ SQL has changed a lot, though most developers only know the 1992 standard
   unreliable
 - Tests act like brakes when developing software
 - Are you confident enough to delete "dead" code?
+
+## [Technical Leadership and Glue Work (Tanya Reilly)](https://www.youtube.com/watch?v=KClAPipnKqw)
+
+- Glue work
+  - is work that makes the whole teams better
+  - is expected when you are senior
+  - and risky when you are not
+  - (people might not be rewarded for it)
+- Women tend to volunteer more often to do unpromotable work than men
+  - Men also volunteer less because they know that women will step in if no one
+    volunteers
+- What do you want to get better at?
+- The vast majority of our learning happens at our job
