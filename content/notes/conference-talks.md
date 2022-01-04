@@ -733,5 +733,5 @@ SQL has changed a lot, though most developers only know the 1992 standard
   all constancy as maintained through change
 - You will not increase the speed of your car if you think that your brakes are
   unreliable
-- Tests are as brakes when developing software
+- Tests act like brakes when developing software
 - Are you confident enough to delete "dead" code?
