@@ -5,33 +5,21 @@ title: "Software Development"
 ## Speakers
 
 - Kevlin Henney
-- Rich Hickey
 - Greg Young
 - Michael Feathers
-- Dan North
-- Martin Fowler
 - Martin Thompson
-- Todd Montgomery
 - Bryan Cantrill
 - Mark Seemann
 - Jimmy Bogard
-- Jonathan Blow
 - Simon Brown
 - Sam Newman
-- J. B. Rainsberger
 - Chad Fowler
-- Bret Victor
-- Martin Kleppmann
 - Kent Beck
-- Linda Rising
 - Casey Rosenthal
 - Stefan Tilkov
 - Michael Nygard
 - Allen Holub
-- Jez Humble
 - John Hughes
-- Rafal Dittwald
-- Michael Bryzek
 
 ## Decision Logs
 
