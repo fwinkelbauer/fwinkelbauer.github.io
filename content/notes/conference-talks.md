@@ -748,3 +748,19 @@ SQL has changed a lot, though most developers only know the 1992 standard
     volunteers
 - What do you want to get better at?
 - The vast majority of our learning happens at our job
+
+## [The Only Unbreakable Law (Casey Muratori)](https://www.youtube.com/watch?v=5IUj1EZwpJY)
+
+- Conway's law states that a piece of software tends to reflect a company's
+  communication structures (its org chart)
+- The intended title of this talk should have been Conway's nightmare
+- What Conway did not anticipate: A piece of software does not only reflect the
+  current org chart, but it most likely also contains fragments of **previous**
+  org charts
+- Windows contains at least four different volume controls which were all
+  created in different versions of Windows
+- We create organizations and groups to tackle problems that we cannot solve
+  alone. They are in a way a necessity, but they are not inherently "good"
+- Developers tend to do the same thing when they are writing code: They create
+  class hierarchies so they can divide a problem which they cannot keep in their
+  head. Just like org charts, they might be too complicated or inefficient
