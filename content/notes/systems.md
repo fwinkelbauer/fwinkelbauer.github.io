@@ -85,3 +85,13 @@ Lessons:
 
 Diverse groups are "better" because group members are more skeptical which in
 turn makes it more likely to catch small errors.
+
+## Cynefin Framework
+
+- **Chaotic:** A crisis. Your best bet is to stabilize the situation
+- **Complex:** (Creativity) You don't know what you don't know, so you have to try things out
+  to understand your environment
+  - Make the right system
+- **Complicated:** (Skill) You kinda know what's going on so you can engineer a solution
+  - Make the system right
+- **Obvious:** (Automation) You can automate these steps

@@ -58,18 +58,8 @@ post][architecture-decisions]:
   create files, ...)
 - Create application arguments which allows a user to specify a configuration
   file in a specific place
-- Some configuration (e.g. plugging an application into ElasticSearch) should be
-  disabled by default. A user can enable them if he wants to
-
-## Cynefin Framework
-
-- **Chaotic:** A crisis. Your best bet is to stabilize the situation
-- **Complex:** (Creativity) You don't know what you don't know, so you have to try things out
-  to understand your environment
-  - Make the right system
-- **Complicated:** (Skill) You kinda know what's going on so you can engineer a solution
-  - Make the system right
-- **Obvious:** (Automation) You can automate these steps
+- Some configuration (e.g. plugging an application into a logging service) should
+  be disabled by default. A user can enable them if he wants to
 
 ## Write Documentation If
 
@@ -225,7 +215,6 @@ Employee satisfaction can indicate the performance of an organization. Ask:
 - Model actions as data
 - Abstractions and data schemata are hard to get right. You will most likely
   change them in the future, so prepare yourself
-- Time != Money
 - Technical excellence is not everything
 - Backups don't mean anything unless you have actually tried to restore data
   from them
