@@ -764,3 +764,13 @@ SQL has changed a lot, though most developers only know the 1992 standard
 - Developers tend to do the same thing when they are writing code: They create
   class hierarchies so they can divide a problem which they cannot keep in their
   head. Just like org charts, they might be too complicated or inefficient
+
+## [Improving eBay's Development Velocity (Randy Shoup and Mark Weinberg)](https://www.youtube.com/watch?v=Qgjs0IA114E)
+
+- Randy and Mark used the Accelerate book
+- Used DORA metrics to track progress
+- Teams delivered >2x the features
+- Focused on removing bottlenecks
+- How could we deliver once per day? - Here is a list of 20 things that are
+  holding us back
+- CEO: "The most important initiative at the company. Go faster!"
