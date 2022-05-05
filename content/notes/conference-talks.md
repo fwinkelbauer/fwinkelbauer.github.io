@@ -774,3 +774,26 @@ SQL has changed a lot, though most developers only know the 1992 standard
 - How could we deliver once per day? - Here is a list of 20 things that are
   holding us back
 - CEO: "The most important initiative at the company. Go faster!"
+
+## [Uncoupling (Michael Nygard)](https://www.youtube.com/watch?v=mAw4ygX1c-4)
+
+Coupling
+
+- Determines degree of freedom
+- Enables some movement
+- Inhibits other movement
+- Connects effects
+- Is necessary and inescapable
+
+Kinds of Coupling
+
+- Operational: Consumer cannot run without the provider
+- Development: Changes in producer and consumer must be coordinated
+- Semantic: Change together because of shared concepts
+- Functional: Change together because of shared responsibility
+- Incidental: Change together for no good reason
+
+Composability
+
+- Is inversely proportional to the number of interfaces
+- Is inversely proportional to the number of data types
