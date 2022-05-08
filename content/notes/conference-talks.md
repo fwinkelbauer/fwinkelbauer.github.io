@@ -797,3 +797,24 @@ Composability
 
 - Is inversely proportional to the number of interfaces
 - Is inversely proportional to the number of data types
+
+## [Make Impacts Not Software (Gojko Adzic)](https://www.youtube.com/watch?v=GnK_n9Udhhs)
+
+- Typical software road maps are better described as tunnels, since these "maps"
+  typically only contain a single road/approach
+- A real road map contains several different ways to reach a specific goals
+- Before the invention of GPS a long trip involved a lot of upfront planning
+- A GPS eliminates this upfront planning by recalculating potential routes
+  depending on-the-fly (e.g. in case of heavy traffic or an accident)
+- Shipping small increments are the equivalent to a GPS recalculation process.
+  We can use fast feedback to decide how to change our route (by using a road
+  map)
+- Software projects typically do not have a specific destination. Most of the
+  time the "real" destination arises while we are developing something new
+- People measure what's easy, not was is important
+- Story points, time estimates or bug counts are negative metrics. They tell you
+  when something is wrong, but they cannot tell you if everything is alright.
+  "Zero bugs" could mean "great quality" but it could also mean "no or poor
+  testing" or "nothing new was delivered". In other words: absence of evidence
+  is not evidence of absence
+- https://www.impactmapping.org/
