@@ -7,7 +7,6 @@ title: "Software Development"
 - Kevlin Henney
 - Greg Young
 - Michael Feathers
-- Martin Thompson
 - Bryan Cantrill
 - Mark Seemann
 - Jimmy Bogard
@@ -17,7 +16,6 @@ title: "Software Development"
 - Kent Beck
 - Casey Rosenthal
 - Stefan Tilkov
-- Michael Nygard
 - Allen Holub
 - John Hughes
 
