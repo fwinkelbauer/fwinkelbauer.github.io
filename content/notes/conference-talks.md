@@ -818,3 +818,26 @@ Composability
   testing" or "nothing new was delivered". In other words: absence of evidence
   is not evidence of absence
 - https://www.impactmapping.org/
+
+
+## [Protect Yourself Against Supply Chain Attacks (Rob Bos)](https://www.youtube.com/watch?v=00R1JGBQEJg)
+
+- Libraries used by your application and tooling used to build your application
+- Supply Chain Confusion (typo squatting, namespace shadowing, configuration
+  files, pipeline attacks, pipeline artifact attacks)
+- Typo squatting: a malicious copy of a well known package is published using a
+  slightly different name (e.g. `coreenv` and `core-env`)
+- Some package managers offer a namespace feature (e.g. `@azure/some-package`
+  instead of just using `some-package`)
+- You not only want to know which packages (and their versions) you are using.
+  You also want to know where you got these packages from
+- Protect yourself using software composition analysis (AST or DAST -
+  Static/Dynamic Application Security Testing)
+- Package manager scanners: WhiteSource, BlackDuck, GitHub Dependabot, snyk.io
+- You can use CVE databases to check that your packages do not contain known
+  issues
+- We want to find issues as fast as possible. In the best case we find an issue
+  before we commit code or run a CI build
+- Frameworks:
+  - OWASP Software Component Verification Standard (SCVS)
+  - Supply Chain Levels for Software Artifacts (SLSA)
