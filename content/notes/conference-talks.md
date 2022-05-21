@@ -841,3 +841,21 @@ Composability
 - Frameworks:
   - OWASP Software Component Verification Standard (SCVS)
   - Supply Chain Levels for Software Artifacts (SLSA)
+
+## [Monitoring Is Not Observability (Baron Schwartz)](https://www.youtube.com/watch?v=fBDI7F9PjlI)
+
+- Definitions
+  - Observability: an attribute of a system
+  - Instrumentation: measurement points
+  - Telemetry: the measurements themselves
+  - Analytics: turning telemetry into answers
+  - Monitoring: checking/evaluating system state
+- Events, Logs, Metrics, Traces
+- It's all derived from events
+- Kinds of telemetry
+  - USE: Utilization, saturation, error
+  - RED: Requests, errors, duration
+  - SRE Book: Latency, traffic, errors and saturation
+  - Queuing theory
+  - Little's law
+  - Universal scalability law
