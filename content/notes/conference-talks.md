@@ -859,3 +859,80 @@ Composability
   - Queuing theory
   - Little's law
   - Universal scalability law
+
+## [Working at the Center of the Cyclone (Dr. Richard Cook)](https://www.youtube.com/watch?v=3ZP98stDUf0)
+
+- Complexity is change
+- It's not surprising that your system sometimes fail. What is surprising that
+  it ever works at all
+- You build systems differently when you expect them to fail
+- Failure is normal. Failed state is the normal state
+- You need to build an organization that is able to recover from failure
+- People are part of "the system"
+- You never see "the system", you only see a representation (what you see on
+  your screen)
+- An incident is something that occurs in the mind of people who read
+  representations of a system
+- No mental model is "the system"
+- Ordinary firms experience one to five acknowledged events per day
+- As the complexity of a system increases, the accuracy of any agent's model of
+  that system decreases
+- Rollbacks do not keep you safe
+- You need to consider "the system" and "the organization" (which are part of
+  the system) to be successful
+- Incidents are bits of wisdom. They show you where your mental model differs
+  from "the system"
+
+## [Resilience In Complex Adaptive Systems (Dr. Richard Cook)](https://www.youtube.com/watch?v=PGLYEDpNu60)
+
+- Rasmussen's system model
+  - Economic failure boundary
+  - Accident boundary
+  - Unacceptable workload boundary
+- The operating point tends to move towards the accident boundary
+- If you get people together for a meeting about how important some topic is,
+  you know you have failed
+- We introduce a margin which should keep us from reaching the accident
+  boundary. This also applies to speed limits or telling your kids "no, the
+  stove is hot!". The problem is that we don't really know where the accident
+  boundary is
+- Normalization of deviance: Crossing over the margin line over and over without
+  a problem makes us wonder what the big deal is. Is this margin too
+  conservative? We are "flirting" with the margin
+- Resilience: monitoring, reacting, anticipating and learning activities
+
+## [How Complex Systems Fail (Dr. Richard Cook)](https://www.youtube.com/watch?v=2S0k12uZR14)
+
+- https://how.complexsystems.fail
+- We have to "as imagined" and the "as found" world. These are pretty different
+  worlds!
+- We design for reliability
+  - stiff boundaries, layers, formalism
+  - defense in depth
+  - redundancy
+  - interference protection
+  - assurance
+  - accountability
+- We want resilience:
+  - withstand transients
+  - recover swiftly and smoothly from failures
+  - prioritize to serve high level goals
+  - recognize and respond to abnormal situations
+  - adapt to change
+- The time between maintenance is zero. Continuous maintenance should be part of
+  the design
+- Reveal the actual controls to your operators so that they can help you in case
+  of accidents. Developers tend to design systems that make it impossible for
+  people to do things. We are trying to protect systems from people
+- Heavy machines have actual markers that show where you can lift them, since
+  the manufacturers know that you will move them. We should also consider
+  similar scenarios when dealing with software
+- Support mental simulation by giving operators insight into the system
+- Black boxes (hiding all details behind layers of abstractions) are a big
+  mistake. We have to know the inside of a black box to reason about it
+- Resilience agenda:
+  - Operators are competent to hold the keys to the systems we build
+  - Make resilience engineering the first priority of design for next gen
+    systems
+  - Commit resources to discovering, understanding and supporting resilience
+    through the system life-cycle
