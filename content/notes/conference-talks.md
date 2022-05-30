@@ -904,7 +904,7 @@ Composability
 ## [How Complex Systems Fail (Dr. Richard Cook)](https://www.youtube.com/watch?v=2S0k12uZR14)
 
 - https://how.complexsystems.fail
-- We have to "as imagined" and the "as found" world. These are pretty different
+- We have the "as imagined" and the "as found" world. These are pretty different
   worlds!
 - We design for reliability
   - stiff boundaries, layers, formalism
@@ -913,7 +913,7 @@ Composability
   - interference protection
   - assurance
   - accountability
-- We want resilience:
+- We want resilience
   - withstand transients
   - recover swiftly and smoothly from failures
   - prioritize to serve high level goals
