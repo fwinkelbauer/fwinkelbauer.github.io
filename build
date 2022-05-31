@@ -8,4 +8,15 @@ if [[ $worktrees != *"branch refs/heads/gh-pages"* ]]; then
   git worktree add -B gh-pages public origin/gh-pages
 fi
 
+cd public
+files=$(git ls-files)
+
+for file in $files; do
+    if [ -f "$file" ]; then
+        rm "$file"
+    fi
+done
+
+cd ..
+
 hugo --minify
