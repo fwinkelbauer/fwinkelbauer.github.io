@@ -2,4 +2,10 @@
 
 set -euo pipefail
 
-hugo --cleanDestinationDir --minify
+worktrees=$(git worktree list --porcelain)
+
+if [[ $worktrees != *"branch refs/heads/gh-pages"* ]]; then
+  git worktree add -B gh-pages public origin/gh-pages
+fi
+
+hugo --minify
