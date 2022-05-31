@@ -1,0 +1,116 @@
+<!doctype html><html lang=en><head><title>Chunkyard Explained</title><meta charset=utf-8><meta name=generator content="Hugo 0.80.0"><meta name=author content="Florian Winkelbauer"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://florianwinkelbauer.com/posts/2020-10-03-chunkyard-explained/><link rel=alternate type=application/rss+xml title=RSS href=https://florianwinkelbauer.com/index.xml><link rel=stylesheet href=https://florianwinkelbauer.com/main.css></head><body><header class=dark><h2><a href=https://florianwinkelbauer.com/>Florian Winkelbauer</a></h2><nav><a href=/about>About</a>
+<a href=/notes>Notes</a>
+<a href=/projects>Projects</a></nav></header><main><article><header><h1><a href=https://florianwinkelbauer.com/posts/2020-10-03-chunkyard-explained/>Chunkyard Explained</a></h1><time datetime=2020-10-03T00:00:00Z>October 03, 2020</time></header><p>Since my last <a href=https://florianwinkelbauer.com/posts/2020-03-13-building-chunkyard/>blog post</a> about <a href=https://github.com/fwinkelbauer/chunkyard>Chunkyard</a> the
+project has reached v1.1.1. Chunkyard is now a single .NET project and does no
+longer rely on components written in other languages. I also took the time to
+write down what the project should and should not do in the README file.</p><p>I believe that the overall internal data structure is stable, so I&rsquo;d like to
+take the time to document how a file is stored.</p><h2 id=creating-the-repository>Creating The Repository</h2><p>So let&rsquo;s imagine that we want to store a snapshot of the <code>hello-world.txt</code> file
+using the command:</p><pre><code class=language-shell>chunkyard create -r ~/chunkyard-repository -f ~/Documents/hello-world.txt
+</code></pre><p>After the initial password prompt Chunkyard will perform the following
+operations:</p><ul><li>The file <code>hello-world.txt</code> is read and split into pieces (chunks) using the
+<a href=https://www.usenix.org/system/files/conference/atc16/atc16-paper-xia.pdf>FastCdc</a> algorithm. Since text files tend to be rather small, we&rsquo;ll
+most likely end up with a single chunk</li><li>Each chunk will be AES (Galois/Counter Mode) encrypted using a 256 bit key
+which is derived from the password. <strong>Note:</strong> These choices are based on this
+<a href="https://www.youtube.com/watch?v=mY4ifhgpbf8">NDC Conference talk</a> by Stephen Haunts</li><li>Every encrypted chunk will be stored in a content addressable storage using
+its SHA256 hash value</li></ul><p>In order the reconstruct the <code>hello-world.txt</code> file, we need to keep track of
+several pieces of data:</p><ul><li>Parameters to reproduce the 256 bit key</li><li>The file name</li><li>The address of every file chunk in the storage system</li><li>The AES GCM tag and the cryptographic nonce to decrypt the file chunks</li></ul><p>Here&rsquo;s an overview of the file structure of the <code>~/chunkyard-repository</code>
+directory:</p><pre><code class=language-text>chunkyard-repository/
+  content/
+    sha256/
+      11/
+        116d11f1a1a7301a720848382893cb931e781f31f93eeae3cbb88106b3d88ba5
+      58/
+        58c767a0b5c211fd26d2869ea36691b98270b7db5f22038d9c902ecdc8a818d8
+  reflog/
+      0.json
+</code></pre><p>The file <code>116d11f1a1a7301a720848382893cb931e781f31f93eeae3cbb88106b3d88ba5</code>
+contains our encrypted <code>hello-world.txt</code> file.</p><p>All the information to reconstruct a snapshot of <code>hello-world.txt</code> is also
+stored as an encrypted chunk. Here&rsquo;s how the snapshot file
+<code>58c767a0b5c211fd26d2869ea36691b98270b7db5f22038d9c902ecdc8a818d8</code> looks like
+when it is decrypted:</p><pre><code class=language-json>{
+  &quot;CreationTime&quot;: &quot;2020-10-03T13:05:45.5405235+02:00&quot;,
+  &quot;ContentReferences&quot;: [
+    {
+      &quot;Name&quot;: &quot;hello-world.txt&quot;,
+      &quot;Nonce&quot;: &quot;rqesO2bAdlHs/3de&quot;,
+      &quot;Chunks&quot;: [
+        {
+          &quot;ContentUri&quot;: &quot;sha256://116d11f1a1a7301a720848382893cb931e781f31f93eeae3cbb88106b3d88ba5&quot;,
+          &quot;Tag&quot;: &quot;d17sWwQ6DXtw7n9ud2NX/g==&quot;
+        }
+      ]
+    }
+  ]
+}
+</code></pre><p>In this example the snapshot contains a single file which consists of a single
+chunk (<code>116d11f1a1a7301a720848382893cb931e781f31f93eeae3cbb88106b3d88ba5</code>).</p><p>Finally <code>0.json</code> contains a reference to the above snapshot as well as the salt
+and hashing iterations parameters needed to create our cryptographic key:</p><pre><code class=language-json>{
+  &quot;LogId&quot;: &quot;5411e7c2-315e-4b48-9345-e2ddfc44c0ad&quot;,
+  &quot;ContentReference&quot;: {
+    &quot;Name&quot;: &quot;.chunkyard-snapshot&quot;,
+    &quot;Nonce&quot;: &quot;WOjfK9yWujps+w1+&quot;,
+    &quot;Chunks&quot;: [
+      {
+        &quot;ContentUri&quot;: &quot;sha256://58c767a0b5c211fd26d2869ea36691b98270b7db5f22038d9c902ecdc8a818d8&quot;,
+        &quot;Tag&quot;: &quot;C/YhL/z9Q/rUtR1hVOv5fw==&quot;
+      }
+    ]
+  },
+  &quot;Salt&quot;: &quot;GsKFv9f5GcrEn12U&quot;,
+  &quot;Iterations&quot;: 1000
+}
+</code></pre><h2 id=create-a-new-backup>Create A New Backup</h2><p>Let&rsquo;s change the content of our <code>hello-world.txt</code> example and re-run the
+<code>create</code> command. Here&rsquo;s what happened to the <code>~/chunkyard-repository</code> directory:</p><pre><code class=language-text>chunkyard-repository/
+  content/
+    sha256/
+      11/
+        116d11f1a1a7301a720848382893cb931e781f31f93eeae3cbb88106b3d88ba5
+      30/
+        30a54e8cda4e6cc66a92eb93e28d8b9ca646c71b7d9414c120d6ebb7e34dea2f
+      58/
+        58c767a0b5c211fd26d2869ea36691b98270b7db5f22038d9c902ecdc8a818d8
+      5b/
+        5b9d6713a8cba3ecaa8b68fa71a11a2dab88ec266bbb42660fb3a1dbfb34b401
+  reflog/
+    0.json
+    1.json
+</code></pre><p>Chunkyard did not change any existing file, instead it created new ones. These
+new JSON structures look like this:</p><p>The snapshot:</p><pre><code class=language-json>{
+  &quot;CreationTime&quot;: &quot;2020-10-03T13:16:39.1510417+02:00&quot;,
+  &quot;ContentReferences&quot;: [
+    {
+      &quot;Name&quot;: &quot;hello-world.txt&quot;,
+      &quot;Nonce&quot;: &quot;rqesO2bAdlHs/3de&quot;,
+      &quot;Chunks&quot;: [
+        {
+          &quot;ContentUri&quot;: &quot;sha256://5b9d6713a8cba3ecaa8b68fa71a11a2dab88ec266bbb42660fb3a1dbfb34b401&quot;,
+          &quot;Tag&quot;: &quot;AhAY/F2rAjjFosaFnElhtw==&quot;
+        }
+      ]
+    }
+  ]
+}
+</code></pre><p>And the <code>1.json</code> file:</p><pre><code class=language-json>{
+  &quot;LogId&quot;: &quot;5411e7c2-315e-4b48-9345-e2ddfc44c0ad&quot;,
+  &quot;ContentReference&quot;: {
+    &quot;Name&quot;: &quot;.chunkyard-snapshot&quot;,
+    &quot;Nonce&quot;: &quot;3sJtajbLoV6PZAWx&quot;,
+    &quot;Chunks&quot;: [
+      {
+        &quot;ContentUri&quot;: &quot;sha256://30a54e8cda4e6cc66a92eb93e28d8b9ca646c71b7d9414c120d6ebb7e34dea2f&quot;,
+        &quot;Tag&quot;: &quot;hAQVhHsH7V14U/bwufvMww==&quot;
+      }
+    ]
+  },
+  &quot;Salt&quot;: &quot;GsKFv9f5GcrEn12U&quot;,
+  &quot;Iterations&quot;: 1000
+}
+</code></pre><h2 id=restoring-files>Restoring Files</h2><p>Finally, let&rsquo;s walk through the performed operations when we are restoring a
+snapshot using:</p><pre><code class=language-shell>chunkyard restore -r ~/chunkyard-repository -d ~/chunkyard-restored
+</code></pre><ul><li>Prompt the user for a password</li><li>Read the unencrypted JSON file found in the <code>reflog</code> directory. In our example
+this would be <code>1.json</code></li><li>Create the cryptographic key based on the password, salt and iteration parameters</li><li>Decrypt and reconstruct the snapshot based on the information found in
+<code>1.json</code></li><li>Decrypt and reconstruct every file in the snapshot</li></ul><h2 id=closing-thoughts>Closing Thoughts</h2><p>Chunkyard is by far not as sophisticated as other modern backup tools, but
+building the project helped me to learn more about encryption, chunking and
+content addressable storage. I would not recommend anyone to use or rely on
+Chunkyard, but to rather use it as an opportunity to get a basic understanding
+of how these other tools work.</p></article></main><footer><p>Copyright 2022, Florian Winkelbauer. All rights reserved.</p></footer></body></html>

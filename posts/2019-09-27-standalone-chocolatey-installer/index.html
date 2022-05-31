@@ -1,0 +1,97 @@
+<!doctype html><html lang=en><head><title>Creating a Standalone Offline Chocolatey Installer</title><meta charset=utf-8><meta name=generator content="Hugo 0.80.0"><meta name=author content="Florian Winkelbauer"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://florianwinkelbauer.com/posts/2019-09-27-standalone-chocolatey-installer/><link rel=alternate type=application/rss+xml title=RSS href=https://florianwinkelbauer.com/index.xml><link rel=stylesheet href=https://florianwinkelbauer.com/main.css></head><body><header class=dark><h2><a href=https://florianwinkelbauer.com/>Florian Winkelbauer</a></h2><nav><a href=/about>About</a>
+<a href=/notes>Notes</a>
+<a href=/projects>Projects</a></nav></header><main><article><header><h1><a href=https://florianwinkelbauer.com/posts/2019-09-27-standalone-chocolatey-installer/>Creating a Standalone Offline Chocolatey Installer</a></h1><time datetime=2019-09-27T00:00:00Z>September 27, 2019</time></header><p>The <a href=https://chocolatey.org/docs/installation#why-isnt-there-an-msi>Chocolatey install documentation</a> includes a section about why
+there isn&rsquo;t an MSI to install Chocolatey. In case that you are still searching
+for an executable, this post outlines a way to create your own &ldquo;setup&rdquo; using a
+self extracting <a href=https://www.7-zip.org/>7-zip</a> archive. We&rsquo;ll need the following directory
+structure:</p><ul><li><code>config.txt</code>: A 7-zip configuration file</li><li><code>install.bat</code>: A wrapper script to call <code>install.ps1</code></li><li><code>install.ps1</code>: This script will perform the actual installation inside the
+7-zip archive</li><li><code>build.ps1</code>: The script which will create our target file <code>output/chocolateySetup.exe</code></li></ul><h2 id=configtxt>config.txt</h2><p>We&rsquo;re using a rather simple configuration, which will:</p><ul><li>Show the user a &ldquo;Do you want to install Chocolatey?&rdquo; yes/no prompt</li><li>Run <code>install.bat</code> after extracting the archive</li></ul><p>The <a href=https://sevenzip.osdn.jp/chm/cmdline/switches/sfx.htm>7-zip SFX documentation</a> outlines all available format options of
+a <code>config.txt</code> file.</p><pre><code class=language-text>;!@Install@!UTF-8!
+Title=&quot;Chocolatey&quot;
+BeginPrompt=&quot;Do you want to install Chocolatey?&quot;
+ExecuteFile=&quot;install.bat&quot;
+;!@InstallEnd@!
+</code></pre><h2 id=installbat>install.bat</h2><p><code>install.bat</code> is a simple wrapper script which calls <code>install.ps1</code>. I found this
+to be more convenient than trying to let the 7-zip SFX module call PowerShell
+directly.</p><pre><code class=language-cmd>@ECHO OFF
+PowerShell.exe -NoProfile -ExecutionPolicy Bypass -Command &quot;&amp; '%~dpn0.ps1'&quot;
+PAUSE
+</code></pre><h2 id=installps1>install.ps1</h2><p>This script performs the actual installation by calling Chocolatey&rsquo;s
+<code>chocolateyInstall.ps1</code>.</p><pre><code class=language-powershell>if ($env:ChocolateyInstall) {
+    Write-Warning 'Chocolatey is already installed!'
+    return
+}
+
+$env:ChocolateyInstall = &quot;$($env:ProgramData)\chocolatey&quot;
+
+&amp; (Join-Path $PSScriptRoot 'chocolatey\tools\chocolateyInstall.ps1')
+</code></pre><h2 id=buildps1>build.ps1</h2><p>This script does a few things for us. It will:</p><ul><li>Download Chocolatey (v0.10.13) and extract it in a <code>temp</code> directory</li><li>Download and extract the 7-zip SFX module in a <code>temp</code> directory</li><li>Create the 7-zip archive <code>output\chocolateySetup.7z</code> containing Chocolatey,
+<code>install.ps1</code> and <code>install.bat</code></li><li>And finally, create the executable <code>output/chocolateySetup.exe</code> by combining
+<code>output/chocolateySetup.7z</code>, <code>config.txt</code> and the 7-zip SFX module</li></ul><p>All calls to 7-zip are wrapped in an <code>exec</code> function, which I&rsquo;ve described in a
+previous <a href=https://florianwinkelbauer.com/posts/2019-01-21-powershell-provision/>post</a>.</p><p>You can tweak the <code>$chocoUrl</code> parameter to download a different version of
+Chocolatey. Keep in mind that you might need to delete the <code>temp</code> directory to
+remove all &ldquo;cached&rdquo; files.</p><pre><code class=language-powershell>$ErrorActionPreference = 'Stop'
+Set-StrictMode -Version 'Latest'
+
+function exec {
+    param(
+        [Parameter(Mandatory = $true)]
+        [scriptblock]$ScriptBlock,
+        [int[]]$ValidExitCodes = @(0)
+    )
+
+    $global:LASTEXITCODE = 0
+
+    &amp; $ScriptBlock
+
+    if (-not ($global:LASTEXITCODE -in $ValidExitCodes)) {
+        throw &quot;Invalid exit code: $($global:LASTEXITCODE)&quot;
+    }
+}
+
+$configFile = Join-Path $PSScriptRoot 'config.txt'
+$chocoUrl = 'https://chocolatey.org/api/v2/package/chocolatey/0.10.13'
+$lzmaUrl = 'https://www.7-zip.org/a/lzma1900.7z'
+
+$outputDir = Join-Path $PSScriptRoot 'output'
+$tempDir = Join-Path $PSScriptRoot 'temp'
+$installerFile = Join-Path $outputDir 'chocolateySetup.exe'
+
+if (Test-Path $outputDir) {
+    Remove-Item $outputDir -Recurse -Force
+}
+
+New-Item $outputDir -Type Directory -Force | Out-Null
+New-Item $tempDir -Type Directory -Force | Out-Null
+
+$chocoDir = Join-Path $tempDir 'chocolatey'
+
+if (-not (Test-Path $chocoDir)) {
+    $chocoZipFile = Join-Path $tempDir 'chocolatey.zip'
+    Invoke-WebRequest -Uri $chocoUrl -OutFile $chocoZipFile
+    Expand-Archive -Path $chocoZipFile -DestinationPath $chocoDir
+}
+
+$sfxFileName = '7zS2.sfx'
+$sfxFile = Join-Path $tempDir $sfxFileName
+
+if (-not (Test-Path $sfxFile)) {
+    $lzmaFile = Join-Path $tempDir 'lzma.7z'
+    Invoke-WebRequest -Uri $lzmaUrl -OutFile $lzmaFile
+    exec { 7z e $lzmaFile $sfxFileName -r -o&quot;$tempDir&quot; }
+}
+
+$installerZipFile = Join-Path $outputDir 'chocolateySetup.7z'
+
+exec { 7z a $installerZipFile (Resolve-Path $chocoDir) }
+exec { 7z a $installerZipFile 'install.bat' }
+exec { 7z a $installerZipFile 'install.ps1' }
+
+Get-Content $sfxFile, $configFile, $installerZipFile -Encoding Byte -Read 512 | Set-Content $installerFile -Encoding Byte
+</code></pre><h2 id=usage>Usage</h2><p>Given the above files, call <code>build.ps1</code> to create <code>output\chocolateySetup.exe</code>.
+Run the setup file, confirm the UAC prompt and the &ldquo;Do you want to install Chocolatey?&rdquo;
+dialog to start the install process.</p><p>There&rsquo;s currently only one drawback that I&rsquo;m aware of: After running the
+installer, Windows might pop up a &ldquo;This program might not have installed
+correctly&rdquo; message, even if the overall installation might be successful. Others
+have reported similar problems on <a href=https://superuser.com/questions/730242/7zip-self-extracting-executables-require-admin-privileges-and-trigger-compatib>superuser</a> and
+<a href=https://stackoverflow.com/questions/9229581/how-to-do-vista-uac-aware-self-extract-installer>stackoverflow</a>.</p></article></main><footer><p>Copyright 2022, Florian Winkelbauer. All rights reserved.</p></footer></body></html>

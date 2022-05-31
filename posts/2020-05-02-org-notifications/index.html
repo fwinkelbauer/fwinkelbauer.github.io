@@ -1,0 +1,43 @@
+<!doctype html><html lang=en><head><title>Org-Mode Calendar Notifications</title><meta charset=utf-8><meta name=generator content="Hugo 0.80.0"><meta name=author content="Florian Winkelbauer"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://florianwinkelbauer.com/posts/2020-05-02-org-notifications/><link rel=alternate type=application/rss+xml title=RSS href=https://florianwinkelbauer.com/index.xml><link rel=stylesheet href=https://florianwinkelbauer.com/main.css></head><body><header class=dark><h2><a href=https://florianwinkelbauer.com/>Florian Winkelbauer</a></h2><nav><a href=/about>About</a>
+<a href=/notes>Notes</a>
+<a href=/projects>Projects</a></nav></header><main><article><header><h1><a href=https://florianwinkelbauer.com/posts/2020-05-02-org-notifications/>Org-Mode Calendar Notifications</a></h1><time datetime=2020-05-02T00:00:00Z>May 02, 2020</time></header><p>I was wondering if I could create notifications for my calendar entries in
+org-mode on Windows and Linux and it turns out, that the setup isn&rsquo;t that
+complex.</p><p>The <code>appt</code> module can display notifications for specific appointments, so we
+need to export org-mode entries as appointments:</p><pre><code class=language-emacs-lisp>(require 'appt)
+(appt-activate t)
+
+(defun fw/org-agenda-to-appt ()
+  &quot;Rebuild all appt reminders using org.&quot;
+  (interactive)
+  (setq appt-time-msg-list nil)
+  (org-agenda-to-appt))
+
+(fw/org-agenda-to-appt)
+(add-hook 'org-agenda-finalize-hook 'fw/org-agenda-to-appt)
+</code></pre><p>The above snippet will create appointments when Emacs boots up and every time
+when we open <code>org-agenda</code>. The <code>appt</code> notifications appear in a mini-buffer,
+which disappears after a few seconds. We can get persistent notifications by
+using a different &ldquo;backend&rdquo; such as the Windows 10 notifications area (via the
+PowerShell module <a href=https://github.com/Windos/BurntToast>BurntToast</a>) or the Linux command line tool
+<code>notify-send</code>:</p><pre><code class=language-emacs-lisp>(defun fw/appt-disp-linux (min-to-app new-time msg)
+  &quot;A custom `appt-disp-window-function' which uses `notifications'.&quot;
+  (require 'notifications)
+  (notifications-notify :title msg :timeout 0))
+
+(defun fw/appt-disp-windows (min-to-app new-time msg)
+  &quot;A custom `appt-disp-window-function' which uses the PowerShell module 'BurntToast'&quot;
+  (shell-command
+   (concat &quot;powershell.exe -Command \&quot;New-BurntToastNotification -Text '&quot; msg &quot;'\&quot;&quot;)))
+
+(when (eq system-type 'gnu/linux)
+  (progn
+    (setq appt-display-format 'window)
+    (setq appt-disp-window-function (function fw/appt-disp-linux))
+    (setq appt-delete-window-function (lambda nil))))
+
+(when (eq system-type 'windows-nt)
+  (progn
+    (setq appt-display-format 'window)
+    (setq appt-disp-window-function (function fw/appt-disp-windows))
+    (setq appt-delete-window-function (lambda nil))))
+</code></pre></article></main><footer><p>Copyright 2022, Florian Winkelbauer. All rights reserved.</p></footer></body></html>

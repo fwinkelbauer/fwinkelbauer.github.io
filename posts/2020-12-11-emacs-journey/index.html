@@ -1,0 +1,36 @@
+<!doctype html><html lang=en><head><title>My Emacs Journey 2020</title><meta charset=utf-8><meta name=generator content="Hugo 0.80.0"><meta name=author content="Florian Winkelbauer"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://florianwinkelbauer.com/posts/2020-12-11-emacs-journey/><link rel=alternate type=application/rss+xml title=RSS href=https://florianwinkelbauer.com/index.xml><link rel=stylesheet href=https://florianwinkelbauer.com/main.css></head><body><header class=dark><h2><a href=https://florianwinkelbauer.com/>Florian Winkelbauer</a></h2><nav><a href=/about>About</a>
+<a href=/notes>Notes</a>
+<a href=/projects>Projects</a></nav></header><main><article><header><h1><a href=https://florianwinkelbauer.com/posts/2020-12-11-emacs-journey/>My Emacs Journey 2020</a></h1><time datetime=2020-12-11T00:00:00Z>December 11, 2020</time></header><p>I guess I am not alone when I&rsquo;ll say that COVID-19 made this year go by in an
+instant. It&rsquo;s time to write a small report on my Emacs usage.</p><h2 id=org-mode--magit>Org-Mode & Magit</h2><p>Even if some fancy editor would make me consider to stop using Emacs, I&rsquo;d still
+use it just for org-mode and magit. Both tools are mentioned over and over on
+the internet and I can understand why (even if it starts to become boring).
+Those tools are just that good.</p><p>A few months ago I finally started to use org-capture to create entries in my
+&ldquo;inbox/notes&rdquo; file without switching my current context. For some reason this
+feature didn&rsquo;t appeal to me for a long time and I preferred to do things
+manually. I still wouldn&rsquo;t consider myself a org power-user, so it might take
+some more time to dive deeper into other more involved features.</p><p>Magit became even better after I had discovered <code>magit-file-dispatch</code>. Calling
+this function while looking at a file gives you an option menu where you can
+access functions such as listing all commits this file was changed in. It also
+offers the possibility to step through different versions of the opened file.</p><h2 id=hydra>Hydra</h2><p>I started to use abo-abo&rsquo;s hydra package to create custom sets of keybindings,
+which I have previously mentioned in my journey write-up last year. Here a few
+examples of my current setup:</p><ul><li><code>&lt;apps></code> or <code>&lt;menu></code> with <code>&lt;f5></code> as a fallback: Show a hydra with my most
+common used commands such as &ldquo;find file&rdquo;, &ldquo;search in directory&rdquo; or &ldquo;switch
+buffer&rdquo;</li><li><code>&lt;f9></code>: Open a shell in the current directory</li><li><code>&lt;S-f9></code>: Show a hydra with &ldquo;project&rdquo; or &ldquo;directory&rdquo; related commands such as
+&ldquo;compile project&rdquo; or &ldquo;open this directory in a native file manager&rdquo;</li><li><code>&lt;f10></code>: Open magit</li><li><code>&lt;S-f10></code>: Show a hydra with several magit related features (including
+<code>magit-file-dispatch</code>)</li><li><code>&lt;f12></code>: Open my org agenda</li><li><code>&lt;S-f12></code>: Show a hydra which offers <code>org-capture</code>, <code>org-babel-tangle</code> and
+many other org functions</li></ul><h2 id=custom-elisp>Custom Elisp</h2><p>I became proficient enough to write my own (very) simple elisp functions. Here
+are few examples:</p><ul><li>Open a shell for the current directory. If this directory is inside a git
+repository, open a shell at the git &ldquo;root&rdquo; directory</li><li>Run a git pull operation for all my repositories in parallel</li><li>Copy the absolute or relative path of the currently opened file</li></ul><p>Most of the time I&rsquo;ll start with a snippet I find on the internet, which I&rsquo;ll
+adjust to my needs.</p><h2 id=windows-performance>Windows Performance</h2><p>Sadly not much has changed regarding performance on Windows. Some operations
+might take one or two seconds, which is inconvenient but not too bad. For the
+most part I get irritated when I&rsquo;m on a Linux machine as everything just happens
+instantaneously.</p><p>I know that I could try running Emacs in WSL 2, but I couldn&rsquo;t bring myself to
+go down that rabbit hole.</p><h2 id=net-development>.NET Development</h2><p>Chunkyard is a backup software that I develop as a hobby. As a form of personal
+challenge I decided to write it in Emacs instead of Visual Studio or Visual
+Studio Code. No code completion, no red error highlighting, no debugging. To
+pull this off I started to use the <code>compile</code> and <code>recompile</code> functions which run
+shell commands such as <code>dotnet build</code>. I wouldn&rsquo;t do this in a professional
+setting, as I still believe that a dedicated IDE offers a better developer
+experience.</p><h2 id=next-steps>Next Steps</h2><p>Like last year I don&rsquo;t have any specific topics which I would like to focus on.
+Most of the improvements of this year happened in tiny steps, which is how I&rsquo;ll
+approach further improvements as well.</p></article></main><footer><p>Copyright 2022, Florian Winkelbauer. All rights reserved.</p></footer></body></html>

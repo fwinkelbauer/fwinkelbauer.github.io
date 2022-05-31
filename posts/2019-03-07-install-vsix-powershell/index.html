@@ -1,0 +1,75 @@
+<!doctype html><html lang=en><head><title>Install a Visual Studio Extension using Powershell</title><meta charset=utf-8><meta name=generator content="Hugo 0.80.0"><meta name=author content="Florian Winkelbauer"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://florianwinkelbauer.com/posts/2019-03-07-install-vsix-powershell/><link rel=alternate type=application/rss+xml title=RSS href=https://florianwinkelbauer.com/index.xml><link rel=stylesheet href=https://florianwinkelbauer.com/main.css></head><body><header class=dark><h2><a href=https://florianwinkelbauer.com/>Florian Winkelbauer</a></h2><nav><a href=/about>About</a>
+<a href=/notes>Notes</a>
+<a href=/projects>Projects</a></nav></header><main><article><header><h1><a href=https://florianwinkelbauer.com/posts/2019-03-07-install-vsix-powershell/>Install a Visual Studio Extension using Powershell</a></h1><time datetime=2019-03-07T00:00:00Z>March 07, 2019</time></header><p>One of my previous posts outlined how to manage Visual Studio extension
+installations by creating Chocolatey packages for each and every VSIX file you
+want to install. This works fine in an environment where you are already using
+an existing Chocolatey repository to hold custom or internalized packages. The
+following PowerShell snippet presents a way to install VSIX files without
+relying on Chocolatey:</p><pre><code class=language-powershell>function Get-VsixFile {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$Url
+    )
+
+    $page = Invoke-WebRequest -Uri $Url
+
+    $json = $page.AllElements |
+        Where-Object Class -eq 'vss-extension' |
+        Select-Object -ExpandProperty innerHtml |
+        ConvertFrom-Json |
+        Select-Object -ExpandProperty versions
+
+    $vsixUrl = $json.files |
+        Where-Object assetType -match '\.vsix$' |
+        Select-Object -ExpandProperty source
+
+    $file = New-TemporaryFile
+
+    try {
+        Invoke-WebRequest -Uri $vsixUrl -OutFile $file
+        return $file
+    }
+    catch {
+        Remove-Item $file -Force
+        throw $_
+    }
+}
+
+function Invoke-VsixInstaller2017Community {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$File
+    )
+
+    $psi = New-Object System.Diagnostics.ProcessStartInfo
+    $psi.FileName = 'C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VSIXInstaller.exe'
+    $psi.Arguments = &quot;/q $File&quot;
+
+    $process = [System.Diagnostics.Process]::Start($psi)
+    $process.WaitForExit()
+
+    if ($process.ExitCode -ne 0) {
+        throw &quot;VSIXInstaller exit code: '$($process.ExitCode)'&quot;
+    }
+}
+
+function Install-Vsix2017Community {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$Url
+    )
+
+    $file = Get-VsixFile -Url $Url
+
+    try {
+        Invoke-VsixInstaller2017Community -File $file
+    }
+    finally {
+        Remove-Item $file -Force
+    }
+}
+</code></pre><p>These functions can be used like this:</p><pre><code class=language-powershell>Install-Vsix2017Community -Url 'https://marketplace.visualstudio.com/items?itemName=Suchiman.SerilogAnalyzer'
+</code></pre><p>Or like this:</p><pre><code class=language-powershell>Invoke-VsixInstaller2017Community -File 'C:\Users\MyUser\Downloads\SerilogAnalyzer.Vsix.vsix'
+</code></pre><p><strong>Note:</strong> The different editions of Visual Studio 2017 (Community, Professional,
+&mldr;) are installed in different locations, which is why the above PowerShell
+snippets carry &ldquo;2017Community&rdquo; in their names.</p></article></main><footer><p>Copyright 2022, Florian Winkelbauer. All rights reserved.</p></footer></body></html>

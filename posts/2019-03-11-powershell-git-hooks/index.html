@@ -1,0 +1,13 @@
+<!doctype html><html lang=en><head><title>Use PowerShell Scripts in Git Hooks</title><meta charset=utf-8><meta name=generator content="Hugo 0.80.0"><meta name=author content="Florian Winkelbauer"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://florianwinkelbauer.com/posts/2019-03-11-powershell-git-hooks/><link rel=alternate type=application/rss+xml title=RSS href=https://florianwinkelbauer.com/index.xml><link rel=stylesheet href=https://florianwinkelbauer.com/main.css></head><body><header class=dark><h2><a href=https://florianwinkelbauer.com/>Florian Winkelbauer</a></h2><nav><a href=/about>About</a>
+<a href=/notes>Notes</a>
+<a href=/projects>Projects</a></nav></header><main><article><header><h1><a href=https://florianwinkelbauer.com/posts/2019-03-11-powershell-git-hooks/>Use PowerShell Scripts in Git Hooks</a></h1><time datetime=2019-03-11T00:00:00Z>March 11, 2019</time></header><p>Adding a small git hook into a project is rather easy. The following hook calls
+a PowerShell script which in turn runs a <a href=https://github.com/psake/psake>psake</a>
+task to search for linter issues. The script (<code>./.git/hooks/pre-push</code>) looks
+like this:</p><pre><code class=language-shell>#!/bin/sh
+
+C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -Command 'psake Invoke-Linter'
+</code></pre><p><strong>Warning:</strong> Hooks should not contain carriage returns. Use <code>LF</code> instead of
+<code>CRLF</code>.</p><p>And here&rsquo;s a tiny psake task which helps me to install git hooks:</p><pre><code class=language-powershell>task Install-GitHooks {
+    Get-ChildItem '.\my_hooks' | Copy-Item -Destination '.\.git\hooks' -Force
+}
+</code></pre></article></main><footer><p>Copyright 2022, Florian Winkelbauer. All rights reserved.</p></footer></body></html>

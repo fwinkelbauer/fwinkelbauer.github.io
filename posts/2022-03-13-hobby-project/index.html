@@ -1,0 +1,29 @@
+<!doctype html><html lang=en><head><title>Having A Hobby Project</title><meta charset=utf-8><meta name=generator content="Hugo 0.80.0"><meta name=author content="Florian Winkelbauer"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://florianwinkelbauer.com/posts/2022-03-13-hobby-project/><link rel=alternate type=application/rss+xml title=RSS href=https://florianwinkelbauer.com/index.xml><link rel=stylesheet href=https://florianwinkelbauer.com/main.css></head><body><header class=dark><h2><a href=https://florianwinkelbauer.com/>Florian Winkelbauer</a></h2><nav><a href=/about>About</a>
+<a href=/notes>Notes</a>
+<a href=/projects>Projects</a></nav></header><main><article><header><h1><a href=https://florianwinkelbauer.com/posts/2022-03-13-hobby-project/>Having A Hobby Project</a></h1><time datetime=2022-03-13T00:00:00Z>March 13, 2022</time></header><p>It has been two years since I have started to work on my hobby project
+<a href=https://github.com/fwinkelbauer/chunkyard>Chunkyard</a>. Over these years I have used this project to test out
+different ideas and concepts, which is something that you cannot always do in a
+professional environment. This post highlights a few topics which I have
+explored.</p><h2 id=ambitions>Ambitions</h2><p>My initial plans were to create some sort of general purpose library (hah!) that
+I could use to implement different types of applications such as a version
+control system, a backup tool or some sort of application installer/updater. But
+reality is messy and so I had to abandon those plans rather quickly. Creating a
+content-addressable storage with or without encryption comes with its own set of
+pitfalls, which makes it hard to come up with a general solution. So instead of
+a library I settled for the application that I wanted to build.</p><h2 id=tests>Tests</h2><p>A backup tool must be reliable. You don&rsquo;t want to end up in a situation where a
+bug breaks your data. All my backups are done using Chunkyard, so preventing
+mistakes is something that is important to me in more than one way. While I
+cannot ensure that the code base is free of bugs, I have come up with a testing
+suite that gives me enough confidence to explore ideas or implement features.</p><h2 id=design>Design</h2><p>Since I do not have any &ldquo;real&rdquo; users (besides myself), I can test out all sorts
+of designs without having to consider backwards compatibility. Re-reading older
+posts such as <a href=https://florianwinkelbauer.com/posts/2020-10-03-chunkyard-explained/>Chunkyard Explained</a> makes me laugh, because the
+serialized data format has changed more than once since I have written that
+post.</p><p>Chunkyard was the first project in which I have developed a makefile-style build
+tool in C#. Some of my work colleagues liked the idea and we ported the concept
+to one our own projects.</p><h2 id=performance>Performance</h2><p>I have no deep understanding of how a computer actually works. Don&rsquo;t get me
+wrong, Chunkyard is not slow, but listening to people such as Martin Thompson
+makes you wonder how much resources you are wasting for non-essential work. His
+conference talks motivated me to write a lock-free ring buffer which is still an
+experimental feature for creating backups. Measuring is not always easy since
+antivirus software, the actual hardware and some OS-internal caching magic makes
+it hard to get meaningful data.</p><h2 id=future-work>Future Work</h2><ul><li>Figure out how to use <a href=https://fscheck.github.io/FsCheck/>FsCheck</a></li><li>Learn to utilize a profiler to find bottlenecks</li><li>Try to replace <a href=https://github.com/commandlineparser/commandline>commandlineparser</a> with <a href=https://github.com/dotnet/command-line-api>System.CommandLine</a></li></ul></article></main><footer><p>Copyright 2022, Florian Winkelbauer. All rights reserved.</p></footer></body></html>

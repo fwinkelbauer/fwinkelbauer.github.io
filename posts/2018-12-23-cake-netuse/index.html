@@ -1,0 +1,77 @@
+<!doctype html><html lang=en><head><title>Copy Files to a Remote Location using Cake</title><meta charset=utf-8><meta name=generator content="Hugo 0.80.0"><meta name=author content="Florian Winkelbauer"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://florianwinkelbauer.com/posts/2018-12-23-cake-netuse/><link rel=alternate type=application/rss+xml title=RSS href=https://florianwinkelbauer.com/index.xml><link rel=stylesheet href=https://florianwinkelbauer.com/main.css></head><body><header class=dark><h2><a href=https://florianwinkelbauer.com/>Florian Winkelbauer</a></h2><nav><a href=/about>About</a>
+<a href=/notes>Notes</a>
+<a href=/projects>Projects</a></nav></header><main><article><header><h1><a href=https://florianwinkelbauer.com/posts/2018-12-23-cake-netuse/>Copy Files to a Remote Location using Cake</a></h1><time datetime=2018-12-23T00:00:00Z>December 23, 2018</time></header><p>I have recently had the need to copy files from one Windows machine to another
+in a Cake build task. A rather easy way to achieve this is to use the <code>net</code>
+command line tool, which I have wrapped into a few lines of C#. Here&rsquo;s how to
+use the code:</p><pre><code class=language-csharp>readonly var target = Argument(&quot;target&quot;, &quot;Default&quot;);
+
+Task(&quot;Default&quot;)
+    .Does(() =&gt;
+{
+    using (var session = NetUse(&quot;\\\\some-machine&quot;, &quot;domain\\user&quot;, &quot;password&quot;))
+    {
+        // Use Cake's existing IO library
+        CopyFileToDirectory(&quot;myfile.txt&quot;, session.ToRemote(&quot;C:/&quot;));
+    }
+});
+
+RunTarget(target);
+</code></pre><p>The two most important bits include:</p><ul><li>Opening a session using the <code>NetUse</code> method</li><li>Using the <code>session.ToRemote</code> method to turn a &ldquo;normal&rdquo; path into a remote
+path (e.g. <code>C:\</code> -> <code>\\some-machine\c$\</code>)</li></ul><p>Here&rsquo;s the actual <code>NetUse</code> implementation:</p><pre><code class=language-csharp>public NetUseSession NetUse(string machine, string username, string password)
+{
+    Information($&quot;Connecting to '{machine}'&quot;);
+    var exitCode = StartProcess(&quot;net&quot;, new ProcessSettings
+    {
+        Arguments = new ProcessArgumentBuilder()
+            .Append(&quot;use&quot;)
+            .Append(machine)
+            .AppendSecret(password)
+            .Append($&quot;/user:{username}&quot;)
+    });
+
+    if (exitCode != 0) {
+        throw new Exception($&quot;Could not connect to '{machine}'&quot;);
+    }
+
+    Func&lt;string, int&gt; closeFunc = (m) =&gt;
+    {
+        Information($&quot;Deleting connection to '{m}'&quot;);
+        return StartProcess(&quot;net&quot;, new ProcessSettings
+        {
+            Arguments = new ProcessArgumentBuilder()
+                .Append(&quot;use&quot;)
+                .Append(m)
+                .Append(&quot;/delete&quot;),
+        });
+    };
+
+    return new NetUseSession(machine, closeFunc);
+}
+
+public sealed class NetUseSession : IDisposable
+{
+    private readonly string _machine;
+    private readonly Func&lt;string, int&gt; _close;
+
+    public NetUseSession(string machine, Func&lt;string, int&gt; close)
+    {
+        _machine = machine;
+        _close = close;
+    }
+
+    public DirectoryPath ToRemote(DirectoryPath directory)
+    {
+        var remoteDirectory = directory.ToString().Replace(&quot;:&quot;, &quot;$&quot;);
+        return $&quot;{_machine}/{remoteDirectory}&quot;;
+    }
+
+    public void Dispose()
+    {
+        var exitCode = _close(_machine);
+
+        if (exitCode != 0) {
+            throw new Exception($&quot;Could not delete connection to '{_machine}'&quot;);
+        }
+    }
+}
+</code></pre></article></main><footer><p>Copyright 2022, Florian Winkelbauer. All rights reserved.</p></footer></body></html>

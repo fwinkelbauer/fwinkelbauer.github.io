@@ -1,0 +1,23 @@
+<!doctype html><html lang=en><head><title>Even Better Emacs Org-Mode Links</title><meta charset=utf-8><meta name=generator content="Hugo 0.80.0"><meta name=author content="Florian Winkelbauer"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://florianwinkelbauer.com/posts/2020-06-15-org-links/><link rel=alternate type=application/rss+xml title=RSS href=https://florianwinkelbauer.com/index.xml><link rel=stylesheet href=https://florianwinkelbauer.com/main.css></head><body><header class=dark><h2><a href=https://florianwinkelbauer.com/>Florian Winkelbauer</a></h2><nav><a href=/about>About</a>
+<a href=/notes>Notes</a>
+<a href=/projects>Projects</a></nav></header><main><article><header><h1><a href=https://florianwinkelbauer.com/posts/2020-06-15-org-links/>Even Better Emacs Org-Mode Links</a></h1><time datetime=2020-06-15T00:00:00Z>June 15, 2020</time></header><p>In a <a href=https://florianwinkelbauer.com/posts/2019-01-30-emacs-orglink/>previous blog post</a> I talked about how I am using org-mode links
+to create shortcuts for accessing my projects. The outlined solution was using
+link shortcuts with custom elisp code. While this is a valid solution, clicking
+such a link prompts you for a &ldquo;would you like to run this code?&rdquo; confirmation,
+which is annoying. There is a variable to avoid this popup, but using it is a
+questionable decision regarding security. I&rsquo;d rather not run (potentially) any
+code when clicking on a link in an org-mode file.</p><p>I stumbled over <a href=http://kitchingroup.cheme.cmu.edu/blog/2016/11/04/New-link-features-in-org-9/>a post</a> about org-mode v9 (published in 2016)
+which contains a lot of examples on what you can do with custom links. So here&rsquo;s
+my improved setup:</p><pre><code class=language-emacs-lisp>(defun fw/open-git (path)
+  &quot;Opens magit and neotree at `path'&quot;
+  (neotree-dir path)
+  (other-window 1)
+  (magit-status path))
+
+(org-add-link-type &quot;git&quot; 'fw/open-git)
+</code></pre><p>Which can be used like this:</p><pre><code class=language-org>* [[git:D:/Projects/SomeProject][Some Project]]
+
+** TODO Something Important
+</code></pre><p>These links are nothing groundbreaking, but I find them to be really convenient.
+I can have a look at my TODO list and when I feel like tackling a particular
+project, I just click the header to jump right into the action.</p></article></main><footer><p>Copyright 2022, Florian Winkelbauer. All rights reserved.</p></footer></body></html>

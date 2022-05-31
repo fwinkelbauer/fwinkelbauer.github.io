@@ -1,0 +1,80 @@
+<!doctype html><html lang=en><head><title>Creating VSIX Chocolatey Packages</title><meta charset=utf-8><meta name=generator content="Hugo 0.80.0"><meta name=author content="Florian Winkelbauer"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://florianwinkelbauer.com/posts/2018-11-26-chocolatey-vsix/><link rel=alternate type=application/rss+xml title=RSS href=https://florianwinkelbauer.com/index.xml><link rel=stylesheet href=https://florianwinkelbauer.com/main.css></head><body><header class=dark><h2><a href=https://florianwinkelbauer.com/>Florian Winkelbauer</a></h2><nav><a href=/about>About</a>
+<a href=/notes>Notes</a>
+<a href=/projects>Projects</a></nav></header><main><article><header><h1><a href=https://florianwinkelbauer.com/posts/2018-11-26-chocolatey-vsix/>Creating VSIX Chocolatey Packages</a></h1><time datetime=2018-11-26T00:00:00Z>November 26, 2018</time></header><p>This post outlines how to create a Chocolatey package for a VSIX file based on
+the <a href=https://marketplace.visualstudio.com/items?itemName%3Dvs-publisher-1392591.CakeforVisualStudio>Cake for Visual Studio</a> extension.</p><p>We will start with the package definition:</p><pre><code class=language-xml>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;package xmlns=&quot;http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd&quot;&gt;
+  &lt;metadata&gt;
+    &lt;id&gt;my.vs2017.cake&lt;/id&gt;
+    &lt;title&gt;Visual Studio 2017 Cake Extension&lt;/title&gt;
+    &lt;version&gt;0.2.0.0&lt;/version&gt;
+    &lt;authors&gt;Cake Build&lt;/authors&gt;
+    &lt;owners&gt;Florian Winkelbauer&lt;/owners&gt;
+    &lt;requireLicenseAcceptance&gt;false&lt;/requireLicenseAcceptance&gt;
+    &lt;description&gt;Adds the Cake extension to Visual Studio 2017&lt;/description&gt;
+    &lt;copyright&gt;Copyright 2018&lt;/copyright&gt;
+    &lt;tags&gt;cake visual studio 2017&lt;/tags&gt;
+    &lt;dependencies&gt;
+      &lt;dependency id=&quot;chocolatey-visualstudio.extension&quot; /&gt;
+    &lt;/dependencies&gt;
+  &lt;/metadata&gt;
+&lt;/package&gt;
+</code></pre><p>Notice the declared dependency <a href="https://chocolatey.org/packages?q=chocolatey-visualstudio.extension">chocolatey-visualstudio.extension</a>
+which allows us to install a VSIX file using PowerShell.</p><p>To create the install/uninstall scripts we will need the following information:</p><ul><li>The VSIX ID</li><li>A URL to download the VSIX file</li><li>The current version of the extension</li><li>A file checksum</li></ul><p>I have created a small helper function to fetch the above data. This function
+requires the <a href=https://chocolatey.org/packages/checksum>checksum package</a> to be installed:</p><pre><code class=language-powershell>function Get-VsixData {
+    param($url, $checksumType)
+
+    $page = Invoke-WebRequest -Uri $url
+
+    $vsixId = ($page.AllElements |
+        Where Class -eq 'vsixId' |
+        Select -ExpandProperty innerHTML).Trim() -replace '&quot;', ''
+
+    $json = $page.AllElements |
+        Where Class -eq 'vss-extension' |
+        Select -ExpandProperty innerHtml |
+        ConvertFrom-Json |
+        Select -ExpandProperty versions
+
+    $vsixVersion = $json.version
+
+    $vsixUrl = $json.files |
+        where assetType -match '\.vsix$' |
+        Select -ExpandProperty source
+
+    $file = Join-Path $env:TMP 'tmp.vsix'
+    Invoke-WebRequest -Uri $vsixUrl -OutFile $file
+    $checksum = checksum -f=&quot;$file&quot; -t=&quot;$checksumType&quot;
+    Remove-Item $file
+
+    return @{ VsixId = $vsixId; VsixVersion = $vsixVersion; VsixUrl = $vsixUrl; Checksum = $checksum; ChecksumType = $checksumType }
+}
+</code></pre><p>Here&rsquo;s the console output for the Cake extension:</p><pre><code class=language-text>Get-VsixData 'https://marketplace.visualstudio.com/items?itemName=vs-publisher-1392591.CakeforVisualStudio' 'sha256'
+
+Name                           Value
+----                           -----
+VsixId                         3cf9b016-d63f-44ee-849d-6f3efc996134
+VsixVersion                    0.2.0.0
+VsixUrl                        https://vs-publisher-1392591.gallerycdn.vsassets.io/extensions/vs-publisher-1392591/cakeforvisualstudio/0.2.0.0/1503436806448/229353/4/Cake.VisualStudio.vsix
+Checksum                       752A01E2A40A5DED7BED6FC16930B347205030AE693C75D3D5DC76DCCE407D02
+ChecksumType                   sha256
+</code></pre><p>With this information we now can create our install logic:</p><pre><code class=language-powershell>$ErrorActionPreference = 'Stop'
+
+$parameters = @{
+    PackageName   =  $env:ChocolateyPackageName
+    VsixUrl       = 'https://vs-publisher-1392591.gallerycdn.vsassets.io/extensions/vs-publisher-1392591/cakeforvisualstudio/0.2.0.0/1503436806448/229353/4/Cake.VisualStudio.vsix'
+    Checksum      = '752A01E2A40A5DED7BED6FC16930B347205030AE693C75D3D5DC76DCCE407D02'
+    ChecksumType  = 'sha256'
+}
+
+Install-VisualStudioVsixExtension @parameters
+</code></pre><p>And the uninstall logic:</p><pre><code class=language-powershell>$ErrorActionPreference = 'Stop'
+
+$parameters = @{
+    PackageName   = $env:ChocolateyPackageName
+    VsixId        = '3cf9b016-d63f-44ee-849d-6f3efc996134'
+}
+
+Uninstall-VisualStudioVsixExtension @parameters
+</code></pre><p>Our final package should now look like <a href=https://github.com/fwinkelbauer/windows-box-setup/tree/0c8a2e4757f6c5f4178e3adada73a10dacab869c/nuspec/my.vs2017.cake>this</a>.</p><p>Creating and updating several VSIX packages could be further automated using the
+above helper function in combination with tools such as the Chocolatey <a href=https://github.com/majkinetor/au>Auto
+Updater (AU)</a>.</p></article></main><footer><p>Copyright 2022, Florian Winkelbauer. All rights reserved.</p></footer></body></html>

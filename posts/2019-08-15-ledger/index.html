@@ -1,0 +1,85 @@
+<!doctype html><html lang=en><head><title>Exporting from Homebank and Importing into Ledger</title><meta charset=utf-8><meta name=generator content="Hugo 0.80.0"><meta name=author content="Florian Winkelbauer"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://florianwinkelbauer.com/posts/2019-08-15-ledger/><link rel=alternate type=application/rss+xml title=RSS href=https://florianwinkelbauer.com/index.xml><link rel=stylesheet href=https://florianwinkelbauer.com/main.css></head><body><header class=dark><h2><a href=https://florianwinkelbauer.com/>Florian Winkelbauer</a></h2><nav><a href=/about>About</a>
+<a href=/notes>Notes</a>
+<a href=/projects>Projects</a></nav></header><main><article><header><h1><a href=https://florianwinkelbauer.com/posts/2019-08-15-ledger/>Exporting from Homebank and Importing into Ledger</a></h1><time datetime=2019-08-15T00:00:00Z>August 15, 2019</time></header><p>I am using <a href=http://homebank.free.fr/en/index.php>Homebank</a> to keep track of my financial situation.
+Recently, I thought about switching to <a href=https://www.ledger-cli.org>Ledger</a> (which belongs to a
+family of <a href=https://plaintextaccounting.org/>plaintext accounting tools</a>). Homebank does not offer any
+decent export features, so I had to come up with my own strategies to transfer
+my data into the Ledger format.</p><p>The following Python script transforms a Homebank file into CSV:</p><pre><code class=language-python>#!/usr/bin/env python3
+
+import argparse
+import datetime
+from decimal import Decimal
+import xml.etree.ElementTree as ET
+
+
+def convert_homebank_date(serial_date):
+    start_date = datetime.datetime(1, 1, 1, 0, 0)
+    new_date = start_date + datetime.timedelta(serial_date - 1)
+    return new_date.strftime(&quot;%Y-%m-%d&quot;)
+
+
+def attrib_or_empty(node, attribute_name):
+    if attribute_name in node.attrib:
+        return node.attrib[attribute_name]
+    else:
+        return ''
+
+
+def build_lookup(root, node_name):
+    lookup = { '' : '' }
+    for node in root.iter(node_name):
+        lookup[node.attrib['key']] = node.attrib['name']
+    return lookup
+
+
+def to_decimal(number_string):
+    return Decimal(number_string).quantize(Decimal('.01'))
+
+
+def parse_homebank(file_name):
+    root = ET.parse(file_name).getroot()
+    category_lookup = build_lookup(root, 'cat')
+    account_lookup = build_lookup(root, 'account')
+    print('date,src_account,dst_account,category,amount,payee,text')
+    for transfer_node in root.iter('ope'):
+        date = convert_homebank_date(int(transfer_node.attrib['date']))
+        src_account = account_lookup[transfer_node.attrib['account']]
+        dst_account = account_lookup[attrib_or_empty(
+            transfer_node, 'dst_account')]
+        amount = to_decimal(transfer_node.attrib['amount'])
+        wording = attrib_or_empty(
+            transfer_node, 'wording').replace(&quot;;&quot;, &quot;&quot;).replace(&quot;,&quot;, &quot;&quot;)
+        category = category_lookup[attrib_or_empty(transfer_node, 'category')]
+        info = attrib_or_empty(transfer_node, 'info')
+        print('{},{},{},{},€{},{},{}'.format(
+            date, src_account, dst_account, category, amount, wording, info))
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description='Converts a homebank .xhb file into a csv output')
+    parser.add_argument('source', help='The homebank .xhb file')
+    args = parser.parse_args()
+    parse_homebank(args.source)
+
+
+if __name__ == '__main__':
+    main()
+</code></pre><p>I&rsquo;m not using Homebank&rsquo;s payee field, which is why the created CSV output does
+not contain this information. Ledger&rsquo;s <code>convert</code> command expects a few
+predefined headers to create new records. Every other (unknown) header is added
+as a comment. There are still a few minor points to watch out for:</p><ul><li>De-duplication: The Homebank CSV export might contain duplicate entries for
+situations in which an amount is transferred between two accounts (e.g.
+transferring money from a checking account into a savings account).</li><li>Accounts mapping: Homebank&rsquo;s categories have to be &ldquo;translated&rdquo; (or &ldquo;mapped&rdquo;)
+into Ledger accounts. This task can be simplified if you are using an editor
+which supports macros.</li><li>Account inference: Ledger can be configured to infer an account based on the
+Payee field. This feature can speed up the above step about mapping Homebank
+categories to Ledger accounts. Here&rsquo;s an example:</li></ul><pre><code class=language-text>account Expenses:Food
+    payee (Walmart|Whole Foods)
+
+2019/01/01 * Thanks for shopping at Walmart
+    Expenses:Food                              $ -25
+    Bank:Checking
+</code></pre><p>Converting my Homebank file (which contains data for +3 years) into a Ledger
+file took me about one hour. I&rsquo;m not sure if I&rsquo;ll stick with Ledger, so I&rsquo;m
+maintaining both files until I&rsquo;ve made a decision.</p></article></main><footer><p>Copyright 2022, Florian Winkelbauer. All rights reserved.</p></footer></body></html>
