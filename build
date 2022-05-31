@@ -5,7 +5,7 @@ set -euo pipefail
 worktrees=$(git worktree list --porcelain)
 
 if [[ $worktrees != *"branch refs/heads/gh-pages"* ]]; then
-  git worktree add -B gh-pages public origin/gh-pages
+    git worktree add -B gh-pages public origin/gh-pages
 fi
 
 cd public
