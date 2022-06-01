@@ -2,13 +2,15 @@
 
 set -euo pipefail
 
-worktrees=$(git worktree list --porcelain)
+directory=public
 
-if [[ $worktrees != *"branch refs/heads/gh-pages"* ]]; then
-    git worktree add -B gh-pages public origin/gh-pages
+if [ ! -d "$directory" ]; then
+    git worktree prune
+    git worktree add -B gh-pages "$directory" origin/gh-pages
 fi
 
-cd public
+cd "$directory"
+
 files=$(git ls-files)
 
 for file in $files; do
