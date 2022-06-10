@@ -936,3 +936,26 @@ Composability
     systems
   - Commit resources to discovering, understanding and supporting resilience
     through the system life-cycle
+
+
+## [Sleeping with the enemy (Gojko Adzic)](https://www.youtube.com/watch?v=hIMwTzAAQ-w)
+
+- Manual testing is a bottleneck
+- Let developers watch testers so that they can build understanding and trust
+- A software architect is somebody who writes very small parts of code for
+  critical systems. Most of his time is spent on mentoring and helping others do
+  their job
+- The role of a tester should be similar to the role of a software architect, so
+  let's turn testers into "test architects"
+- This approach inverts the flow. Developers no longer push code to testers
+
+Some quotes:
+
+- "It makes much more sense to get the programmers involved to automate the
+  tests while testers come up with the right test cases to automate."
+- "I hate story points! Story points are useless! Story points measure effort,
+  they are so easy to cheat, story points don't measure outcome. So, what we
+  need to look at is: what is the outcome? how do we measure the outcomes? And
+  then, that measures the productivity because that is what really productivity
+  is. I don't care about lines of code, tests cases produced...What is the
+  outcome?"
