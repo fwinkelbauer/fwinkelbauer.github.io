@@ -959,3 +959,16 @@ Some quotes:
   then, that measures the productivity because that is what really productivity
   is. I don't care about lines of code, tests cases produced...What is the
   outcome?"
+
+## [Diagrams as Code 2.0 (Simon Brown)](https://www.youtube.com/watch?v=Za1-v4Zkq5E)
+
+- Simon is the author of https://c4model.com/
+- The C4 model describes a set of abstractions which can be used to create
+  architecture diagrams that behave similar to Google Maps, where you can zoom
+  in and out of a map to change the amount of details you see. A legend is used
+  to explain notation
+- Diagrams as code 1.0 is a nice way to create version controlled diagrams
+- Diagrams as code 2.0 describes an overall model of your architecture which can
+  then be used to create one or more views (diagrams as code 1.0)
+- Simon was created open source tooling to describe an architecture model using
+  the [Structurizr DSL](https://github.com/structurizr/dsl)

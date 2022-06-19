@@ -10,7 +10,6 @@ title: "Software Development"
 - Bryan Cantrill
 - Mark Seemann
 - Jimmy Bogard
-- Simon Brown
 - Sam Newman
 - Chad Fowler
 - Kent Beck
