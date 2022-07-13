@@ -1,0 +1,34 @@
+<!doctype html><html lang=en><head><title>Using a .cleanignore File</title><meta charset=utf-8><meta name=generator content="Hugo 0.100.1"><meta name=author content="Florian Winkelbauer"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://florianwinkelbauer.com/posts/2022-07-13-cleanignore/><link rel=alternate type=application/rss+xml title=RSS href=https://florianwinkelbauer.com/index.xml><link rel=stylesheet href=https://florianwinkelbauer.com/main.css></head><body><header class=dark><h2><a href=https://florianwinkelbauer.com/>Florian Winkelbauer</a></h2><nav><a href=/about>About</a>
+<a href=/notes>Notes</a>
+<a href=/projects>Projects</a></nav></header><main><article><header><h1><a href=https://florianwinkelbauer.com/posts/2022-07-13-cleanignore/>Using a .cleanignore File</a></h1><time datetime=2022-07-13T00:00:00Z>July 13, 2022</time></header><p>Git offers a wide range of useful command line verbs besides the &ldquo;usual&rdquo;
+suspects such as <code>add</code>, <code>commit</code> or <code>push</code>/<code>pull</code>. One of them is
+<a href=https://git-scm.com/docs/git-clean>git clean</a>, which can be used to delete untracked files in a
+repository. This is useful when you are trying to delete generated files, but
+can be annoying if your repository contains user specific files which are not in
+version control. Visual Studio creates directories such as <code>.vs</code>, or files like
+<code>*.user</code> and <code>launchSettings.json</code> which contain IDE configuration which are
+only relevant for a specific user. You can exclude these files from <code>git clean</code>
+using the <code>-x -e &lt;expression></code> option:</p><pre><code class=language-shell>git clean -dfx -e .vs/ -e *.user -e launchSettings.json
+</code></pre><p>These expressions looked similar to the content of <code>.gitignore</code> file to me, so I
+added a function to my <a href=https://florianwinkelbauer.com/posts/2021-10-04-building-csharp/>C# build tool</a> which feeds the content of
+a <code>.cleanignore</code> file into <code>git clean</code>:</p><pre><code class=language-text># My .cleanignore file
+.vs/
+*.user
+launchSettings.json
+</code></pre><pre><code class=language-c#>public static void Clean()
+{
+    var expressions = File.ReadLines(&quot;.cleanignore&quot;)
+        .Select(l =&gt; l.Trim())
+        .Where(l =&gt; !string.IsNullOrEmpty(l) &amp;&amp; !l.StartsWith(&quot;#&quot;))
+        .Select(l =&gt; $&quot;-e {l}&quot;);
+
+    Git(
+        &quot;clean -dfx&quot;,
+        string.Join(' ', expressions));
+}
+
+private static void Git(params string[] arguments)
+{
+    // Run git using Process.Start
+}
+</code></pre><p>You can find the code <a href=https://github.com/fwinkelbauer/chunkyard/blob/8c3c58efabb351296d46e6eab35c611d35a1a3ce/src/Chunkyard.Build/Commands.cs>here</a>.</p></article></main><footer><p>Copyright 2022, Florian Winkelbauer. All rights reserved.</p></footer></body></html>
