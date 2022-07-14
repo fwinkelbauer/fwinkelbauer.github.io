@@ -9,9 +9,9 @@ version control. Visual Studio creates directories such as <code>.vs</code>, or 
 <code>*.user</code> and <code>launchSettings.json</code> which contain IDE configuration which are
 only relevant for a specific user. You can exclude these files from <code>git clean</code>
 using the <code>-x -e &lt;expression></code> option:</p><pre><code class=language-shell>git clean -dfx -e .vs/ -e *.user -e launchSettings.json
-</code></pre><p>These expressions looked similar to the content of <code>.gitignore</code> file to me, so I
-added a function to my <a href=https://florianwinkelbauer.com/posts/2021-10-04-building-csharp/>C# build tool</a> which feeds the content of
-a <code>.cleanignore</code> file into <code>git clean</code>:</p><pre><code class=language-text># My .cleanignore file
+</code></pre><p>These expressions looked similar to the content of a <code>.gitignore</code> file to me, so
+I added a function to my <a href=https://florianwinkelbauer.com/posts/2021-10-04-building-csharp/>C# build tool</a> which feeds the content
+of a <code>.cleanignore</code> file into <code>git clean</code>:</p><pre><code class=language-text># My .cleanignore file
 .vs/
 *.user
 launchSettings.json
