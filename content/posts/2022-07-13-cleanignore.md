@@ -17,9 +17,9 @@ using the `-x -e <expression>` option:
 git clean -dfx -e .vs/ -e *.user -e launchSettings.json
 ```
 
-These expressions looked similar to the content of `.gitignore` file to me, so I
-added a function to my [C# build tool][build-csharp] which feeds the content of
-a `.cleanignore` file into `git clean`:
+These expressions looked similar to the content of a `.gitignore` file to me, so
+I added a function to my [C# build tool][build-csharp] which feeds the content
+of a `.cleanignore` file into `git clean`:
 
 ``` text
 # My .cleanignore file
