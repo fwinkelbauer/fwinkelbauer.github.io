@@ -8,6 +8,6 @@ title: "Projects"
 - [Emacs Config][emacs]: This repository contains the configuration of my
   favorite editor
 
-[website]: https://github.com/fwinkelbauer/website
+[website]: https://github.com/fwinkelbauer/fwinkelbauer.github.io
 [chunkyard]: https://github.com/fwinkelbauer/chunkyard
 [emacs]: https://github.com/fwinkelbauer/emacs
