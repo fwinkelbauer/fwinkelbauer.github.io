@@ -58,7 +58,9 @@ if ($env:ChocolateyInstall) {
 
 $env:ChocolateyInstall = "$($env:ProgramData)\chocolatey"
 
-& (Join-Path $PSScriptRoot 'chocolatey\tools\chocolateyInstall.ps1')
+$root = if ($PSScriptRoot) { $PSScriptRoot } else { Split-Path -Path $psISE.CurrentFile.FullPath }
+
+& (Join-Path $root 'chocolatey\tools\chocolateyInstall.ps1')
 ```
 
 ## build.ps1
@@ -99,12 +101,14 @@ function exec {
     }
 }
 
-$configFile = Join-Path $PSScriptRoot 'config.txt'
+$root = if ($PSScriptRoot) { $PSScriptRoot } else { Split-Path -Path $psISE.CurrentFile.FullPath }
+
+$configFile = Join-Path $root 'config.txt'
 $chocoUrl = 'https://chocolatey.org/api/v2/package/chocolatey/0.10.13'
 $lzmaUrl = 'https://www.7-zip.org/a/lzma1900.7z'
 
-$outputDir = Join-Path $PSScriptRoot 'output'
-$tempDir = Join-Path $PSScriptRoot 'temp'
+$outputDir = Join-Path $root 'output'
+$tempDir = Join-Path $root 'temp'
 $installerFile = Join-Path $outputDir 'chocolateySetup.exe'
 
 if (Test-Path $outputDir) {
