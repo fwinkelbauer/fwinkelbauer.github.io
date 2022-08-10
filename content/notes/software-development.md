@@ -2,22 +2,6 @@
 title: "Software Development"
 ---
 
-## Speakers
-
-- Kevlin Henney
-- Greg Young
-- Michael Feathers
-- Bryan Cantrill
-- Mark Seemann
-- Jimmy Bogard
-- Sam Newman
-- Chad Fowler
-- Kent Beck
-- Casey Rosenthal
-- Stefan Tilkov
-- Allen Holub
-- John Hughes
-
 ## Decision Logs
 
 Create logs that hold the following information:

@@ -972,3 +972,19 @@ Some quotes:
   then be used to create one or more views (diagrams as code 1.0)
 - Simon was created open source tooling to describe an architecture model using
   the [Structurizr DSL](https://github.com/structurizr/dsl)
+
+## More Speakers
+
+- Kevlin Henney
+- Greg Young
+- Michael Feathers
+- Bryan Cantrill
+- Mark Seemann
+- Jimmy Bogard
+- Sam Newman
+- Chad Fowler
+- Kent Beck
+- Casey Rosenthal
+- Stefan Tilkov
+- Allen Holub
+- John Hughes
