@@ -42,17 +42,17 @@ post][architecture-decisions]:
 - Some configuration (e.g. plugging an application into a logging service) should
   be disabled by default. A user can enable them if he wants to
 
-## Write Documentation If
+# Documentation
 
-- The thing you are documenting does not change often
-- Your documentation will be useful to a large group of people
-
-## [Four Kinds of Documentation](https://www.writethedocs.org/videos/eu/2017/the-four-kinds-of-documentation-and-why-you-need-to-understand-what-they-are-daniele-procida/)
-
-- **Tutorial:** learning-oriented; a getting started guide
-- **How-To Guide:** goal-oriented; how to solve a specific problem
-- **Explanation:** understanding-oriented; provides background and context
-- **Reference:** information-oriented; describes inner processes
+- https://arc42.org/documentation/
+- Write documentation if
+  - The thing you are documenting does not change often
+  - Your documentation will be useful to a large group of people
+- [Four Kinds of Documentation](https://www.writethedocs.org/videos/eu/2017/the-four-kinds-of-documentation-and-why-you-need-to-understand-what-they-are-daniele-procida/)
+  - **Tutorial:** learning-oriented; a getting started guide
+  - **How-To Guide:** goal-oriented; how to solve a specific problem
+  - **Explanation:** understanding-oriented; provides background and context
+  - **Reference:** information-oriented; describes inner processes
 
 ## Chaos Engineering
 
