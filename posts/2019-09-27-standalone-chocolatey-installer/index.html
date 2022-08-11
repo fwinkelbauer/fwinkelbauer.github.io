@@ -24,7 +24,9 @@ PAUSE
 
 $env:ChocolateyInstall = &quot;$($env:ProgramData)\chocolatey&quot;
 
-&amp; (Join-Path $PSScriptRoot 'chocolatey\tools\chocolateyInstall.ps1')
+$root = if ($PSScriptRoot) { $PSScriptRoot } else { Split-Path -Path $psISE.CurrentFile.FullPath }
+
+&amp; (Join-Path $root 'chocolatey\tools\chocolateyInstall.ps1')
 </code></pre><h2 id=buildps1>build.ps1</h2><p>This script does a few things for us. It will:</p><ul><li>Download Chocolatey (v0.10.13) and extract it in a <code>temp</code> directory</li><li>Download and extract the 7-zip SFX module in a <code>temp</code> directory</li><li>Create the 7-zip archive <code>output\chocolateySetup.7z</code> containing Chocolatey,
 <code>install.ps1</code> and <code>install.bat</code></li><li>And finally, create the executable <code>output/chocolateySetup.exe</code> by combining
 <code>output/chocolateySetup.7z</code>, <code>config.txt</code> and the 7-zip SFX module</li></ul><p>All calls to 7-zip are wrapped in an <code>exec</code> function, which I&rsquo;ve described in a
@@ -49,12 +51,14 @@ function exec {
     }
 }
 
-$configFile = Join-Path $PSScriptRoot 'config.txt'
+$root = if ($PSScriptRoot) { $PSScriptRoot } else { Split-Path -Path $psISE.CurrentFile.FullPath }
+
+$configFile = Join-Path $root 'config.txt'
 $chocoUrl = 'https://chocolatey.org/api/v2/package/chocolatey/0.10.13'
 $lzmaUrl = 'https://www.7-zip.org/a/lzma1900.7z'
 
-$outputDir = Join-Path $PSScriptRoot 'output'
-$tempDir = Join-Path $PSScriptRoot 'temp'
+$outputDir = Join-Path $root 'output'
+$tempDir = Join-Path $root 'temp'
 $installerFile = Join-Path $outputDir 'chocolateySetup.exe'
 
 if (Test-Path $outputDir) {
