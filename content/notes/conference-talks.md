@@ -973,6 +973,31 @@ Some quotes:
 - Simon was created open source tooling to describe an architecture model using
   the [Structurizr DSL](https://github.com/structurizr/dsl)
 
+## [Software Architecture, Team Topologies and Complexity Science (James Lewis)](https://www.youtube.com/watch?v=uAwJEFLJunk)
+
+- The book "Team Topologies" outlines the four fundamental teams you need to
+  build software fast:
+  - Stream-aligned teams
+  - Enabling teams
+  - Complicated subsystem teams
+  - Platform teams
+- Mice, humans and elephants have roughly the same amount of heartbeats in their
+  lifetime. They also have the same blood pressure. The bigger a mammal, the
+  slower they live
+- Complex adaptive systems (mammals, cities or companies) show sub-linear
+  scaling: doubling one factor (e.g. size) does not double other factors (e.g.
+  calorie intake, cost of building streets, revenue)
+- Hierarchical fractal networks scale following a power law with an exponent of
+  less than one
+- Queues create back-pressure. Putting a queue into an information flow pauses
+  the flow
+- Larger organizations spend less of their revenue on R&D
+- Cities show more than one type of scaling:
+  - Super-linear: innovation, wages, number of professionals, crime, disease,
+    pollution (social network)
+  - Sub-linear: road length, number of petrol stations and restaurants, water
+    pipes, electricity cables (hierarchical network)
+
 ## More Speakers
 
 - Kevlin Henney
