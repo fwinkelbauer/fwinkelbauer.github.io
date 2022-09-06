@@ -1,0 +1,128 @@
+<!doctype html><html lang=en><head><title>Text Templating is Rad</title><meta charset=utf-8><meta name=generator content="Hugo 0.100.1"><meta name=author content="Florian Winkelbauer"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://florianwinkelbauer.com/posts/2022-09-06-scriban/><link rel=alternate type=application/rss+xml title=RSS href=https://florianwinkelbauer.com/index.xml><link rel=stylesheet href=https://florianwinkelbauer.com/main.css></head><body><header class=dark><h2><a href=https://florianwinkelbauer.com/>Florian Winkelbauer</a></h2><nav><a href=/about>About</a>
+<a href=/notes>Notes</a>
+<a href=/projects>Projects</a></nav></header><main><article><header><h1><a href=https://florianwinkelbauer.com/posts/2022-09-06-scriban/>Text Templating is Rad</a></h1><time datetime=2022-09-06T00:00:00Z>September 06, 2022</time></header><p>This is just a quick post to mention an awesome library. <a href=https://github.com/scriban/scriban>Scriban</a> is a
+text templating library in C# which you can use to replace text in files to e.g.
+fill in placeholders in some generic config file. Browsing Scriban&rsquo;s
+documentation made me realize that its also pretty easy to retrieve secret
+values (e.g. passwords) from your favorite secrets management (key vault) API.
+Here&rsquo;s an example class:</p><pre><code class=language-c#>public static class TemplateEngine
+{
+    public static string Render(string templateText, object model)
+    {
+        ArgumentNullException.ThrowIfNull(model);
+
+        var template = Template.Parse(templateText);
+
+        if (template.HasErrors)
+        {
+            var message = string.Join(Environment.NewLine, template.Messages);
+
+            throw new ArgumentException(
+                $&quot;Could not parse template: {message}&quot;);
+        }
+
+        var scriptObject = new VaultScriptObject();
+
+        scriptObject.Import(model);
+
+        var context = new TemplateContext
+        {
+            StrictVariables = true,
+            EnableRelaxedMemberAccess = false
+        };
+
+        context.PushGlobal(scriptObject);
+
+        try
+        {
+            return template.Render(context);
+        }
+        catch (Exception e)
+        {
+            throw new ArgumentException(
+                $&quot;Could not render template: {e.Message}&quot;);
+        }
+    }
+
+    private class VaultScriptObject : ScriptObject
+    {
+        public static string Vault(string secretName)
+        {
+            // Replace this method content with whatever secret management
+            // library you are using
+            var vault = new Dictionary&lt;string, string&gt;
+            {
+                { &quot;super-secret-name&quot;, &quot;you, again&quot; }
+            };
+
+            return vault[secretName];
+        }
+    }
+}
+</code></pre><p>And a test class to highlight some features:</p><pre><code class=language-c#>public static class TemplateEngineTests
+{
+    public static TheoryData&lt;string, object&gt; IncompleteModelData =&gt; new()
+    {
+        {
+            &quot;Hello {{ name1 }}&quot;,
+            new SomeRecord(&quot;you&quot;)
+        },
+        {
+            &quot;Hello {{ content1.name }}&quot;,
+            new ContainerRecord(new SomeRecord(&quot;you&quot;))
+        },
+        {
+            &quot;Hello {{ content.name1 }}&quot;,
+            new ContainerRecord(new SomeRecord(&quot;you&quot;))
+        }
+    };
+
+    [Fact]
+    public static void Render_Renders_Valid_Model()
+    {
+        Assert.Equal(
+            &quot;Hello you!&quot;,
+            TemplateEngine.Render(&quot;Hello {{ name }}!&quot;, new SomeRecord(&quot;you&quot;)));
+    }
+
+    [Theory, MemberData(nameof(IncompleteModelData))]
+    public static void Render_Throws_On_Incomplete_Model(
+        string templateText,
+        object model)
+    {
+        Assert.Throws&lt;ArgumentException&gt;(
+            () =&gt; TemplateEngine.Render(templateText, model));
+    }
+
+    [Fact]
+    public static void Render_Renders_Null_Properties()
+    {
+        Assert.Equal(
+            &quot;Hello !&quot;,
+            TemplateEngine.Render(&quot;Hello {{ name }}!&quot;, new SomeRecord(null)));
+    }
+
+    [Fact]
+    public static void Render_Resolves_Secret()
+    {
+        Assert.Equal(
+            &quot;Hello you, again!&quot;,
+            TemplateEngine.Render(
+                &quot;Hello {{ vault name }}!&quot;,
+                new SomeRecord(&quot;super-secret-name&quot;)));
+    }
+
+    [Fact]
+    public static void Render_Resolves_Secret_With_Empty_Model()
+    {
+        Assert.Equal(
+            &quot;Hello you, again!&quot;,
+            TemplateEngine.Render(
+                &quot;Hello {{ vault \&quot;super-secret-name\&quot; }}!&quot;,
+                new { }));
+    }
+
+    private record SomeRecord(string? Name);
+    private record ContainerRecord(SomeRecord Content);
+}
+</code></pre></article></main><footer><p>Copyright 2022, Florian Winkelbauer. All rights reserved.</p></footer></body></html>
