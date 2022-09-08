@@ -1,0 +1,68 @@
+<!doctype html><html lang=en><head><title>A Flat Dictionary Serializer in C#</title><meta charset=utf-8><meta name=generator content="Hugo 0.100.1"><meta name=author content="Florian Winkelbauer"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://florianwinkelbauer.com/posts/2022-09-08-flat-dict/><link rel=alternate type=application/rss+xml title=RSS href=https://florianwinkelbauer.com/index.xml><link rel=stylesheet href=https://florianwinkelbauer.com/main.css></head><body><header class=dark><h2><a href=https://florianwinkelbauer.com/>Florian Winkelbauer</a></h2><nav><a href=/about>About</a>
+<a href=/notes>Notes</a>
+<a href=/projects>Projects</a></nav></header><main><article><header><h1><a href=https://florianwinkelbauer.com/posts/2022-09-08-flat-dict/>A Flat Dictionary Serializer in C#</a></h1><time datetime=2022-09-08T00:00:00Z>September 08, 2022</time></header><p>Recently I have been working with rather large YAMl config files and I was
+wondering if there was an easy way to diff them. <a href=https://github.com/TomNomNom/gron>Gron</a> is a pretty cool
+command line tool which claims to make JSON greppable by transforming it into
+discrete assignments. It turns out that this format is also a great input for
+diff tools if you sort the assignments. I stumbled over <a href=https://josef.codes/transform-csharp-objects-to-a-flat-string-dictionary/>this blog post</a>
+in which the author presents a similar transformation for C# objects. After some
+minor tweaks I came up with my own implementation based on the first dynamic
+solution of said post:</p><pre><code class=language-c#>public static class FlatDictionarySerializer
+{
+    public static Dictionary&lt;string, string?&gt; Serialize(
+        object? obj,
+        string name = &quot;&quot;)
+    {
+        var dictionary = new Dictionary&lt;string, string?&gt;();
+
+        Flatten(dictionary, obj, name);
+
+        return dictionary;
+    }
+
+    private static void Flatten(
+        IDictionary&lt;string, string?&gt; dictionary,
+        object? obj,
+        string prefix)
+    {
+        if (obj == null)
+        {
+            dictionary.Add(prefix, null);
+
+            return;
+        }
+
+        var objType = obj.GetType();
+
+        if (objType.IsValueType || objType == typeof(string))
+        {
+            dictionary.Add(prefix, obj.ToString());
+        }
+        else if (obj is IEnumerable subObjects)
+        {
+            var counter = 0;
+
+            foreach (var subObj in subObjects)
+            {
+                Flatten(dictionary, subObj, $&quot;{prefix}[{counter++}]&quot;);
+            }
+        }
+        else
+        {
+            var properties = objType.GetProperties().Where(x =&gt; x.CanRead);
+
+            foreach (var property in properties)
+            {
+                Flatten(
+                    dictionary,
+                    property.GetValue(obj),
+                    string.IsNullOrEmpty(prefix)
+                        ? property.Name
+                        : $&quot;{prefix}.{property.Name}&quot;);
+            }
+        }
+    }
+}
+</code></pre><p><strong>Note:</strong> Adding support for dictionaries only makes sense for a type signature
+of IDictionary&lt;string, object> since other key types such as random objects
+might be hard to &ldquo;stringify&rdquo;.</p></article></main><footer><p>Copyright 2022, Florian Winkelbauer. All rights reserved.</p></footer></body></html>
