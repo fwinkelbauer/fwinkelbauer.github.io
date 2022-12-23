@@ -1,6 +1,6 @@
 baseURL = "https://florianwinkelbauer.com/"
 title = "Florian Winkelbauer"
-copyright = "Copyright 2022, Florian Winkelbauer. All rights reserved."
+copyright = "Copyright 2023, Florian Winkelbauer. All rights reserved."
 pygmentsCodefences = false
 disableKinds = ["taxonomy", "term"]
 
