@@ -1,0 +1,81 @@
+<!doctype html><html lang=en><head><title>Configparse Interpolation In C#</title><meta charset=utf-8><meta name=generator content="Hugo 0.109.0"><meta name=author content="Florian Winkelbauer"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://florianwinkelbauer.com/posts/2022-12-23-scriban/><link rel=alternate type=application/rss+xml title=RSS href=https://florianwinkelbauer.com/index.xml><link rel=stylesheet href=https://florianwinkelbauer.com/main.css></head><body><header class=dark><h2><a href=https://florianwinkelbauer.com/>Florian Winkelbauer</a></h2><nav><a href=/about>About</a>
+<a href=/notes>Notes</a>
+<a href=/projects>Projects</a></nav></header><main><article><header><h1><a href=https://florianwinkelbauer.com/posts/2022-12-23-scriban/>Configparse Interpolation In C#</a></h1><time datetime=2022-12-23T00:00:00Z>December 23, 2022</time></header><p>I have only ever written a few hundred lines of Python, but I have appreciated
+its <a href=https://docs.python.org/3/library/configparser.html>configparser</a> library. One of the coolest features is its
+interpolation mechanism, which can be used to derive values using other values
+in an <code>.ini</code> file. Here&rsquo;s a quick example from the documentation:</p><pre><code class=language-ini>[Paths]
+home_dir: /Users
+my_dir: %(home_dir)s/lumberjack
+my_pictures: %(my_dir)s/Pictures
+</code></pre><p>I was wondering how I could implement a similar feature in a JSON or YAML
+configuration file and I realized that I could use <a href=https://github.com/scriban/scriban>scriban</a>. The trick
+is simple: we read the raw text, serialize it to an object and use this object
+on the raw text. We repeat this process until no more changes to the text input
+can be found (or we are reaching some predefined limit). Here is an
+implementation example:</p><pre><code class=language-c#>public static class TemplateEngine
+{
+    public static T RenderTextAsModelLoop&lt;T&gt;(
+        string text,
+        Func&lt;string, T&gt; toModel)
+        where T : notnull
+    {
+        var newText = text;
+
+        for (var i = 0; i &lt; 10; i++)
+        {
+            var model = toModel(newText);
+            var tmp = Render(newText, model);
+
+            if (tmp.Equals(newText))
+            {
+                return model;
+            }
+
+            newText = tmp;
+        }
+
+        throw new ArgumentException(
+            &quot;Exceeded loop limit while trying to render model&quot;);
+    }
+
+    public static string Render(string text, object model)
+    {
+        ArgumentNullException.ThrowIfNull(model);
+
+        var template = Template.Parse(text);
+
+        if (template.HasErrors)
+        {
+            var message = string.Join(Environment.NewLine, template.Messages);
+
+            throw new ArgumentException(
+                $&quot;Could not parse template: {message}&quot;);
+        }
+
+        var scriptObject = new ScriptObject();
+
+        scriptObject.Import(model);
+
+        var context = new TemplateContext
+        {
+            StrictVariables = true,
+            EnableRelaxedMemberAccess = false,
+        };
+
+        context.PushGlobal(scriptObject);
+
+        try
+        {
+            return template.Render(context);
+        }
+        catch (Exception e)
+        {
+            throw new ArgumentException(
+                $&quot;Could not render template: {e.Message}&quot;);
+        }
+    }
+}
+</code></pre><p>Keep in mind that the overall templating features that you can use are rather
+limited, since the initial raw text must be deserializable. That means that you
+cannot perform structural changes, but changes to a particular text
+field/property is doable. A limited, but useful trick.</p></article></main><footer><p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p></footer></body></html>
