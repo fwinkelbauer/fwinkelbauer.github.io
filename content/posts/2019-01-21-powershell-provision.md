@@ -118,6 +118,35 @@ once 'Write important config file' {
 }
 ```
 
+## Manual
+
+If all automation attempts fail, I use `manual` as a fallback:
+
+``` powershell
+function manual {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$Name,
+        [Parameter(Mandatory = $true)]
+        [scriptblock]$ScriptBlock,
+        [bool]$If = $true
+    )
+
+    step -Name $Name -If $If -Do {
+        $nonInteractive = [bool]([Environment]::GetCommandLineArgs() -like '-noni*')
+
+        if ($nonInteractive) {
+            throw 'Cannot perform manual step in non-interactive PowerShell session'
+        }
+
+        & $ScriptBlock
+
+        Write-Output ''
+        Read-Host 'Press ENTER to continue'
+    }
+}
+```
+
 ## Exec
 
 `exec` makes sure that I can monitor the exit code of a command line tool:
