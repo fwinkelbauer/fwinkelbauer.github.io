@@ -82,6 +82,28 @@ just once&rdquo; property:</p><pre><code class=language-powershell>function once
 </code></pre><p>Here&rsquo;s an example:</p><pre><code class=language-powershell>once 'Write important config file' {
     Set-Content -Value 'answer = 42' -Path 'C:\meaning.ini'
 }
+</code></pre><h2 id=manual>Manual</h2><p>If all automation attempts fail, I use <code>manual</code> as a fallback:</p><pre><code class=language-powershell>function manual {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$Name,
+        [Parameter(Mandatory = $true)]
+        [scriptblock]$ScriptBlock,
+        [bool]$If = $true
+    )
+
+    step -Name $Name -If $If -Do {
+        $nonInteractive = [bool]([Environment]::GetCommandLineArgs() -like '-noni*')
+
+        if ($nonInteractive) {
+            throw 'Cannot perform manual step in non-interactive PowerShell session'
+        }
+
+        &amp; $ScriptBlock
+
+        Write-Output ''
+        Read-Host 'Press ENTER to continue'
+    }
+}
 </code></pre><h2 id=exec>Exec</h2><p><code>exec</code> makes sure that I can monitor the exit code of a command line tool:</p><pre><code class=language-powershell>function exec {
     param(
         [Parameter(Mandatory = $true)]
