@@ -998,6 +998,39 @@ Some quotes:
   - Sub-linear: road length, number of petrol stations and restaurants, water
     pipes, electricity cables (hierarchical network)
 
+## [Automation Is Hard & We Are Doing It Wrong (Johan Abildskov)](https://www.youtube.com/watch?v=JU5niXIrK3Y)
+
+- What is DevOps? One Definition: Culture, Automation, Lean, Measuring, Sharing
+- Automation is not a luxury. It's a permission to play
+  - "I don't want to buy software from people who are wasting their time"
+- "But our customers won't pay for automation" - well, they most likely don't
+  want to pay for your dailies, retrospectives or coffee breaks either
+- Minimize the cost of adding one more engineer
+- Maximize the value of adding one more engineer
+- Why digitalization will kill your company too
+  - Limited software skills in senior leadership
+  - Ambidexterity: solve today's challenges while preparing for future needs
+  - Leaders believe that digitalization is an R&D problem
+  - Justify their lack of initiative by referring to the lack of desire for
+    change from their most valuable customers
+- Automation is not complex. An excavator is an obvious upgrade to a shovel
+- Automating simple things is simple. Automating complex things might be
+  impossible (without losing your sanity)
+- Industry and technology stack doesn't matter. Architecture does (Nicole
+  Forsgren, Ph.D)
+- Automation is software. We should treat it as such!
+  - Use version control
+  - Create documentation
+  - Have tests
+- Monitor your automation. Use circuit breakers
+  - Does my automation do something silly?
+  - Use overrides but add checks to find stale overrides
+- Idempotency is your friend
+- Jevons Paradox: Increased efficiency != reduced consumption
+- Keep in mind that an increase in automation can increase manual work (in other
+  areas)
+- Automation is way more than cost-down
+
 ## More Speakers
 
 - Kevlin Henney
