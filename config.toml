@@ -10,6 +10,5 @@ disableKinds = ["taxonomy", "term"]
 [menus]
   main = [
     { Name = "About", URL = "/about" },
-    { Name = "Notes", URL = "/notes" },
     { Name = "Projects", URL = "/projects" }
   ]
