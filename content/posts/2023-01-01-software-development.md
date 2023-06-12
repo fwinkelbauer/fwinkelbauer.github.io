@@ -1266,6 +1266,11 @@ Some quotes:
   areas)
 - Automation is way more than cost-down
 
+## [Kinder, es tut mir undendlich leid (Martin Leyrer)](https://www.youtube.com/watch?v=dpQOKwYOhLQ)
+
+"We build our computer (systems) the way we build our cities: Over time, without
+a plan, on top of ruins" - Ellen Ullman
+
 ## More Speakers
 
 - Kevlin Henney
