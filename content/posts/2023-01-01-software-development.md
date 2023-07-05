@@ -1271,6 +1271,25 @@ Some quotes:
 "We build our computer (systems) the way we build our cities: Over time, without
 a plan, on top of ruins" - Ellen Ullman
 
+## [An Introduction to Residuality Theory (Barry O'Reilly)](https://www.youtube.com/watch?v=0wcUG2EV-7E)
+
+- How can we apply complexity theory to software development?
+- Creating software can be boiled down to a two step algorithm:
+  - a random simulation of our environments, followed by
+  - an NKP analysis
+    - N: the amount of components
+    - K: the amount of connections between components. More connections leads to
+      more chaos
+    - P: a bias between connections. A higher bias reduces chaos
+- Stressors can be categorized using attractors. We often design a system for a
+  single attractor, which is a mistake
+- A good start: "What if a giant laser lizard burns down our city? What's your
+  residue?"
+- A matrix which maps components and stressors can help you to identify
+  non-function requirements. It shows you hidden coupling and weak spots
+- The presenter also shows a concrete example using the architecture of a
+  business around charging electric cars
+
 ## More Speakers
 
 - Kevlin Henney
