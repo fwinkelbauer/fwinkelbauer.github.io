@@ -1266,6 +1266,15 @@ Some quotes:
   areas)
 - Automation is way more than cost-down
 
+## [Engineering Documentation (Lorna Jane Mitchell)](https://www.youtube.com/watch?v=Z5OrR99OpiY)
+
+- Documentation enables customer success
+- An investment that scales
+- https://diataxis.fr/
+- Use **really** good search
+- Use the same tools and workflows as for code
+- Prose linter https://vale.sh/
+
 ## [Kinder, es tut mir undendlich leid (Martin Leyrer)](https://www.youtube.com/watch?v=dpQOKwYOhLQ)
 
 "We build our computer (systems) the way we build our cities: Over time, without
