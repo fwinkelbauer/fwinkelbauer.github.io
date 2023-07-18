@@ -1252,7 +1252,7 @@ Some quotes:
 - Automating simple things is simple. Automating complex things might be
   impossible (without losing your sanity)
 - Industry and technology stack doesn't matter. Architecture does (Nicole
-  Forsgren, Ph.D)
+  Forsgren, PhD)
 - Automation is software. We should treat it as such!
   - Use version control
   - Create documentation
