@@ -1,6 +1,5 @@
 ---
 title: "Theater"
-date: 2023-01-01
 ---
 
 This is a list of [theater courses](http://www.somak.at/) that I have been part

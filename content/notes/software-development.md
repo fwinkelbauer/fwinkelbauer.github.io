@@ -1,6 +1,5 @@
 ---
-title: "Notes on Software Development"
-date: 2023-01-01
+title: "Software Development"
 ---
 
 This post contains a list of notes about systems and software development.
@@ -1314,3 +1313,4 @@ a plan, on top of ruins" - Ellen Ullman
 - Stefan Tilkov
 - Allen Holub
 - John Hughes
+- Andrew Kelley
