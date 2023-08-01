@@ -4,7 +4,6 @@ title: "Software Development"
 
 This post contains a list of notes about systems and software development.
 
-
 ## Antifragility (Nassim Nicholas Taleb)
 
 An antifragile system benefits from disorder
