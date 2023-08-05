@@ -59,7 +59,7 @@ public sealed class StoreCommand
 
     public string Repository { get; }
 
-    public IEnumerable<string> Paths { get; }
+    public IReadOnlyCollection<string> Paths { get; }
 
     public bool Preview { get; }
 }
