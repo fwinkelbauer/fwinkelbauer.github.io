@@ -33,7 +33,7 @@ structured representation described by the <code>Args</code> class</li><li>Try t
 
     public string Repository { get; }
 
-    public IEnumerable&lt;string&gt; Paths { get; }
+    public IReadOnlyCollection&lt;string&gt; Paths { get; }
 
     public bool Preview { get; }
 }
