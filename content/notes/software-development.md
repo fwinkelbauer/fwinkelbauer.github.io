@@ -1309,7 +1309,6 @@ a plan, on top of ruins" - Ellen Ullman
 - Chad Fowler
 - Kent Beck
 - Casey Rosenthal
-- Stefan Tilkov
 - Allen Holub
 - John Hughes
 - Andrew Kelley
