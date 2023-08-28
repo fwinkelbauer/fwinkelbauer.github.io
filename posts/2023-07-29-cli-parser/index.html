@@ -112,7 +112,7 @@ this:</p><pre><code class=language-csharp>public sealed class StoreCommandParser
 
     public object Parse(FlagConsumer consumer)
     {
-        if (consumer.consumer.TryString(&quot;--repository&quot;, &quot;The repository path&quot;, out repository)
+        if (consumer.TryString(&quot;--repository&quot;, &quot;The repository path&quot;, out repository)
             &amp; consumer.TryStrings(&quot;--paths&quot;, &quot;The files and directories to store&quot;, out var paths)
             &amp; consumer.TryBool(&quot;--preview&quot;, &quot;Show only a preview&quot;, out var preview))
         {
