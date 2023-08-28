@@ -187,7 +187,7 @@ public sealed class StoreCommandParser : ICommandParser
 
     public object Parse(FlagConsumer consumer)
     {
-        if (consumer.consumer.TryString("--repository", "The repository path", out repository)
+        if (consumer.TryString("--repository", "The repository path", out repository)
             & consumer.TryStrings("--paths", "The files and directories to store", out var paths)
             & consumer.TryBool("--preview", "Show only a preview", out var preview))
         {
