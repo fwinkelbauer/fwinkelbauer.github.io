@@ -1297,9 +1297,21 @@ a plan, on top of ruins" - Ellen Ullman
 - The presenter also shows a concrete example using the architecture of a
   business around charging electric cars
 
+## [The Case for Technical Excellence (Kevlin Henney)](https://www.youtube.com/watch?v=LLEXAdO3X1o)
+
+- Some organizations seem to believe that feature work and technical work are
+  mutual exclusive and that they can choose to focus on either. Features are
+  made of software. This sounds obvious and trivial, but just highlights that
+  technical and feature work are deeply linked. There is no choice
+- The agile manifesto mentions that technical excellence enhances agility
+- Architecture represents significant design decisions, where significant is
+  measured by cost of change. You are dealing with software, you can deal
+  whatever you want. To interesting question is how fast/cheap can you do a
+  change?
+- Technical neglect is the cause of technical debt
+
 ## More Speakers
 
-- Kevlin Henney
 - Greg Young
 - Michael Feathers
 - Bryan Cantrill
