@@ -1310,6 +1310,17 @@ a plan, on top of ruins" - Ellen Ullman
   change?
 - Technical neglect is the cause of technical debt
 
+## [A New Era for Database Design with TigerBeetle (Joran Greef)](https://www.youtube.com/watch?v=_jfOk4L7CiY)
+
+- TigerBeetle is a new type of database to track financial transactions
+- Databases still have room for innovation and improvement
+- Buffered I/O is broken, fsync has subtle issues which can cause loss of data
+- Databases that rely on fsync are trying to change fundamental design
+  decisions, which is hard work for a project with a long history
+- TigerBeetle uses two write-ahead logs
+- Storage faults force us to reconsider database design
+- We need to move beyond a crash safety (power loss) model
+
 ## More Speakers
 
 - Greg Young
