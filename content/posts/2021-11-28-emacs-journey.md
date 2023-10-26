@@ -19,14 +19,7 @@ All of my custom keybindings are accessible using the `<apps>` or `<menu>` keys.
 keys. The major change to last year is that I have switched from the hydra
 package to transient, which is already installed if you are using magit. This
 change reduced the overall packages I need to install while also making my
-custom menus really look nice. Here's what the main transient looks like:
-
-![transient main](/images/transient-main.png)
-
-And this is an example screenshot of the project related transient which is
-available by pressing `<apps> g`:
-
-![transient project](/images/transient-project.png)
+custom menus look really nice.
 
 # Goodbye Ivy
 
