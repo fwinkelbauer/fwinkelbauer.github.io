@@ -6,8 +6,7 @@ title: "Projects"
 - [Chunkyard][chunkyard]: A backup tool which uses content defined chunking and
   encryption
 - [Keyboard Layout][moonlander]: My layout for the Moonlander Mark 1 keyboard
-- [Dotfiles][dotfiles]: This repository contains my setup and configuration
-  files
+- [Dotfiles][dotfiles]: A repository to hold my setup and configuration files
 
 [website]: https://github.com/fwinkelbauer/fwinkelbauer.github.io
 [chunkyard]: https://github.com/fwinkelbauer/chunkyard
