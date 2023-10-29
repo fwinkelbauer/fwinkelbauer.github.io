@@ -1,0 +1,22 @@
+#+TITLE: Pretty Org-Agenda
+#+DATE: [2020-07-13]
+#+STARTUP: showall
+
+A few days ago [[https://www.reddit.com/r/emacs/comments/hnf3cw/my_orgmode_agenda_much_better_now_with_category/][this Reddit post]] about icons in the org-agenda view took me by
+surprise. In the past I have tried to find ways to use different colors
+depending on the context of a TODO item (without any success), but I never
+thought about using icons (or that org-mode even supports category based icons).
+I was even more impressed when a user called "asiledeneg" posted some elisp code
+to use the all-the-icons Emacs package. Thank you kind internet strangers for
+your code samples. You made my org-agenda glorious:
+
+#+begin_src emacs-lisp
+(defun fw/agenda-icon-material (name)
+  "Returns an all-the-icons-material icon"
+  (list (all-the-icons-material name)))
+
+;; https://old.reddit.com/r/emacs/comments/hnf3cw/my_orgmode_agenda_much_better_now_with_category/
+(setq org-agenda-category-icon-alist
+      `(("Birthday" ,(fw/agenda-icon-material "cake") nil nil :ascent center)
+        ("Anniversary" ,(fw/agenda-icon-material "favorite") nil nil :ascent center)))
+#+end_src

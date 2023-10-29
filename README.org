@@ -1,0 +1,21 @@
+#+TITLE: Website
+#+STARTUP: showall
+
+This repository contains the [[https://orgmode.org/][org-mode]] sources for my [[https://florianwinkelbauer.com][website]].
+
+* Development
+
+The following commands requires Python 3 and Emacs (>= v27.1):
+
+- Run ~./make clean~ to remove all generated files
+- Run ~./make publish~ to populate the ~./public/~ directory
+- Run ~./make serve~ to start a local web server on [[http://localhost:8000]] which
+  serves ~./public/~
+
+A typical org-mode page follows this pattern:
+
+#+begin_src org
+,#+TITLE: The Title
+,#+DATE: [2000-12-24]
+,#+STARTUP: showall
+#+end_src

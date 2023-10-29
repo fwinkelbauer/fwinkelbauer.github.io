@@ -1,0 +1,37 @@
+#+TITLE: Even Better Emacs Org-Mode Links
+#+DATE: [2020-06-15]
+#+STARTUP: showall
+
+In a [[file:2019-01-30-emacs-orglink.org][previous blog post]] I talked about how I am using org-mode links
+to create shortcuts for accessing my projects. The outlined solution was using
+link shortcuts with custom elisp code. While this is a valid solution, clicking
+such a link prompts you for a "would you like to run this code?" confirmation,
+which is annoying. There is a variable to avoid this popup, but using it is a
+questionable decision regarding security. I'd rather not run (potentially) any
+code when clicking on a link in an org-mode file.
+
+I stumbled over [[http://kitchingroup.cheme.cmu.edu/blog/2016/11/04/New-link-features-in-org-9/][a post]] about org-mode v9 (published in 2016) which contains a
+lot of examples on what you can do with custom links. So here's my improved
+setup:
+
+#+begin_src emacs-lisp
+(defun fw/open-git (path)
+  "Opens magit and neotree at `path'"
+  (neotree-dir path)
+  (other-window 1)
+  (magit-status path))
+
+(org-add-link-type "git" 'fw/open-git)
+#+end_src
+
+Which can be used like this:
+
+#+begin_src org
+,* [[git:D:/Projects/SomeProject][Some Project]]
+
+,** TODO Something Important
+#+end_src
+
+These links are nothing groundbreaking, but I find them to be really convenient.
+I can have a look at my TODO list and when I feel like tackling a particular
+project, I just click the header to jump right into the action.

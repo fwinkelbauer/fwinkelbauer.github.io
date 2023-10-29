@@ -1,0 +1,138 @@
+#+TITLE: Text Templating is Rad
+#+DATE: [2022-09-06]
+#+STARTUP: showall
+
+This is just a quick post to mention an awesome library. [[https://github.com/scriban/scriban][Scriban]] is a text
+templating library in C# which you can use to replace text in files to e.g. fill
+in placeholders in some generic config file. Browsing Scriban's documentation
+made me realize that its also pretty easy to retrieve secret values (e.g.
+passwords) from your favorite secrets management (key vault) API. Here's an
+example class:
+
+#+begin_src csharp
+public static class TemplateEngine
+{
+    public static string Render(string templateText, object model)
+    {
+        ArgumentNullException.ThrowIfNull(model);
+
+        var template = Template.Parse(templateText);
+
+        if (template.HasErrors)
+        {
+            var message = string.Join(Environment.NewLine, template.Messages);
+
+            throw new ArgumentException(
+                $"Could not parse template: {message}");
+        }
+
+        var scriptObject = new VaultScriptObject();
+
+        scriptObject.Import(model);
+
+        var context = new TemplateContext
+        {
+            StrictVariables = true,
+            EnableRelaxedMemberAccess = false
+        };
+
+        context.PushGlobal(scriptObject);
+
+        try
+        {
+            return template.Render(context);
+        }
+        catch (Exception e)
+        {
+            throw new ArgumentException(
+                $"Could not render template: {e.Message}");
+        }
+    }
+
+    private class VaultScriptObject : ScriptObject
+    {
+        public static string Vault(string secretName)
+        {
+            // Replace this method content with whatever secret management
+            // library you are using
+            var vault = new Dictionary<string, string>
+            {
+                { "super-secret-name", "you, again" }
+            };
+
+            return vault[secretName];
+        }
+    }
+}
+#+end_src
+
+And a test class to highlight some features:
+
+#+begin_src csharp
+public static class TemplateEngineTests
+{
+    public static TheoryData<string, object> IncompleteModelData => new()
+    {
+        {
+            "Hello {{ name1 }}",
+            new SomeRecord("you")
+        },
+        {
+            "Hello {{ content1.name }}",
+            new ContainerRecord(new SomeRecord("you"))
+        },
+        {
+            "Hello {{ content.name1 }}",
+            new ContainerRecord(new SomeRecord("you"))
+        }
+    };
+
+    [Fact]
+    public static void Render_Renders_Valid_Model()
+    {
+        Assert.Equal(
+            "Hello you!",
+            TemplateEngine.Render("Hello {{ name }}!", new SomeRecord("you")));
+    }
+
+    [Theory, MemberData(nameof(IncompleteModelData))]
+    public static void Render_Throws_On_Incomplete_Model(
+        string templateText,
+        object model)
+    {
+        Assert.Throws<ArgumentException>(
+            () => TemplateEngine.Render(templateText, model));
+    }
+
+    [Fact]
+    public static void Render_Renders_Null_Properties()
+    {
+        Assert.Equal(
+            "Hello !",
+            TemplateEngine.Render("Hello {{ name }}!", new SomeRecord(null)));
+    }
+
+    [Fact]
+    public static void Render_Resolves_Secret()
+    {
+        Assert.Equal(
+            "Hello you, again!",
+            TemplateEngine.Render(
+                "Hello {{ vault name }}!",
+                new SomeRecord("super-secret-name")));
+    }
+
+    [Fact]
+    public static void Render_Resolves_Secret_With_Empty_Model()
+    {
+        Assert.Equal(
+            "Hello you, again!",
+            TemplateEngine.Render(
+                "Hello {{ vault \"super-secret-name\" }}!",
+                new { }));
+    }
+
+    private record SomeRecord(string? Name);
+    private record ContainerRecord(SomeRecord Content);
+}
+#+end_src

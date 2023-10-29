@@ -1,0 +1,14 @@
+#+TITLE: Florian Winkelbauer
+#+STARTUP: showall
+
+Hi, welcome to my website! I blog about my opinions and experiences on software
+development and about whatever else seems to catch my interest. In my free time
+I tinker with small projects on [[https://github.com/fwinkelbauer][GitHub]]. In the past I have been a clown on more
+than one occasion. [[file:notes/theater.org][Literally]].
+
+I am currently working at [[https://invenium.io/][Invenium]] where I deal with server infrastructure and
+build pipelines. Before that I was automating whatever I could get my hands on
+at [[https://intact-systems.com/][Intact]].
+
+My wife, son and I live near Leibnitz, Austria. You can reach me at "mail@(this
+domain)".

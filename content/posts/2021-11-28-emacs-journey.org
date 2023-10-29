@@ -1,0 +1,40 @@
+#+TITLE: My Emacs Journey 2021
+#+DATE: [2021-11-28]
+#+STARTUP: showall
+
+Another year, another Emacs report!
+
+* Cutting-Back
+
+As some sort of experiment I have tried to reduce the amount of plugins and
+custom code as much as possible to see if I can live without them. This gives me
+an opportunity to find ways that work with either vanilla Emacs or with tools
+that are already installed through plugin dependencies.
+
+* One Transient To Rule Them All
+
+All of my custom keybindings are accessible using the ~<apps>~ or ~<menu>~ keys.
+~<f5>~ is used as a fallback for keyboards which don't have either of these
+keys. The major change to last year is that I have switched from the hydra
+package to transient, which is already installed if you are using magit. This
+change reduced the overall packages I need to install while also making my
+custom menus look really nice.
+
+* Goodbye Ivy
+
+Ivy, counsel and swiper were some of my most used packages. They have some
+quirks, but the overall feature set is just fantastic (thanks abo-abo!). Over
+the last few months several people have tried to use some of the newer
+completion frameworks, which made me curious. I'm now using a combination of
+vertico, orderless, counsel and embark. While the number of packages has
+increased, the overall amount of code was reduced. Out of all these packages,
+embark is the one with the most unused potential in my setup. I miss ivy's
+minibuffer actions and I haven't grokked embark enough to re-implement them.
+
+* Org Publish
+
+I have tried (and failed) to rewrite this blog using ~org-publish~. You can find
+a dozen of tutorials on how people migrated their blog to org, but for some
+reason I just can't get it to work the way I want. This frustration makes you
+wonder if you should write your own static blog generator, but the world already
+has enough of these custom generator projects.

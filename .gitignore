@@ -1,2 +1,4 @@
-/public
-.hugo_build.lock
+.org-timestamps/
+content/notes/index.org
+content/posts/index.org
+public/

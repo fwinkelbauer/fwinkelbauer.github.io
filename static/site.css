@@ -1,0 +1,71 @@
+body {
+    font-family: "Helvetica Neue", "Segoe UI", "Roboto", sans-serif;
+    font-size: 16px;
+    font-size: calc(0.8rem + 0.25vw);
+    font-weight: 400;
+    line-height: 1.65;
+    padding: 1.5em;
+}
+
+@media (min-width: 40em) {
+    body {
+        padding: 1.5em calc(34% - 12rem);
+    }
+}
+
+h1 {
+    margin: 0;
+}
+
+blockquote {
+    background: #9494940f;
+    border-left: 4px solid #047bc2;
+    padding: 1px 1.5em;
+}
+
+.org-src-container pre, code {
+    background: #94949426;
+    opacity: .75;
+    border-radius: 2px;
+    padding: .2em .4em;
+    overflow-x: auto;
+}
+
+a {
+    color: #047bc2;
+}
+
+h2 a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+h2 a:hover {
+  color: #949494;
+}
+
+nav a {
+    margin-right: .5em;
+}
+
+table {
+    box-shadow: 0 0 0 1px #9494941f inset;
+    border-spacing: 1px;
+    width: 100%;
+}
+
+tr:hover, tr:nth-child(odd) td {
+    background: #94949410;
+}
+
+th, td {
+    box-shadow: 0 0 0 1px #9494941f;
+    padding: .5em 1em;
+}
+
+footer {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    font-size: 11px;
+    text-align: center;
+}

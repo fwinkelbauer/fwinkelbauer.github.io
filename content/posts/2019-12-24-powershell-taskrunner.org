@@ -1,0 +1,194 @@
+#+TITLE: Building a Barebones Task Runner
+#+DATE: [2019-12-24]
+#+STARTUP: showall
+
+Several people have already build a bazillion frameworks or libraries in which
+you can define and run a set of tasks and their dependencies. PowerShell has
+[[https://github.com/psake/psake][psake]] and [[https://github.com/nightroman/Invoke-Build][Invoke-Build]]. I was curious how these systems work, so I wrote a small
+PowerShell library which only showcases a trivial implementation.
+
+Tasks and their dependencies form a directed acyclic graph (DAG). We only want
+to run each task once, even if several tasks depend on it. A naive task runner
+might operate like this:
+
+- Identify all leaves (tasks at the end of the graph which have not been run)
+- Run these tasks one after the other
+- Mark these tasks as finished (which "removes" them from the graph)
+
+Here's a short ~build.ps1~ script which defines a few tasks:
+
+#+begin_src powershell
+param(
+    [ValidateSet('Help', 'First', 'Second', 'Third')]
+    [string]$Target = 'Third'
+)
+
+$ErrorActionPreference = 'Stop'
+
+Import-Module '.\task.psm1'
+
+Register-Task -Name 'Help' {
+    Write-TaskOverview
+}
+
+$firstTask = Register-Task -Name 'First' -PassThru {
+    Write-Output 'First!'
+}
+
+$secondTask = Register-Task -Name 'Second' -DependsOn $firstTask -PassThru {
+    Write-Output 'Second!'
+}
+
+Register-Task -Name 'Third' -DependsOn $firstTask, $secondTask {
+    Write-Output 'Third!'
+}
+
+Get-Task $Target | Invoke-Task
+Write-TaskReport
+#+end_src
+
+We can run any task by passing its name:
+
+- ~build.ps1 -Target Help~
+- ~build.ps1 -Target Second~
+- ...
+
+The ~task.psm1~ file looks like this:
+
+#+begin_src powershell
+$registeredTasks = @{}
+$taskResults = [ordered]@{}
+
+class TaskObject {
+    [string]$Name
+    [TaskObject[]]$DependsOn
+    [scriptblock]$Do
+}
+
+class TaskResult {
+    [string]$Name
+    [TimeSpan]$Duration
+}
+
+function Register-Task {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$Name,
+        [scriptblock]$Do = { },
+        [TaskObject[]]$DependsOn = @(),
+        [switch]$PassThru
+    )
+
+    $task = [TaskObject]::new()
+    $task.Name = $Name
+    $task.DependsOn = $DependsOn
+    $task.Do = $Do
+
+    $registeredTasks[$Name] = $task
+
+    if ($PassThru) {
+        $task
+    }
+}
+
+function Get-Task {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$Name
+    )
+
+    $registeredTasks[$Name]
+}
+
+function Invoke-SingleTask {
+    param(
+        [Parameter(Mandatory = $true)]
+        [TaskObject]$Task
+    )
+
+    Write-Output ''
+    Write-Output '================================================================================'
+    Write-Output "Task '$($Task.Name)'"
+    Write-Output '================================================================================'
+
+    $start = Get-Date
+
+    & $Task.Do
+
+    $end = Get-Date
+    $taskResult = [TaskResult]::new()
+    $taskResult.Name = $Task.Name
+    $taskResult.Duration = $end - $start
+    $taskResults[$runnableTask.Name] = $taskResult
+}
+
+function Invoke-Task {
+    param(
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true)]
+        [TaskObject]$Task
+    )
+
+    $taskResults.Clear()
+
+    Do {
+        $runnableTasks = Get-TaskLeave -Task $Task
+
+        foreach ($runnableTask in $runnableTasks) {
+            Invoke-SingleTask -Task $runnableTask
+        }
+    } While($runnableTasks.Length -ne 0)
+}
+
+function Write-TaskReport {
+    $totalDuration = [timespan]::Zero
+    $results = New-Object System.Collections.Generic.List[TaskResult]
+
+    foreach ($key in $taskResults.Keys) {
+        $taskResult = $taskResults[$key]
+        $totalDuration += $taskResult.Duration
+        $results.Add($taskResult)
+    }
+
+    $totalResult = [TaskResult]::new()
+    $totalResult.Name = 'Total'
+    $totalResult.Duration = $totalDuration
+
+    $results.Add($totalResult)
+    $results | Format-Table
+}
+
+function Write-TaskOverview {
+    $tasks = New-Object System.Collections.Generic.List[TaskObject]
+
+    foreach ($key in $registeredTasks.Keys) {
+        $tasks.Add($registeredTasks[$key])
+    }
+
+    $tasks | Format-Table -Property Name, DependsOn
+}
+
+function Get-TaskLeave {
+    param(
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true)]
+        [TaskObject]$Task
+    )
+
+    $runnableTasks = New-Object System.Collections.Generic.List[TaskObject]
+    $hasRunnableDependencies = $false
+
+    foreach ($dependency in $Task.DependsOn) {
+        foreach ($leave in (Get-TaskLeave -Task $dependency)) {
+            if ((-not $taskResults.Contains($leave.Name)) -and (-not $runnableTasks.Contains($leave))) {
+                $hasRunnableDependencies = $true
+                $runnableTasks.Add($leave)
+            }
+        }
+    }
+
+    if ((-not $hasRunnableDependencies) -and (-not $taskResults.Contains($Task.Name)) -and (-not $runnableTasks.Contains($leave))) {
+        $runnableTasks.Add($Task)
+    }
+
+    $runnableTasks
+}
+#+end_src

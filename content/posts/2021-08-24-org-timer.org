@@ -1,0 +1,31 @@
+#+TITLE: Org-Mode Timer
+#+DATE: [2021-08-24]
+#+STARTUP: showall
+
+Org-mode appears to be one of those friends you have known for a long time but
+for some reason you just keep stumbling upon new profound things you just didn't
+know about them. I had this moment when I discovered timers. There are different
+ways to clock work or to start an increasing or decreasing timer which are
+described in the org-mode documentation [[https://orgmode.org/manual/Clocking-Work-Time.html][here]] and [[https://orgmode.org/manual/Timers.html#Timers][here]]. These functions can be
+used to interact with a decreasing timer:
+
+#+begin_src emacs-lisp
+(org-timer-set-timer)
+(org-timer-pause-or-continue)
+(org-timer-stop)
+#+end_src
+
+While these timers are convenient, I was surprised that Emacs won't warn me about
+a running timer when closing the application. Luckily adding a timer check only
+takes a few lines of code:
+
+#+begin_src emacs-lisp
+(add-to-list 'kill-emacs-query-functions
+             (lambda ()
+               (or (not (and (boundp 'org-timer-start-time)
+                             org-timer-start-time))
+                   (y-or-n-p "Quit with running org-timer?"))))
+#+end_src
+
+This little piece of code is called when closing Emacs. It will check if a timer
+is still running and will ask you what to do about it.

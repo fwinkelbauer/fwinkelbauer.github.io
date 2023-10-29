@@ -1,0 +1,54 @@
+#+TITLE: Org-Mode Calendar Notifications
+#+DATE: [2020-05-02]
+#+STARTUP: showall
+
+I was wondering if I could create notifications for my calendar entries in
+org-mode on Windows and Linux and it turns out, that the setup isn't that
+complex.
+
+The ~appt~ module can display notifications for specific appointments, so we
+need to export org-mode entries as appointments:
+
+#+begin_src emacs-lisp
+(require 'appt)
+(appt-activate t)
+
+(defun fw/org-agenda-to-appt ()
+  "Rebuild all appt reminders using org."
+  (interactive)
+  (setq appt-time-msg-list nil)
+  (org-agenda-to-appt))
+
+(fw/org-agenda-to-appt)
+(add-hook 'org-agenda-finalize-hook 'fw/org-agenda-to-appt)
+#+end_src
+
+The above snippet will create appointments when Emacs boots up and every time
+when we open ~org-agenda~. The ~appt~ notifications appear in a mini-buffer,
+which disappears after a few seconds. We can get persistent notifications by
+using a different "backend" such as the Windows 10 notifications area (via the
+PowerShell module [[https://github.com/Windos/BurntToast][BurntToast]]) or the Linux command line tool ~notify-send~:
+
+#+begin_src emacs-lisp
+(defun fw/appt-disp-linux (min-to-app new-time msg)
+  "A custom `appt-disp-window-function' which uses `notifications'."
+  (require 'notifications)
+  (notifications-notify :title msg :timeout 0))
+
+(defun fw/appt-disp-windows (min-to-app new-time msg)
+  "A custom `appt-disp-window-function' which uses the PowerShell module 'BurntToast'"
+  (shell-command
+   (concat "powershell.exe -Command \"New-BurntToastNotification -Text '" msg "'\"")))
+
+(when (eq system-type 'gnu/linux)
+  (progn
+    (setq appt-display-format 'window)
+    (setq appt-disp-window-function (function fw/appt-disp-linux))
+    (setq appt-delete-window-function (lambda nil))))
+
+(when (eq system-type 'windows-nt)
+  (progn
+    (setq appt-display-format 'window)
+    (setq appt-disp-window-function (function fw/appt-disp-windows))
+    (setq appt-delete-window-function (lambda nil))))
+#+end_src

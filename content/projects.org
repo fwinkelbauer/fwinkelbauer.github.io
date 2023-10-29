@@ -1,0 +1,7 @@
+#+TITLE: Projects
+#+STARTUP: showall
+
+- [[https://github.com/fwinkelbauer/fwinkelbauer.github.io][Website]]: The source files needed to generate this website
+- [[https://github.com/fwinkelbauer/chunkyard][Chunkyard]]: A backup tool which uses content defined chunking and encryption
+- [[https://configure.zsa.io/moonlander/layouts/rXlOQ/latest/0][Keyboard Layout]]: My layout for the Moonlander Mark 1 keyboard
+- [[https://github.com/fwinkelbauer/dotfiles][Dotfiles]]: A repository to hold my setup and configuration files

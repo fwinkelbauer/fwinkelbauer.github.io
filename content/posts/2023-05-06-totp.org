@@ -1,0 +1,82 @@
+#+TITLE: Implementing TOTP
+#+DATE: [2023-05-06]
+#+STARTUP: showall
+
+Here's another short post with a code snippet. I have recently stumbled over a
+post by Drew DeVault about [[https://drewdevault.com/2022/10/18/TOTP-is-easy.html][implementing TOTP]] and I was wondering how his Python
+example would turn out in C#. Other people have already done a much better job
+at this (have a look at the Otp.NET library), but why not give it a shot anyway.
+
+Example usage:
+
+#+begin_src csharp
+var totp = TOTP.Compute("3N2OTFHXKLR2E3WNZSYQ====");
+#+end_src
+
+And the implementation:
+
+#+begin_src csharp
+// TOTP.cs is based on:
+// - https://github.com/kspearrin/Otp.NET
+// - https://github.com/susam/mintotp
+// - https://drewdevault.com/2022/10/18/TOTP-is-easy.html
+//
+// Base32.cs is copied from:
+// - https://github.com/dotnet/aspnetcore/blob/01cc669960821e23ef3275cd5ad81f7192972010/src/Identity/Extensions.Core/src/Base32.cs
+public static class TOTP
+{
+    private const int DigitsCount = 6;
+    private const long WindowSeconds = 30L;
+    private const long UnixEpocTicks = 621355968000000000L;
+    private const long TicksToSeconds = 10000000L;
+
+    public static string Compute(string secret)
+    {
+        return Compute(secret, ToCounter(DateTime.UtcNow));
+    }
+
+    private static string Compute(string secret, long counter)
+    {
+        var key = ToKey(secret);
+        var bytes = ToBigEndianBytes(counter);
+        var hash = HMACSHA1.HashData(key, bytes);
+        var offset = hash[^1] & 0x0f;
+
+        var otp = (hash[offset] & 0x7f) << 24
+            | (hash[offset + 1] & 0xff) << 16
+            | (hash[offset + 2] & 0xff) << 8
+            | (hash[offset + 3] & 0xff) % 1000000;
+
+        return ToStringCode(otp);
+    }
+
+    private static byte[] ToKey(string secret)
+    {
+        return Base32.FromBase32(
+            secret.ToUpper().PadRight(32, '='));
+    }
+
+    private static byte[] ToBigEndianBytes(long value)
+    {
+        var bytes = BitConverter.GetBytes(value);
+
+        Array.Reverse(bytes);
+
+        return bytes;
+    }
+
+    private static string ToStringCode(int value)
+    {
+        var truncated = value % (int)Math.Pow(10, DigitsCount);
+
+        return truncated.ToString().PadLeft(DigitsCount, '0');
+    }
+
+    private static long ToCounter(DateTime timeStamp)
+    {
+        var unixTimeStamp = (timeStamp.Ticks - UnixEpocTicks) / TicksToSeconds;
+
+        return unixTimeStamp / WindowSeconds;
+    }
+}
+#+end_src
