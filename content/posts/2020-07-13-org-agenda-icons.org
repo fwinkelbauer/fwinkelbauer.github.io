@@ -1,6 +1,7 @@
 #+TITLE: Pretty Org-Agenda
 #+DATE: [2020-07-13]
 #+STARTUP: showall
+#+OPTIONS: auto-id:t
 
 A few days ago [[https://www.reddit.com/r/emacs/comments/hnf3cw/my_orgmode_agenda_much_better_now_with_category/][this Reddit post]] about icons in the org-agenda view took me by
 surprise. In the past I have tried to find ways to use different colors

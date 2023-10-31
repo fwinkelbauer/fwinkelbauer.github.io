@@ -1,5 +1,7 @@
 #+TITLE: Threat Level Heatnight
 #+DATE: [2019-03-27]
+#+STARTUP: showall
+#+OPTIONS: auto-id:t
 
 In the past I've had a few occasions where I had to create a [[http://wixtoolset.org/][WiX]] installer for a
 C# project. But independent of whatever Google search query I tried, I simply

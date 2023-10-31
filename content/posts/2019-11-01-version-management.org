@@ -1,6 +1,7 @@
 #+TITLE: Dealing with Version Information
 #+DATE: [2019-11-01]
 #+STARTUP: showall
+#+OPTIONS: auto-id:t
 
 About two years ago I was using a tool called [[https://github.com/ploeh/ZeroToNine][zero29]] to update ~AssemblyInfo.cs~
 files in my C# projects. The author Mark Seemann (who's talks I can highly

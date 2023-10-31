@@ -1,6 +1,7 @@
 #+TITLE: Poor Man's PowerShell Provisioning
 #+DATE: [2019-01-21]
 #+STARTUP: showall
+#+OPTIONS: auto-id:t
 
 I'm a fan of "infrastructure as code", which is why I have scripts which help me
 to setup my own computers. Instead of relying on "heavy hitters" such as Chef,
@@ -13,6 +14,9 @@ I have created three PowerShell functions which help me to keep my provisioning
 scripts simple and well-arranged:
 
 * Step
+  :PROPERTIES:
+  :CUSTOM_ID: step-944
+  :END:
 
 Several PowerShell instructions can be grouped together as a step:
 
@@ -75,6 +79,9 @@ step 'Write important config file' -If {
 #+end_src
 
 * Once
+  :PROPERTIES:
+  :CUSTOM_ID: once-173
+  :END:
 
 Sometimes I'd like to run a block of code once, but I don't have any decent way
 of checking if the block was already executed. The ~once~ function is a
@@ -118,6 +125,9 @@ once 'Write important config file' {
 #+end_src
 
 * Manual
+  :PROPERTIES:
+  :CUSTOM_ID: manual-308
+  :END:
 
 If all automation attempts fail, I use ~manual~ as a fallback:
 
@@ -147,6 +157,9 @@ function manual {
 #+end_src
 
 * Exec
+  :PROPERTIES:
+  :CUSTOM_ID: exec-373
+  :END:
 
 ~exec~ makes sure that I can monitor the exit code of a command line tool:
 

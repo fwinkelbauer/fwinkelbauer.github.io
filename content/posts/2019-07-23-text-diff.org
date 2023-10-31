@@ -1,6 +1,7 @@
 #+TITLE: Diffing Collaborative Text
 #+DATE: [2019-07-23]
 #+STARTUP: showall
+#+OPTIONS: auto-id:t
 
 A [[https://github.com/Wookai/paper-tips-and-tricks#one-sentence-per-line][common advice]] I've read in the past suggests, that we should write text
 documents (like LaTeX documents or Markdown documentation) in a way, so that

@@ -1,6 +1,7 @@
 #+TITLE: Psake Enhancements
 #+DATE: [2021-07-09]
 #+STARTUP: showall
+#+OPTIONS: auto-id:t
 
 [[https://github.com/psake/psake][Psake]] is ~make~-like tool written in PowerShell. Instead of a ~makefile~ you
 write a ~psakefile.ps1~ which consists of a set of tasks. Calling ~psake <task

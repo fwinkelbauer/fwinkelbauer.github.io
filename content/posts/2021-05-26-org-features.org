@@ -1,10 +1,14 @@
 #+TITLE: Minor Org-Mode Features
 #+DATE: [2021-05-26]
 #+STARTUP: showall
+#+OPTIONS: auto-id:t
 
 This post builds upon a previous post about [[file:2019-01-30-emacs-orglink.org][org-mode links]].
 
 * Custom Links
+  :PROPERTIES:
+  :CUSTOM_ID: custom-links-654
+  :END:
 
 The in-buffer setting
 
@@ -22,6 +26,9 @@ can also be written in elisp like this:
 #+end_src
 
 * Smart Browser Selection
+  :PROPERTIES:
+  :CUSTOM_ID: smart-browser-selection-835
+  :END:
 
 Clicking a URL inside of org-mode opens your default browser. This behavior can
 be customized using the variable ~browse-url-browser-function~, which is handy

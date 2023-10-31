@@ -1,6 +1,7 @@
 #+TITLE: Dreaming of Git with Chunks
 #+DATE: [2020-02-08]
 #+STARTUP: showall
+#+OPTIONS: auto-id:t
 
 I see more and more people using content addressable storage together with
 content defined chunking (CDC) to pull off interesting applications. Here are a
@@ -29,6 +30,9 @@ a "CDC based Git clone" would offer some interesting possibilities. We could:
   NextCloud or Syncthing
 
 * Design Ideas
+  :PROPERTIES:
+  :CUSTOM_ID: design-ideas-714
+  :END:
 
 Git uses four components to build its internal data structure:
 

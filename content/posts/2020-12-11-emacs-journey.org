@@ -1,11 +1,15 @@
 #+TITLE: My Emacs Journey 2020
 #+DATE: [2020-12-11]
 #+STARTUP: showall
+#+OPTIONS: auto-id:t
 
 I guess I am not alone when I'll say that COVID-19 made this year go by in an
 instant. It's time to write a small report on my Emacs usage.
 
 * Org-Mode & Magit
+  :PROPERTIES:
+  :CUSTOM_ID: org-mode-magit-332
+  :END:
 
 Even if some fancy editor would make me consider to stop using Emacs, I'd still
 use it just for org-mode and magit. Both tools are mentioned over and over on
@@ -24,6 +28,9 @@ access functions such as listing all commits this file was changed in. It also
 offers the possibility to step through different versions of the opened file.
 
 * Hydra
+  :PROPERTIES:
+  :CUSTOM_ID: hydra-586
+  :END:
 
 I started to use abo-abo's hydra package to create custom sets of keybindings,
 which I have previously mentioned in my journey write-up last year. Here a few
@@ -43,6 +50,9 @@ examples of my current setup:
   many other org functions
 
 * Custom Elisp
+  :PROPERTIES:
+  :CUSTOM_ID: custom-elisp-942
+  :END:
 
 I became proficient enough to write my own (very) simple elisp functions. Here
 are few examples:
@@ -56,6 +66,9 @@ Most of the time I'll start with a snippet I find on the internet, which I'll
 adjust to my needs.
 
 * Windows Performance
+  :PROPERTIES:
+  :CUSTOM_ID: windows-performance-093
+  :END:
 
 Sadly not much has changed regarding performance on Windows. Some operations
 might take one or two seconds, which is inconvenient but not too bad. For the
@@ -66,6 +79,9 @@ I know that I could try running Emacs in WSL 2, but I couldn't bring myself to
 go down that rabbit hole.
 
 * .NET Development
+  :PROPERTIES:
+  :CUSTOM_ID: -net-development-373
+  :END:
 
 Chunkyard is a backup software that I develop as a hobby. As a form of personal
 challenge I decided to write it in Emacs instead of Visual Studio or Visual
@@ -76,6 +92,9 @@ setting, as I still believe that a dedicated IDE offers a better developer
 experience.
 
 * Next Steps
+  :PROPERTIES:
+  :CUSTOM_ID: next-steps-162
+  :END:
 
 Like last year I don't have any specific topics which I would like to focus on.
 Most of the improvements of this year happened in tiny steps, which is how I'll

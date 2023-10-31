@@ -1,6 +1,7 @@
 #+TITLE: Even Better Emacs Org-Mode Links
 #+DATE: [2020-06-15]
 #+STARTUP: showall
+#+OPTIONS: auto-id:t
 
 In a [[file:2019-01-30-emacs-orglink.org][previous blog post]] I talked about how I am using org-mode links
 to create shortcuts for accessing my projects. The outlined solution was using

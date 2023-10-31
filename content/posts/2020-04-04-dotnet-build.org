@@ -1,6 +1,7 @@
 #+TITLE: Dotnet Build Tools
 #+DATE: [2020-04-04]
 #+STARTUP: showall
+#+OPTIONS: auto-id:t
 
 In the last five years, the dotnet build environment has grown so much. When I
 started as a C# developer a few years ago, all my builds were done by hand.
@@ -8,6 +9,9 @@ Deploying an artifact meant to manually copy it onto the target machine. Since
 then I have improved my process step by step.
 
 * Abusing the Pre/Post Build Snippets
+  :PROPERTIES:
+  :CUSTOM_ID: abusing-the-pre-post-build-snippets-391
+  :END:
 
 A ~csproj~ file can contain pre- and post-build snippets. I have used this
 feature to create an automated deployment when switching the build configuration
@@ -15,6 +19,9 @@ from "Debug" to "Release". While this solution worked, I never felt at ease, as
 I could run these snippets on accident when testing something in Visual Studio.
 
 * Custom MSBuild Scripts
+  :PROPERTIES:
+  :CUSTOM_ID: custom-msbuild-scripts-228
+  :END:
 
 MSBuild is a fully fledged build tool, which supports custom actions and even
 comes with predefined commands to do various operations such as copying or
@@ -23,6 +30,9 @@ scripts, are written in XML. While they work pretty fine, maintaining these
 scripts is a pain.
 
 * Psake
+  :PROPERTIES:
+  :CUSTOM_ID: psake-782
+  :END:
 
 Several languages come with their own version of ~make~. Psake is a build system
 written in PowerShell. We still need to call MSBuild to compile a C# solution,
@@ -30,6 +40,9 @@ but we can leverage a pretty good shell to perform other tasks such as running a
 linter, or archiving artifacts.
 
 * Cake
+  :PROPERTIES:
+  :CUSTOM_ID: cake-609
+  :END:
 
 Back when I found psake, the project did not have an active maintainer, which
 meant that at one point I could not use it with newer versions of MSBuild and
@@ -41,6 +54,9 @@ myself why if I am over-complicating things and why I don't just leverage CLI
 tools without any wrapper code.
 
 * Back to Psake
+  :PROPERTIES:
+  :CUSTOM_ID: back-to-psake-532
+  :END:
 
 While switching most of my projects over from .NET Framework to .NET Core, I was
 surprised how terrific the ~dotnet~ CLI is. Instead of downloading ~nuget.exe~

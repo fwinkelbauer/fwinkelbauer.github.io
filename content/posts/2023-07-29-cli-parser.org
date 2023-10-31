@@ -1,6 +1,7 @@
 #+TITLE: Writing a CLI Parser
 #+DATE: [2023-07-29]
 #+STARTUP: showall
+#+OPTIONS: auto-id:t
 
 C# offers a wide range of command line interface (CLI) parsers as NuGet
 packages. The package [[https://github.com/commandlineparser/commandline][commandlineparser]] has sparked joy for a long time, but
@@ -15,6 +16,9 @@ with my own implementation. In the end I wrote just enough code to handle the
 use cases that I actually need.
 
 * Example
+  :PROPERTIES:
+  :CUSTOM_ID: example-474
+  :END:
 
 One of Chunkyard's command is ~store~, which is used to create a snapshot/backup
 of a set of directories and/or files:
@@ -31,6 +35,9 @@ chunkyard store --repository ~/Chunkyard --paths ~/Music ~/Videos --preview
 #+end_src
 
 * Overview
+  :PROPERTIES:
+  :CUSTOM_ID: overview-771
+  :END:
 
 Chunkyard's new parser works like this:
 
@@ -64,6 +71,9 @@ public sealed class StoreCommand
 #+end_src
 
 * Language Specification
+  :PROPERTIES:
+  :CUSTOM_ID: language-specification-488
+  :END:
 
 Command line tools come with all sorts of different input methods, ranging from
 positional arguments, commands (also called verbs), flags to arguments or
@@ -107,6 +117,9 @@ are satisfied. We only know that the user input is valid according to the
 language specification.
 
 * Dispatching
+  :PROPERTIES:
+  :CUSTOM_ID: dispatching-043
+  :END:
 
 Our next step is to use ~Args~ to find a specific parser. In our example above
 we would want to use a ~StoreCommandParser~. I am using a small interface to
@@ -168,6 +181,9 @@ we will call ~HelpCommand~. A ~HelpCommand~ encapsulates all errors as well as
 general or specific command information.
 
 * Parsing
+  :PROPERTIES:
+  :CUSTOM_ID: parsing-476
+  :END:
 
 I mentioned in the last section that every command has its own ~ICommandParser~.
 Naturally we want to write as little code as possible in each parser. This is
@@ -212,6 +228,9 @@ There are few things to note in the above snippet:
   parsing operation fails
 
 * Handling
+  :PROPERTIES:
+  :CUSTOM_ID: handling-317
+  :END:
 
 The final part of this side-project is to perform the intend behind a command.
 In the beginning I wanted to solve this problem using a visitor pattern, but
@@ -256,6 +275,9 @@ public static class Program
 #+end_src
 
 * Conclusion
+  :PROPERTIES:
+  :CUSTOM_ID: conclusion-680
+  :END:
 
 And we are done! While my own implementation is not as neat or feature rich as
 other solutions, I am happy with what I have created. A CLI parser is a much

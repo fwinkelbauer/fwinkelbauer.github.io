@@ -18,4 +18,41 @@ A typical org-mode page follows this pattern:
 ,#+TITLE: The Title
 ,#+DATE: [2000-12-24]
 ,#+STARTUP: showall
+,#+OPTIONS: auto-id:t
+#+end_src
+
+The ~#+OPTIONS: auto-id:t~ export setting generates readable self-links for
+headlines when saving an org file using this snippet:
+
+#+begin_src emacs-lisp
+(defun fw/org-custom-id-create ()
+  "Create and store CUSTOM_ID for current heading."
+  (let* ((title (or (nth 4 (org-heading-components)) ""))
+         (custom-id (concat (string-trim-right (replace-regexp-in-string "[^[:alnum:]]+" "-" (downcase title)) "-")
+                            "-"
+                            (format "%03d" (random 1000)))))
+    (org-entry-put nil "CUSTOM_ID" custom-id)
+    custom-id))
+
+(defun fw/org-custom-id-get-create (&optional pom)
+  "Get or create CUSTOM_ID for heading at `pom'."
+  (org-with-point-at pom
+    (let ((custom-id (org-entry-get nil "CUSTOM_ID")))
+      (if (stringp custom-id)
+          custom-id
+        (fw/org-custom-id-create)))))
+
+(defun fw/org-add-ids-to-headlines ()
+  "Add a CUSTOM_ID property to all headlines in the current file
+   which do not already have one. Only adds IDs if the `auto-id'
+   option is set to `t'."
+  (interactive)
+  (save-excursion
+    (widen)
+    (goto-char (point-min))
+    (when (re-search-forward "^#\\+OPTIONS:.*auto-id:t" (point-max) t)
+      (org-map-entries (lambda () (fw/org-custom-id-get-create))))))
+
+(add-hook 'org-mode-hook
+          (lambda () (add-hook 'before-save-hook 'fw/org-add-ids-to-headlines)))
 #+end_src

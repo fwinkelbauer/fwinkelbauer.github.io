@@ -1,6 +1,7 @@
 #+TITLE: Having A Hobby Project
 #+DATE: [2022-03-13]
 #+STARTUP: showall
+#+OPTIONS: auto-id:t
 
 It has been two years since I have started to work on my hobby project
 [[https://github.com/fwinkelbauer/chunkyard][Chunkyard]]. Over these years I have used this project to test out different ideas
@@ -8,6 +9,9 @@ and concepts, which is something that you cannot always do in a professional
 environment. This post highlights a few topics which I have explored.
 
 * Ambitions
+  :PROPERTIES:
+  :CUSTOM_ID: ambitions-124
+  :END:
 
 My initial plans were to create some sort of general purpose library (hah!) that
 I could use to implement different types of applications such as a version
@@ -18,6 +22,9 @@ pitfalls, which makes it hard to come up with a general solution. So instead of
 a library I settled for the application that I wanted to build.
 
 * Tests
+  :PROPERTIES:
+  :CUSTOM_ID: tests-223
+  :END:
 
 A backup tool must be reliable. You don't want to end up in a situation where a
 bug breaks your data. All my backups are done using Chunkyard, so preventing
@@ -26,6 +33,9 @@ cannot ensure that the code base is free of bugs, I have come up with a testing
 suite that gives me enough confidence to explore ideas or implement features.
 
 * Design
+  :PROPERTIES:
+  :CUSTOM_ID: design-740
+  :END:
 
 Since I do not have any "real" users (besides myself), I can test out all sorts
 of designs without having to consider backwards compatibility. Re-reading older
@@ -37,6 +47,9 @@ tool in C#. Some of my work colleagues liked the idea and we ported the concept
 to one our own projects.
 
 * Performance
+  :PROPERTIES:
+  :CUSTOM_ID: performance-430
+  :END:
 
 I have no deep understanding of how a computer actually works. Don't get me
 wrong, Chunkyard is not slow, but listening to people such as Martin Thompson
@@ -47,6 +60,9 @@ antivirus software, the actual hardware and some OS-internal caching magic makes
 it hard to get meaningful data.
 
 * Future Work
+  :PROPERTIES:
+  :CUSTOM_ID: future-work-731
+  :END:
 
 - Figure out how to use [[https://fscheck.github.io/FsCheck/][FsCheck]]
 - Learn to utilize a profiler to find bottlenecks

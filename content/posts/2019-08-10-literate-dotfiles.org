@@ -1,6 +1,7 @@
 #+TITLE: Literate Dotfiles
 #+DATE: [2019-08-10]
 #+STARTUP: showall
+#+OPTIONS: auto-id:t
 
 The Irreal blog has recently published a post about [[https://irreal.org/blog/?p=8227][Managing dotfiles with Org]].
 The idea is simple: Put your configuration files and other scripts in a central

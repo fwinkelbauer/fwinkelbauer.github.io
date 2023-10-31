@@ -1,6 +1,7 @@
 #+TITLE: Install a Visual Studio Extension using Powershell
 #+DATE: [2019-03-07]
 #+STARTUP: showall
+#+OPTIONS: auto-id:t
 
 One of my previous posts outlined how to manage Visual Studio extension
 installations by creating Chocolatey packages for each and every VSIX file you
