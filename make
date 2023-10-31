@@ -9,24 +9,23 @@ DIRECTORY = './public'
 
 
 def clean(args):
-    subprocess.run(['git', 'clean', '-dfx'], check=True)
+    run(['git', 'clean', '-dfx'])
 
 
 def publish(args):
     if not os.path.isdir(DIRECTORY):
-        subprocess.run(['git', 'worktree', 'prune'], check=True)
-        subprocess.run(['git', 'worktree', 'add', '-B', 'gh-pages', DIRECTORY, 'origin/gh-pages'], check=True)
-    process = subprocess.run(['git', 'ls-files'], capture_output=True, text=True, cwd=DIRECTORY, check=True)
-    files = process.stdout.splitlines()
+        run(['git', 'worktree', 'prune'])
+        run(['git', 'worktree', 'add', '-B', 'gh-pages', DIRECTORY, 'origin/gh-pages'])
+    files = query(['git', 'ls-files'], cwd=DIRECTORY)
     for file in files:
         relative_file = os.path.join(DIRECTORY, file)
         if os.path.isfile(relative_file):
             os.remove(relative_file)
-    subprocess.run(['emacs', '-Q', '--script', './publish.el'], check=True)
+    run(['emacs', '-Q', '--script', './publish.el'])
 
 
 def serve(args):
-    subprocess.run(['python3', '-m', 'http.server'], cwd=DIRECTORY, check=True)
+    run(['python3', '-m', 'http.server'], cwd=DIRECTORY)
 
 
 def main():
@@ -42,6 +41,15 @@ def main():
 def add_cmd(sub, name, help, func):
     parser = sub.add_parser(name, help=help)
     parser.set_defaults(func=func)
+
+
+def run(args, cwd=None):
+    subprocess.run(args, cwd=cwd, check=True)
+
+
+def query(args, cwd=None):
+    process = subprocess.run(args, cwd=cwd, check=True, capture_output=True, text=True)
+    return process.stdout.splitlines()
 
 
 if __name__ == '__main__':
