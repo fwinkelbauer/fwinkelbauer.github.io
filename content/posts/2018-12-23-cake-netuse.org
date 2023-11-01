@@ -1,7 +1,6 @@
 #+TITLE: Copy Files to a Remote Location using Cake
 #+DATE: [2018-12-23]
 #+STARTUP: showall
-#+OPTIONS: auto-id:t
 
 I have recently had the need to copy files from one Windows machine to another
 in a Cake build task. A rather easy way to achieve this is to use the `net`

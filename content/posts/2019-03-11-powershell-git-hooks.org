@@ -1,7 +1,6 @@
 #+TITLE: Use PowerShell Scripts in Git Hooks
 #+DATE: [2019-03-11]
 #+STARTUP: showall
-#+OPTIONS: auto-id:t
 
 Adding a small git hook into a project is rather easy. The following hook calls
 a PowerShell script which in turn runs a [[https://github.com/psake/psake][psake]] task to search for linter issues.

@@ -1,7 +1,6 @@
 #+TITLE: Org-Mode Calendar Notifications
 #+DATE: [2020-05-02]
 #+STARTUP: showall
-#+OPTIONS: auto-id:t
 
 I was wondering if I could create notifications for my calendar entries in
 org-mode on Windows and Linux and it turns out, that the setup isn't that

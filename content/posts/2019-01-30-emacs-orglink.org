@@ -1,7 +1,6 @@
 #+TITLE: Emacs Org-Mode Links are Fun
 #+DATE: [2019-01-30]
 #+STARTUP: showall
-#+OPTIONS: auto-id:t
 
 I have started to use a few of org-mode's link features to help me stay
 organized in my job. The top of my "main" org file now includes these

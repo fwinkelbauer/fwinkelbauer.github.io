@@ -1,13 +1,9 @@
 #+TITLE: Software Development
 #+STARTUP: showall
-#+OPTIONS: auto-id:t
 
 This post contains a list of notes about systems and software development.
 
 * Antifragility (Nassim Nicholas Taleb)
-  :PROPERTIES:
-  :CUSTOM_ID: antifragility-nassim-nicholas-taleb-596
-  :END:
 
 An antifragile system benefits from disorder
 
@@ -40,9 +36,6 @@ nonlinear (concave), as the following two situations create different outputs:
 *Important:* Don't confuse x with f(x).
 
 * Meltdown (Chris Clearfield, András Tilcsik)
-  :PROPERTIES:
-  :CUSTOM_ID: meltdown-chris-clearfield-andrás-tilcsik-810
-  :END:
 
 *Why our systems fail and what we can do about it*
 
@@ -92,9 +85,6 @@ Diverse groups are "better" because group members are more skeptical which in
 turn makes it more likely to catch small errors.
 
 * Decision Logs
-  :PROPERTIES:
-  :CUSTOM_ID: decision-logs-117
-  :END:
 
 Create logs that hold the following information:
 
@@ -111,9 +101,6 @@ Michael Nygard described his decision log structure in [[https://cognitect.com/b
 - *Consequences:* What happened afterwards?
 
 * Documentation
-  :PROPERTIES:
-  :CUSTOM_ID: documentation-498
-  :END:
 
 - https://arc42.org/documentation/
 - Write documentation if
@@ -126,9 +113,6 @@ Michael Nygard described his decision log structure in [[https://cognitect.com/b
   - *Reference:* information-oriented; describes inner processes
 
 * The Phoenix/Unicorn Project (Gene Kim)
-  :PROPERTIES:
-  :CUSTOM_ID: the-phoenix-unicorn-project-gene-kim-671
-  :END:
 
 *Three Ways*
 
@@ -152,9 +136,6 @@ Michael Nygard described his decision log structure in [[https://cognitect.com/b
 - Customer Focus
 
 * Accelerate (Nicole Forsgren PhD, Jez Humble and Gene Kim)
-  :PROPERTIES:
-  :CUSTOM_ID: accelerate-nicole-forsgren-phd-jez-humble-and-gene-kim-521
-  :END:
 
 The book outlines 24 capabilities that drive improvements software delivery
 performance:
@@ -199,9 +180,6 @@ performance:
 - Transformational leadership
 
 * CAP Theorem
-  :PROPERTIES:
-  :CUSTOM_ID: cap-theorem-358
-  :END:
 
 - Consistency
 - Availability
@@ -226,9 +204,6 @@ Martin Kleppmann posted an [[https://martin.kleppmann.com/2015/05/11/please-stop
 CAP nor PACELC are a good way to think about distributed systems.
 
 * Idealcast Podcast
-  :PROPERTIES:
-  :CUSTOM_ID: idealcast-podcast-093
-  :END:
 
 https://itrevolution.com/the-idealcast-podcast/
 
@@ -254,9 +229,6 @@ Employee satisfaction can indicate the performance of an organization. Ask:
   patterns
 
 * Pilot Decision Management (Clifford Agius)
-  :PROPERTIES:
-  :CUSTOM_ID: pilot-decision-management-clifford-agius-895
-  :END:
 
 https://www.youtube.com/watch?v=QNA9EExd8lQ
 
@@ -317,9 +289,6 @@ Assign tasks to the members of the team.
 - Is it still a good decision?
 
 * Sharpening the Tools (Dan North)
-  :PROPERTIES:
-  :CUSTOM_ID: sharpening-the-tools-dan-north-384
-  :END:
 
 https://www.infoq.com/presentations/Sharpening-the-Tools
 
@@ -349,9 +318,6 @@ You are operating of instinct. You don't think about rules, you "just know".
 This is critical: You don't know how you come up with your decision.
 
 * Learn to love meetings (Dr. Neil Roodyn)
-  :PROPERTIES:
-  :CUSTOM_ID: learn-to-love-meetings-dr-neil-roodyn-233
-  :END:
 
 https://www.youtube.com/watch?v=ppfLUFO-hwc
 
@@ -369,9 +335,6 @@ https://www.youtube.com/watch?v=ppfLUFO-hwc
 - Lean Coffee
 
 * Preventing the Collapse of Civilization (Jonathan Blow)
-  :PROPERTIES:
-  :CUSTOM_ID: preventing-the-collapse-of-civilization-jonathan-blow-509
-  :END:
 
 https://www.youtube.com/watch?v=pW-SOdj4Kkk
 
@@ -390,9 +353,6 @@ https://www.youtube.com/watch?v=pW-SOdj4Kkk
 - Our tools change our thought process
 
 * Don't Walk Away from Complexity, Run (Venkat Subramaniam)
-  :PROPERTIES:
-  :CUSTOM_ID: don-t-walk-away-from-complexity-run-venkat-subramaniam-143
-  :END:
 
 https://www.youtube.com/watch?v=4MEKu2TcEHM
 
@@ -403,9 +363,6 @@ https://www.youtube.com/watch?v=4MEKu2TcEHM
 - Using a library is like dating, using a framework is like getting married
 
 * Transactions - Myths, Suprises and Opportunities (Martin Kleppmann)
-  :PROPERTIES:
-  :CUSTOM_ID: transactions-myths-suprises-and-opportunities-martin-kleppmann-570
-  :END:
 
 https://www.youtube.com/watch?v=5ZjhNTM8XU8
 
@@ -478,9 +435,6 @@ Databases have different default and maximum isolation levels. These levels are:
     longer true"
 
 * How did we end up here (Todd Montgomery & Martin Thompson)
-  :PROPERTIES:
-  :CUSTOM_ID: how-did-we-end-up-here-todd-montgomery-martin-thompson-943
-  :END:
 
 https://www.youtube.com/watch?v=oxjT7veKi9c
 
@@ -505,9 +459,6 @@ https://www.youtube.com/watch?v=oxjT7veKi9c
   they are doing the world makes a lot more sense.."
 
 * It's about time (Christin Gorman)
-  :PROPERTIES:
-  :CUSTOM_ID: it-s-about-time-christin-gorman-816
-  :END:
 
 https://www.youtube.com/watch?v=Nhhm5yC2HCo
 
@@ -551,9 +502,6 @@ Coding advice:
   end)
 
 * PID Loops and the Art of Keeping Systems Stable (Colm MacCárthaigh)
-  :PROPERTIES:
-  :CUSTOM_ID: pid-loops-and-the-art-of-keeping-systems-stable-colm-maccárthaigh-504
-  :END:
 
 https://www.youtube.com/watch?v=3AxSwCC7I4s
 
@@ -606,9 +554,6 @@ just once" problem. Level triggered (and idempotent) systems seem to be a
 simpler solution.
 
 * Big Numbers and the 1Hz CPU (Tom Hudson)
-  :PROPERTIES:
-  :CUSTOM_ID: big-numbers-and-the-1hz-cpu-tom-hudson-587
-  :END:
 
 https://www.youtube.com/watch?v=pDBOC6I3K8g
 
@@ -636,9 +581,6 @@ All these values seem "low enough", but let's but them into perspective using a
 - SSD: 1 day
 
 * Design, Composition, and Performance (Rich Hickey)
-  :PROPERTIES:
-  :CUSTOM_ID: design-composition-and-performance-rich-hickey-755
-  :END:
 
 https://www.youtube.com/watch?v=MCZ3YgeEUPg
 
@@ -658,9 +600,6 @@ https://www.youtube.com/watch?v=MCZ3YgeEUPg
 - Design is making decisions. It's about saying no
 
 * Thinking Fast and Slow (Linda Rising)
-  :PROPERTIES:
-  :CUSTOM_ID: thinking-fast-and-slow-linda-rising-296
-  :END:
 
 https://www.youtube.com/watch?v=XjbTLIqnq-o
 
@@ -723,9 +662,6 @@ about essential tasks such as breathing.
 - 10 minute break before important decisions
 
 * Mistakes and Discoveries While Cultivating Ownership (Aaron Blohowiak)
-  :PROPERTIES:
-  :CUSTOM_ID: mistakes-and-discoveries-while-cultivating-ownership-aaron-blohowiak-761
-  :END:
 
 https://www.youtube.com/watch?v=ddOGmao_cnA
 
@@ -755,9 +691,6 @@ https://www.youtube.com/watch?v=ddOGmao_cnA
 - Not being explicit when levels change
 
 * Changing your Habits & Environment to get more Professional Productivity (Linda Rising)
-  :PROPERTIES:
-  :CUSTOM_ID: changing-your-habits-environment-to-get-more-professional-productivity-linda-rising-485
-  :END:
 
 https://www.youtube.com/watch?v=mrHjHdyRDNY
 
@@ -766,9 +699,6 @@ https://www.youtube.com/watch?v=mrHjHdyRDNY
 - Try to have meetings while walking
 
 * Functional data that adapts to change (Don Syme)
-  :PROPERTIES:
-  :CUSTOM_ID: functional-data-that-adapts-to-change-don-syme-176
-  :END:
 
 https://www.youtube.com/watch?v=us4dp7Ksly0
 
@@ -785,9 +715,6 @@ https://www.youtube.com/watch?v=us4dp7Ksly0
   programming", which is related to event sourcing
 
 * A Cheap Effective Method for Dealing with Stressful Situations (Linda Rising)
-  :PROPERTIES:
-  :CUSTOM_ID: a-cheap-effective-method-for-dealing-with-stressful-situations-linda-rising-285
-  :END:
 
 https://www.youtube.com/watch?v=ODpq_6qcPIA
 
@@ -816,9 +743,6 @@ https://www.youtube.com/watch?v=ODpq_6qcPIA
   ...) can also be beneficial
 
 * If (domain logic) then CQRS, or Saga (Udi Dahan)
-  :PROPERTIES:
-  :CUSTOM_ID: if-domain-logic-then-cqrs-or-saga-udi-dahan-700
-  :END:
 
 https://www.youtube.com/watch?v=fWU8ZK0Dmxs
 
@@ -844,9 +768,6 @@ https://www.youtube.com/watch?v=fWU8ZK0Dmxs
   models)
 
 * Cultivating Architecture (Martin Fowler, Birgitta Böckeler)
-  :PROPERTIES:
-  :CUSTOM_ID: cultivating-architecture-martin-fowler-birgitta-böckeler-366
-  :END:
 
 https://www.youtube.com/watch?v=MZnrxjw602E
 
@@ -863,9 +784,6 @@ https://www.youtube.com/watch?v=MZnrxjw602E
 - Document any decisions. A simple markdown file might be enough
 
 * What I learned from three years of sciencing the crap out of DevOps (Jez Humble)
-  :PROPERTIES:
-  :CUSTOM_ID: what-i-learned-from-three-years-of-sciencing-the-crap-out-of-devops-jez-humble-012
-  :END:
 
 https://www.youtube.com/watch?v=kr08zSnyU20
 
@@ -873,9 +791,6 @@ https://www.youtube.com/watch?v=kr08zSnyU20
 - IT companies with high throughput perform better in terms of stability
 
 * Files (Dan Luu)
-  :PROPERTIES:
-  :CUSTOM_ID: files-dan-luu-477
-  :END:
 
 https://www.deconstructconf.com/2019/dan-luu-files
 
@@ -893,9 +808,6 @@ https://www.deconstructconf.com/2019/dan-luu-files
 - Computers don't work
 
 * Optimize For Time (Andy Walker)
-  :PROPERTIES:
-  :CUSTOM_ID: optimize-for-time-andy-walker-807
-  :END:
 
 https://www.youtube.com/watch?v=fBr8BKPW5tc
 
@@ -921,9 +833,6 @@ https://www.youtube.com/watch?v=fBr8BKPW5tc
   - Recover quickly
 
 * Conversational Transformation (Jeffrey Fredrick, Douglas Squirrel)
-  :PROPERTIES:
-  :CUSTOM_ID: conversational-transformation-jeffrey-fredrick-douglas-squirrel-671
-  :END:
 
 https://www.youtube.com/watch?v=RMT_Tqzf_vc
 
@@ -943,9 +852,6 @@ Conversational Analysis with The 4 Rs
 - (Role-reversal)
 
 * Continuous Retrospectives (Linda Rising)
-  :PROPERTIES:
-  :CUSTOM_ID: continuous-retrospectives-linda-rising-735
-  :END:
 
 https://www.youtube.com/watch?v=1wzedZcSmKY
 
@@ -966,9 +872,6 @@ https://www.youtube.com/watch?v=1wzedZcSmKY
   - Continuous: small experiments
 
 * Solving Problems the Clojure Way (Rafal Dittwald)
-  :PROPERTIES:
-  :CUSTOM_ID: solving-problems-the-clojure-way-rafal-dittwald-114
-  :END:
 
 https://www.youtube.com/watch?v=vK1DazRK_a0
 
@@ -992,9 +895,6 @@ https://www.youtube.com/watch?v=vK1DazRK_a0
   all the state into the root node
 
 * Persistent Data Structures and Managed References (Rich Hickey)
-  :PROPERTIES:
-  :CUSTOM_ID: persistent-data-structures-and-managed-references-rich-hickey-780
-  :END:
 
 https://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey/
 
@@ -1014,9 +914,6 @@ https://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey/
   - Co-located entities can observe each other without cooperation
 
 * End to end functional tests that can run in milliseconds (Nat Pryce)
-  :PROPERTIES:
-  :CUSTOM_ID: end-to-end-functional-tests-that-can-run-in-milliseconds-nat-pryce-501
-  :END:
 
 https://www.youtube.com/watch?v=Fk4rCn4YLLU
 
@@ -1039,9 +936,6 @@ https://www.youtube.com/watch?v=Fk4rCn4YLLU
   - Restore the system to a good state
 
 * Design Microservice Architectures the Right Way (Michael Bryzek)
-  :PROPERTIES:
-  :CUSTOM_ID: design-microservice-architectures-the-right-way-michael-bryzek-039
-  :END:
 
 https://www.youtube.com/watch?v=j6ow-UemzBc
 
@@ -1062,9 +956,6 @@ https://www.youtube.com/watch?v=j6ow-UemzBc
   - Drives quality, streamlines maintenance, enables continuous delivery
 
 * Entity Component Systems and You: They're Not Just For Game Developers (Paris Buttfield-Addison, Mars Geldard, Tim Nugent)
-  :PROPERTIES:
-  :CUSTOM_ID: entity-component-systems-and-you-they-re-not-just-for-game-developers-paris-buttfield-addison-mars-geldard-tim-nugent-508
-  :END:
 
 https://www.youtube.com/watch?v=SFKR5rZBu-8
 
@@ -1091,9 +982,6 @@ https://www.youtube.com/watch?v=SFKR5rZBu-8
   - No clear starting point
 
 * Programming Is The Easy Part (J. B. Rainsberger)
-  :PROPERTIES:
-  :CUSTOM_ID: programming-is-the-easy-part-j-b-rainsberger-277
-  :END:
 
 https://www.youtube.com/watch?v=SbGiSH_8UGk
 
@@ -1101,9 +989,6 @@ A lot of high level software design principles boil down to a linear combination
 of "remove duplication" and "improve names".
 
 * Modern SQL A lot has changed since SQL 92 (Markus Winand)
-  :PROPERTIES:
-  :CUSTOM_ID: modern-sql-a-lot-has-changed-since-sql-92-markus-winand-959
-  :END:
 
 https://www.youtube.com/watch?v=rpw_x8TtqTo
 
@@ -1124,9 +1009,6 @@ SQL has changed a lot, though most developers only know the 1992 standard
   features to destructive changes such as INSERT, UPDATE or DELETE
 
 * Testing as an equal 1st class citizen to coding (Jon Jagger)
-  :PROPERTIES:
-  :CUSTOM_ID: testing-as-an-equal-1st-class-citizen-to-coding-jon-jagger-054
-  :END:
 
 https://www.youtube.com/watch?v=1u6DdiFFH6Q
 
@@ -1139,9 +1021,6 @@ https://www.youtube.com/watch?v=1u6DdiFFH6Q
 - Are you confident enough to delete "dead" code?
 
 * Technical Leadership and Glue Work (Tanya Reilly)
-  :PROPERTIES:
-  :CUSTOM_ID: technical-leadership-and-glue-work-tanya-reilly-161
-  :END:
 
 https://www.youtube.com/watch?v=KClAPipnKqw
 
@@ -1157,9 +1036,6 @@ https://www.youtube.com/watch?v=KClAPipnKqw
 - The vast majority of our learning happens at our job
 
 * The Only Unbreakable Law (Casey Muratori)
-  :PROPERTIES:
-  :CUSTOM_ID: the-only-unbreakable-law-casey-muratori-782
-  :END:
 
 https://www.youtube.com/watch?v=5IUj1EZwpJY
 
@@ -1178,9 +1054,6 @@ https://www.youtube.com/watch?v=5IUj1EZwpJY
   head. Just like org charts, they might be too complicated or inefficient
 
 * Improving eBay's Development Velocity (Randy Shoup and Mark Weinberg)
-  :PROPERTIES:
-  :CUSTOM_ID: improving-ebay-s-development-velocity-randy-shoup-and-mark-weinberg-196
-  :END:
 
 https://www.youtube.com/watch?v=Qgjs0IA114E
 
@@ -1193,9 +1066,6 @@ https://www.youtube.com/watch?v=Qgjs0IA114E
 - CEO: "The most important initiative at the company. Go faster!"
 
 * Uncoupling (Michael Nygard)
-  :PROPERTIES:
-  :CUSTOM_ID: uncoupling-michael-nygard-591
-  :END:
 
 https://www.youtube.com/watch?v=mAw4ygX1c-4
 
@@ -1221,9 +1091,6 @@ https://www.youtube.com/watch?v=mAw4ygX1c-4
 - Is inversely proportional to the number of data types
 
 * Make Impacts Not Software (Gojko Adzic)
-  :PROPERTIES:
-  :CUSTOM_ID: make-impacts-not-software-gojko-adzic-460
-  :END:
 
 https://www.youtube.com/watch?v=GnK_n9Udhhs
 
@@ -1247,9 +1114,6 @@ https://www.youtube.com/watch?v=GnK_n9Udhhs
 - https://www.impactmapping.org/
 
 * Protect Yourself Against Supply Chain Attacks (Rob Bos)
-  :PROPERTIES:
-  :CUSTOM_ID: protect-yourself-against-supply-chain-attacks-rob-bos-029
-  :END:
 
 https://www.youtube.com/watch?v=00R1JGBQEJg
 
@@ -1274,9 +1138,6 @@ https://www.youtube.com/watch?v=00R1JGBQEJg
   - Supply Chain Levels for Software Artifacts (SLSA)
 
 * Monitoring Is Not Observability (Baron Schwartz)
-  :PROPERTIES:
-  :CUSTOM_ID: monitoring-is-not-observability-baron-schwartz-825
-  :END:
 
 https://www.youtube.com/watch?v=fBDI7F9PjlI
 
@@ -1297,9 +1158,6 @@ https://www.youtube.com/watch?v=fBDI7F9PjlI
   - Universal scalability law
 
 * Working at the Center of the Cyclone (Dr. Richard Cook)
-  :PROPERTIES:
-  :CUSTOM_ID: working-at-the-center-of-the-cyclone-dr-richard-cook-545
-  :END:
 
 https://www.youtube.com/watch?v=3ZP98stDUf0
 
@@ -1325,9 +1183,6 @@ https://www.youtube.com/watch?v=3ZP98stDUf0
   from "the system"
 
 * Resilience In Complex Adaptive Systems (Dr. Richard Cook)
-  :PROPERTIES:
-  :CUSTOM_ID: resilience-in-complex-adaptive-systems-dr-richard-cook-814
-  :END:
 
 https://www.youtube.com/watch?v=PGLYEDpNu60
 
@@ -1348,9 +1203,6 @@ https://www.youtube.com/watch?v=PGLYEDpNu60
 - Resilience: monitoring, reacting, anticipating and learning activities
 
 * How Complex Systems Fail (Dr. Richard Cook)
-  :PROPERTIES:
-  :CUSTOM_ID: how-complex-systems-fail-dr-richard-cook-523
-  :END:
 
 https://www.youtube.com/watch?v=2S0k12uZR14
 
@@ -1389,9 +1241,6 @@ https://www.youtube.com/watch?v=2S0k12uZR14
     through the system life-cycle
 
 * Sleeping with the enemy (Gojko Adzic)
-  :PROPERTIES:
-  :CUSTOM_ID: sleeping-with-the-enemy-gojko-adzic-541
-  :END:
 
 https://www.youtube.com/watch?v=hIMwTzAAQ-w
 
@@ -1416,9 +1265,6 @@ Some quotes:
   outcome?"
 
 * Diagrams as Code 2.0 (Simon Brown)
-  :PROPERTIES:
-  :CUSTOM_ID: diagrams-as-code-2-0-simon-brown-782
-  :END:
 
 https://www.youtube.com/watch?v=Za1-v4Zkq5E
 
@@ -1434,9 +1280,6 @@ https://www.youtube.com/watch?v=Za1-v4Zkq5E
   the [[https://github.com/structurizr/dsl][Structurizr DSL]]
 
 * Software Architecture, Team Topologies and Complexity Science (James Lewis)
-  :PROPERTIES:
-  :CUSTOM_ID: software-architecture-team-topologies-and-complexity-science-james-lewis-018
-  :END:
 
 https://www.youtube.com/watch?v=uAwJEFLJunk
 
@@ -1464,9 +1307,6 @@ https://www.youtube.com/watch?v=uAwJEFLJunk
     pipes, electricity cables (hierarchical network)
 
 * Automation Is Hard & We Are Doing It Wrong (Johan Abildskov)
-  :PROPERTIES:
-  :CUSTOM_ID: automation-is-hard-we-are-doing-it-wrong-johan-abildskov-253
-  :END:
 
 https://www.youtube.com/watch?v=JU5niXIrK3Y
 
@@ -1502,9 +1342,6 @@ https://www.youtube.com/watch?v=JU5niXIrK3Y
 - Automation is way more than cost-down
 
 * Engineering Documentation (Lorna Jane Mitchell)
-  :PROPERTIES:
-  :CUSTOM_ID: engineering-documentation-lorna-jane-mitchell-664
-  :END:
 
 https://www.youtube.com/watch?v=Z5OrR99OpiY
 
@@ -1516,9 +1353,6 @@ https://www.youtube.com/watch?v=Z5OrR99OpiY
 - Prose linter https://vale.sh/
 
 * Kinder, es tut mir undendlich leid (Martin Leyrer)
-  :PROPERTIES:
-  :CUSTOM_ID: kinder-es-tut-mir-undendlich-leid-martin-leyrer-492
-  :END:
 
 https://www.youtube.com/watch?v=dpQOKwYOhLQ
 
@@ -1526,9 +1360,6 @@ https://www.youtube.com/watch?v=dpQOKwYOhLQ
 a plan, on top of ruins" - Ellen Ullman
 
 * An Introduction to Residuality Theory (Barry O'Reilly)
-  :PROPERTIES:
-  :CUSTOM_ID: an-introduction-to-residuality-theory-barry-o-reilly-596
-  :END:
 
 https://www.youtube.com/watch?v=0wcUG2EV-7E
 
@@ -1550,9 +1381,6 @@ https://www.youtube.com/watch?v=0wcUG2EV-7E
   business around charging electric cars
 
 * The Case for Technical Excellence (Kevlin Henney)
-  :PROPERTIES:
-  :CUSTOM_ID: the-case-for-technical-excellence-kevlin-henney-939
-  :END:
 
 https://www.youtube.com/watch?v=LLEXAdO3X1o
 
@@ -1568,9 +1396,6 @@ https://www.youtube.com/watch?v=LLEXAdO3X1o
 - Technical neglect is the cause of technical debt
 
 * A New Era for Database Design with TigerBeetle (Joran Greef)
-  :PROPERTIES:
-  :CUSTOM_ID: a-new-era-for-database-design-with-tigerbeetle-joran-greef-501
-  :END:
 
 https://www.youtube.com/watch?v=_jfOk4L7CiY
 
@@ -1584,9 +1409,6 @@ https://www.youtube.com/watch?v=_jfOk4L7CiY
 - We need to move beyond a crash safety (power loss) model
 
 * More Speakers
-  :PROPERTIES:
-  :CUSTOM_ID: more-speakers-488
-  :END:
 
 - Greg Young
 - Michael Feathers

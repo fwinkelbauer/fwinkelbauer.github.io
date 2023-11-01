@@ -1,7 +1,6 @@
 #+TITLE: Motivating Programmers
 #+DATE: [2019-08-12]
 #+STARTUP: showall
-#+OPTIONS: auto-id:t
 
 [[https://www.se-radio.net/][Software Engineering Radio]] has recently published a terrific podcast about
 [[https://www.se-radio.net/2019/07/episode-374-marcus-blankenship-on-motivating-programmers/][Motivating Programmers]]. Topics include:

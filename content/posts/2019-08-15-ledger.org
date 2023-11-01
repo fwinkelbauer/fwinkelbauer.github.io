@@ -1,7 +1,6 @@
 #+TITLE: Exporting from Homebank and Importing into Ledger
 #+DATE: [2019-08-15]
 #+STARTUP: showall
-#+OPTIONS: auto-id:t
 
 I am using [[http://homebank.free.fr/en/index.php][Homebank]] to keep track of my financial situation. Recently, I thought
 about switching to [[https://www.ledger-cli.org][Ledger]] (which belongs to a family of [[https://plaintextaccounting.org/][plaintext accounting

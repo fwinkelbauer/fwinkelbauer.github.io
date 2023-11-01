@@ -1,7 +1,6 @@
 #+TITLE: Notes on Building Chunkyard
 #+DATE: [2020-03-13]
 #+STARTUP: showall
-#+OPTIONS: auto-id:t
 
 Based on my previous blog post I have started a new C# project called [[https://github.com/fwinkelbauer/chunkyard][Chunkyard]]
 where I can play with concepts such as content addressable storage and content
@@ -12,9 +11,6 @@ this post I'd like to highlight a few topics that came up while figuring out how
 to implement Chunkyard.
 
 * Encryption
-  :PROPERTIES:
-  :CUSTOM_ID: encryption-622
-  :END:
 
 To encrypt a piece of data, algorithms such as AES need a key and an
 initialization vector (IV). While the key must be kept private, we need to store
@@ -35,9 +31,6 @@ files. Chunkyard creates IVs based on the relative file name, which limits the
 re-usage on a file based level.
 
 * Compression
-  :PROPERTIES:
-  :CUSTOM_ID: compression-575
-  :END:
 
 The data ingestion process can be seen as a pipeline. We throw in a file and we
 get out chunks which are encrypted and compressed. The specific order of these
@@ -51,9 +44,6 @@ chunk, but this would only be feasible for "larger chunks". The "correct"
 strategy depends on the given data.
 
 * Language Split
-  :PROPERTIES:
-  :CUSTOM_ID: language-split-541
-  :END:
 
 I am using the FastCDC algorithm to perform the actual chunking. I could not
 find any C# library which implements this algorithm (or any other chunking
@@ -70,9 +60,6 @@ with a few sub optimal choices:
 Right now I am relying on a combination of the first two strategies.
 
 * Open Questions
-  :PROPERTIES:
-  :CUSTOM_ID: open-questions-519
-  :END:
 
 - How can we support "branches" so that we can still benefit from encryption and
   deduplication?

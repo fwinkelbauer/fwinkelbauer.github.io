@@ -1,7 +1,6 @@
 #+TITLE: My Emacs Journey 2018
 #+DATE: [2019-01-01]
 #+STARTUP: showall
-#+OPTIONS: auto-id:t
 
 I have started to use Emacs around the summer time after shelving the task of
 getting started for several weeks. My intention was to find a cross-platform
@@ -13,18 +12,12 @@ invested time was well spent. I'd like to summarize a few concepts and tools
 that I have learned along the way.
 
 * The Right Tool for the Right Job
-  :PROPERTIES:
-  :CUSTOM_ID: the-right-tool-for-the-right-job-240
-  :END:
 
 I am still using other applications such as Notepad++ or Visual Studio and that
 is fine. I don't feel the need to use Emacs as a hammer for every nail or screw
 that I'll encounter.
 
 * New Ways of Thinking
-  :PROPERTIES:
-  :CUSTOM_ID: new-ways-of-thinking-821
-  :END:
 
 Emacs is different than most editors or IDEs that I have used in the past.
 Concepts such as buffer management, the "everything is text" philosophy or the
@@ -39,9 +32,6 @@ some aspects started to itch, which is where I either had to learn the "intended
 way" or I had to bring in some external packages (extensions).
 
 * Org Mode
-  :PROPERTIES:
-  :CUSTOM_ID: org-mode-742
-  :END:
 
 Most of my personal or work related notes used to be written in Markdown. I have
 since migrated a major chunk of my personal notes to org-mode. The hierarchical
@@ -56,9 +46,6 @@ to add all ~.el~ and ~*.elc~ files, so that I can get the exact same code when
 checking out the repository on a new computer.
 
 * Magit
-  :PROPERTIES:
-  :CUSTOM_ID: magit-704
-  :END:
 
 Magit was one of the reasons why I have decided to learn Emacs in the first
 place. I still like to fire up the good old console to use the git CLI, but
@@ -66,9 +53,6 @@ because of its interactive nature, Magit has made the process of staging and
 committing files fun.
 
 * Ivy, Counsel and Swiper
-  :PROPERTIES:
-  :CUSTOM_ID: ivy-counsel-and-swiper-608
-  :END:
 
 Emacs ships with ido, a completion framework that you can turn on to e.g. speed up
 the process of finding files in the minibuffer. I did not enjoy the look and
@@ -82,9 +66,6 @@ but ivy offers these features in a way, that I have never seen before. I really
 enjoy the quick feedback and interactive nature that ivy can pull off.
 
 * Elfeed
-  :PROPERTIES:
-  :CUSTOM_ID: elfeed-020
-  :END:
 
 I have recently re-discovered RSS feeds for myself. Back in the day, I was a
 heavy Google Reader user, but those days are long gone. Elfeed is a decent RSS
@@ -93,9 +74,6 @@ author himself, I have written my own elisp functions which integrate the
 youtube-dl CLI to download podcasts and videos in my feed.
 
 * Further Improvements and Closing Thoughts
-  :PROPERTIES:
-  :CUSTOM_ID: further-improvements-and-closing-thoughts-547
-  :END:
 
 It might seem crazy that the process of learning and configuring Emacs is never
 really "done", but most of the time it does not really feel like work.

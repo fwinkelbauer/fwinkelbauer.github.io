@@ -1,7 +1,6 @@
 #+TITLE: Using a .cleanignore File
 #+DATE: [2022-07-13]
 #+STARTUP: showall
-#+OPTIONS: auto-id:t
 
 Git offers a wide range of useful command line verbs besides the "usual"
 suspects such as ~add~, ~commit~, ~push~ or ~pull~. One of them is [[https://git-scm.com/docs/git-clean][git clean]],

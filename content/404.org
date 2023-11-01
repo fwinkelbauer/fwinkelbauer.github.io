@@ -1,5 +1,4 @@
 #+TITLE: 404: Page not found
 #+STARTUP: showall
-#+OPTIONS: auto-id:t
 
 Unfortunately, this page does not exist.

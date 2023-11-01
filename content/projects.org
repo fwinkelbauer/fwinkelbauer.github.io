@@ -1,6 +1,5 @@
 #+TITLE: Projects
 #+STARTUP: showall
-#+OPTIONS: auto-id:t
 
 - [[https://github.com/fwinkelbauer/fwinkelbauer.github.io][Website]]: The source files needed to generate this website
 - [[https://github.com/fwinkelbauer/chunkyard][Chunkyard]]: A backup tool which uses content defined chunking and encryption

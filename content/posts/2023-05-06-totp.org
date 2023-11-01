@@ -1,7 +1,6 @@
 #+TITLE: Implementing TOTP
 #+DATE: [2023-05-06]
 #+STARTUP: showall
-#+OPTIONS: auto-id:t
 
 Here's another short post with a code snippet. I have recently stumbled over a
 post by Drew DeVault about [[https://drewdevault.com/2022/10/18/TOTP-is-easy.html][implementing TOTP]] and I was wondering how his Python

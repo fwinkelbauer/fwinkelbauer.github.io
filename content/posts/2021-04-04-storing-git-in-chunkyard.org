@@ -1,7 +1,6 @@
 #+TITLE: Storing Git Repositories using Chunkyard
 #+DATE: [2021-04-04]
 #+STARTUP: showall
-#+OPTIONS: auto-id:t
 
 Sometimes you don't want to store a Git repository on a dedicated server. An
 easy trick is to use a network drive or a cloud drive (e.g. Dropbox, NextCloud

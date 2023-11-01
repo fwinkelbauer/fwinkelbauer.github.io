@@ -1,7 +1,6 @@
 #+TITLE: Using Git with GNOME Keyring
 #+DATE: [2021-05-27]
 #+STARTUP: showall
-#+OPTIONS: auto-id:t
 
 Since GitHub has deprecated password-based authentication when using the Git CLI
 I have been searching for a solution to store GitHub's personal access tokens

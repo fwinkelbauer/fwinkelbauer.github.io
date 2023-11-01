@@ -1,7 +1,5 @@
 #+TITLE: Creating VSIX Chocolatey Packages
 #+DATE: [2018-11-26]
-#+STARTUP: showall
-#+OPTIONS: auto-id:t
 
 This post outlines how to create a Chocolatey package for a VSIX file based on
 the [[https://marketplace.visualstudio.com/items?itemName%3Dvs-publisher-1392591.CakeforVisualStudio][Cake for Visual Studio]] extension.

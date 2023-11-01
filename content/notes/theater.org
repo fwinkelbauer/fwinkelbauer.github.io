@@ -1,6 +1,5 @@
 #+TITLE: Theater
 #+STARTUP: showall
-#+OPTIONS: auto-id:t
 
 I got interested in theater after participating in a [[http://www.somak.at/][musical course]] back
 in 2014. Since then I've taken a few other courses where I stumbled over clown

@@ -1,7 +1,6 @@
 #+TITLE: Valuing Ground Separation
 #+DATE: [2019-09-10]
 #+STARTUP: showall
-#+OPTIONS: auto-id:t
 
 I can't remember where I first picked it up, but a saying claims, that one
 should not try to save on things that separate you from the ground. This might

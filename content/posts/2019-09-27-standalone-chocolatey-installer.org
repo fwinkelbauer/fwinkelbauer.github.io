@@ -1,7 +1,6 @@
 #+TITLE: Creating a Standalone Offline Chocolatey Installer
 #+DATE: [2019-09-27]
 #+STARTUP: showall
-#+OPTIONS: auto-id:t
 
 The [[https://chocolatey.org/docs/installation#why-isnt-there-an-msi][Chocolatey install documentation]] includes a section about why there isn't an
 MSI to install Chocolatey. In case that you are still searching for an
@@ -15,9 +14,6 @@ extracting [[https://www.7-zip.org/][7-zip]] archive. We'll need the following d
 - ~build.ps1~: The script which will create our target file ~output/chocolateySetup.exe~
 
 * config.txt
-  :PROPERTIES:
-  :CUSTOM_ID: config-txt-645
-  :END:
 
 We're using a rather simple configuration, which will:
 
@@ -36,9 +32,6 @@ ExecuteFile="install.bat"
 #+end_src
 
 * install.bat
-  :PROPERTIES:
-  :CUSTOM_ID: install-bat-276
-  :END:
 
 ~install.bat~ is a simple wrapper script which calls ~install.ps1~. I found this
 to be more convenient than trying to let the 7-zip SFX module call PowerShell
@@ -51,9 +44,6 @@ PAUSE
 #+end_src
 
 * install.ps1
-  :PROPERTIES:
-  :CUSTOM_ID: install-ps1-273
-  :END:
 
 This script performs the actual installation by calling Chocolatey's
 ~chocolateyInstall.ps1~.
@@ -72,9 +62,6 @@ $root = if ($PSScriptRoot) { $PSScriptRoot } else { Split-Path -Path $psISE.Curr
 #+end_src
 
 * build.ps1
-  :PROPERTIES:
-  :CUSTOM_ID: build-ps1-252
-  :END:
 
 This script does a few things for us. It will:
 
@@ -156,9 +143,6 @@ Get-Content $sfxFile, $configFile, $installerZipFile -Encoding Byte -Read 512 | 
 #+end_src
 
 * Usage
-  :PROPERTIES:
-  :CUSTOM_ID: usage-373
-  :END:
 
 Given the above files, call ~build.ps1~ to create ~output\chocolateySetup.exe~.
 Run the setup file, confirm the UAC prompt and the "Do you want to install Chocolatey?"

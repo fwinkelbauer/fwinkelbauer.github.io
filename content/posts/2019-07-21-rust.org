@@ -1,7 +1,6 @@
 #+TITLE: Digging into Rust
 #+DATE: [2019-07-21]
 #+STARTUP: showall
-#+OPTIONS: auto-id:t
 
 I've recently finished reading the [[https://doc.rust-lang.org/stable/book/][The Rust Programming Language Book]] while on
 vacation. While I've heard that programming in Rust is pretty much a fight with

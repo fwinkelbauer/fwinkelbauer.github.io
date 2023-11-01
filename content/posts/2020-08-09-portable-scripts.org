@@ -1,7 +1,6 @@
 #+TITLE: Shared Scripts on Windows and Linux
 #+DATE: [2020-08-09]
 #+STARTUP: showall
-#+OPTIONS: auto-id:t
 
 Sometimes you end up in a situation where you would like to use the same script
 on different operating systems (e.g. Linux and Windows). Now you have to choose

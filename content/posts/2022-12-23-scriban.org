@@ -1,7 +1,6 @@
 #+TITLE: Configparser Interpolation in C#
 #+DATE: [2022-12-23]
 #+STARTUP: showall
-#+OPTIONS: auto-id:t
 
 I have only ever written a few hundred lines of Python, but I have appreciated
 its [[https://docs.python.org/3/library/configparser.html][configparser]] library. One of the coolest features is its interpolation

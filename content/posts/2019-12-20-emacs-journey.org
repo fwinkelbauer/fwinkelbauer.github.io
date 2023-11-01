@@ -1,25 +1,18 @@
 #+TITLE: My Emacs Journey 2019
 #+DATE: [2019-12-20]
 #+STARTUP: showall
-#+OPTIONS: auto-id:t
 
 Let me start my saying that yes, I still use Emacs. What a surprise. In fact,
 Emacs is one of my most used tools besides other stables such as a browser. What
 has changed though, is how I am using some aspects of this little editor.
 
 * What Has Not Changed
-  :PROPERTIES:
-  :CUSTOM_ID: what-has-not-changed-311
-  :END:
 
 I still believe, that Emacs is not the "right" tool for everything. I'm still
 jumping into Notepad++ if I want to do a very quick edit on a Windows machine.
 I'm also not thinking about moving tasks such as e-mail into Emacs.
 
 * Terrific Task Management
-  :PROPERTIES:
-  :CUSTOM_ID: terrific-task-management-719
-  :END:
 
 Org-mode is great. It has replaced all other note taking or calendar management
 software that I was using. Everything (well, 90%) lives in org-mode. I have one
@@ -27,9 +20,6 @@ software that I was using. Everything (well, 90%) lives in org-mode. I have one
 would like to do.
 
 * Underwhelming Windows Performance
-  :PROPERTIES:
-  :CUSTOM_ID: underwhelming-windows-performance-665
-  :END:
 
 My Windows machines run a native version of Emacs, which is... just ok. Some
 actions take a few seconds, which just feels sluggish, but that's something that
@@ -40,18 +30,12 @@ sound too simple, but it took me several attempts before I pulled it off. Thanks
 [[https://florianwinkelbauer.com/posts/2019-04-10-emacs-wsl/][WSL]].
 
 * Literate Dotfiles
-  :PROPERTIES:
-  :CUSTOM_ID: literate-dotfiles-715
-  :END:
 
 Most of my config files and custom scripts live in an org file inside a git
 repository. Using a simple shortcut, I can create "real" config files based on
 this org file. I have mentioned this process in a [[file:2019-08-10-literate-dotfiles.org][previous post]].
 
 * Keybindings
-  :PROPERTIES:
-  :CUSTOM_ID: keybindings-791
-  :END:
 
 Emacs keybindings can feel clunky and some people even feel pain after using
 them for too long. Based on several resources (such as [[https://karl-voit.at/2018/07/08/emacs-key-bindings/][this one]]), I have created
@@ -63,9 +47,6 @@ end up in a situation where I have to use a keyboard without an "Apps" key, I
 can still fallback to the "normal" keybindings.
 
 * Strong Stables
-  :PROPERTIES:
-  :CUSTOM_ID: strong-stables-984
-  :END:
 
 I'd like to make a quick shout out to some fantastic packages which I use
 everyday:
@@ -76,9 +57,6 @@ everyday:
 - neotree (a tree based file viewer)
 
 * The Journey Continues
-  :PROPERTIES:
-  :CUSTOM_ID: the-journey-continues-449
-  :END:
 
 Even though the learning curve started out steep, I'm glad that I picked up
 Emacs. For now, I don't have any specific goals on how this journey should

@@ -1,7 +1,6 @@
 #+TITLE: Custom.el Snippets
 #+DATE: [2019-06-03]
 #+STARTUP: showall
-#+OPTIONS: auto-id:t
 
 My Emacs configuration contains a ~custom.el~ file, which should contain custom
 code that is only relevant on a specific machine. That's why this file is not
@@ -10,9 +9,6 @@ tracked using git. More and more bits of useful snippets show up in my
 in the future.
 
 * Calling Command Line Tools
-  :PROPERTIES:
-  :CUSTOM_ID: calling-command-line-tools-598
-  :END:
 
 This snippet is inspired by [[https://hackeryarn.com/post/cli-in-emacs/][a blog post]] which I've found on /r/emacs. The elisp
 function calls the PowerShell function ~Invoke-Formatter~, which is part of the
@@ -25,9 +21,6 @@ function calls the PowerShell function ~Invoke-Formatter~, which is part of the
 #+end_src
 
 * Org-Mode Agenda
-  :PROPERTIES:
-  :CUSTOM_ID: org-mode-agenda-375
-  :END:
 
 After seeing [[https://www.reddit.com/r/emacs/comments/9v7ut1/screenshot_showcase_2018/][this post]], I've decided to dive into creating my own agenda. I'm
 using a custom agenda view to keep track of things I have to do while I am at

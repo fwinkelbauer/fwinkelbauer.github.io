@@ -1,7 +1,6 @@
 #+TITLE: Search File Names using ripgrep
 #+DATE: [2023-01-07]
 #+STARTUP: showall
-#+OPTIONS: auto-id:t
 
 The other day I was wondering if I could use [[https://github.com/BurntSushi/ripgrep][ripgrep]] to do a combined search of
 file names and their content. While this feature does not come out of the box,
