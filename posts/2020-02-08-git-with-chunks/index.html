@@ -1,28 +1,128 @@
-<!doctype html><html lang=en><head><title>Dreaming of Git with Chunks</title><meta charset=utf-8><meta name=author content="Florian Winkelbauer"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://florianwinkelbauer.com/posts/2020-02-08-git-with-chunks/><link rel=alternate type=application/rss+xml title=RSS href=https://florianwinkelbauer.com/index.xml><link rel=stylesheet href=https://florianwinkelbauer.com/main.css></head><body><header class=dark><h2><a href=https://florianwinkelbauer.com/>Florian Winkelbauer</a></h2><nav><a href=/about>About</a>
-<a href=/notes>Notes</a>
-<a href=/projects>Projects</a></nav></header><main><article><header><h1><a href=https://florianwinkelbauer.com/posts/2020-02-08-git-with-chunks/>Dreaming of Git with Chunks</a></h1><time datetime=2020-02-08T00:00:00Z>February 08, 2020</time></header><p>I see more and more people using content addressable storage together with
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dreaming of Git with Chunks</title>
+<meta name="generator" content="Org Mode" />
+<meta name="author" content="Florian Winkelbauer">
+<link rel="stylesheet" href="/site.css" type="text/css">
+</head>
+<body>
+<div id="preamble" class="status">
+<nav>
+<a href="/">Home</a>
+<a href="/notes">Notes</a>
+<a href="/posts">Posts</a>
+<a href="/projects">Projects</a>
+</nav>
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">Dreaming of Git with Chunks</h1>
+</header><p>
+I see more and more people using content addressable storage together with
 content defined chunking (CDC) to pull off interesting applications. Here are a
-few examples:</p><ul><li>League Of Legends&rsquo; <a href=https://technology.riotgames.com/news/supercharging-data-delivery-new-league-patcher>patch downloader</a></li><li><a href=https://gitlab.com/asuran-rs/libasuran>Asuran</a></li><li><a href=https://github.com/dpc/rdedup/>rdedup</a></li><li><a href=https://www.borgbackup.org/>borg</a></li><li><a href=https://restic.net/>restic</a></li></ul><p>I&rsquo;d love to see a distributed version control system (DVCS) which is based on
+few examples:
+</p>
+
+<ul class="org-ul">
+<li>League Of Legends' <a href="https://technology.riotgames.com/news/supercharging-data-delivery-new-league-patcher">patch downloader</a></li>
+<li><a href="https://gitlab.com/asuran-rs/libasuran">Asuran</a></li>
+<li><a href="https://github.com/dpc/rdedup/">rdedup</a></li>
+<li><a href="https://www.borgbackup.org/">borg</a></li>
+<li><a href="https://restic.net/">restic</a></li>
+</ul>
+
+<p>
+I'd love to see a distributed version control system (DVCS) which is based on
 CDC (which support for encryption and compression). So far, I have only found
-the <a href=https://sdleffler.github.io/>Attaca</a> project, which seems to be
-unmaintained at the moment. I believe that a &ldquo;CDC based Git clone&rdquo; would offer
-some interesting possibilities. We could:</p><ul><li>Keep track of our backups on our local system, while still being able to
-synchronize changes with one or more remote locations</li><li>Support large binary data so that game developers (or other developers who
-have to deal with large assets) could use a DVCS</li><li>Track build artifacts (packages, containers, binaries, &mldr;) using commits and
+the <a href="https://sdleffler.github.io/">Attaca</a> project, which seems to be unmaintained at the moment. I believe that
+a "CDC based Git clone" would offer some interesting possibilities. We could:
+</p>
+
+<ul class="org-ul">
+<li>Keep track of our backups on our local system, while still being able to
+synchronize changes with one or more remote locations</li>
+<li>Support large binary data so that game developers (or other developers who
+have to deal with large assets) could use a DVCS</li>
+<li>Track build artifacts (packages, containers, binaries, &#x2026;) using commits and
 branches. This would allow us to build update mechanisms for our applications
 based on <code>push</code>, <code>pull</code> and <code>fetch</code> operations (similar to the League Of
-Legends post above)</li><li>Use a version control system as an alternative to tools such as Dropbox,
-NextCloud or Syncthing</li></ul><h2 id=design-ideas>Design Ideas</h2><p>Git uses four components to build its internal data structure:</p><ul><li>Blobs to store the actual file content</li><li>Trees to create a &ldquo;snapshot&rdquo; of a repository</li><li>Commits to add meta information to trees and to create the repository history</li><li>References (branches and tags) to point to a specific point in the commit
-graph</li></ul><p>The major difference between Git and a CDC-based DVCS would be, that a single
-file might be split into one more chunks. This leaves us with two new problems:</p><ul><li>We have to keep track of which chunks make up a file</li><li>We need to do some additional work so that we re-gain features such as <code>git diff</code></li></ul><p><strong>Addressing a File</strong></p><p>While Git can use a single hash to find a specific file, we need three pieces of
-information to do the same:</p><ul><li>A unique identifier</li><li>A list of hashes to find all current chunks</li><li>Information about how to process the data in case of encryption and/or
-compression</li></ul><p>Instead of a file name, I believe that a UUID might be even better to uniquely
+Legends post above)</li>
+<li>Use a version control system as an alternative to tools such as Dropbox,
+NextCloud or Syncthing</li>
+</ul>
+
+<div id="outline-container-org08a897f" class="outline-2">
+<h2 id="org08a897f">Design Ideas</h2>
+<div class="outline-text-2" id="text-org08a897f">
+<p>
+Git uses four components to build its internal data structure:
+</p>
+
+<ul class="org-ul">
+<li>Blobs to store the actual file content</li>
+<li>Trees to create a "snapshot" of a repository</li>
+<li>Commits to add meta information to trees and to create the repository history</li>
+<li>References (branches and tags) to point to a specific point in the commit
+graph</li>
+</ul>
+
+<p>
+The major difference between Git and a CDC-based DVCS would be, that a single
+file might be split into one more chunks. This leaves us with two new problems:
+</p>
+
+<ul class="org-ul">
+<li>We have to keep track of which chunks make up a file</li>
+<li>We need to do some additional work so that we re-gain features such as <code>git diff</code></li>
+</ul>
+
+<p>
+<b>Addressing a File</b>
+</p>
+
+<p>
+While Git can use a single hash to find a specific file, we need three pieces of
+information to do the same:
+</p>
+
+<ul class="org-ul">
+<li>A unique identifier</li>
+<li>A list of hashes to find all current chunks</li>
+<li>Information about how to process the data in case of encryption and/or
+compression</li>
+</ul>
+
+<p>
+Instead of a file name, I believe that a UUID might be even better to uniquely
 identify a file. This way, we could keep track of a file, even if its name
 changes over time. In some cases we might even be able to detect a rename
-operation by identifying the file based on its unchanged chunks.</p><p><strong>Construct Files in a Cache</strong></p><p>Before we can run operations similar to <code>git diff</code>, we have to reconstruct a
+operation by identifying the file based on its unchanged chunks.
+</p>
+
+<p>
+<b>Construct Files in a Cache</b>
+</p>
+
+<p>
+Before we can run operations similar to <code>git diff</code>, we have to reconstruct a
 file based on its chunks. To simplify such operations, we could build an
 internal cache for a specific commit. Keep in mind that a commit is immutable,
-which means that such a cache could be operated in an &ldquo;append-only&rdquo; fashion.
+which means that such a cache could be operated in an "append-only" fashion.
 While this approach seems to be pretty straightforward, we would need to
 implement some form of retention policy in order to keep our overall disk space
-consumption in line.</p></article></main><footer><p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p></footer></body></html>
+consumption in line.
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Published: 2020-02-08</p>
+<footer>
+<p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p>
+</footer>
+</div>
+</body>
+</html>

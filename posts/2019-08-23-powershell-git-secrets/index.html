@@ -1,14 +1,42 @@
-<!doctype html><html lang=en><head><title>Storing Secrets in Git using PowerShell</title><meta charset=utf-8><meta name=author content="Florian Winkelbauer"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://florianwinkelbauer.com/posts/2019-08-23-powershell-git-secrets/><link rel=alternate type=application/rss+xml title=RSS href=https://florianwinkelbauer.com/index.xml><link rel=stylesheet href=https://florianwinkelbauer.com/main.css></head><body><header class=dark><h2><a href=https://florianwinkelbauer.com/>Florian Winkelbauer</a></h2><nav><a href=/about>About</a>
-<a href=/notes>Notes</a>
-<a href=/projects>Projects</a></nav></header><main><article><header><h1><a href=https://florianwinkelbauer.com/posts/2019-08-23-powershell-git-secrets/>Storing Secrets in Git using PowerShell</a></h1><time datetime=2019-08-23T00:00:00Z>August 23, 2019</time></header><p>Storing secrets (passwords, API keys and so on) in Git is a bad idea. We all
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Storing Secrets in Git using PowerShell</title>
+<meta name="generator" content="Org Mode" />
+<meta name="author" content="Florian Winkelbauer">
+<link rel="stylesheet" href="/site.css" type="text/css">
+</head>
+<body>
+<div id="preamble" class="status">
+<nav>
+<a href="/">Home</a>
+<a href="/notes">Notes</a>
+<a href="/posts">Posts</a>
+<a href="/projects">Projects</a>
+</nav>
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">Storing Secrets in Git using PowerShell</h1>
+</header><p>
+Storing secrets (passwords, API keys and so on) in Git is a bad idea. We all
 know that. But somehow, we still end up doing it anyway. Some people have come
 up with decent solutions to this problem. They are using asymmetric encryption
-to store their secrets. Notable examples include <a href=https://github.com/AGWA/git-crypt>git-crypt</a>,
-<a href=https://git-secret.io/>git-secret</a>, or <a href=https://github.com/StackExchange/blackbox>blackbox</a>. But all three tools have one
-thing in common: they are bash tools, which leaves the Windows folks out in the
-rain. I know that WSL can get around this limitation, but I wanted something
-that I can use in PowerShell. So I came up with a rather stupid and simple
-solution: using 7-zip to AES encrypt secrets.</p><p>Here&rsquo;s an example of an encryption function:</p><pre><code class=language-powershell>function Read-Password {
+to store their secrets. Notable examples include <a href="https://github.com/AGWA/git-crypt">git-crypt</a>, <a href="https://git-secret.io/">git-secret</a>, or
+<a href="https://github.com/StackExchange/blackbox">blackbox</a>. But all three tools have one thing in common: they are bash tools,
+which leaves the Windows folks out in the rain. I know that WSL can get around
+this limitation, but I wanted something that I can use in PowerShell. So I came
+up with a rather stupid and simple solution: using 7-zip to AES encrypt secrets.
+</p>
+
+<p>
+Here's an example of an encryption function:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-powershell">function Read-Password {
     [CmdletBinding()]
     param()
 
@@ -42,20 +70,44 @@ function Compress-Secret {
 
     $plain = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto([System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($Password))
 
-    7z a $DestinationPath -p&quot;$plain&quot; $Files -spf | Write-Verbose
+    7z a $DestinationPath -p"$plain" $Files -spf | Write-Verbose
 
     if ($LASTEXITCODE -ne 0) {
-        throw &quot;Error while trying to create '$DestinationPath'&quot;
+        throw "Error while trying to create '$DestinationPath'"
     }
 }
-</code></pre><p>Which could be called like this:</p><pre><code class=language-powershell>$ErrorActionPreference = 'Stop'
+</pre>
+</div>
+
+<p>
+Which could be called like this:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-powershell">$ErrorActionPreference = 'Stop'
 Set-StrictMode -Version 'Latest'
 
 Compress-Secret -Files (Get-Content '.secrets') -DestinationPath 'secrets.7z' -Password (Read-Password)
-</code></pre><p>The <code>.secrets</code> file should contain a list of secret files, e.g:</p><pre><code class=language-text>config/some-api-key.conf
+</pre>
+</div>
+
+<p>
+The <code>.secrets</code> file should contain a list of secret files, e.g:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-text">config/some-api-key.conf
 config/license-key.txt
 another-secret.json
-</code></pre><p>And here&rsquo;s the decryption function:</p><pre><code class=language-powershell>function Expand-Secret {
+</pre>
+</div>
+
+<p>
+And here's the decryption function:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-powershell">function Expand-Secret {
     [CmdletBinding()]
     param(
         [Parameter(Mandatory = $true)]
@@ -65,19 +117,51 @@ another-secret.json
 
     $plain = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto([System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($Password))
 
-    7z x $SourcePath -p&quot;$plain&quot; -y | Write-Verbose
+    7z x $SourcePath -p"$plain" -y | Write-Verbose
 
     if ($LASTEXITCODE -ne 0) {
-        throw &quot;Error while trying to decrypt '$SourcePath'&quot;
+        throw "Error while trying to decrypt '$SourcePath'"
     }
 }
-</code></pre><p>Which we can call like this:</p><pre><code class=language-powershell>$ErrorActionPreference = 'Stop'
+</pre>
+</div>
+
+<p>
+Which we can call like this:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-powershell">$ErrorActionPreference = 'Stop'
 Set-StrictMode -Version 'Latest'
 
 Expand-Secret -SourcePath 'secrets.7z'
-</code></pre><p>The above snippets are neither the most sophisticated, nor the most secure code,
-but it&rsquo;s a starting point.</p><p>A few final notes:</p><ul><li>Make sure that you add the unencrypted files to your <code>.gitignore</code></li><li>An attacker could read your password by watching the parameters of the 7-zip
+</pre>
+</div>
+
+<p>
+The above snippets are neither the most sophisticated, nor the most secure code,
+but it's a starting point.
+</p>
+
+<p>
+A few final notes:
+</p>
+
+<ul class="org-ul">
+<li>Make sure that you add the unencrypted files to your <code>.gitignore</code></li>
+<li>An attacker could read your password by watching the parameters of the 7-zip
 process while it is running. But such an attacker could most likely just
-access the unencrypted files anyway</li><li>The file list which is passed into 7-zip should have the format <code>a/b/c.txt</code>
+access the unencrypted files anyway</li>
+<li>The file list which is passed into 7-zip should have the format <code>a/b/c.txt</code>
 (or <code>a\b\c.txt</code>) and not <code>.\a\b\c.txt</code>. 7-zip will not find your files if you
-are using the later format</li></ul></article></main><footer><p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p></footer></body></html>
+are using the later format</li>
+</ul>
+</div>
+<div id="postamble" class="status">
+<p class="date">Published: 2019-08-23</p>
+<footer>
+<p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p>
+</footer>
+</div>
+</body>
+</html>

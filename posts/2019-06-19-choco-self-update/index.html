@@ -1,24 +1,79 @@
-<!doctype html><html lang=en><head><title>Creating a Self-Updating Chocolatey Package</title><meta charset=utf-8><meta name=author content="Florian Winkelbauer"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://florianwinkelbauer.com/posts/2019-06-19-choco-self-update/><link rel=alternate type=application/rss+xml title=RSS href=https://florianwinkelbauer.com/index.xml><link rel=stylesheet href=https://florianwinkelbauer.com/main.css></head><body><header class=dark><h2><a href=https://florianwinkelbauer.com/>Florian Winkelbauer</a></h2><nav><a href=/about>About</a>
-<a href=/notes>Notes</a>
-<a href=/projects>Projects</a></nav></header><main><article><header><h1><a href=https://florianwinkelbauer.com/posts/2019-06-19-choco-self-update/>Creating a Self-Updating Chocolatey Package</a></h1><time datetime=2019-06-19T00:00:00Z>June 19, 2019</time></header><p>More and more applications ship with an automatic update mechanisms, which
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Creating a Self-Updating Chocolatey Package</title>
+<meta name="generator" content="Org Mode" />
+<meta name="author" content="Florian Winkelbauer">
+<link rel="stylesheet" href="/site.css" type="text/css">
+</head>
+<body>
+<div id="preamble" class="status">
+<nav>
+<a href="/">Home</a>
+<a href="/notes">Notes</a>
+<a href="/posts">Posts</a>
+<a href="/projects">Projects</a>
+</nav>
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">Creating a Self-Updating Chocolatey Package</h1>
+</header><p>
+More and more applications ship with an automatic update mechanisms, which
 downloads new versions of the application as soon as they are available. A
 command line option such as <code>myapp.exe --update</code> looks nice, but the update
 process is tricky, as we cannot simply replace the application while its
-running.</p><p>A very minimalist approach, which can work for command line tools, relies on the
-Chocolatey package manager. Here&rsquo;s an example:</p><p><strong>Package structure:</strong></p><ul><li><code>myapp.nuspec</code></li><li><code>tools\</code><ul><li><code>chocolateyInstall.ps1</code></li><li><code>chocolateyUninstall.ps1</code></li><li><code>myapp.zip</code> (which contains a <code>myapp.exe</code> file)</li></ul></li></ul><p><strong>chocolateyInstall.ps1:</strong></p><pre><code class=language-powershell>$ErrorActionPreference = 'Stop'
+running.
+</p>
+
+<p>
+A very minimalist approach, which can work for command line tools, relies on the
+Chocolatey package manager. Here's an example:
+</p>
+
+<p>
+<b>Package structure:</b>
+</p>
+
+<ul class="org-ul">
+<li><code>myapp.nuspec</code></li>
+<li><code>tools\</code>
+<ul class="org-ul">
+<li><code>chocolateyInstall.ps1</code></li>
+<li><code>chocolateyUninstall.ps1</code></li>
+<li><code>myapp.zip</code> (which contains a <code>myapp.exe</code> file)</li>
+</ul></li>
+</ul>
+
+<p>
+<b>chocolateyInstall.ps1:</b>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-powershell">$ErrorActionPreference = 'Stop'
 
 $toolsDir = (Split-Path -parent $MyInvocation.MyCommand.Definition)
 $zipFile = Join-Path $toolsDir 'myapp.zip'
 $batShimFile = Join-Path $env:ChocolateyInstall 'bin\myapp.bat'
 $ps1ShimFile = Join-Path $env:ChocolateyInstall 'bin\myapp.ps1'
 
-$appDir = &quot;C:\SomeFolder\$($env:ChocolateyPackageName)\$($env:ChocolateyPackageVersion)&quot;
+$appDir = "C:\SomeFolder\$($env:ChocolateyPackageName)\$($env:ChocolateyPackageVersion)"
 $appFile = Join-Path $appDir 'myapp.exe'
 
 Get-ChocolateyUnzip -FileFullPath $zipFile -Destination $appDir
-Set-Content -Path $batShimFile -Value &quot;@echo off`ncall `&quot;$appFile`&quot; %*&quot; -Force
-Set-Content -Path $ps1ShimFile -Value &quot;&amp; '$appFile' `$args&quot; -Force
-</code></pre><p><strong>chocolateyUninstall.ps1:</strong></p><pre><code class=language-powershell>$ErrorActionPreference = 'Stop'
+Set-Content -Path $batShimFile -Value "@echo off~ncall ~"$appFile~" %*" -Force
+Set-Content -Path $ps1ShimFile -Value "&amp; '$appFile' ~$args" -Force
+</pre>
+</div>
+
+<p>
+<b>chocolateyUninstall.ps1:</b>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-powershell">$ErrorActionPreference = 'Stop'
 
 $batShimFile = Join-Path $env:ChocolateyInstall 'bin\myapp.bat'
 
@@ -32,15 +87,36 @@ if (Test-Path $ps1ShimFile) {
     Remove-Item $ps1ShimFile -Force
 }
 
-$appDir = &quot;C:\SomeFolder\$($env:ChocolateyPackageName)&quot;
+$appDir = "C:\SomeFolder\$($env:ChocolateyPackageName)"
 
 if (Test-Path $appDir) {
     Remove-Item $appDir -Recurse -Force
 }
-</code></pre><p>The technique works like this:</p><ul><li>Calling <code>choco install myapp</code> installs the <code>myapp.zip</code> file to the Chocolatey
+</pre>
+</div>
+
+<p>
+The technique works like this:
+</p>
+
+<ul class="org-ul">
+<li>Calling <code>choco install myapp</code> installs the <code>myapp.zip</code> file to the Chocolatey
 lib directory (<code>$env:ChocolateyInstall\lib\myapp\tools</code>) and extracts the
-archive to <code>C:\SomeFolder\myapp\1.0.0\</code></li><li>The install script creates a cmd and a Powershell file, which point to
-<code>C:\SomeFolder\myapp\1.0.0\myapp.exe</code></li><li>The application can now be called in PowerShell and cmd by typing <code>myapp</code></li><li>We can now update the application using <code>choco upgrade myapp</code>, even while it
+archive to <code>C:\SomeFolder\myapp\1.0.0\</code></li>
+<li>The install script creates a cmd and a Powershell file, which point to
+<code>C:\SomeFolder\myapp\1.0.0\myapp.exe</code></li>
+<li>The application can now be called in PowerShell and cmd by typing <code>myapp</code></li>
+<li>We can now update the application using <code>choco upgrade myapp</code>, even while it
 is running. The batch file will point to the new version (e.g.
 <code>C:\SomeFolder\myapp\2.0.0\myapp.exe</code>), which will work for any future calls
-to <code>myapp</code></li></ul></article></main><footer><p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p></footer></body></html>
+to <code>myapp</code></li>
+</ul>
+</div>
+<div id="postamble" class="status">
+<p class="date">Published: 2019-06-19</p>
+<footer>
+<p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p>
+</footer>
+</div>
+</body>
+</html>

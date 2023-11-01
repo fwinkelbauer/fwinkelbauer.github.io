@@ -1,284 +1,2250 @@
-<!doctype html><html lang=en><head><title>Software Development</title><meta charset=utf-8><meta name=author content="Florian Winkelbauer"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://florianwinkelbauer.com/notes/software-development/><link rel=alternate type=application/rss+xml title=RSS href=https://florianwinkelbauer.com/index.xml><link rel=stylesheet href=https://florianwinkelbauer.com/main.css></head><body><header class=dark><h2><a href=https://florianwinkelbauer.com/>Florian Winkelbauer</a></h2><nav><a href=/about>About</a>
-<a href=/notes>Notes</a>
-<a href=/projects>Projects</a></nav></header><main><article><header><h1><a href=https://florianwinkelbauer.com/notes/software-development/>Software Development</a></h1></header><p>This post contains a list of notes about systems and software development.</p><h2 id=antifragility-nassim-nicholas-taleb>Antifragility (Nassim Nicholas Taleb)</h2><p>An antifragile system benefits from disorder</p><ul><li>Have options (instead of obligations)</li><li>Create a situation with low downside and high upside</li><li>Create systems with slack</li></ul><h3 id=nonlinear-events>Nonlinear events</h3><ul><li>Convex: a smiling graph. More potential upside than downside (positive Black
-Swan)</li><li>Concave: a frowning graph. More potential downside than upside (negative Black
-Swan)</li><li>You are robust if doubling exposure doubles harm</li><li>You are fragile if doubling exposure more than doubles harm</li><li>A single 100 pound stone hurts more than 100 one pound stones</li></ul><h3 id=example>Example</h3><p>Traffic is a function, which depends on the amount of cars. This function is
-nonlinear (concave), as the following two situations create different outputs:</p><ul><li>One hour of 8.000 cars, followed by one hour of 12.000 cars</li><li>Two hours of 10.000 cars</li></ul><p><strong>Important:</strong> Don&rsquo;t confuse x with f(x).</p><p>In general:</p><ul><li>A function is concave if the average function value is lower than the
-function of the average value</li><li>A function is convex if the average function value is higher than the function
-of the average value</li></ul><h2 id=meltdown-chris-clearfield-andrás-tilcsik>Meltdown (Chris Clearfield, András Tilcsik)</h2><p><strong>Why our systems fail and what we can do about it</strong></p><p>Complexity and coupling increase the chance of big errors. In these systems,
-small problems and minor issues can accumulate into an unforeseen meltdown.</p><p>In the past, nuclear power plants were one of only a few systems which were both
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Software Development</title>
+<meta name="generator" content="Org Mode" />
+<meta name="author" content="Florian Winkelbauer">
+<link rel="stylesheet" href="/site.css" type="text/css">
+</head>
+<body>
+<div id="preamble" class="status">
+<nav>
+<a href="/">Home</a>
+<a href="/notes">Notes</a>
+<a href="/posts">Posts</a>
+<a href="/projects">Projects</a>
+</nav>
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">Software Development</h1>
+</header><p>
+This post contains a list of notes about systems and software development.
+</p>
+
+<div id="outline-container-orgbc0746d" class="outline-2">
+<h2 id="orgbc0746d">Antifragility (Nassim Nicholas Taleb)</h2>
+<div class="outline-text-2" id="text-orgbc0746d">
+<p>
+An antifragile system benefits from disorder
+</p>
+
+<ul class="org-ul">
+<li>Have options (instead of obligations)</li>
+<li>Create a situation with low downside and high upside</li>
+<li>Create systems with slack</li>
+</ul>
+
+<p>
+<b>Nonlinear events</b>
+</p>
+
+<ul class="org-ul">
+<li>Convex: a smiling graph. More potential upside than downside (positive Black
+Swan)</li>
+<li>Concave: a frowning graph. More potential downside than upside (negative Black
+Swan)</li>
+<li>You are robust if doubling exposure doubles harm</li>
+<li>You are fragile if doubling exposure more than doubles harm</li>
+<li>A single 100 pound stone hurts more than 100 one pound stones</li>
+<li>A function is concave if the average function value is lower than the
+function of the average value</li>
+<li>A function is convex if the average function value is higher than the function
+of the average value</li>
+</ul>
+
+<p>
+<b>Example</b>
+</p>
+
+<p>
+Traffic is a function, which depends on the amount of cars. This function is
+nonlinear (concave), as the following two situations create different outputs:
+</p>
+
+<ul class="org-ul">
+<li>One hour of 8.000 cars, followed by one hour of 12.000 cars</li>
+<li>Two hours of 10.000 cars</li>
+</ul>
+
+<p>
+<b>Important:</b> Don't confuse x with f(x).
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0a3ee52" class="outline-2">
+<h2 id="org0a3ee52">Meltdown (Chris Clearfield, András Tilcsik)</h2>
+<div class="outline-text-2" id="text-org0a3ee52">
+<p>
+<b>Why our systems fail and what we can do about it</b>
+</p>
+
+<p>
+Complexity and coupling increase the chance of big errors. In these systems,
+small problems and minor issues can accumulate into an unforeseen meltdown.
+</p>
+
+<p>
+In the past, nuclear power plants were one of only a few systems which were both
 complex and highly coupled. Over the last years more and more systems entered
-this domain.</p><p>How to deal with these systems:</p><ul><li>Introduce slack</li><li>Reduce moving parts</li><li>Replace indirect feedback with direct feedback<ul><li>Example of indirect feedback: An indicator light that shows that a valve was
-instructed to close</li><li>Example of direct feedback: An indicator light which shows the actual state
-(open/closed) of a valve</li></ul></li></ul><p>Techniques:</p><ul><li>Aviation and medical institutions use &ldquo;near miss reports&rdquo; to deal with small
-issues before they can spiral out of control</li><li>Use hindsight bias by performing a premortem. Imagine that the project is
+this domain.
+</p>
+
+<p>
+How to deal with these systems:
+</p>
+
+<ul class="org-ul">
+<li>Introduce slack</li>
+<li>Reduce moving parts</li>
+<li>Replace indirect feedback with direct feedback
+<ul class="org-ul">
+<li>Example of indirect feedback: An indicator light that shows that a valve was
+instructed to close</li>
+<li>Example of direct feedback: An indicator light which shows the actual state
+(open/closed) of a valve</li>
+</ul></li>
+</ul>
+
+<p>
+Techniques:
+</p>
+
+<ul class="org-ul">
+<li>Aviation and medical institutions use "near miss reports" to deal with small
+issues before they can spiral out of control</li>
+<li>Use hindsight bias by performing a premortem. Imagine that the project is
 completed and that it was a complete failure. What were the reasons why it
-failed?</li><li>Subjective Probability Interval Estimates (SPIES): Estimate the probability of
-several outcomes</li></ul><p>Lessons:</p><ul><li>Charm school (Everyone should be able to express concern)<ul><li>Get attention</li><li>Express your concern</li><li>State the perceived problem</li><li>Propose a solution</li><li>Ask for agreement</li></ul></li><li>Soften power cues<ul><li>This makes you more approachable, which can encourage people to speak their
-mind</li></ul></li><li>Leaders speak last<ul><li>Encourage discussion about different solutions</li><li>Not encouraging a discussion can be compared to discouraging a discussion</li></ul></li></ul><p>Diverse groups are &ldquo;better&rdquo; because group members are more skeptical which in
-turn makes it more likely to catch small errors.</p><h2 id=decision-logs>Decision Logs</h2><p>Create logs that hold the following information:</p><ul><li>Problem you are deciding on</li><li>Involved people</li><li>What did you choose? Why? Risks?</li><li>What other things have you considered? Why didn&rsquo;t you choose them?</li></ul><p>Michael Nygard described his decision log structure in <a href=https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions>this blog
-post</a>:</p><ul><li><strong>Context:</strong> Describe the forces at play</li><li><strong>Decision:</strong> Your response to these forces</li><li><strong>Status:</strong> The decision status (e.g. &ldquo;proposed&rdquo;)</li><li><strong>Consequences:</strong> What happened afterwards?</li></ul><h2 id=documentation>Documentation</h2><ul><li><a href=https://arc42.org/documentation/>https://arc42.org/documentation/</a></li><li>Write documentation if<ul><li>The thing you are documenting does not change often</li><li>Your documentation will be useful to a large group of people</li></ul></li><li><a href=https://www.writethedocs.org/videos/eu/2017/the-four-kinds-of-documentation-and-why-you-need-to-understand-what-they-are-daniele-procida/>Four Kinds of Documentation</a><ul><li><strong>Tutorial:</strong> learning-oriented; a getting started guide</li><li><strong>How-To Guide:</strong> goal-oriented; how to solve a specific problem</li><li><strong>Explanation:</strong> understanding-oriented; provides background and context</li><li><strong>Reference:</strong> information-oriented; describes inner processes</li></ul></li></ul><h2 id=the-phoenixunicorn-project-gene-kim>The Phoenix/Unicorn Project (Gene Kim)</h2><p>Three Ways</p><ul><li>System Thinking</li><li>Amplify Feedback Loops</li><li>Culture Of Continual Experimentation And Learning</li></ul><p>Five Types Of Work</p><ul><li>Business Projects</li><li>Internal IT Projects</li><li>Changes generated by the above</li><li>Unplanned Work</li></ul><p>Five Ideals</p><ul><li>Locality and Simplicity</li><li>Focus, Flow, and Joy</li><li>Improvement of Daily Work</li><li>Psychological Safety</li><li>Customer Focus</li></ul><h2 id=accelerate-nicole-forsgren-phd-jez-humble-and-gene-kim>Accelerate (Nicole Forsgren PhD, Jez Humble and Gene Kim)</h2><p>The book outlines 24 capabilities that drive improvements software delivery
-performance:</p><h3 id=continuous-delivery>Continuous Delivery</h3><ul><li>Version control</li><li>Deployment automation</li><li>Continuous integration</li><li>Trunk-based development</li><li>Test automation</li><li>Test data management</li><li>Shift left on security</li><li>Continuous delivery</li></ul><h3 id=architecture>Architecture</h3><ul><li>Loosely coupled architecture</li><li>Empowered teams</li></ul><h3 id=product-and-process>Product and Process</h3><ul><li>Customer feedback</li><li>Value stream</li><li>Working in small batches</li><li>Team experimentation</li></ul><h3 id=lean-management-and-monitoring>Lean Management and Monitoring</h3><ul><li>Change approval processes</li><li>Monitoring</li><li>Proactive notifications</li><li>WIP limits</li><li>Visualizing work</li></ul><h3 id=cultural>Cultural</h3><ul><li>Westrum organizational culture</li><li>Supporting learning</li><li>Collaboration among teams</li><li>Job satisfaction</li><li>Transformational leadership</li></ul><h2 id=cap-theorem>CAP Theorem</h2><ul><li><strong>C</strong>onsistency</li><li><strong>A</strong>vailability</li><li><strong>P</strong>artition tolerance</li></ul><p>This theorem states that given a network partition (a split brain situation), a
-distributed system can either favor consistency or availability.</p><p><strong>Example:</strong> Imagine that you are part of a fully remote wedding. Let&rsquo;s imagine
-that you answer &ldquo;the big question&rdquo; with yes and let&rsquo;s imagine that your
+failed?</li>
+<li>Subjective Probability Interval Estimates (SPIES): Estimate the probability of
+several outcomes</li>
+</ul>
+
+<p>
+Lessons:
+</p>
+
+<ul class="org-ul">
+<li>Charm school (Everyone should be able to express concern)
+<ul class="org-ul">
+<li>Get attention</li>
+<li>Express your concern</li>
+<li>State the perceived problem</li>
+<li>Propose a solution</li>
+<li>Ask for agreement</li>
+</ul></li>
+<li>Soften power cues
+<ul class="org-ul">
+<li>This makes you more approachable, which can encourage people to speak their
+mind</li>
+</ul></li>
+<li>Leaders speak last
+<ul class="org-ul">
+<li>Encourage discussion about different solutions</li>
+<li>Not encouraging a discussion can be compared to discouraging a discussion</li>
+</ul></li>
+</ul>
+
+<p>
+Diverse groups are "better" because group members are more skeptical which in
+turn makes it more likely to catch small errors.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7f724bd" class="outline-2">
+<h2 id="org7f724bd">Decision Logs</h2>
+<div class="outline-text-2" id="text-org7f724bd">
+<p>
+Create logs that hold the following information:
+</p>
+
+<ul class="org-ul">
+<li>Problem you are deciding on</li>
+<li>Involved people</li>
+<li>What did you choose? Why? Risks?</li>
+<li>What other things have you considered? Why didn't you choose them?</li>
+</ul>
+
+<p>
+Michael Nygard described his decision log structure in <a href="https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions">this blog post</a>:
+</p>
+
+<ul class="org-ul">
+<li><b>Context:</b> Describe the forces at play</li>
+<li><b>Decision:</b> Your response to these forces</li>
+<li><b>Status:</b> The decision status (e.g. "proposed")</li>
+<li><b>Consequences:</b> What happened afterwards?</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org524d6b1" class="outline-2">
+<h2 id="org524d6b1">Documentation</h2>
+<div class="outline-text-2" id="text-org524d6b1">
+<ul class="org-ul">
+<li><a href="https://arc42.org/documentation/">https://arc42.org/documentation/</a></li>
+<li>Write documentation if
+<ul class="org-ul">
+<li>The thing you are documenting does not change often</li>
+<li>Your documentation will be useful to a large group of people</li>
+</ul></li>
+<li><a href="https://www.writethedocs.org/videos/eu/2017/the-four-kinds-of-documentation-and-why-you-need-to-understand-what-they-are-daniele-procida/">Four Kinds of Documentation</a>
+<ul class="org-ul">
+<li><b>Tutorial:</b> learning-oriented; a getting started guide</li>
+<li><b>How-To Guide:</b> goal-oriented; how to solve a specific problem</li>
+<li><b>Explanation:</b> understanding-oriented; provides background and context</li>
+<li><b>Reference:</b> information-oriented; describes inner processes</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb29bebe" class="outline-2">
+<h2 id="orgb29bebe">The Phoenix/Unicorn Project (Gene Kim)</h2>
+<div class="outline-text-2" id="text-orgb29bebe">
+<p>
+<b>Three Ways</b>
+</p>
+
+<ul class="org-ul">
+<li>System Thinking</li>
+<li>Amplify Feedback Loops</li>
+<li>Culture Of Continual Experimentation And Learning</li>
+</ul>
+
+<p>
+<b>Five Types Of Work</b>
+</p>
+
+<ul class="org-ul">
+<li>Business Projects</li>
+<li>Internal IT Projects</li>
+<li>Changes generated by the above</li>
+<li>Unplanned Work</li>
+</ul>
+
+<p>
+<b>Five Ideals</b>
+</p>
+
+<ul class="org-ul">
+<li>Locality and Simplicity</li>
+<li>Focus, Flow, and Joy</li>
+<li>Improvement of Daily Work</li>
+<li>Psychological Safety</li>
+<li>Customer Focus</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org2e8cbed" class="outline-2">
+<h2 id="org2e8cbed">Accelerate (Nicole Forsgren PhD, Jez Humble and Gene Kim)</h2>
+<div class="outline-text-2" id="text-org2e8cbed">
+<p>
+The book outlines 24 capabilities that drive improvements software delivery
+performance:
+</p>
+
+<p>
+<b>Continuous Delivery</b>
+</p>
+
+<ul class="org-ul">
+<li>Version control</li>
+<li>Deployment automation</li>
+<li>Continuous integration</li>
+<li>Trunk-based development</li>
+<li>Test automation</li>
+<li>Test data management</li>
+<li>Shift left on security</li>
+<li>Continuous delivery</li>
+</ul>
+
+<p>
+<b>Architecture</b>
+</p>
+
+<ul class="org-ul">
+<li>Loosely coupled architecture</li>
+<li>Empowered teams</li>
+</ul>
+
+<p>
+<b>Product and Process</b>
+</p>
+
+<ul class="org-ul">
+<li>Customer feedback</li>
+<li>Value stream</li>
+<li>Working in small batches</li>
+<li>Team experimentation</li>
+</ul>
+
+<p>
+<b>Lean Management and Monitoring</b>
+</p>
+
+<ul class="org-ul">
+<li>Change approval processes</li>
+<li>Monitoring</li>
+<li>Proactive notifications</li>
+<li>WIP limits</li>
+<li>Visualizing work</li>
+</ul>
+
+<p>
+<b>Cultural</b>
+</p>
+
+<ul class="org-ul">
+<li>Westrum organizational culture</li>
+<li>Supporting learning</li>
+<li>Collaboration among teams</li>
+<li>Job satisfaction</li>
+<li>Transformational leadership</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgf677f49" class="outline-2">
+<h2 id="orgf677f49">CAP Theorem</h2>
+<div class="outline-text-2" id="text-orgf677f49">
+<ul class="org-ul">
+<li>Consistency</li>
+<li>Availability</li>
+<li>Partition tolerance</li>
+</ul>
+
+<p>
+This theorem states that given a network partition (a split brain situation), a
+distributed system can either favor consistency or availability.
+</p>
+
+<p>
+<b>Example:</b> Imagine that you are part of a fully remote wedding. Let's imagine
+that you answer "the big question" with yes and let's imagine that your
 phone/internet connection breaks before your significant other can answer the
 same question. What do you do? Do you say that you are married/not married (in
-which case you would favor availability) or do you say &ldquo;I don&rsquo;t know&rdquo; (in which
-case you would favor consistency).</p><p>The PACELC theorem is an extension to the CAP theorem: In case of a network
-<strong>P</strong>artition, one has to choose between <strong>A</strong>vailability and <strong>C</strong>onsistency,
-<strong>E</strong>lse, when a system does not have a partition, one has to choose between
-<strong>L</strong>atency and <strong>C</strong>onsistency.</p><p>Martin Kleppmann posted an <a href=https://martin.kleppmann.com/2015/05/11/please-stop-calling-databases-cp-or-ap.html>interesting article</a> in which he explains
-that neither CAP nor PACELC are a good way to think about distributed systems.</p><h2 id=idealcast-podcasthttpsitrevolutioncomthe-idealcast-podcast><a href=https://itrevolution.com/the-idealcast-podcast/>Idealcast Podcast</a></h2><h3 id=jeffrey-fredrick-episode-14>Jeffrey Fredrick (Episode 14)</h3><p>Employee satisfaction can indicate the performance of an organization. Ask:</p><ul><li>Are you happy?</li><li>Are you able to do work that you are proud of?</li></ul><h3 id=scott-havens-episode-22--23>Scott Havens (Episode 22 & 23)</h3><ul><li>State management techniques used in functional programming can be used to
-scale large architecture such as Wal-Mart&rsquo;s warehouse system</li><li>Working with event streams as input and output makes a system decoupled,
-easier to test and more understandable</li><li>A pure function can be replaced by a lookup table</li><li>Scott mentions a story about how they recovered from a disaster involving the
-death of a Kafka cluster</li><li>He also tells the story of how he replaced a synchronous call graph involving
-23 procedures with asynchronous computation</li><li>Category theory is not too important in your day-to-day use of functional
-patterns</li></ul><h2 id=pilot-decision-management-clifford-agiushttpswwwyoutubecomwatchvqna9eexd8lq><a href="https://www.youtube.com/watch?v=QNA9EExd8lQ">Pilot Decision Management (Clifford Agius)</a></h2><p>The TDODAR framework:</p><h3 id=time>Time</h3><ul><li>Is it an emergency? Do we have to act quickly?</li><li>Do we need to and can we make more time?</li><li>Do we have time for a cup of coffee?</li><li>Start a stopwatch and make sure you come back to the &ldquo;T&rdquo; to check if things
-change</li></ul><h3 id=diagnosis>Diagnosis</h3><p>What do we think happened?</p><ul><li>Discuss the symptoms</li><li>Ask open questions</li><li>Find some information to tell me this is not XYZ</li><li>Agree on the issue to be tackled</li><li>Make it quick and concise, the clock is ticking!</li></ul><h3 id=options>Options</h3><p>What should we do?</p><ul><li>Brainstorm possible options</li><li>Tell people &ldquo;Give me another option!&rdquo; if the discussion dries up</li><li>Take input from all members of the team and outside sources</li><li>No such thing as a silly idea. Verbalize everything</li><li>Don&rsquo;t drag it out, be quick. Often the first ideas are the best anyway</li></ul><h3 id=decide---what-are-we-going-to-do>Decide - What are we going to do?</h3><ul><li>As a team decide what is the correct or chosen path</li><li>Don&rsquo;t spend too much time deciding, pick an option and go with it</li><li><strong>State the decision</strong></li></ul><h3 id=assign>Assign</h3><p>Assign tasks to the members of the team</p><ul><li>Team leader assigns tasks</li><li>Make tasks short and within the skills of that team member</li><li>It is not a race!</li><li>Complete your task as well as you can but don&rsquo;t delay completion</li><li>If you can&rsquo;t complete ask for help</li><li>Consider overload</li></ul><h3 id=review>Review</h3><ul><li>Has the issue been resolved?</li><li>Do we still have time?</li><li>Quickly repeat TDODAR to see if actions have changed the answer</li><li>Is it still a good decision?</li></ul><h2 id=sharpening-the-tools-dan-northhttpswwwinfoqcompresentationssharpening-the-tools><a href=https://www.infoq.com/presentations/Sharpening-the-Tools>Sharpening the Tools (Dan North)</a></h2><p>Become a Software Craftsman:</p><h3 id=novice-programmer>Novice Programmer</h3><p>Need rules (<strong>not patterns</strong>) to guide their way: Don&rsquo;t ask. Follow this advice
-and you will be fine.</p><h3 id=advanced-beginner>Advanced Beginner</h3><p>Do not follow the rules! Find out why the rules are the rules. We are starting
-to get context - we experience how stuff works.</p><h3 id=competent>Competent</h3><p>You become goal oriented. This is a time based thing. Most people become
-competent if they keep doing something.</p><h3 id=proficient>Proficient</h3><p>This is a deliberate step. Things start to become intuition. Patterns start to
-become useful. &ldquo;How can I make this better?&rdquo;</p><h3 id=expert>Expert</h3><p>You are operating of instinct. You don&rsquo;t think about rules, you &ldquo;just know&rdquo;.
-This is critical: You don&rsquo;t know how you come up with your decision.</p><h2 id=learn-to-love-meetings-dr-neil-roodynhttpswwwyoutubecomwatchvppflufo-hwc><a href="https://www.youtube.com/watch?v=ppfLUFO-hwc">Learn to love meetings (Dr. Neil Roodyn)</a></h2><ul><li>Have a timeline and an agenda</li><li>&ldquo;Check-in&rdquo;: Say your name, how you feel and your expectations at the beginning
-of a meeting</li><li>Decisions are made via votes<ul><li>Yes</li><li>I don&rsquo;t care</li><li>No (you have to provide an alternative to discuss and vote)</li></ul></li><li>A decision can be postponed through an &ldquo;investigation&rdquo;. This is used to ask
-clarifying questions</li><li>They were using a dashboard to display metrics to analyze how the meeting time
-was spent (e.g. fiddling with the projector, actual discussions and so on)</li><li>Lean Coffee</li></ul><h2 id=preventing-the-collapse-of-civilization-jonathan-blowhttpswwwyoutubecomwatchvpw-sodj4kkk><a href="https://www.youtube.com/watch?v=pW-SOdj4Kkk">Preventing the Collapse of Civilization (Jonathan Blow)</a></h2><ul><li>Technology on its own will degrade. It needs constant effort to improve and
-not lose technology</li><li>Without generational transfer, civilizations die</li><li>How productive are programming languages at a higher abstraction level (think
-C#, Haskell or JavaScript) <strong>really</strong>? The first version of Unix was written
-in three weeks</li><li>We keep adding complexity, which means that each individual knows less and
-less about a system</li><li>We are reducing development time by using existing tools and frameworks, but
+which case you would favor availability) or do you say "I don't know" (in which
+case you would favor consistency).
+</p>
+
+<p>
+The PACELC theorem is an extension to the CAP theorem: In case of a network
+*P*artition, one has to choose between *A*vailability and *C*onsistency,
+*E*lse, when a system does not have a partition, one has to choose between
+*L*atency and *C*onsistency.
+</p>
+
+<p>
+Martin Kleppmann posted an <a href="https://martin.kleppmann.com/2015/05/11/please-stop-calling-databases-cp-or-ap.html">interesting article</a> in which he explains that neither
+CAP nor PACELC are a good way to think about distributed systems.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2144072" class="outline-2">
+<h2 id="org2144072">Idealcast Podcast</h2>
+<div class="outline-text-2" id="text-org2144072">
+<p>
+<a href="https://itrevolution.com/the-idealcast-podcast/">https://itrevolution.com/the-idealcast-podcast/</a>
+</p>
+
+<p>
+<b>Jeffrey Fredrick (Episode 14)</b>
+</p>
+
+<p>
+Employee satisfaction can indicate the performance of an organization. Ask:
+</p>
+
+<ul class="org-ul">
+<li>Are you happy?</li>
+<li>Are you able to do work that you are proud of?</li>
+</ul>
+
+<p>
+<b>Scott Havens (Episode 22 &amp; 23)</b>
+</p>
+
+<ul class="org-ul">
+<li>State management techniques used in functional programming can be used to
+scale large architecture such as Wal-Mart's warehouse system</li>
+<li>Working with event streams as input and output makes a system decoupled,
+easier to test and more understandable</li>
+<li>A pure function can be replaced by a lookup table</li>
+<li>Scott mentions a story about how they recovered from a disaster involving the
+death of a Kafka cluster</li>
+<li>He also tells the story of how he replaced a synchronous call graph involving
+23 procedures with asynchronous computation</li>
+<li>Category theory is not too important in your day-to-day use of functional
+patterns</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org637dde5" class="outline-2">
+<h2 id="org637dde5">Pilot Decision Management (Clifford Agius)</h2>
+<div class="outline-text-2" id="text-org637dde5">
+<p>
+<a href="https://www.youtube.com/watch?v=QNA9EExd8lQ">https://www.youtube.com/watch?v=QNA9EExd8lQ</a>
+</p>
+
+<p>
+The TDODAR framework:
+</p>
+
+<p>
+<b>Time</b>
+</p>
+
+<ul class="org-ul">
+<li>Is it an emergency? Do we have to act quickly?</li>
+<li>Do we need to and can we make more time?</li>
+<li>Do we have time for a cup of coffee?</li>
+<li>Start a stopwatch and make sure you come back to the "T" to check if things
+change</li>
+</ul>
+
+<p>
+<b>Diagnosis</b>
+</p>
+
+<p>
+What do we think happened?
+</p>
+
+<ul class="org-ul">
+<li>Discuss the symptoms</li>
+<li>Ask open questions</li>
+<li>Find some information to tell me this is not XYZ</li>
+<li>Agree on the issue to be tackled</li>
+<li>Make it quick and concise, the clock is ticking!</li>
+</ul>
+
+<p>
+<b>Options</b>
+</p>
+
+<p>
+What should we do?
+</p>
+
+<ul class="org-ul">
+<li>Brainstorm possible options</li>
+<li>Tell people "Give me another option!" if the discussion dries up</li>
+<li>Take input from all members of the team and outside sources</li>
+<li>No such thing as a silly idea. Verbalize everything</li>
+<li>Don't drag it out, be quick. Often the first ideas are the best anyway</li>
+</ul>
+
+<p>
+<b>Decide</b>
+</p>
+
+<p>
+What are we going to do?
+</p>
+
+<ul class="org-ul">
+<li>As a team decide what is the correct or chosen path</li>
+<li>Don't spend too much time deciding, pick an option and go with it</li>
+<li><b>State the decision</b></li>
+</ul>
+
+<p>
+<b>Assign</b>
+</p>
+
+<p>
+Assign tasks to the members of the team.
+</p>
+
+<ul class="org-ul">
+<li>Team leader assigns tasks</li>
+<li>Make tasks short and within the skills of that team member</li>
+<li>It is not a race!</li>
+<li>Complete your task as well as you can but don't delay completion</li>
+<li>If you can't complete ask for help</li>
+<li>Consider overload</li>
+</ul>
+
+<p>
+<b>Review</b>
+</p>
+
+<ul class="org-ul">
+<li>Has the issue been resolved?</li>
+<li>Do we still have time?</li>
+<li>Quickly repeat TDODAR to see if actions have changed the answer</li>
+<li>Is it still a good decision?</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgc3f6ccf" class="outline-2">
+<h2 id="orgc3f6ccf">Sharpening the Tools (Dan North)</h2>
+<div class="outline-text-2" id="text-orgc3f6ccf">
+<p>
+<a href="https://www.infoq.com/presentations/Sharpening-the-Tools">https://www.infoq.com/presentations/Sharpening-the-Tools</a>
+</p>
+
+<p>
+<b>Novice Programmer</b>
+</p>
+
+<p>
+Need rules (<b>not patterns</b>) to guide their way: Don't ask. Follow this advice
+and you will be fine.
+</p>
+
+<p>
+<b>Advanced Beginner</b>
+</p>
+
+<p>
+Do not follow the rules! Find out why the rules are the rules. We are starting
+to get context - we experience how stuff works.
+</p>
+
+<p>
+<b>Competent</b>
+</p>
+
+<p>
+You become goal oriented. This is a time based thing. Most people become
+competent if they keep doing something.
+</p>
+
+<p>
+<b>Proficient</b>
+</p>
+
+<p>
+This is a deliberate step. Things start to become intuition. Patterns start to
+become useful. "How can I make this better?"
+</p>
+
+<p>
+<b>Expert</b>
+</p>
+
+<p>
+You are operating of instinct. You don't think about rules, you "just know".
+This is critical: You don't know how you come up with your decision.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc75cd66" class="outline-2">
+<h2 id="orgc75cd66">Learn to love meetings (Dr. Neil Roodyn)</h2>
+<div class="outline-text-2" id="text-orgc75cd66">
+<p>
+<a href="https://www.youtube.com/watch?v=ppfLUFO-hwc">https://www.youtube.com/watch?v=ppfLUFO-hwc</a>
+</p>
+
+<ul class="org-ul">
+<li>Have a timeline and an agenda</li>
+<li>"Check-in": Say your name, how you feel and your expectations at the beginning
+of a meeting</li>
+<li>Decisions are made via votes
+<ul class="org-ul">
+<li>Yes</li>
+<li>I don't care</li>
+<li>No (you have to provide an alternative to discuss and vote)</li>
+</ul></li>
+<li>A decision can be postponed through an "investigation". This is used to ask
+clarifying questions</li>
+<li>They were using a dashboard to display metrics to analyze how the meeting time
+was spent (e.g. fiddling with the projector, actual discussions and so on)</li>
+<li>Lean Coffee</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb28885c" class="outline-2">
+<h2 id="orgb28885c">Preventing the Collapse of Civilization (Jonathan Blow)</h2>
+<div class="outline-text-2" id="text-orgb28885c">
+<p>
+<a href="https://www.youtube.com/watch?v=pW-SOdj4Kkk">https://www.youtube.com/watch?v=pW-SOdj4Kkk</a>
+</p>
+
+<ul class="org-ul">
+<li>Technology on its own will degrade. It needs constant effort to improve and
+not lose technology</li>
+<li>Without generational transfer, civilizations die</li>
+<li>How productive are programming languages at a higher abstraction level (think
+C#, Haskell or JavaScript) <b>really</b>? The first version of Unix was written
+in three weeks</li>
+<li>We keep adding complexity, which means that each individual knows less and
+less about a system</li>
+<li>We are reducing development time by using existing tools and frameworks, but
 we are also giving up capability. This is fine in isolation, but it might
-become a problem if everyone does it</li><li>Only a handful of people <strong>really</strong> know how a CPU works</li><li>Our tools change our thought process</li></ul><h2 id=dont-walk-away-from-complexity-run-venkat-subramaniamhttpswwwyoutubecomwatchv4meku2tcehm><a href="https://www.youtube.com/watch?v=4MEKu2TcEHM">Don&rsquo;t Walk Away from Complexity, Run (Venkat Subramaniam)</a></h2><ul><li>Two kinds of code frustrate him:<ul><li>One that won&rsquo;t work</li><li>One that works, but shouldn&rsquo;t</li></ul></li><li>Shared mutability is the devil&rsquo;s work</li><li>Using a library is like dating, using a framework is like getting married</li></ul><h2 id=transactions---myths-suprises-and-opportunities-martin-kleppmannhttpswwwyoutubecomwatchv5zjhntm8xu8><a href="https://www.youtube.com/watch?v=5ZjhNTM8XU8">Transactions - Myths, Suprises and Opportunities (Martin Kleppmann)</a></h2><p>ACID is more or less a marketing term, it isn&rsquo;t too precise.</p><p><strong>Durability:</strong></p><p>Used to mean that your database is written to an archive tape. When tape bands
-fell out of fashion, durability was redefined as &ldquo;fsync to disk&rdquo;. With the rise
-of distributed system, durability was redefined once more to mean replication.</p><p><strong>Consistency:</strong></p><ul><li>This is not the same C as in the CAP theorem</li><li>A database moves from one consistent state to the another through
+become a problem if everyone does it</li>
+<li>Only a handful of people <b>really</b> know how a CPU works</li>
+<li>Our tools change our thought process</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb8d32f6" class="outline-2">
+<h2 id="orgb8d32f6">Don't Walk Away from Complexity, Run (Venkat Subramaniam)</h2>
+<div class="outline-text-2" id="text-orgb8d32f6">
+<p>
+<a href="https://www.youtube.com/watch?v=4MEKu2TcEHM">https://www.youtube.com/watch?v=4MEKu2TcEHM</a>
+</p>
+
+<ul class="org-ul">
+<li>Two kinds of code frustrate him:
+<ul class="org-ul">
+<li>One that won't work</li>
+<li>One that works, but shouldn't</li>
+</ul></li>
+<li>Shared mutability is the devil's work</li>
+<li>Using a library is like dating, using a framework is like getting married</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org4073894" class="outline-2">
+<h2 id="org4073894">Transactions - Myths, Suprises and Opportunities (Martin Kleppmann)</h2>
+<div class="outline-text-2" id="text-org4073894">
+<p>
+<a href="https://www.youtube.com/watch?v=5ZjhNTM8XU8">https://www.youtube.com/watch?v=5ZjhNTM8XU8</a>
+</p>
+
+<p>
+ACID is more or less a marketing term, it isn't too precise.
+</p>
+
+<p>
+<b>Durability</b>
+</p>
+
+<p>
+Used to mean that your database is written to an archive tape. When tape bands
+fell out of fashion, durability was redefined as "fsync to disk". With the rise
+of distributed system, durability was redefined once more to mean replication.
+</p>
+
+<p>
+<b>Consistency</b>
+</p>
+
+<ul class="org-ul">
+<li>This is not the same C as in the CAP theorem</li>
+<li>A database moves from one consistent state to the another through
 transactions. A consistent state is defined through integrity checks or
-invariants (e.g. the balance of an account cannot be negative)</li><li>It is a property of how the application uses the database, it is not a
-property of the database itself</li></ul><p><strong>Atomicity:</strong></p><ul><li>&ldquo;All or nothing guarantee&rdquo;</li><li>It&rsquo;s about handling crashes/fault, not about concurrency! You either get all
-or no parts of a transaction</li></ul><p><strong>Isolation:</strong></p><p>Serializable isolation means that the effects of concurrent transactions is as
+invariants (e.g. the balance of an account cannot be negative)</li>
+<li>It is a property of how the application uses the database, it is not a
+property of the database itself</li>
+</ul>
+
+<p>
+<b>Atomicity</b>
+</p>
+
+<ul class="org-ul">
+<li>"All or nothing guarantee"</li>
+<li>It's about handling crashes/fault, not about concurrency! You either get all
+or no parts of a transaction</li>
+</ul>
+
+<p>
+<b>Isolation</b>
+</p>
+
+<p>
+Serializable isolation means that the effects of concurrent transactions is as
 though all transactions were performed in a serial (one after the other)
-fashion. Each transaction feels as if it had the whole database for itself.</p><p>Databases have different default and maximum isolation levels. These levels are:</p><ul><li>Read Uncommitted</li><li>Read Committed:<ul><li>Dirty reads/writes are not allowed</li><li>Does not prevent Read Skew (see below). This is scary, as &ldquo;Read Committed&rdquo;
-is the default isolation level for several databases</li></ul></li><li>Snapshot Isolation:<ul><li>Read skews are not allowed. If a transaction is reading the database, the
+fashion. Each transaction feels as if it had the whole database for itself.
+</p>
+
+<p>
+Databases have different default and maximum isolation levels. These levels are:
+</p>
+
+<ul class="org-ul">
+<li>Read Uncommitted</li>
+<li>Read Committed:
+<ul class="org-ul">
+<li>Dirty reads/writes are not allowed</li>
+<li>Does not prevent Read Skew (see below). This is scary, as "Read Committed"
+is the default isolation level for several databases</li>
+</ul></li>
+<li>Snapshot Isolation:
+<ul class="org-ul">
+<li>Read skews are not allowed. If a transaction is reading the database, the
 transaction sees the database at a specific point in time. Other
-transactions do not interfere.</li><li>Does not prevent Write Skew</li></ul></li><li>Repeatable Read</li><li>Serializable<ul><li>Can prevent Write Skew</li><li>Some implementations use two-phase-locking (not two-phase-commit!), which
+transactions do not interfere.</li>
+<li>Does not prevent Write Skew</li>
+</ul></li>
+<li>Repeatable Read</li>
+<li>Serializable
+<ul class="org-ul">
+<li>Can prevent Write Skew</li>
+<li>Some implementations use two-phase-locking (not two-phase-commit!), which
 use shared locks. This can be problematic, as analytical queries lock the
-whole databases.</li><li>Other solutions (which don&rsquo;t use shared locks) are H-Store and Serializable
-Snapshot Isolation</li></ul></li></ul><p><strong>Race conditions:</strong></p><ul><li>Dirty Read: A transaction can read what another unfinished transaction wrote</li><li>Dirty Write: Concurrent writes to several tables can interfere with each other</li><li>Read Skew: Imagine a transaction which transfers 100 dollars from one account
+whole databases.</li>
+<li>Other solutions (which don't use shared locks) are H-Store and Serializable
+Snapshot Isolation</li>
+</ul></li>
+</ul>
+
+<p>
+<b>Race Conditions</b>
+</p>
+
+<ul class="org-ul">
+<li>Dirty Read: A transaction can read what another unfinished transaction wrote</li>
+<li>Dirty Write: Concurrent writes to several tables can interfere with each other</li>
+<li>Read Skew: Imagine a transaction which transfers 100 dollars from one account
 to another. A backup process might read both accounts at different times (one
 before a transaction, and one afterwards), which means that the backup now
-contains inconsistent data</li><li>Write Skew:<ul><li>Pattern: Read something, make decision, write decision to database</li><li>Example: An ambulance system requires, that each shift has at least one
+contains inconsistent data</li>
+<li>Write Skew:
+<ul class="org-ul">
+<li>Pattern: Read something, make decision, write decision to database</li>
+<li>Example: An ambulance system requires, that each shift has at least one
 doctor on call. If several doctors request to go off call at the same time,
 we can end up in a situation in which no doctor is on call. This can happen
 because these concurrent transactions see the exact same snapshot of a
-database</li><li>&ldquo;By the time the write is committed, the premise of the decision is no
-longer true&rdquo;</li></ul></li></ul><h2 id=how-did-we-end-up-here-todd-montgomery--martin-thompsonhttpswwwyoutubecomwatchvoxjt7veki9c><a href="https://www.youtube.com/watch?v=oxjT7veKi9c">How did we end up here (Todd Montgomery & Martin Thompson)</a></h2><ul><li>Focus on the fundamentals. Master them and understand them before you try
-to change them</li><li>Shared mutable state is <strong>a complete nightmare</strong> and should only be used for
-systems programming. The smartest people get this wrong all the time<ul><li>A cache is one the hardest problems in computer science. Do you <strong>really</strong>
-want to implement it yourself?</li><li>Embrace append-only, single writer, and shared nothing designs</li></ul></li><li>Universal scalability law: You can&rsquo;t run away from math</li><li>Stop using text encoding. The web is in a constant &ldquo;debug mode&rdquo;</li><li>Synchronous communication is the crystal meth of distributed programming.
-Remote Procedure Calls do not work</li><li>Object orientation and set theories are great models. Please don&rsquo;t use ORMs to
-make them work together. If you don&rsquo;t understand SQL, please do not use a
-database</li><li>&ldquo;The purpose of abstraction is not to be vague, but to create a new semantic
-level in which one can absolutely precise&rdquo; - Dijkstra</li><li>Think in terms of transformation and flow of data - not code!</li><li>Farley&rsquo;s second law: &ldquo;As soon as you realize that most people don&rsquo;t know what
-they are doing the world makes a lot more sense..&rdquo;</li></ul><h2 id=its-about-time-christin-gormanhttpswwwyoutubecomwatchvnhhm5yc2hco><a href="https://www.youtube.com/watch?v=Nhhm5yC2HCo">It&rsquo;s about time (Christin Gorman)</a></h2><p>The basic time library in your favorite programming language might be horrible.
-Why? Because they tend to mix two very different concepts:</p><ul><li>The linear progression of time</li><li>An interpretation of time, based on politics, astronomy and history</li></ul><p>What time is it? 1532428776. No, I mean what time is it? Well, that depends.
-Which epoch do you mean?</p><table><thead><tr><th>Environment</th><th>Start</th></tr></thead><tbody><tr><td>.NET</td><td>1 Jan 0001</td></tr><tr><td>Windows</td><td>1 Jan 1601</td></tr><tr><td>Unix</td><td>1 Jan 1970</td></tr><tr><td>GPS</td><td>5 Jan 1980</td></tr></tbody></table><p>A timestamp on Windows means something completely different than a timestamp on
-Unix!</p><p>Time synchronization (clock drift correction) is the reason why Windows does not
-guarantee, that the system time increases monotonically. So you shouldn&rsquo;t use
+database</li>
+<li>"By the time the write is committed, the premise of the decision is no
+longer true"</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org1114001" class="outline-2">
+<h2 id="org1114001">How did we end up here (Todd Montgomery &amp; Martin Thompson)</h2>
+<div class="outline-text-2" id="text-org1114001">
+<p>
+<a href="https://www.youtube.com/watch?v=oxjT7veKi9c">https://www.youtube.com/watch?v=oxjT7veKi9c</a>
+</p>
+
+<ul class="org-ul">
+<li>Focus on the fundamentals. Master them and understand them before you try
+to change them</li>
+<li>Shared mutable state is <b>a complete nightmare</b> and should only be used for
+systems programming. The smartest people get this wrong all the time
+<ul class="org-ul">
+<li>A cache is one the hardest problems in computer science. Do you <b>really</b>
+want to implement it yourself?</li>
+<li>Embrace append-only, single writer, and shared nothing designs</li>
+</ul></li>
+<li>Universal scalability law: You can't run away from math</li>
+<li>Stop using text encoding. The web is in a constant "debug mode"</li>
+<li>Synchronous communication is the crystal meth of distributed programming.
+Remote Procedure Calls do not work</li>
+<li>Object orientation and set theories are great models. Please don't use ORMs to
+make them work together. If you don't understand SQL, please do not use a
+database</li>
+<li>"The purpose of abstraction is not to be vague, but to create a new semantic
+level in which one can absolutely precise" - Dijkstra</li>
+<li>Think in terms of transformation and flow of data - not code!</li>
+<li>Farley's second law: "As soon as you realize that most people don't know what
+they are doing the world makes a lot more sense.."</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org57cacb0" class="outline-2">
+<h2 id="org57cacb0">It's about time (Christin Gorman)</h2>
+<div class="outline-text-2" id="text-org57cacb0">
+<p>
+<a href="https://www.youtube.com/watch?v=Nhhm5yC2HCo">https://www.youtube.com/watch?v=Nhhm5yC2HCo</a>
+</p>
+
+<p>
+The basic time library in your favorite programming language might be horrible.
+Why? Because they tend to mix two very different concepts:
+</p>
+
+<ul class="org-ul">
+<li>The linear progression of time</li>
+<li>An interpretation of time, based on politics, astronomy and history</li>
+</ul>
+
+<p>
+What time is it? 1532428776. No, I mean what time is it? Well, that depends.
+Which epoch do you mean?
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Environment</th>
+<th scope="col" class="org-left">Start</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">.NET</td>
+<td class="org-left">1 Jan 0001</td>
+</tr>
+
+<tr>
+<td class="org-left">Windows</td>
+<td class="org-left">1 Jan 1601</td>
+</tr>
+
+<tr>
+<td class="org-left">Unix</td>
+<td class="org-left">1 Jan 1970</td>
+</tr>
+
+<tr>
+<td class="org-left">GPS</td>
+<td class="org-left">5 Jan 1980</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+A timestamp on Windows means something completely different than a timestamp on
+Unix!
+</p>
+
+<p>
+Time synchronization (clock drift correction) is the reason why Windows does not
+guarantee, that the system time increases monotonically. So you shouldn't use
 it. Instead, use something different like the current tick count, or use your
-own sequence number.</p><p>UTC (which stands for Coordinated Universal Time) is an effort to create a
-system on which we can all agree.</p><p>Coding advice:</p><ul><li>Store timestamps as UTC together with a time zone</li><li>Do not store start/end timestamps. Instead, store a start timestamp together
+own sequence number.
+</p>
+
+<p>
+UTC (which stands for Coordinated Universal Time) is an effort to create a
+system on which we can all agree.
+</p>
+
+<p>
+Coding advice:
+</p>
+
+<ul class="org-ul">
+<li>Store timestamps as UTC together with a time zone</li>
+<li>Do not store start/end timestamps. Instead, store a start timestamp together
 with a duration. This makes it much easier to deal with events such as
-day-light saving</li><li>Don&rsquo;t always mock out your database layer. The conversation of dates (which
-can depend on the time zone of your database <strong>and</strong> on the time zone of your
-operating system) will hunt you down</li><li>Make date ranges <strong>inclusive</strong> from and <strong>exclusive</strong> to (start &lt;= value &lt;
-end)</li></ul><h2 id=pid-loops-and-the-art-of-keeping-systems-stable-colm-maccárthaighhttpswwwyoutubecomwatchv3axswcc7i4s><a href="https://www.youtube.com/watch?v=3AxSwCC7I4s">PID Loops and the Art of Keeping Systems Stable (Colm MacCárthaigh)</a></h2><p>Control theory:</p><p>Present -> Observe -> Feedback -> React -> (Present)</p><p>A furnace is a classical example of applied control theory: you want to keep
+day-light saving</li>
+<li>Don't always mock out your database layer. The conversation of dates (which
+can depend on the time zone of your database <b>and</b> on the time zone of your
+operating system) will hunt you down</li>
+<li>Make date ranges <b>inclusive</b> from and <b>exclusive</b> to (start &lt;= value &lt;
+end)</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org6bc5a37" class="outline-2">
+<h2 id="org6bc5a37">PID Loops and the Art of Keeping Systems Stable (Colm MacCárthaigh)</h2>
+<div class="outline-text-2" id="text-org6bc5a37">
+<p>
+<a href="https://www.youtube.com/watch?v=3AxSwCC7I4s">https://www.youtube.com/watch?v=3AxSwCC7I4s</a>
+</p>
+
+<p>
+Control theory:
+</p>
+
+<p>
+Present -&gt; Observe -&gt; Feedback -&gt; React -&gt; (Present)
+</p>
+
+<p>
+A furnace is a classical example of applied control theory: you want to keep
 water at a specific temperature. So what do you do? You measure the error (e.g.
 the water has 20°C, it should be 100°C, so the error is 80°C) and react with
 correcting actions based on the error. To do this, we distinguish three types of
-controllers:</p><h3 id=p-controller>P Controller</h3><ul><li>Takes proportional steps to correct an error (e.g. the applied heat is
-proportional to the measured error)</li><li>These systems tend to oscillate around the desired state</li></ul><h3 id=pi-controller>PI Controller</h3><ul><li>Adds an integral to observe an error over time</li><li>Such a system still oscillates, but the overall error curve is flattened</li><li>Thermostats or cruise controls use PI systems</li><li>These systems cannot deal with shocks</li></ul><h3 id=pid-controller>PID Controller</h3><ul><li>Adds a derivative component to predict future errors</li></ul><h3 id=anti-patterns>Anti Patterns</h3><p>Using open loops is scary. The system cannot detect a problem. Chaos engineering
+controllers:
+</p>
+
+<p>
+<b>P Controller</b>
+</p>
+
+<ul class="org-ul">
+<li>Takes proportional steps to correct an error (e.g. the applied heat is
+proportional to the measured error)</li>
+<li>These systems tend to oscillate around the desired state</li>
+</ul>
+
+<p>
+<b>PI Controller</b>
+</p>
+
+<ul class="org-ul">
+<li>Adds an integral to observe an error over time</li>
+<li>Such a system still oscillates, but the overall error curve is flattened</li>
+<li>Thermostats or cruise controls use PI systems</li>
+<li>These systems cannot deal with shocks</li>
+</ul>
+
+<p>
+<b>PID Controller</b>
+</p>
+
+<ul class="org-ul">
+<li>Adds a derivative component to predict future errors</li>
+</ul>
+
+<p>
+<b>Anti Patterns</b>
+</p>
+
+<p>
+Using open loops is scary. The system cannot detect a problem. Chaos engineering
 and observability are fine practices to find open loops. Open loop systems tend
 to be imperative (do this, do that), while closed loop system tend to be
-declarative (please get the system into my defined desired state).</p><p>Power laws are out to get you. A system failure can spread in an exponential
+declarative (please get the system into my defined desired state).
+</p>
+
+<p>
+Power laws are out to get you. A system failure can spread in an exponential
 way. These failures can be kept in their cages by building smaller systems
-(which decrease the overall &ldquo;blasting radius&rdquo;). Other techniques include:</p><ul><li>Exponential back-off</li><li>Rate-limiters</li></ul><p>Sudden load spikes can bring down a system. In general: keep your queues short.
-LIFO queues might be a good idea, as they will prioritize new information.</p><p>Implementing edge triggered systems imply, that you have solved the &ldquo;deliver
-just once&rdquo; problem. Level triggered (and idempotent) systems seem to be a
-simpler solution.</p><h2 id=big-numbers-and-the-1hz-cpu-tom-hudsonhttpswwwyoutubecomwatchvpdboc6i3k8g><a href="https://www.youtube.com/watch?v=pDBOC6I3K8g">Big Numbers and the 1Hz CPU (Tom Hudson)</a></h2><p>We do not have a good intuition for how fast different parts of a computer are.</p><p>Let&rsquo;s have a look at a 3ghz CPU and different access times:</p><ul><li>Register: 0.3ns</li><li>L1 cache: 1.5ns</li><li>L2 cache: 3ns</li><li>L3 cache 13ns</li><li>RAM: 0.1 microseconds</li><li>HDD: 6ms</li><li>SSD: 80 microseconds</li></ul><p>All these values seem &ldquo;low enough&rdquo;, but let&rsquo;s but them into perspective using a
-1 Hertz CPU:</p><ul><li>Register: 1 second</li><li>L1 cache: 4.5 seconds</li><li>L2 cache: 9 seconds</li><li>L3 cache: 39 seconds</li><li>RAM: 5 minutes</li><li>HDD: 9 months</li><li>SSD: 1 day</li></ul><h2 id=design-composition-and-performance-rich-hickeyhttpswwwyoutubecomwatchvmcz3ygeeupg><a href="https://www.youtube.com/watch?v=MCZ3YgeEUPg">Design, Composition, and Performance (Rich Hickey)</a></h2><ul><li>Design is taking things apart so you can put them back together</li><li>An instrument is a tool for an expert</li><li>You learn an instrument by playing the actual instrument. There is no real
+(which decrease the overall "blasting radius"). Other techniques include:
+</p>
+
+<ul class="org-ul">
+<li>Exponential back-off</li>
+<li>Rate-limiters</li>
+</ul>
+
+<p>
+Sudden load spikes can bring down a system. In general: keep your queues short.
+LIFO queues might be a good idea, as they will prioritize new information.
+</p>
+
+<p>
+Implementing edge triggered systems imply, that you have solved the "deliver
+just once" problem. Level triggered (and idempotent) systems seem to be a
+simpler solution.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb58a4ad" class="outline-2">
+<h2 id="orgb58a4ad">Big Numbers and the 1Hz CPU (Tom Hudson)</h2>
+<div class="outline-text-2" id="text-orgb58a4ad">
+<p>
+<a href="https://www.youtube.com/watch?v=pDBOC6I3K8g">https://www.youtube.com/watch?v=pDBOC6I3K8g</a>
+</p>
+
+<p>
+We do not have a good intuition for how fast different parts of a computer are.
+</p>
+
+<p>
+Let's have a look at a 3ghz CPU and different access times:
+</p>
+
+<ul class="org-ul">
+<li>Register: 0.3ns</li>
+<li>L1 cache: 1.5ns</li>
+<li>L2 cache: 3ns</li>
+<li>L3 cache 13ns</li>
+<li>RAM: 0.1 microseconds</li>
+<li>HDD: 6ms</li>
+<li>SSD: 80 microseconds</li>
+</ul>
+
+<p>
+All these values seem "low enough", but let's but them into perspective using a
+1 Hertz CPU:
+</p>
+
+<ul class="org-ul">
+<li>Register: 1 second</li>
+<li>L1 cache: 4.5 seconds</li>
+<li>L2 cache: 9 seconds</li>
+<li>L3 cache: 39 seconds</li>
+<li>RAM: 5 minutes</li>
+<li>HDD: 9 months</li>
+<li>SSD: 1 day</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgeb8029a" class="outline-2">
+<h2 id="orgeb8029a">Design, Composition, and Performance (Rich Hickey)</h2>
+<div class="outline-text-2" id="text-orgeb8029a">
+<p>
+<a href="https://www.youtube.com/watch?v=MCZ3YgeEUPg">https://www.youtube.com/watch?v=MCZ3YgeEUPg</a>
+</p>
+
+<ul class="org-ul">
+<li>Design is taking things apart so you can put them back together</li>
+<li>An instrument is a tool for an expert</li>
+<li>You learn an instrument by playing the actual instrument. There is no real
 alternative. This means, that you are using an experts tool while being a
-novice. But you won&rsquo;t be a novice for long</li><li>An instrument is (for the most part) very simple. It is made to work in a very
+novice. But you won't be a novice for long</li>
+<li>An instrument is (for the most part) very simple. It is made to work in a very
 specific way. Composers can use several instruments to create a predictable
-outcome. This would be hard if instruments weren&rsquo;t that limited</li><li>A musician spends most of his time practicing instead of performing. Why is
-our industry different?</li><li>We should build interfaces for machines first and then put an interface for a
-human on top</li><li>Constraint is a driver for creativity</li><li>Design is making decisions. It&rsquo;s about saying no</li></ul><h2 id=thinking-fast-and-slow-linda-risinghttpswwwyoutubecomwatchvxjbtliqnq-o><a href="https://www.youtube.com/watch?v=XjbTLIqnq-o">Thinking Fast and Slow (Linda Rising)</a></h2><p><strong>System 1:</strong></p><ul><li>Unconscious (runs 24/7)</li><li>Fast, intuitive</li><li>Can multi-task</li><li>~11 million bits/second</li><li>95% of cognitive function</li><li>inaccessible</li></ul><p><strong>System 2:</strong></p><ul><li>Conscious</li><li>Slow, rational, forgetful</li><li>Linear (Cannot multi-task)</li><li>~40 bits/second</li><li>5% of cognitive function</li></ul><p>We identify with System 2 and we believe, that System 2 is in charge.</p><p>System 1 gains its speed by using heuristics. It is also in charge of &ldquo;telling
-our story&rdquo; in which we are identified as the hero. System 1 is prone to biases
-such as:</p><ul><li><strong>Confirmation bias:</strong> We seek confirmation instead of information. We like to
+outcome. This would be hard if instruments weren't that limited</li>
+<li>A musician spends most of his time practicing instead of performing. Why is
+our industry different?</li>
+<li>We should build interfaces for machines first and then put an interface for a
+human on top</li>
+<li>Constraint is a driver for creativity</li>
+<li>Design is making decisions. It's about saying no</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgf47c03d" class="outline-2">
+<h2 id="orgf47c03d">Thinking Fast and Slow (Linda Rising)</h2>
+<div class="outline-text-2" id="text-orgf47c03d">
+<p>
+<a href="https://www.youtube.com/watch?v=XjbTLIqnq-o">https://www.youtube.com/watch?v=XjbTLIqnq-o</a>
+</p>
+
+<p>
+<b>System 1</b>
+</p>
+
+<ul class="org-ul">
+<li>Unconscious (runs 24/7)</li>
+<li>Fast, intuitive</li>
+<li>Can multi-task</li>
+<li>~11 million bits/second</li>
+<li>95% of cognitive function</li>
+<li>inaccessible</li>
+</ul>
+
+<p>
+<b>System 2</b>
+</p>
+
+<ul class="org-ul">
+<li>Conscious</li>
+<li>Slow, rational, forgetful</li>
+<li>Linear (Cannot multi-task)</li>
+<li>~40 bits/second</li>
+<li>5% of cognitive function</li>
+</ul>
+
+<p>
+We identify with System 2 and we believe, that System 2 is in charge.
+</p>
+
+<p>
+System 1 gains its speed by using heuristics. It is also in charge of "telling
+our story" in which we are identified as the hero. System 1 is prone to biases
+such as:
+</p>
+
+<ul class="org-ul">
+<li><b>Confirmation bias:</b> We seek confirmation instead of information. We like to
 stick to our point of view, even in the face of evidence which supports a
-different point</li><li><strong>Cognitive dissonance:</strong> We have a hard time to keep two contradicting ideas
-in our head</li><li><strong>Naive realism:</strong> We believe that we are rational and that a disagreeing part
-will &ldquo;see&rdquo; if we present them &ldquo;our facts&rdquo;</li></ul><p>We overestimate our own understanding and underestimate the role of randomness
-in our world. We seek for patterns and explanations, even if there aren&rsquo;t any.</p><p>System 2 can only focus for about 50 minutes (max) before taking a break.</p><p>We use System 2 to learn something new. Over time, a certain skill moves to
+different point</li>
+<li><b>Cognitive dissonance:</b> We have a hard time to keep two contradicting ideas
+in our head</li>
+<li><b>Naive realism:</b> We believe that we are rational and that a disagreeing part
+will "see" if we present them "our facts"</li>
+</ul>
+
+<p>
+We overestimate our own understanding and underestimate the role of randomness
+in our world. We seek for patterns and explanations, even if there aren't any.
+</p>
+
+<p>
+System 2 can only focus for about 50 minutes (max) before taking a break.
+</p>
+
+<p>
+We use System 2 to learn something new. Over time, a certain skill moves to
 System 1 (e.g. walking, driving, or playing an instrument). After is has moved
 to System 1, interference from System 2 can hurt our performance by
-&ldquo;overthinking&rdquo;.</p><p>System 2 takes a lot of energy. Self control causes a drop in your blood
-glucose. We have a limited pool of &ldquo;mental energy&rdquo;. This is why we tend to make
-worse decisions when tired or hungry.</p><p>System 2 believes that it runs the show, but System 1 is in charge! And that&rsquo;s
-good. You don&rsquo;t want to trust a system which lets you forget your keys to care
-about essential tasks such as breathing.</p><p><strong>Better Meetings:</strong></p><ul><li>Water, tea, coffee available</li><li>Standing should be OK</li><li>Very small groups</li><li>Limit meeting times to ~40 minutes. For longer meetings, take a different seat
-after a break</li><li>10 minute break before important decisions</li></ul><h2 id=mistakes-and-discoveries-while-cultivating-ownership-aaron-blohowiakhttpswwwyoutubecomwatchvddogmao_cna><a href="https://www.youtube.com/watch?v=ddOGmao_cnA">Mistakes and Discoveries While Cultivating Ownership (Aaron Blohowiak)</a></h2><p>Netflix Culture:</p><ul><li><strong>Avoid rules:</strong> Do not constraint people. We need good judgment</li><li><strong>People over Process:</strong> The world is changing, while your process is lacking
-behind</li><li><strong>Context not Control:</strong> You can&rsquo;t really good decisions if you do not
-understand your environment. A manager knows less than the &ldquo;people in the
-field&rdquo;</li><li><strong>Freedom and Responsibility:</strong> Have options and hold people responsible for
-the quality of their decision making</li></ul><p>Levels of Ownership:</p><ol start=0><li><strong>Demonstration:</strong> No ownership</li><li><strong>Oversight:</strong> You do it, but we will pre-approve it</li><li><strong>Observation:</strong> You do it and we will review it after it is done</li><li><strong>Execution:</strong> Here&rsquo;s where we want to go and we know that you will pull it
-off. We might check just so that we know what&rsquo;s going on</li><li><strong>Vision:</strong> You understand your responsibilities and your shareholder&rsquo;s needs</li></ol><p>Mistakes:</p><ul><li>Different ideas about which level we should be at</li><li>Not being explicit when levels change</li></ul><h2 id=changing-your-habits--environment-to-get-more-professional-productivity-linda-risinghttpswwwyoutubecomwatchvmrhjhdyrdny><a href="https://www.youtube.com/watch?v=mrHjHdyRDNY">Changing your Habits & Environment to get more Professional Productivity (Linda Rising)</a></h2><ul><li>We sit too much and move too little</li><li>Lying down can improve your problem solving skills</li><li>Try to have meetings while walking</li></ul><h2 id=functional-data-that-adapts-to-change-don-symehttpswwwyoutubecomwatchvus4dp7ksly0><a href="https://www.youtube.com/watch?v=us4dp7Ksly0">Functional data that adapts to change (Don Syme)</a></h2><ul><li>Classic UIs are built using the MVVM pattern</li><li>A different approach to building UI is called MVU: Model, View, Update<ul><li>Examples: Svelte, Elm, React Native</li></ul></li><li>MVU is based on functional principles</li><li>There is a unidirectional data flow</li><li>&ldquo;UI becomes calculation and information, not state&rdquo;</li><li>We create a view based on a model and update the model through messages, which
-in turn changes the view</li><li>An initial reaction might be that &ldquo;functional&rdquo; and &ldquo;high performance&rdquo; cannot
-go together. The key to making it work is &ldquo;incremental functional
-programming&rdquo;, which is related to event sourcing</li></ul><h2 id=a-cheap-effective-method-for-dealing-with-stressful-situations-linda-risinghttpswwwyoutubecomwatchvodpq_6qcpia><a href="https://www.youtube.com/watch?v=ODpq_6qcPIA">A Cheap Effective Method for Dealing with Stressful Situations (Linda Rising)</a></h2><ul><li>The pandemic has created a very stressful environment</li><li>Long periods of anxiety compromises our immune system</li><li>What doesn&rsquo;t work:<ul><li>Suppressing/denying a stressful situation</li><li>Positive thinking (not strong enough)</li><li>Distractions</li><li>Venting</li><li>Blaming others/circumstances</li></ul></li><li>What does work: expressive writing. Write about your troubles</li><li>General instructions<ul><li>Write 15-20 min/day for 4-5 consecutive days</li><li>Topic should be personal and important</li><li>Write continuously. Don&rsquo;t worry about punctuation, spelling, grammar. If you
-run out of things to say, repeat what you have written. Keep pen on paper.</li><li>Write only for yourself. Destroy or hide what you are writing. Do not turn
-the exercise into a letter. The result is for your eyes only.</li><li>If you feel you cannot write about something because it will push you over
-the edge, STOP!</li><li>Some feel sad after writing, especially on the first day. This feeling
-usually goes away in an hour or so</li></ul></li><li><strong>Pen and paper work best</strong>, but typing or voice recording are OK</li><li>Writing before stressful situations (e.g. test taking, presentations, surgery,
-&mldr;) can also be beneficial</li></ul><h2 id=if-domain-logic-then-cqrs-or-saga-udi-dahanhttpswwwyoutubecomwatchvfwu8zk0dmxs><a href="https://www.youtube.com/watch?v=fWU8ZK0Dmxs">If (domain logic) then CQRS, or Saga (Udi Dahan)</a></h2><ul><li>Hard deletes are painful as they can lead to cascading deletes (e.g. deleting
-a product may delete user purchases)</li><li>We use soft deletes as a &ldquo;quick fix&rdquo; to the cascading delete problem</li><li>But deleting makes a lot of sense in a &ldquo;private domain&rdquo;, e.g. when a user
+"overthinking".
+</p>
+
+<p>
+System 2 takes a lot of energy. Self control causes a drop in your blood
+glucose. We have a limited pool of "mental energy". This is why we tend to make
+worse decisions when tired or hungry.
+</p>
+
+<p>
+System 2 believes that it runs the show, but System 1 is in charge! And that's
+good. You don't want to trust a system which lets you forget your keys to care
+about essential tasks such as breathing.
+</p>
+
+<p>
+<b>Better Meetings</b>
+</p>
+
+<ul class="org-ul">
+<li>Water, tea, coffee available</li>
+<li>Standing should be OK</li>
+<li>Very small groups</li>
+<li>Limit meeting times to ~40 minutes. For longer meetings, take a different seat
+after a break</li>
+<li>10 minute break before important decisions</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org7f892fa" class="outline-2">
+<h2 id="org7f892fa">Mistakes and Discoveries While Cultivating Ownership (Aaron Blohowiak)</h2>
+<div class="outline-text-2" id="text-org7f892fa">
+<p>
+<a href="https://www.youtube.com/watch?v=ddOGmao_cnA">https://www.youtube.com/watch?v=ddOGmao_cnA</a>
+</p>
+
+<p>
+<b>Netflix Culture</b>
+</p>
+
+<ul class="org-ul">
+<li><b>Avoid rules:</b> Do not constraint people. We need good judgment</li>
+<li><b>People over Process:</b> The world is changing, while your process is lacking
+behind</li>
+<li><b>Context not Control:</b> You can't really good decisions if you do not
+understand your environment. A manager knows less than the "people in the
+field"</li>
+<li><b>Freedom and Responsibility:</b> Have options and hold people responsible for
+the quality of their decision making</li>
+</ul>
+
+<p>
+<b>Levels of Ownership</b>
+</p>
+
+<ol class="org-ol">
+<li><b>Demonstration:</b> No ownership</li>
+<li><b>Oversight:</b> You do it, but we will pre-approve it</li>
+<li><b>Observation:</b> You do it and we will review it after it is done</li>
+<li><b>Execution:</b> Here's where we want to go and we know that you will pull it
+off. We might check just so that we know what's going on</li>
+<li><b>Vision:</b> You understand your responsibilities and your shareholder's needs</li>
+</ol>
+
+<p>
+<b>Mistakes</b>
+</p>
+
+<ul class="org-ul">
+<li>Different ideas about which level we should be at</li>
+<li>Not being explicit when levels change</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org1a3edd9" class="outline-2">
+<h2 id="org1a3edd9">Changing your Habits &amp; Environment to get more Professional Productivity (Linda Rising)</h2>
+<div class="outline-text-2" id="text-org1a3edd9">
+<p>
+<a href="https://www.youtube.com/watch?v=mrHjHdyRDNY">https://www.youtube.com/watch?v=mrHjHdyRDNY</a>
+</p>
+
+<ul class="org-ul">
+<li>We sit too much and move too little</li>
+<li>Lying down can improve your problem solving skills</li>
+<li>Try to have meetings while walking</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgcd88272" class="outline-2">
+<h2 id="orgcd88272">Functional data that adapts to change (Don Syme)</h2>
+<div class="outline-text-2" id="text-orgcd88272">
+<p>
+<a href="https://www.youtube.com/watch?v=us4dp7Ksly0">https://www.youtube.com/watch?v=us4dp7Ksly0</a>
+</p>
+
+<ul class="org-ul">
+<li>Classic UIs are built using the MVVM pattern</li>
+<li>A different approach to building UI is called MVU: Model, View, Update
+<ul class="org-ul">
+<li>Examples: Svelte, Elm, React Native</li>
+</ul></li>
+<li>MVU is based on functional principles</li>
+<li>There is a unidirectional data flow</li>
+<li>"UI becomes calculation and information, not state"</li>
+<li>We create a view based on a model and update the model through messages, which
+in turn changes the view</li>
+<li>An initial reaction might be that "functional" and "high performance" cannot
+go together. The key to making it work is "incremental functional
+programming", which is related to event sourcing</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org95036cd" class="outline-2">
+<h2 id="org95036cd">A Cheap Effective Method for Dealing with Stressful Situations (Linda Rising)</h2>
+<div class="outline-text-2" id="text-org95036cd">
+<p>
+<a href="https://www.youtube.com/watch?v=ODpq_6qcPIA">https://www.youtube.com/watch?v=ODpq_6qcPIA</a>
+</p>
+
+<ul class="org-ul">
+<li>The pandemic has created a very stressful environment</li>
+<li>Long periods of anxiety compromises our immune system</li>
+<li>What doesn't work:
+<ul class="org-ul">
+<li>Suppressing/denying a stressful situation</li>
+<li>Positive thinking (not strong enough)</li>
+<li>Distractions</li>
+<li>Venting</li>
+<li>Blaming others/circumstances</li>
+</ul></li>
+<li>What does work: expressive writing. Write about your troubles</li>
+<li>General instructions
+<ul class="org-ul">
+<li>Write 15-20 min/day for 4-5 consecutive days</li>
+<li>Topic should be personal and important</li>
+<li>Write continuously. Don't worry about punctuation, spelling, grammar. If you
+run out of things to say, repeat what you have written. Keep pen on paper.</li>
+<li>Write only for yourself. Destroy or hide what you are writing. Do not turn
+the exercise into a letter. The result is for your eyes only.</li>
+<li>If you feel you cannot write about something because it will push you over
+the edge, STOP!</li>
+<li>Some feel sad after writing, especially on the first day. This feeling
+usually goes away in an hour or so</li>
+</ul></li>
+<li><b>Pen and paper work best</b>, but typing or voice recording are OK</li>
+<li>Writing before stressful situations (e.g. test taking, presentations, surgery,
+&#x2026;) can also be beneficial</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org65f1c59" class="outline-2">
+<h2 id="org65f1c59">If (domain logic) then CQRS, or Saga (Udi Dahan)</h2>
+<div class="outline-text-2" id="text-org65f1c59">
+<p>
+<a href="https://www.youtube.com/watch?v=fWU8ZK0Dmxs">https://www.youtube.com/watch?v=fWU8ZK0Dmxs</a>
+</p>
+
+<ul class="org-ul">
+<li>Hard deletes are painful as they can lead to cascading deletes (e.g. deleting
+a product may delete user purchases)</li>
+<li>We use soft deletes as a "quick fix" to the cascading delete problem</li>
+<li>But deleting makes a lot of sense in a "private domain", e.g. when a user
 updates the product catalog. We can treat this domain as a sandbox, where the
-user can manipulate data in an easy way</li><li>We need to validate data when we are publishing it from the &ldquo;private domain&rdquo;
-to a &ldquo;public domain&rdquo; (e.g. so that the customer can see the updated product
-catalog)</li><li>Deletes in a &ldquo;public domain&rdquo; hide business intent. Why do you want to delete
+user can manipulate data in an easy way</li>
+<li>We need to validate data when we are publishing it from the "private domain"
+to a "public domain" (e.g. so that the customer can see the updated product
+catalog)</li>
+<li>Deletes in a "public domain" hide business intent. Why do you want to delete
 data? Do you really want to delete this product, or do intent to no longer
-sell this product?</li><li>Systems like Amazon are a collaborative domain. Checking invariants is doomed
+sell this product?</li>
+<li>Systems like Amazon are a collaborative domain. Checking invariants is doomed
 to be full of race conditions. Example: A user adds a product to his shopping
-cart. An employee marks the same product as &ldquo;not for sale&rdquo;. Depending on the
-timing of these requests, an invariance such as &ldquo;a user cannot buy an item if
-it is not for sale&rdquo; cannot hold.</li><li>We need to deal with eventual consistency in the context of the business.
-Don&rsquo;t confuse this with technical eventual consistency (e.g. updating read
-models)</li></ul><h2 id=cultivating-architecture-martin-fowler-birgitta-böckelerhttpswwwyoutubecomwatchvmznrxjw602e><a href="https://www.youtube.com/watch?v=MZnrxjw602E">Cultivating Architecture (Martin Fowler, Birgitta Böckeler)</a></h2><ul><li>Good architecture can accelerate a team as it can keep the cost of change down</li><li>Software delivery performance correlates with organizational performance</li><li>Strive to create autonomous teams</li><li>Inform technical staff about the business goals</li><li>Create a set of guiding principles which should help a team when dealing with
-architecture decisions<ul><li>Find principles by identifying what&rsquo;s moving you forward and what&rsquo;s holding
-you back</li></ul></li><li>Create your own tech radar. What technology do we use? What do we want to try?
-What do we want to get rid of?</li><li>Document any decisions. A simple markdown file might be enough</li></ul><h2 id=what-i-learned-from-three-years-of-sciencing-the-crap-out-of-devops-jez-humblehttpswwwyoutubecomwatchvkr08zsnyu20><a href="https://www.youtube.com/watch?v=kr08zSnyU20">What I learned from three years of sciencing the crap out of DevOps (Jez Humble)</a></h2><ul><li>Job satisfaction is the biggest indicator for organization performance</li><li>IT companies with high throughput perform better in terms of stability</li></ul><h2 id=files-dan-luuhttpswwwdeconstructconfcom2019dan-luu-files><a href=https://www.deconstructconf.com/2019/dan-luu-files>Files (Dan Luu)</a></h2><ul><li>We believe that file systems are a solved problem and that they share a common
-abstraction, but that is not true</li><li>Writing a file may seem easy, but there&rsquo;s a lot that could go wrong. File
-systems have bugs too</li><li>File operations may not be atomic</li><li>Even great programmers make mistakes when using the file system. Static
-analysis tools found bugs when inspecting code bases such as Git, Postgres</li><li>Sqlite is a rather stable way to interact with the file system</li><li>Different file systems have different behavior when dealing with errors</li><li>SSDs need ECC (error correcting codes) not be &ldquo;better&rdquo;, but rather to work at
-all</li><li>Computers don&rsquo;t work</li></ul><h2 id=optimize-for-time-andy-walkerhttpswwwyoutubecomwatchvfbr8bkpw5tc><a href="https://www.youtube.com/watch?v=fBr8BKPW5tc">Optimize For Time (Andy Walker)</a></h2><ul><li>High performing teams seem to have more time to get things done. They don&rsquo;t
-hurry. They hit their deadlines</li><li>Struggling teams seem to always be behind</li><li>Busyness is a curse</li><li>Four things he holds true<ul><li>Invest in improvement</li><li>Respect each other&rsquo;s time</li><li>Ruthless about time (say no to things that don&rsquo;t make sense)</li><li>Anticipate problems</li></ul></li><li>What if the team is the product? If you are not investing in moving faster
-you&rsquo;re moving slower</li><li>Only interrupt people if there is an important reason to do so</li><li>Teams that invest in each other achieve more</li><li>Change is expensive! Fail fast</li><li>When given a hard deadline, work from the basis that everything is going to
-failure<ul><li>Plan for failure</li><li>Plan to fail cheaply</li><li>Your plan is not the outcome</li><li>Recover quickly</li></ul></li></ul><h2 id=conversational-transformation-jeffrey-fredrick-douglas-squirrelhttpswwwyoutubecomwatchvrmt_tqzf_vc><a href="https://www.youtube.com/watch?v=RMT_Tqzf_vc">Conversational Transformation (Jeffrey Fredrick, Douglas Squirrel)</a></h2><p>Conversational Analysis with The 4 Rs</p><ul><li>Record<ul><li>Fold a piece of paper in half. Write the major points of your conversation
-on the right hand side. Record what you thought (but didn&rsquo;t say) on the left
-hand side</li></ul></li><li>Reflect<ul><li>How many genuine questions were asked?</li><li>What is on the left side that isn&rsquo;t on the right?</li><li>What sets off negative reactions for you?</li></ul></li><li>Revise</li><li>Roleplay</li><li>(Repeat)</li><li>(Role-reversal)</li></ul><h2 id=continuous-retrospectives-linda-risinghttpswwwyoutubecomwatchv1wzedzcsmky><a href="https://www.youtube.com/watch?v=1wzedZcSmKY">Continuous Retrospectives (Linda Rising)</a></h2><ul><li>In times like COVID we cannot even remember what day it is. How can we then
-have a meaningful discussion (retrospective) about a long project?</li><li>Continuous retrospectives: Hang up a timeline and add sticky notes through out
+cart. An employee marks the same product as "not for sale". Depending on the
+timing of these requests, an invariance such as "a user cannot buy an item if
+it is not for sale" cannot hold.</li>
+<li>We need to deal with eventual consistency in the context of the business.
+Don't confuse this with technical eventual consistency (e.g. updating read
+models)</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org6f87eb2" class="outline-2">
+<h2 id="org6f87eb2">Cultivating Architecture (Martin Fowler, Birgitta Böckeler)</h2>
+<div class="outline-text-2" id="text-org6f87eb2">
+<p>
+<a href="https://www.youtube.com/watch?v=MZnrxjw602E">https://www.youtube.com/watch?v=MZnrxjw602E</a>
+</p>
+
+<ul class="org-ul">
+<li>Good architecture can accelerate a team as it can keep the cost of change down</li>
+<li>Software delivery performance correlates with organizational performance</li>
+<li>Strive to create autonomous teams</li>
+<li>Inform technical staff about the business goals</li>
+<li>Create a set of guiding principles which should help a team when dealing with
+architecture decisions
+<ul class="org-ul">
+<li>Find principles by identifying what's moving you forward and what's holding
+you back</li>
+</ul></li>
+<li>Create your own tech radar. What technology do we use? What do we want to try?
+What do we want to get rid of?</li>
+<li>Document any decisions. A simple markdown file might be enough</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgc27c58e" class="outline-2">
+<h2 id="orgc27c58e">What I learned from three years of sciencing the crap out of DevOps (Jez Humble)</h2>
+<div class="outline-text-2" id="text-orgc27c58e">
+<p>
+<a href="https://www.youtube.com/watch?v=kr08zSnyU20">https://www.youtube.com/watch?v=kr08zSnyU20</a>
+</p>
+
+<ul class="org-ul">
+<li>Job satisfaction is the biggest indicator for organization performance</li>
+<li>IT companies with high throughput perform better in terms of stability</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgcbc5e50" class="outline-2">
+<h2 id="orgcbc5e50">Files (Dan Luu)</h2>
+<div class="outline-text-2" id="text-orgcbc5e50">
+<p>
+<a href="https://www.deconstructconf.com/2019/dan-luu-files">https://www.deconstructconf.com/2019/dan-luu-files</a>
+</p>
+
+<ul class="org-ul">
+<li>We believe that file systems are a solved problem and that they share a common
+abstraction, but that is not true</li>
+<li>Writing a file may seem easy, but there's a lot that could go wrong. File
+systems have bugs too</li>
+<li>File operations may not be atomic</li>
+<li>Even great programmers make mistakes when using the file system. Static
+analysis tools found bugs when inspecting code bases such as Git, Postgres</li>
+<li>Sqlite is a rather stable way to interact with the file system</li>
+<li>Different file systems have different behavior when dealing with errors</li>
+<li>SSDs need ECC (error correcting codes) not be "better", but rather to work at
+all</li>
+<li>Computers don't work</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org1a0c4e7" class="outline-2">
+<h2 id="org1a0c4e7">Optimize For Time (Andy Walker)</h2>
+<div class="outline-text-2" id="text-org1a0c4e7">
+<p>
+<a href="https://www.youtube.com/watch?v=fBr8BKPW5tc">https://www.youtube.com/watch?v=fBr8BKPW5tc</a>
+</p>
+
+<ul class="org-ul">
+<li>High performing teams seem to have more time to get things done. They don't
+hurry. They hit their deadlines</li>
+<li>Struggling teams seem to always be behind</li>
+<li>Busyness is a curse</li>
+<li>Four things he holds true
+<ul class="org-ul">
+<li>Invest in improvement</li>
+<li>Respect each other's time</li>
+<li>Ruthless about time (say no to things that don't make sense)</li>
+<li>Anticipate problems</li>
+</ul></li>
+<li>What if the team is the product? If you are not investing in moving faster
+you're moving slower</li>
+<li>Only interrupt people if there is an important reason to do so</li>
+<li>Teams that invest in each other achieve more</li>
+<li>Change is expensive! Fail fast</li>
+<li>When given a hard deadline, work from the basis that everything is going to
+failure
+<ul class="org-ul">
+<li>Plan for failure</li>
+<li>Plan to fail cheaply</li>
+<li>Your plan is not the outcome</li>
+<li>Recover quickly</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org8d70b69" class="outline-2">
+<h2 id="org8d70b69">Conversational Transformation (Jeffrey Fredrick, Douglas Squirrel)</h2>
+<div class="outline-text-2" id="text-org8d70b69">
+<p>
+<a href="https://www.youtube.com/watch?v=RMT_Tqzf_vc">https://www.youtube.com/watch?v=RMT_Tqzf_vc</a>
+</p>
+
+<p>
+Conversational Analysis with The 4 Rs
+</p>
+
+<ul class="org-ul">
+<li>Record
+<ul class="org-ul">
+<li>Fold a piece of paper in half. Write the major points of your conversation
+on the right hand side. Record what you thought (but didn't say) on the left
+hand side</li>
+</ul></li>
+<li>Reflect
+<ul class="org-ul">
+<li>How many genuine questions were asked?</li>
+<li>What is on the left side that isn't on the right?</li>
+<li>What sets off negative reactions for you?</li>
+</ul></li>
+<li>Revise</li>
+<li>Roleplay</li>
+<li>(Repeat)</li>
+<li>(Role-reversal)</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org1dc334d" class="outline-2">
+<h2 id="org1dc334d">Continuous Retrospectives (Linda Rising)</h2>
+<div class="outline-text-2" id="text-org1dc334d">
+<p>
+<a href="https://www.youtube.com/watch?v=1wzedZcSmKY">https://www.youtube.com/watch?v=1wzedZcSmKY</a>
+</p>
+
+<ul class="org-ul">
+<li>In times like COVID we cannot even remember what day it is. How can we then
+have a meaningful discussion (retrospective) about a long project?</li>
+<li>Continuous retrospectives: Hang up a timeline and add sticky notes through out
 the day. Capture ideas, questions, concerns, events, problems, success,
-failure</li><li>Spend the last 15 minutes writing about, reflecting on lessons learned that
-day</li><li>Guide Boards<ul><li><a href="https://www.youtube.com/watch?v=DnZnb22Cgd8">https://www.youtube.com/watch?v=DnZnb22Cgd8</a></li><li><a href=https://mattischneider.fr/agile/guide-board/paper.pdf>https://mattischneider.fr/agile/guide-board/paper.pdf</a></li><li><a href=https://mattischneider.fr/anthropologie/agile/thesis>https://mattischneider.fr/anthropologie/agile/thesis</a></li></ul></li><li>Retrospectives offer different opportunities:<ul><li>Project: long term learning (strategic)</li><li>Iteration: what should we do now? (tactical)</li><li>Continuous: small experiments</li></ul></li></ul><h2 id=solving-problems-the-clojure-way-rafal-dittwaldhttpswwwyoutubecomwatchvvk1dazrk_a0><a href="https://www.youtube.com/watch?v=vK1DazRK_a0">Solving Problems the Clojure Way (Rafal Dittwald)</a></h2><ul><li>Imperative code spreads state, mutation and side effects, which makes larger
-programs harder to understand and change</li><li>Object oriented programming tries to solve these problems through classes and
+failure</li>
+<li>Spend the last 15 minutes writing about, reflecting on lessons learned that
+day</li>
+<li>Guide Boards
+<ul class="org-ul">
+<li><a href="https://www.youtube.com/watch?v=DnZnb22Cgd8">https://www.youtube.com/watch?v=DnZnb22Cgd8</a></li>
+<li><a href="https://mattischneider.fr/agile/guide-board/paper.pdf">https://mattischneider.fr/agile/guide-board/paper.pdf</a></li>
+<li><a href="https://mattischneider.fr/anthropologie/agile/thesis">https://mattischneider.fr/anthropologie/agile/thesis</a></li>
+</ul></li>
+<li>Retrospectives offer different opportunities:
+<ul class="org-ul">
+<li>Project: long term learning (strategic)</li>
+<li>Iteration: what should we do now? (tactical)</li>
+<li>Continuous: small experiments</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org9022855" class="outline-2">
+<h2 id="org9022855">Solving Problems the Clojure Way (Rafal Dittwald)</h2>
+<div class="outline-text-2" id="text-org9022855">
+<p>
+<a href="https://www.youtube.com/watch?v=vK1DazRK_a0">https://www.youtube.com/watch?v=vK1DazRK_a0</a>
+</p>
+
+<ul class="org-ul">
+<li>Imperative code spreads state, mutation and side effects, which makes larger
+programs harder to understand and change</li>
+<li>Object oriented programming tries to solve these problems through classes and
 encapsulation. The preferred thinking model revolves around agents and how
-they communicate with each other</li><li>While we cannot get rid of state, functional programming uses a set of
-techniques to avoid state wherever possible. Rafal outlines a few techniques:<ul><li><strong>Minimize</strong> state<ul><li>Derive state from other state (e.g. the current player of a Tic Tac Toe
-game can be derived based on the board state)</li><li>Use immutable data structures instead of mutation</li><li>Pass lambdas</li><li>Recursion</li></ul></li><li><strong>Concentrate</strong> state into fewer places</li><li><strong>Defer</strong> actions (e.g. Elm architecture)</li></ul></li><li>Given a graph of components, the typical OO approach is to keep state
+they communicate with each other</li>
+<li>While we cannot get rid of state, functional programming uses a set of
+techniques to avoid state wherever possible. Rafal outlines a few techniques:
+<ul class="org-ul">
+<li><b>Minimize</b> state
+<ul class="org-ul">
+<li>Derive state from other state (e.g. the current player of a Tic Tac Toe
+game can be derived based on the board state)</li>
+<li>Use immutable data structures instead of mutation</li>
+<li>Pass lambdas</li>
+<li>Recursion</li>
+</ul></li>
+<li><b>Concentrate</b> state into fewer places</li>
+<li><b>Defer</b> actions (e.g. Elm architecture)</li>
+</ul></li>
+<li>Given a graph of components, the typical OO approach is to keep state
 separated by pushing it down as far as we can. The FP approach would be to put
-all the state into the root node</li></ul><h2 id=persistent-data-structures-and-managed-references-rich-hickeyhttpswwwinfoqcompresentationsvalue-identity-state-rich-hickey><a href=https://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey/>Persistent Data Structures and Managed References (Rich Hickey)</a></h2><ul><li>Pure functions have no notion of time and no effect on the world</li><li>Concurrency breaks variables badly<ul><li>Might not be atomic (e.g. long)</li><li>Need locks or volatile keywords</li></ul></li><li>Identity: An entity we associate with a series of relates values over time<ul><li>Can be a composite (e.g. the members of a sports team might change, but we
-still consider it to be the same sports team)</li></ul></li><li>State: Value of an identity at a time</li><li>Value: An immutable structure (e.g. numbers, strings, &mldr;)</li><li>Overall philosophy<ul><li>Things don&rsquo;t change in place</li><li>See time as a dimension</li><li>The future is a function of the past (and doesn&rsquo;t change it)</li><li>Co-located entities can observe each other without cooperation</li></ul></li></ul><h2 id=end-to-end-functional-tests-that-can-run-in-milliseconds-nat-prycehttpswwwyoutubecomwatchvfk4rcn4yllu><a href="https://www.youtube.com/watch?v=Fk4rCn4YLLU">End to end functional tests that can run in milliseconds (Nat Pryce)</a></h2><ul><li>They applied the hexagonal architecture model in combination with
-&ldquo;screenplays&rdquo;</li><li>Tests can run in different scenarios (in memory, using a Browser with or
-without JS, REST calls, &mldr;)</li><li>They put all interactions (e.g. steps a user takes to update his mail address)
-behind an interface, so that these &ldquo;use cases&rdquo; don&rsquo;t know anything about a
+all the state into the root node</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org2db99d7" class="outline-2">
+<h2 id="org2db99d7">Persistent Data Structures and Managed References (Rich Hickey)</h2>
+<div class="outline-text-2" id="text-org2db99d7">
+<p>
+<a href="https://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey/">https://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey/</a>
+</p>
+
+<ul class="org-ul">
+<li>Pure functions have no notion of time and no effect on the world</li>
+<li>Concurrency breaks variables badly
+<ul class="org-ul">
+<li>Might not be atomic (e.g. long)</li>
+<li>Need locks or volatile keywords</li>
+</ul></li>
+<li>Identity: An entity we associate with a series of relates values over time
+<ul class="org-ul">
+<li>Can be a composite (e.g. the members of a sports team might change, but we
+still consider it to be the same sports team)</li>
+</ul></li>
+<li>State: Value of an identity at a time</li>
+<li>Value: An immutable structure (e.g. numbers, strings, &#x2026;)</li>
+<li>Overall philosophy
+<ul class="org-ul">
+<li>Things don't change in place</li>
+<li>See time as a dimension</li>
+<li>The future is a function of the past (and doesn't change it)</li>
+<li>Co-located entities can observe each other without cooperation</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org847a686" class="outline-2">
+<h2 id="org847a686">End to end functional tests that can run in milliseconds (Nat Pryce)</h2>
+<div class="outline-text-2" id="text-org847a686">
+<p>
+<a href="https://www.youtube.com/watch?v=Fk4rCn4YLLU">https://www.youtube.com/watch?v=Fk4rCn4YLLU</a>
+</p>
+
+<ul class="org-ul">
+<li>They applied the hexagonal architecture model in combination with
+"screenplays"</li>
+<li>Tests can run in different scenarios (in memory, using a Browser with or
+without JS, REST calls, &#x2026;)</li>
+<li>They put all interactions (e.g. steps a user takes to update his mail address)
+behind an interface, so that these "use cases" don't know anything about a
 scenario. This technique allows the team to change an N*M mapping to an N+M
-mapping</li><li>Gives great feedback about the actual state of the system. Such an approach
-can find problems in your CDN configuration or your caching policies</li><li>Makes the overall system more observable</li><li>To test/maintain a system we need to<ul><li>Know what the system is doing</li><li>Know when it has stopped doing it</li><li>Know when the system has failed</li><li>Explain what has gone wrong</li><li>Restore the system to a good state</li></ul></li></ul><h2 id=design-microservice-architectures-the-right-way-michael-bryzekhttpswwwyoutubecomwatchvj6ow-uemzbc><a href="https://www.youtube.com/watch?v=j6ow-UemzBc">Design Microservice Architectures the Right Way (Michael Bryzek)</a></h2><ul><li>Describe APIs/Events/Databases (e.g. by using JSON) and invest in tooling<ul><li>Create custom linters to ensure that common naming conventions are used</li><li>Use code generation to automate API creation using CI/CD</li><li>Use code generation to create mocks</li><li>Create databases on the fly</li></ul></li><li>Each microservice owns its own database. Other services use APIs + Events</li><li>Event principles:<ul><li>Producers guarantee at least once delivery</li><li>Consumers implement idempotency</li></ul></li></ul><p>Key points:</p><ul><li>Design schema first for all APIs and Events<ul><li>Consume Events (not APIs) by default</li></ul></li><li>Invest in automation<ul><li>Deployment, code generation, dependency management</li></ul></li><li>Enable teams to write amazing and simple tests<ul><li>Drives quality, streamlines maintenance, enables continuous delivery</li></ul></li></ul><h2 id=entity-component-systems-and-you-theyre-not-just-for-game-developers-paris-buttfield-addison-mars-geldard-tim-nugenthttpswwwyoutubecomwatchvsfkr5rzbu-8><a href="https://www.youtube.com/watch?v=SFKR5rZBu-8">Entity Component Systems and You: They&rsquo;re Not Just For Game Developers (Paris Buttfield-Addison, Mars Geldard, Tim Nugent)</a></h2><ul><li>A paradigm/architecture which is commonly used in the game industry</li><li>ECS separate data and logic</li><li>Entities have IDs. They are similar to primary keys and are used to identity
-everything. Examples: camera, tree, player, enemy, particle</li><li>Components have data. Components are used as an alternative to hierarchies.
+mapping</li>
+<li>Gives great feedback about the actual state of the system. Such an approach
+can find problems in your CDN configuration or your caching policies</li>
+<li>Makes the overall system more observable</li>
+<li>To test/maintain a system we need to
+<ul class="org-ul">
+<li>Know what the system is doing</li>
+<li>Know when it has stopped doing it</li>
+<li>Know when the system has failed</li>
+<li>Explain what has gone wrong</li>
+<li>Restore the system to a good state</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgaf0dfbe" class="outline-2">
+<h2 id="orgaf0dfbe">Design Microservice Architectures the Right Way (Michael Bryzek)</h2>
+<div class="outline-text-2" id="text-orgaf0dfbe">
+<p>
+<a href="https://www.youtube.com/watch?v=j6ow-UemzBc">https://www.youtube.com/watch?v=j6ow-UemzBc</a>
+</p>
+
+<ul class="org-ul">
+<li>Describe APIs/Events/Databases (e.g. by using JSON) and invest in tooling
+<ul class="org-ul">
+<li>Create custom linters to ensure that common naming conventions are used</li>
+<li>Use code generation to automate API creation using CI/CD</li>
+<li>Use code generation to create mocks</li>
+<li>Create databases on the fly</li>
+</ul></li>
+<li>Each microservice owns its own database. Other services use APIs + Events</li>
+<li>Event principles:
+<ul class="org-ul">
+<li>Producers guarantee at least once delivery</li>
+<li>Consumers implement idempotency</li>
+</ul></li>
+<li>Design schema first for all APIs and Events
+<ul class="org-ul">
+<li>Consume Events (not APIs) by default</li>
+</ul></li>
+<li>Invest in automation
+<ul class="org-ul">
+<li>Deployment, code generation, dependency management</li>
+</ul></li>
+<li>Enable teams to write amazing and simple tests
+<ul class="org-ul">
+<li>Drives quality, streamlines maintenance, enables continuous delivery</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org9d21e22" class="outline-2">
+<h2 id="org9d21e22">Entity Component Systems and You: They're Not Just For Game Developers (Paris Buttfield-Addison, Mars Geldard, Tim Nugent)</h2>
+<div class="outline-text-2" id="text-org9d21e22">
+<p>
+<a href="https://www.youtube.com/watch?v=SFKR5rZBu-8">https://www.youtube.com/watch?v=SFKR5rZBu-8</a>
+</p>
+
+<ul class="org-ul">
+<li>A paradigm/architecture which is commonly used in the game industry</li>
+<li>ECS separate data and logic
+<ul class="org-ul">
+<li>Entities have IDs. They are similar to primary keys and are used to identity
+everything. Examples: camera, tree, player, enemy, particle</li>
+<li>Components have data. Components are used as an alternative to hierarchies.
 So ECS favor composition over inheritance. Examples: Position component,
-Velocity component, Damage component</li><li>Systems have logic. These systems are often chained together and can be
+Velocity component, Damage component</li>
+<li>Systems have logic. These systems are often chained together and can be
 compared to functional programming. Example: Update position of every player,
-determine hits, calculate damage, render</li><li>ECS are often combined with data-oriented design to improve performance by
-reducing cache misses. These designs can be compared to an in-memory database</li><li>Strengths<ul><li>Performance (data oriented design, parallelism)</li><li>Flexibility</li><li>No hierarchy</li><li>Have similar advantages as microservices and functional programming</li></ul></li><li>Weakness<ul><li>More code upfront</li><li>Hard to keep everything in your head</li><li>No clear starting point</li></ul></li></ul><h2 id=programming-is-the-easy-part-j-b-rainsbergerhttpswwwyoutubecomwatchvsbgish_8ugk><a href="https://www.youtube.com/watch?v=SbGiSH_8UGk">Programming Is The Easy Part (J. B. Rainsberger)</a></h2><p>A lot of high level software design principles boil down to a linear combination
-of &ldquo;remove duplication&rdquo; and &ldquo;improve names&rdquo;.</p><h2 id=modern-sql-a-lot-has-changed-since-sql-92-markus-winandhttpswwwyoutubecomwatchvrpw_x8ttqto><a href="https://www.youtube.com/watch?v=rpw_x8TtqTo">Modern SQL A lot has changed since SQL 92 (Markus Winand)</a></h2><p>SQL has changed a lot, though most developers only know the 1992 standard</p><ul><li><strong>WITH</strong> clause: create &ldquo;private&rdquo; views to make a query more readable</li><li><strong>WITH RECURSIVE</strong>: is an implementation of loops in SQL. It can be used to
-walk hierarchies</li><li><strong>GROUPING SETS</strong>: use several GROUP BY statements at the same time</li><li><strong>FILTER</strong>: Adds WHERE expressions to aggregates</li><li><strong>OVER</strong> and <strong>PARTITION BY</strong>: Aggregates without GROUP BY. Can be used to
-implement features such as row-based balancing</li><li><strong>FETCH FIRST</strong>: also known as LIMIT</li><li><strong>OFFSET</strong>: gives the remaining data when using FETCH FIRST, but there are
-traps. Don&rsquo;t use it</li><li><strong>OVER</strong>: window functions</li><li><strong>System Versioning</strong>: Can be used to show tables at a given time. Adds audit
-features to destructive changes such as INSERT, UPDATE or DELETE</li></ul><h2 id=testing-as-an-equal-1st-class-citizen-to-coding-jon-jaggerhttpswwwyoutubecomwatchv1u6ddiffh6q><a href="https://www.youtube.com/watch?v=1u6DdiFFH6Q">Testing as an equal 1st class citizen to coding (Jon Jagger)</a></h2><ul><li>The Equilibrium law: stable systems tend to oppose their own proper function</li><li>All changes can be understood as the effort to maintain some constancy, and
-all constancy as maintained through change</li><li>You will not increase the speed of your car if you think that your brakes are
-unreliable</li><li>Tests act like brakes when developing software</li><li>Are you confident enough to delete &ldquo;dead&rdquo; code?</li></ul><h2 id=technical-leadership-and-glue-work-tanya-reillyhttpswwwyoutubecomwatchvkclapipnkqw><a href="https://www.youtube.com/watch?v=KClAPipnKqw">Technical Leadership and Glue Work (Tanya Reilly)</a></h2><ul><li>Glue work<ul><li>is work that makes the whole teams better</li><li>is expected when you are senior</li><li>and risky when you are not</li><li>(people might not be rewarded for it)</li></ul></li><li>Women tend to volunteer more often to do unpromotable work than men<ul><li>Men also volunteer less because they know that women will step in if no one
-volunteers</li></ul></li><li>What do you want to get better at?</li><li>The vast majority of our learning happens at our job</li></ul><h2 id=the-only-unbreakable-law-casey-muratorihttpswwwyoutubecomwatchv5iuj1ezwpjy><a href="https://www.youtube.com/watch?v=5IUj1EZwpJY">The Only Unbreakable Law (Casey Muratori)</a></h2><ul><li>Conway&rsquo;s law states that a piece of software tends to reflect a company&rsquo;s
-communication structures (its org chart)</li><li>The intended title of this talk should have been Conway&rsquo;s nightmare</li><li>What Conway did not anticipate: A piece of software does not only reflect the
-current org chart, but it most likely also contains fragments of <strong>previous</strong>
-org charts</li><li>Windows contains at least four different volume controls which were all
-created in different versions of Windows</li><li>We create organizations and groups to tackle problems that we cannot solve
-alone. They are in a way a necessity, but they are not inherently &ldquo;good&rdquo;</li><li>Developers tend to do the same thing when they are writing code: They create
+determine hits, calculate damage, render</li>
+</ul></li>
+<li>ECS are often combined with data-oriented design to improve performance by
+reducing cache misses. These designs can be compared to an in-memory database</li>
+<li>Strengths
+<ul class="org-ul">
+<li>Performance (data oriented design, parallelism)</li>
+<li>Flexibility</li>
+<li>No hierarchy</li>
+<li>Have similar advantages as microservices and functional programming</li>
+</ul></li>
+<li>Weakness
+<ul class="org-ul">
+<li>More code upfront</li>
+<li>Hard to keep everything in your head</li>
+<li>No clear starting point</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgcafa1ae" class="outline-2">
+<h2 id="orgcafa1ae">Programming Is The Easy Part (J. B. Rainsberger)</h2>
+<div class="outline-text-2" id="text-orgcafa1ae">
+<p>
+<a href="https://www.youtube.com/watch?v=SbGiSH_8UGk">https://www.youtube.com/watch?v=SbGiSH_8UGk</a>
+</p>
+
+<p>
+A lot of high level software design principles boil down to a linear combination
+of "remove duplication" and "improve names".
+</p>
+</div>
+</div>
+
+<div id="outline-container-org985704c" class="outline-2">
+<h2 id="org985704c">Modern SQL A lot has changed since SQL 92 (Markus Winand)</h2>
+<div class="outline-text-2" id="text-org985704c">
+<p>
+<a href="https://www.youtube.com/watch?v=rpw_x8TtqTo">https://www.youtube.com/watch?v=rpw_x8TtqTo</a>
+</p>
+
+<p>
+SQL has changed a lot, though most developers only know the 1992 standard
+</p>
+
+<ul class="org-ul">
+<li><b>WITH</b> clause: create "private" views to make a query more readable</li>
+<li><b>WITH RECURSIVE</b>: is an implementation of loops in SQL. It can be used to
+walk hierarchies</li>
+<li><b>GROUPING SETS</b>: use several GROUP BY statements at the same time</li>
+<li><b>FILTER</b>: Adds WHERE expressions to aggregates</li>
+<li><b>OVER</b> and <b>PARTITION BY</b>: Aggregates without GROUP BY. Can be used to
+implement features such as row-based balancing</li>
+<li><b>FETCH FIRST</b>: also known as LIMIT</li>
+<li><b>OFFSET</b>: gives the remaining data when using FETCH FIRST, but there are
+traps. Don't use it</li>
+<li><b>OVER</b>: window functions</li>
+<li><b>System Versioning</b>: Can be used to show tables at a given time. Adds audit
+features to destructive changes such as INSERT, UPDATE or DELETE</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb252763" class="outline-2">
+<h2 id="orgb252763">Testing as an equal 1st class citizen to coding (Jon Jagger)</h2>
+<div class="outline-text-2" id="text-orgb252763">
+<p>
+<a href="https://www.youtube.com/watch?v=1u6DdiFFH6Q">https://www.youtube.com/watch?v=1u6DdiFFH6Q</a>
+</p>
+
+<ul class="org-ul">
+<li>The Equilibrium law: stable systems tend to oppose their own proper function</li>
+<li>All changes can be understood as the effort to maintain some constancy, and
+all constancy as maintained through change</li>
+<li>You will not increase the speed of your car if you think that your brakes are
+unreliable</li>
+<li>Tests act like brakes when developing software</li>
+<li>Are you confident enough to delete "dead" code?</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org3352061" class="outline-2">
+<h2 id="org3352061">Technical Leadership and Glue Work (Tanya Reilly)</h2>
+<div class="outline-text-2" id="text-org3352061">
+<p>
+<a href="https://www.youtube.com/watch?v=KClAPipnKqw">https://www.youtube.com/watch?v=KClAPipnKqw</a>
+</p>
+
+<ul class="org-ul">
+<li>Glue work
+<ul class="org-ul">
+<li>is work that makes the whole teams better</li>
+<li>is expected when you are senior</li>
+<li>and risky when you are not</li>
+<li>(people might not be rewarded for it)</li>
+</ul></li>
+<li>Women tend to volunteer more often to do unpromotable work than men
+<ul class="org-ul">
+<li>Men also volunteer less because they know that women will step in if no one
+volunteers</li>
+</ul></li>
+<li>What do you want to get better at?</li>
+<li>The vast majority of our learning happens at our job</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org4055ae6" class="outline-2">
+<h2 id="org4055ae6">The Only Unbreakable Law (Casey Muratori)</h2>
+<div class="outline-text-2" id="text-org4055ae6">
+<p>
+<a href="https://www.youtube.com/watch?v=5IUj1EZwpJY">https://www.youtube.com/watch?v=5IUj1EZwpJY</a>
+</p>
+
+<ul class="org-ul">
+<li>Conway's law states that a piece of software tends to reflect a company's
+communication structures (its org chart)</li>
+<li>The intended title of this talk should have been Conway's nightmare</li>
+<li>What Conway did not anticipate: A piece of software does not only reflect the
+current org chart, but it most likely also contains fragments of <b>previous</b>
+org charts</li>
+<li>Windows contains at least four different volume controls which were all
+created in different versions of Windows</li>
+<li>We create organizations and groups to tackle problems that we cannot solve
+alone. They are in a way a necessity, but they are not inherently "good"</li>
+<li>Developers tend to do the same thing when they are writing code: They create
 class hierarchies so they can divide a problem which they cannot keep in their
-head. Just like org charts, they might be too complicated or inefficient</li></ul><h2 id=improving-ebays-development-velocity-randy-shoup-and-mark-weinberghttpswwwyoutubecomwatchvqgjs0ia114e><a href="https://www.youtube.com/watch?v=Qgjs0IA114E">Improving eBay&rsquo;s Development Velocity (Randy Shoup and Mark Weinberg)</a></h2><ul><li>Randy and Mark used the Accelerate book</li><li>Used DORA metrics to track progress</li><li>Teams delivered >2x the features</li><li>Focused on removing bottlenecks</li><li>How could we deliver once per day? - Here is a list of 20 things that are
-holding us back</li><li>CEO: &ldquo;The most important initiative at the company. Go faster!&rdquo;</li></ul><h2 id=uncoupling-michael-nygardhttpswwwyoutubecomwatchvmaw4ygx1c-4><a href="https://www.youtube.com/watch?v=mAw4ygX1c-4">Uncoupling (Michael Nygard)</a></h2><p>Coupling</p><ul><li>Determines degree of freedom</li><li>Enables some movement</li><li>Inhibits other movement</li><li>Connects effects</li><li>Is necessary and inescapable</li></ul><p>Kinds of Coupling</p><ul><li>Operational: Consumer cannot run without the provider</li><li>Development: Changes in producer and consumer must be coordinated</li><li>Semantic: Change together because of shared concepts</li><li>Functional: Change together because of shared responsibility</li><li>Incidental: Change together for no good reason</li></ul><p>Composability</p><ul><li>Is inversely proportional to the number of interfaces</li><li>Is inversely proportional to the number of data types</li></ul><h2 id=make-impacts-not-software-gojko-adzichttpswwwyoutubecomwatchvgnk_n9udhhs><a href="https://www.youtube.com/watch?v=GnK_n9Udhhs">Make Impacts Not Software (Gojko Adzic)</a></h2><ul><li>Typical software road maps are better described as tunnels, since these &ldquo;maps&rdquo;
-typically only contain a single road/approach</li><li>A real road map contains several different ways to reach a specific goals</li><li>Before the invention of GPS a long trip involved a lot of upfront planning</li><li>A GPS eliminates this upfront planning by recalculating potential routes
-depending on-the-fly (e.g. in case of heavy traffic or an accident)</li><li>Shipping small increments are the equivalent to a GPS recalculation process.
+head. Just like org charts, they might be too complicated or inefficient</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgbf0eebf" class="outline-2">
+<h2 id="orgbf0eebf">Improving eBay's Development Velocity (Randy Shoup and Mark Weinberg)</h2>
+<div class="outline-text-2" id="text-orgbf0eebf">
+<p>
+<a href="https://www.youtube.com/watch?v=Qgjs0IA114E">https://www.youtube.com/watch?v=Qgjs0IA114E</a>
+</p>
+
+<ul class="org-ul">
+<li>Randy and Mark used the Accelerate book</li>
+<li>Used DORA metrics to track progress</li>
+<li>Teams delivered &gt;2x the features</li>
+<li>Focused on removing bottlenecks</li>
+<li>How could we deliver once per day? - Here is a list of 20 things that are
+holding us back</li>
+<li>CEO: "The most important initiative at the company. Go faster!"</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd649559" class="outline-2">
+<h2 id="orgd649559">Uncoupling (Michael Nygard)</h2>
+<div class="outline-text-2" id="text-orgd649559">
+<p>
+<a href="https://www.youtube.com/watch?v=mAw4ygX1c-4">https://www.youtube.com/watch?v=mAw4ygX1c-4</a>
+</p>
+
+<p>
+<b>Coupling</b>
+</p>
+
+<ul class="org-ul">
+<li>Determines degree of freedom</li>
+<li>Enables some movement</li>
+<li>Inhibits other movement</li>
+<li>Connects effects</li>
+<li>Is necessary and inescapable</li>
+</ul>
+
+<p>
+<b>Kinds of Coupling</b>
+</p>
+
+<ul class="org-ul">
+<li>Operational: Consumer cannot run without the provider</li>
+<li>Development: Changes in producer and consumer must be coordinated</li>
+<li>Semantic: Change together because of shared concepts</li>
+<li>Functional: Change together because of shared responsibility</li>
+<li>Incidental: Change together for no good reason</li>
+</ul>
+
+<p>
+<b>Composability</b>
+</p>
+
+<ul class="org-ul">
+<li>Is inversely proportional to the number of interfaces</li>
+<li>Is inversely proportional to the number of data types</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org547b32c" class="outline-2">
+<h2 id="org547b32c">Make Impacts Not Software (Gojko Adzic)</h2>
+<div class="outline-text-2" id="text-org547b32c">
+<p>
+<a href="https://www.youtube.com/watch?v=GnK_n9Udhhs">https://www.youtube.com/watch?v=GnK_n9Udhhs</a>
+</p>
+
+<ul class="org-ul">
+<li>Typical software road maps are better described as tunnels, since these "maps"
+typically only contain a single road/approach</li>
+<li>A real road map contains several different ways to reach a specific goals</li>
+<li>Before the invention of GPS a long trip involved a lot of upfront planning</li>
+<li>A GPS eliminates this upfront planning by recalculating potential routes
+depending on-the-fly (e.g. in case of heavy traffic or an accident)</li>
+<li>Shipping small increments are the equivalent to a GPS recalculation process.
 We can use fast feedback to decide how to change our route (by using a road
-map)</li><li>Software projects typically do not have a specific destination. Most of the
-time the &ldquo;real&rdquo; destination arises while we are developing something new</li><li>People measure what&rsquo;s easy, not was is important</li><li>Story points, time estimates or bug counts are negative metrics. They tell you
+map)</li>
+<li>Software projects typically do not have a specific destination. Most of the
+time the "real" destination arises while we are developing something new</li>
+<li>People measure what's easy, not was is important</li>
+<li>Story points, time estimates or bug counts are negative metrics. They tell you
 when something is wrong, but they cannot tell you if everything is alright.
-&ldquo;Zero bugs&rdquo; could mean &ldquo;great quality&rdquo; but it could also mean &ldquo;no or poor
-testing&rdquo; or &ldquo;nothing new was delivered&rdquo;. In other words: absence of evidence
-is not evidence of absence</li><li><a href=https://www.impactmapping.org/>https://www.impactmapping.org/</a></li></ul><h2 id=protect-yourself-against-supply-chain-attacks-rob-boshttpswwwyoutubecomwatchv00r1jgbqejg><a href="https://www.youtube.com/watch?v=00R1JGBQEJg">Protect Yourself Against Supply Chain Attacks (Rob Bos)</a></h2><ul><li>Libraries used by your application and tooling used to build your application</li><li>Supply Chain Confusion (typo squatting, namespace shadowing, configuration
-files, pipeline attacks, pipeline artifact attacks)</li><li>Typo squatting: a malicious copy of a well known package is published using a
-slightly different name (e.g. <code>coreenv</code> and <code>core-env</code>)</li><li>Some package managers offer a namespace feature (e.g. <code>@azure/some-package</code>
-instead of just using <code>some-package</code>)</li><li>You not only want to know which packages (and their versions) you are using.
-You also want to know where you got these packages from</li><li>Protect yourself using software composition analysis (AST or DAST -
-Static/Dynamic Application Security Testing)</li><li>Package manager scanners: WhiteSource, BlackDuck, GitHub Dependabot, snyk.io</li><li>You can use CVE databases to check that your packages do not contain known
-issues</li><li>We want to find issues as fast as possible. In the best case we find an issue
-before we commit code or run a CI build</li><li>Frameworks:<ul><li>OWASP Software Component Verification Standard (SCVS)</li><li>Supply Chain Levels for Software Artifacts (SLSA)</li></ul></li></ul><h2 id=monitoring-is-not-observability-baron-schwartzhttpswwwyoutubecomwatchvfbdi7f9pjli><a href="https://www.youtube.com/watch?v=fBDI7F9PjlI">Monitoring Is Not Observability (Baron Schwartz)</a></h2><ul><li>Definitions<ul><li>Observability: an attribute of a system</li><li>Instrumentation: measurement points</li><li>Telemetry: the measurements themselves</li><li>Analytics: turning telemetry into answers</li><li>Monitoring: checking/evaluating system state</li></ul></li><li>Events, Logs, Metrics, Traces</li><li>It&rsquo;s all derived from events</li><li>Kinds of telemetry<ul><li>USE: Utilization, saturation, error</li><li>RED: Requests, errors, duration</li><li>SRE Book: Latency, traffic, errors and saturation</li><li>Queuing theory</li><li>Little&rsquo;s law</li><li>Universal scalability law</li></ul></li></ul><h2 id=working-at-the-center-of-the-cyclone-dr-richard-cookhttpswwwyoutubecomwatchv3zp98stduf0><a href="https://www.youtube.com/watch?v=3ZP98stDUf0">Working at the Center of the Cyclone (Dr. Richard Cook)</a></h2><ul><li>Complexity is change</li><li>It&rsquo;s not surprising that your system sometimes fail. What is surprising that
-it ever works at all</li><li>You build systems differently when you expect them to fail</li><li>Failure is normal. Failed state is the normal state</li><li>You need to build an organization that is able to recover from failure</li><li>People are part of &ldquo;the system&rdquo;</li><li>You never see &ldquo;the system&rdquo;, you only see a representation (what you see on
-your screen)</li><li>An incident is something that occurs in the mind of people who read
-representations of a system</li><li>No mental model is &ldquo;the system&rdquo;</li><li>Ordinary firms experience one to five acknowledged events per day</li><li>As the complexity of a system increases, the accuracy of any agent&rsquo;s model of
-that system decreases</li><li>Rollbacks do not keep you safe</li><li>You need to consider &ldquo;the system&rdquo; and &ldquo;the organization&rdquo; (which are part of
-the system) to be successful</li><li>Incidents are bits of wisdom. They show you where your mental model differs
-from &ldquo;the system&rdquo;</li></ul><h2 id=resilience-in-complex-adaptive-systems-dr-richard-cookhttpswwwyoutubecomwatchvpglyedpnu60><a href="https://www.youtube.com/watch?v=PGLYEDpNu60">Resilience In Complex Adaptive Systems (Dr. Richard Cook)</a></h2><ul><li>Rasmussen&rsquo;s system model<ul><li>Economic failure boundary</li><li>Accident boundary</li><li>Unacceptable workload boundary</li></ul></li><li>The operating point tends to move towards the accident boundary</li><li>If you get people together for a meeting about how important some topic is,
-you know you have failed</li><li>We introduce a margin which should keep us from reaching the accident
-boundary. This also applies to speed limits or telling your kids &ldquo;no, the
-stove is hot!&rdquo;. The problem is that we don&rsquo;t really know where the accident
-boundary is</li><li>Normalization of deviance: Crossing over the margin line over and over without
+"Zero bugs" could mean "great quality" but it could also mean "no or poor
+testing" or "nothing new was delivered". In other words: absence of evidence
+is not evidence of absence</li>
+<li><a href="https://www.impactmapping.org/">https://www.impactmapping.org/</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org0e967e3" class="outline-2">
+<h2 id="org0e967e3">Protect Yourself Against Supply Chain Attacks (Rob Bos)</h2>
+<div class="outline-text-2" id="text-org0e967e3">
+<p>
+<a href="https://www.youtube.com/watch?v=00R1JGBQEJg">https://www.youtube.com/watch?v=00R1JGBQEJg</a>
+</p>
+
+<ul class="org-ul">
+<li>Libraries used by your application and tooling used to build your application</li>
+<li>Supply Chain Confusion (typo squatting, namespace shadowing, configuration
+files, pipeline attacks, pipeline artifact attacks)</li>
+<li>Typo squatting: a malicious copy of a well known package is published using a
+slightly different name (e.g. <code>coreenv</code> and <code>core-env</code>)</li>
+<li>Some package managers offer a namespace feature (e.g. <code>@azure/some-package</code>
+instead of just using <code>some-package</code>)</li>
+<li>You not only want to know which packages (and their versions) you are using.
+You also want to know where you got these packages from</li>
+<li>Protect yourself using software composition analysis (AST or DAST -
+Static/Dynamic Application Security Testing)</li>
+<li>Package manager scanners: WhiteSource, BlackDuck, GitHub Dependabot, snyk.io</li>
+<li>You can use CVE databases to check that your packages do not contain known
+issues</li>
+<li>We want to find issues as fast as possible. In the best case we find an issue
+before we commit code or run a CI build</li>
+<li>Frameworks:
+<ul class="org-ul">
+<li>OWASP Software Component Verification Standard (SCVS)</li>
+<li>Supply Chain Levels for Software Artifacts (SLSA)</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd124797" class="outline-2">
+<h2 id="orgd124797">Monitoring Is Not Observability (Baron Schwartz)</h2>
+<div class="outline-text-2" id="text-orgd124797">
+<p>
+<a href="https://www.youtube.com/watch?v=fBDI7F9PjlI">https://www.youtube.com/watch?v=fBDI7F9PjlI</a>
+</p>
+
+<ul class="org-ul">
+<li>Definitions
+<ul class="org-ul">
+<li>Observability: an attribute of a system</li>
+<li>Instrumentation: measurement points</li>
+<li>Telemetry: the measurements themselves</li>
+<li>Analytics: turning telemetry into answers</li>
+<li>Monitoring: checking/evaluating system state</li>
+</ul></li>
+<li>Events, Logs, Metrics, Traces</li>
+<li>It's all derived from events</li>
+<li>Kinds of telemetry
+<ul class="org-ul">
+<li>USE: Utilization, saturation, error</li>
+<li>RED: Requests, errors, duration</li>
+<li>SRE Book: Latency, traffic, errors and saturation</li>
+<li>Queuing theory</li>
+<li>Little's law</li>
+<li>Universal scalability law</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org7710529" class="outline-2">
+<h2 id="org7710529">Working at the Center of the Cyclone (Dr. Richard Cook)</h2>
+<div class="outline-text-2" id="text-org7710529">
+<p>
+<a href="https://www.youtube.com/watch?v=3ZP98stDUf0">https://www.youtube.com/watch?v=3ZP98stDUf0</a>
+</p>
+
+<ul class="org-ul">
+<li>Complexity is change</li>
+<li>It's not surprising that your system sometimes fail. What is surprising that
+it ever works at all</li>
+<li>You build systems differently when you expect them to fail</li>
+<li>Failure is normal. Failed state is the normal state</li>
+<li>You need to build an organization that is able to recover from failure</li>
+<li>People are part of "the system"</li>
+<li>You never see "the system", you only see a representation (what you see on
+your screen)</li>
+<li>An incident is something that occurs in the mind of people who read
+representations of a system</li>
+<li>No mental model is "the system"</li>
+<li>Ordinary firms experience one to five acknowledged events per day</li>
+<li>As the complexity of a system increases, the accuracy of any agent's model of
+that system decreases</li>
+<li>Rollbacks do not keep you safe</li>
+<li>You need to consider "the system" and "the organization" (which are part of
+the system) to be successful</li>
+<li>Incidents are bits of wisdom. They show you where your mental model differs
+from "the system"</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org5dbaa2a" class="outline-2">
+<h2 id="org5dbaa2a">Resilience In Complex Adaptive Systems (Dr. Richard Cook)</h2>
+<div class="outline-text-2" id="text-org5dbaa2a">
+<p>
+<a href="https://www.youtube.com/watch?v=PGLYEDpNu60">https://www.youtube.com/watch?v=PGLYEDpNu60</a>
+</p>
+
+<ul class="org-ul">
+<li>Rasmussen's system model
+<ul class="org-ul">
+<li>Economic failure boundary</li>
+<li>Accident boundary</li>
+<li>Unacceptable workload boundary</li>
+</ul></li>
+<li>The operating point tends to move towards the accident boundary</li>
+<li>If you get people together for a meeting about how important some topic is,
+you know you have failed</li>
+<li>We introduce a margin which should keep us from reaching the accident
+boundary. This also applies to speed limits or telling your kids "no, the
+stove is hot!". The problem is that we don't really know where the accident
+boundary is</li>
+<li>Normalization of deviance: Crossing over the margin line over and over without
 a problem makes us wonder what the big deal is. Is this margin too
-conservative? We are &ldquo;flirting&rdquo; with the margin</li><li>Resilience: monitoring, reacting, anticipating and learning activities</li></ul><h2 id=how-complex-systems-fail-dr-richard-cookhttpswwwyoutubecomwatchv2s0k12uzr14><a href="https://www.youtube.com/watch?v=2S0k12uZR14">How Complex Systems Fail (Dr. Richard Cook)</a></h2><ul><li><a href=https://how.complexsystems.fail>https://how.complexsystems.fail</a></li><li>We have the &ldquo;as imagined&rdquo; and the &ldquo;as found&rdquo; world. These are pretty different
-worlds!</li><li>We design for reliability<ul><li>stiff boundaries, layers, formalism</li><li>defense in depth</li><li>redundancy</li><li>interference protection</li><li>assurance</li><li>accountability</li></ul></li><li>We want resilience<ul><li>withstand transients</li><li>recover swiftly and smoothly from failures</li><li>prioritize to serve high level goals</li><li>recognize and respond to abnormal situations</li><li>adapt to change</li></ul></li><li>The time between maintenance is zero. Continuous maintenance should be part of
-the design</li><li>Reveal the actual controls to your operators so that they can help you in case
+conservative? We are "flirting" with the margin</li>
+<li>Resilience: monitoring, reacting, anticipating and learning activities</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgcea17a0" class="outline-2">
+<h2 id="orgcea17a0">How Complex Systems Fail (Dr. Richard Cook)</h2>
+<div class="outline-text-2" id="text-orgcea17a0">
+<p>
+<a href="https://www.youtube.com/watch?v=2S0k12uZR14">https://www.youtube.com/watch?v=2S0k12uZR14</a>
+</p>
+
+<ul class="org-ul">
+<li><a href="https://how.complexsystems.fail">https://how.complexsystems.fail</a></li>
+<li>We have the "as imagined" and the "as found" world. These are pretty different
+worlds!</li>
+<li>We design for reliability
+<ul class="org-ul">
+<li>stiff boundaries, layers, formalism</li>
+<li>defense in depth</li>
+<li>redundancy</li>
+<li>interference protection</li>
+<li>assurance</li>
+<li>accountability</li>
+</ul></li>
+<li>We want resilience
+<ul class="org-ul">
+<li>withstand transients</li>
+<li>recover swiftly and smoothly from failures</li>
+<li>prioritize to serve high level goals</li>
+<li>recognize and respond to abnormal situations</li>
+<li>adapt to change</li>
+</ul></li>
+<li>The time between maintenance is zero. Continuous maintenance should be part of
+the design</li>
+<li>Reveal the actual controls to your operators so that they can help you in case
 of accidents. Developers tend to design systems that make it impossible for
-people to do things. We are trying to protect systems from people</li><li>Heavy machines have actual markers that show where you can lift them, since
+people to do things. We are trying to protect systems from people</li>
+<li>Heavy machines have actual markers that show where you can lift them, since
 the manufacturers know that you will move them. We should also consider
-similar scenarios when dealing with software</li><li>Support mental simulation by giving operators insight into the system</li><li>Black boxes (hiding all details behind layers of abstractions) are a big
-mistake. We have to know the inside of a black box to reason about it</li><li>Resilience agenda:<ul><li>Operators are competent to hold the keys to the systems we build</li><li>Make resilience engineering the first priority of design for next gen
-systems</li><li>Commit resources to discovering, understanding and supporting resilience
-through the system life-cycle</li></ul></li></ul><h2 id=sleeping-with-the-enemy-gojko-adzichttpswwwyoutubecomwatchvhimwtzaaq-w><a href="https://www.youtube.com/watch?v=hIMwTzAAQ-w">Sleeping with the enemy (Gojko Adzic)</a></h2><ul><li>Manual testing is a bottleneck</li><li>Let developers watch testers so that they can build understanding and trust</li><li>A software architect is somebody who writes very small parts of code for
+similar scenarios when dealing with software</li>
+<li>Support mental simulation by giving operators insight into the system</li>
+<li>Black boxes (hiding all details behind layers of abstractions) are a big
+mistake. We have to know the inside of a black box to reason about it</li>
+<li>Resilience agenda:
+<ul class="org-ul">
+<li>Operators are competent to hold the keys to the systems we build</li>
+<li>Make resilience engineering the first priority of design for next gen
+systems</li>
+<li>Commit resources to discovering, understanding and supporting resilience
+through the system life-cycle</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orge48312c" class="outline-2">
+<h2 id="orge48312c">Sleeping with the enemy (Gojko Adzic)</h2>
+<div class="outline-text-2" id="text-orge48312c">
+<p>
+<a href="https://www.youtube.com/watch?v=hIMwTzAAQ-w">https://www.youtube.com/watch?v=hIMwTzAAQ-w</a>
+</p>
+
+<ul class="org-ul">
+<li>Manual testing is a bottleneck</li>
+<li>Let developers watch testers so that they can build understanding and trust</li>
+<li>A software architect is somebody who writes very small parts of code for
 critical systems. Most of his time is spent on mentoring and helping others do
-their job</li><li>The role of a tester should be similar to the role of a software architect, so
-let&rsquo;s turn testers into &ldquo;test architects&rdquo;</li><li>This approach inverts the flow. Developers no longer push code to testers</li></ul><p>Some quotes:</p><ul><li>&ldquo;It makes much more sense to get the programmers involved to automate the
-tests while testers come up with the right test cases to automate.&rdquo;</li><li>&ldquo;I hate story points! Story points are useless! Story points measure effort,
-they are so easy to cheat, story points don&rsquo;t measure outcome. So, what we
+their job</li>
+<li>The role of a tester should be similar to the role of a software architect, so
+let's turn testers into "test architects"</li>
+<li>This approach inverts the flow. Developers no longer push code to testers</li>
+</ul>
+
+<p>
+Some quotes:
+</p>
+
+<ul class="org-ul">
+<li>"It makes much more sense to get the programmers involved to automate the
+tests while testers come up with the right test cases to automate."</li>
+<li>"I hate story points! Story points are useless! Story points measure effort,
+they are so easy to cheat, story points don't measure outcome. So, what we
 need to look at is: what is the outcome? how do we measure the outcomes? And
 then, that measures the productivity because that is what really productivity
-is. I don&rsquo;t care about lines of code, tests cases produced&mldr;What is the
-outcome?&rdquo;</li></ul><h2 id=diagrams-as-code-20-simon-brownhttpswwwyoutubecomwatchvza1-v4zkq5e><a href="https://www.youtube.com/watch?v=Za1-v4Zkq5E">Diagrams as Code 2.0 (Simon Brown)</a></h2><ul><li>Simon is the author of <a href=https://c4model.com/>https://c4model.com/</a></li><li>The C4 model describes a set of abstractions which can be used to create
+is. I don't care about lines of code, tests cases produced&#x2026;What is the
+outcome?"</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org77ab347" class="outline-2">
+<h2 id="org77ab347">Diagrams as Code 2.0 (Simon Brown)</h2>
+<div class="outline-text-2" id="text-org77ab347">
+<p>
+<a href="https://www.youtube.com/watch?v=Za1-v4Zkq5E">https://www.youtube.com/watch?v=Za1-v4Zkq5E</a>
+</p>
+
+<ul class="org-ul">
+<li>Simon is the author of <a href="https://c4model.com/">https://c4model.com/</a></li>
+<li>The C4 model describes a set of abstractions which can be used to create
 architecture diagrams that behave similar to Google Maps, where you can zoom
 in and out of a map to change the amount of details you see. A legend is used
-to explain notation</li><li>Diagrams as code 1.0 is a nice way to create version controlled diagrams</li><li>Diagrams as code 2.0 describes an overall model of your architecture which can
-then be used to create one or more views (diagrams as code 1.0)</li><li>Simon was created open source tooling to describe an architecture model using
-the <a href=https://github.com/structurizr/dsl>Structurizr DSL</a></li></ul><h2 id=software-architecture-team-topologies-and-complexity-science-james-lewishttpswwwyoutubecomwatchvuawjefljunk><a href="https://www.youtube.com/watch?v=uAwJEFLJunk">Software Architecture, Team Topologies and Complexity Science (James Lewis)</a></h2><ul><li>The book &ldquo;Team Topologies&rdquo; outlines the four fundamental teams you need to
-build software fast:<ul><li>Stream-aligned teams</li><li>Enabling teams</li><li>Complicated subsystem teams</li><li>Platform teams</li></ul></li><li>Mice, humans and elephants have roughly the same amount of heartbeats in their
+to explain notation</li>
+<li>Diagrams as code 1.0 is a nice way to create version controlled diagrams</li>
+<li>Diagrams as code 2.0 describes an overall model of your architecture which can
+then be used to create one or more views (diagrams as code 1.0)</li>
+<li>Simon was created open source tooling to describe an architecture model using
+the <a href="https://github.com/structurizr/dsl">Structurizr DSL</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org2303ae2" class="outline-2">
+<h2 id="org2303ae2">Software Architecture, Team Topologies and Complexity Science (James Lewis)</h2>
+<div class="outline-text-2" id="text-org2303ae2">
+<p>
+<a href="https://www.youtube.com/watch?v=uAwJEFLJunk">https://www.youtube.com/watch?v=uAwJEFLJunk</a>
+</p>
+
+<ul class="org-ul">
+<li>The book "Team Topologies" outlines the four fundamental teams you need to
+build software fast:
+<ul class="org-ul">
+<li>Stream-aligned teams</li>
+<li>Enabling teams</li>
+<li>Complicated subsystem teams</li>
+<li>Platform teams</li>
+</ul></li>
+<li>Mice, humans and elephants have roughly the same amount of heartbeats in their
 lifetime. They also have the same blood pressure. The bigger a mammal, the
-slower they live</li><li>Complex adaptive systems (mammals, cities or companies) show sub-linear
+slower they live</li>
+<li>Complex adaptive systems (mammals, cities or companies) show sub-linear
 scaling: doubling one factor (e.g. size) does not double other factors (e.g.
-calorie intake, cost of building streets, revenue)</li><li>Hierarchical fractal networks scale following a power law with an exponent of
-less than one</li><li>Queues create back-pressure. Putting a queue into an information flow pauses
-the flow</li><li>Larger organizations spend less of their revenue on R&amp;D</li><li>Cities show more than one type of scaling:<ul><li>Super-linear: innovation, wages, number of professionals, crime, disease,
-pollution (social network)</li><li>Sub-linear: road length, number of petrol stations and restaurants, water
-pipes, electricity cables (hierarchical network)</li></ul></li></ul><h2 id=automation-is-hard--we-are-doing-it-wrong-johan-abildskovhttpswwwyoutubecomwatchvju5nixirk3y><a href="https://www.youtube.com/watch?v=JU5niXIrK3Y">Automation Is Hard & We Are Doing It Wrong (Johan Abildskov)</a></h2><ul><li>What is DevOps? One Definition: Culture, Automation, Lean, Measuring, Sharing</li><li>Automation is not a luxury. It&rsquo;s a permission to play<ul><li>&ldquo;I don&rsquo;t want to buy software from people who are wasting their time&rdquo;</li></ul></li><li>&ldquo;But our customers won&rsquo;t pay for automation&rdquo; - well, they most likely don&rsquo;t
-want to pay for your dailies, retrospectives or coffee breaks either</li><li>Minimize the cost of adding one more engineer</li><li>Maximize the value of adding one more engineer</li><li>Why digitalization will kill your company too<ul><li>Limited software skills in senior leadership</li><li>Ambidexterity: solve today&rsquo;s challenges while preparing for future needs</li><li>Leaders believe that digitalization is an R&amp;D problem</li><li>Justify their lack of initiative by referring to the lack of desire for
-change from their most valuable customers</li></ul></li><li>Automation is not complex. An excavator is an obvious upgrade to a shovel</li><li>Automating simple things is simple. Automating complex things might be
-impossible (without losing your sanity)</li><li>Industry and technology stack doesn&rsquo;t matter. Architecture does (Nicole
-Forsgren, PhD)</li><li>Automation is software. We should treat it as such!<ul><li>Use version control</li><li>Create documentation</li><li>Have tests</li></ul></li><li>Monitor your automation. Use circuit breakers<ul><li>Does my automation do something silly?</li><li>Use overrides but add checks to find stale overrides</li></ul></li><li>Idempotency is your friend</li><li>Jevons Paradox: Increased efficiency != reduced consumption</li><li>Keep in mind that an increase in automation can increase manual work (in other
-areas)</li><li>Automation is way more than cost-down</li></ul><h2 id=engineering-documentation-lorna-jane-mitchellhttpswwwyoutubecomwatchvz5orr99opiy><a href="https://www.youtube.com/watch?v=Z5OrR99OpiY">Engineering Documentation (Lorna Jane Mitchell)</a></h2><ul><li>Documentation enables customer success</li><li>An investment that scales</li><li><a href=https://diataxis.fr/>https://diataxis.fr/</a></li><li>Use <strong>really</strong> good search</li><li>Use the same tools and workflows as for code</li><li>Prose linter <a href=https://vale.sh/>https://vale.sh/</a></li></ul><h2 id=kinder-es-tut-mir-undendlich-leid-martin-leyrerhttpswwwyoutubecomwatchvdpqokwyohlq><a href="https://www.youtube.com/watch?v=dpQOKwYOhLQ">Kinder, es tut mir undendlich leid (Martin Leyrer)</a></h2><p>&ldquo;We build our computer (systems) the way we build our cities: Over time, without
-a plan, on top of ruins&rdquo; - Ellen Ullman</p><h2 id=an-introduction-to-residuality-theory-barry-oreillyhttpswwwyoutubecomwatchv0wcug2ev-7e><a href="https://www.youtube.com/watch?v=0wcUG2EV-7E">An Introduction to Residuality Theory (Barry O&rsquo;Reilly)</a></h2><ul><li>How can we apply complexity theory to software development?</li><li>Creating software can be boiled down to a two step algorithm:<ul><li>a random simulation of our environments, followed by</li><li>an NKP analysis<ul><li>N: the amount of components</li><li>K: the amount of connections between components. More connections leads to
-more chaos</li><li>P: a bias between connections. A higher bias reduces chaos</li></ul></li></ul></li><li>Stressors can be categorized using attractors. We often design a system for a
-single attractor, which is a mistake</li><li>A good start: &ldquo;What if a giant laser lizard burns down our city? What&rsquo;s your
-residue?&rdquo;</li><li>A matrix which maps components and stressors can help you to identify
-non-function requirements. It shows you hidden coupling and weak spots</li><li>The presenter also shows a concrete example using the architecture of a
-business around charging electric cars</li></ul><h2 id=the-case-for-technical-excellence-kevlin-henneyhttpswwwyoutubecomwatchvllexado3x1o><a href="https://www.youtube.com/watch?v=LLEXAdO3X1o">The Case for Technical Excellence (Kevlin Henney)</a></h2><ul><li>Some organizations seem to believe that feature work and technical work are
+calorie intake, cost of building streets, revenue)</li>
+<li>Hierarchical fractal networks scale following a power law with an exponent of
+less than one</li>
+<li>Queues create back-pressure. Putting a queue into an information flow pauses
+the flow</li>
+<li>Larger organizations spend less of their revenue on R&amp;D</li>
+<li>Cities show more than one type of scaling:
+<ul class="org-ul">
+<li>Super-linear: innovation, wages, number of professionals, crime, disease,
+pollution (social network)</li>
+<li>Sub-linear: road length, number of petrol stations and restaurants, water
+pipes, electricity cables (hierarchical network)</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org6c7ffd8" class="outline-2">
+<h2 id="org6c7ffd8">Automation Is Hard &amp; We Are Doing It Wrong (Johan Abildskov)</h2>
+<div class="outline-text-2" id="text-org6c7ffd8">
+<p>
+<a href="https://www.youtube.com/watch?v=JU5niXIrK3Y">https://www.youtube.com/watch?v=JU5niXIrK3Y</a>
+</p>
+
+<ul class="org-ul">
+<li>What is DevOps? One Definition: Culture, Automation, Lean, Measuring, Sharing</li>
+<li>Automation is not a luxury. It's a permission to play
+<ul class="org-ul">
+<li>"I don't want to buy software from people who are wasting their time"</li>
+</ul></li>
+<li>"But our customers won't pay for automation" - well, they most likely don't
+want to pay for your dailies, retrospectives or coffee breaks either</li>
+<li>Minimize the cost of adding one more engineer</li>
+<li>Maximize the value of adding one more engineer</li>
+<li>Why digitalization will kill your company too
+<ul class="org-ul">
+<li>Limited software skills in senior leadership</li>
+<li>Ambidexterity: solve today's challenges while preparing for future needs</li>
+<li>Leaders believe that digitalization is an R&amp;D problem</li>
+<li>Justify their lack of initiative by referring to the lack of desire for
+change from their most valuable customers</li>
+</ul></li>
+<li>Automation is not complex. An excavator is an obvious upgrade to a shovel</li>
+<li>Automating simple things is simple. Automating complex things might be
+impossible (without losing your sanity)</li>
+<li>Industry and technology stack doesn't matter. Architecture does (Nicole
+Forsgren, PhD)</li>
+<li>Automation is software. We should treat it as such!
+<ul class="org-ul">
+<li>Use version control</li>
+<li>Create documentation</li>
+<li>Have tests</li>
+</ul></li>
+<li>Monitor your automation. Use circuit breakers
+<ul class="org-ul">
+<li>Does my automation do something silly?</li>
+<li>Use overrides but add checks to find stale overrides</li>
+</ul></li>
+<li>Idempotency is your friend</li>
+<li>Jevons Paradox: Increased efficiency != reduced consumption</li>
+<li>Keep in mind that an increase in automation can increase manual work (in other
+areas)</li>
+<li>Automation is way more than cost-down</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org334355d" class="outline-2">
+<h2 id="org334355d">Engineering Documentation (Lorna Jane Mitchell)</h2>
+<div class="outline-text-2" id="text-org334355d">
+<p>
+<a href="https://www.youtube.com/watch?v=Z5OrR99OpiY">https://www.youtube.com/watch?v=Z5OrR99OpiY</a>
+</p>
+
+<ul class="org-ul">
+<li>Documentation enables customer success</li>
+<li>An investment that scales</li>
+<li><a href="https://diataxis.fr/">https://diataxis.fr/</a></li>
+<li>Use <b>really</b> good search</li>
+<li>Use the same tools and workflows as for code</li>
+<li>Prose linter <a href="https://vale.sh/">https://vale.sh/</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org85f4f85" class="outline-2">
+<h2 id="org85f4f85">Kinder, es tut mir undendlich leid (Martin Leyrer)</h2>
+<div class="outline-text-2" id="text-org85f4f85">
+<p>
+<a href="https://www.youtube.com/watch?v=dpQOKwYOhLQ">https://www.youtube.com/watch?v=dpQOKwYOhLQ</a>
+</p>
+
+<p>
+"We build our computer (systems) the way we build our cities: Over time, without
+a plan, on top of ruins" - Ellen Ullman
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgaf34d52" class="outline-2">
+<h2 id="orgaf34d52">An Introduction to Residuality Theory (Barry O'Reilly)</h2>
+<div class="outline-text-2" id="text-orgaf34d52">
+<p>
+<a href="https://www.youtube.com/watch?v=0wcUG2EV-7E">https://www.youtube.com/watch?v=0wcUG2EV-7E</a>
+</p>
+
+<ul class="org-ul">
+<li>How can we apply complexity theory to software development?</li>
+<li>Creating software can be boiled down to a two step algorithm:
+<ul class="org-ul">
+<li>a random simulation of our environments, followed by</li>
+<li>an NKP analysis
+<ul class="org-ul">
+<li>N: the amount of components</li>
+<li>K: the amount of connections between components. More connections leads to
+more chaos</li>
+<li>P: a bias between connections. A higher bias reduces chaos</li>
+</ul></li>
+</ul></li>
+<li>Stressors can be categorized using attractors. We often design a system for a
+single attractor, which is a mistake</li>
+<li>A good start: "What if a giant laser lizard burns down our city? What's your
+residue?"</li>
+<li>A matrix which maps components and stressors can help you to identify
+non-function requirements. It shows you hidden coupling and weak spots</li>
+<li>The presenter also shows a concrete example using the architecture of a
+business around charging electric cars</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgab608ed" class="outline-2">
+<h2 id="orgab608ed">The Case for Technical Excellence (Kevlin Henney)</h2>
+<div class="outline-text-2" id="text-orgab608ed">
+<p>
+<a href="https://www.youtube.com/watch?v=LLEXAdO3X1o">https://www.youtube.com/watch?v=LLEXAdO3X1o</a>
+</p>
+
+<ul class="org-ul">
+<li>Some organizations seem to believe that feature work and technical work are
 mutual exclusive and that they can choose to focus on either. Features are
 made of software. This sounds obvious and trivial, but just highlights that
-technical and feature work are deeply linked. There is no choice</li><li>The agile manifesto mentions that technical excellence enhances agility</li><li>Architecture represents significant design decisions, where significant is
+technical and feature work are deeply linked. There is no choice</li>
+<li>The agile manifesto mentions that technical excellence enhances agility</li>
+<li>Architecture represents significant design decisions, where significant is
 measured by cost of change. You are dealing with software, you can deal
 whatever you want. To interesting question is how fast/cheap can you do a
-change?</li><li>Technical neglect is the cause of technical debt</li></ul><h2 id=a-new-era-for-database-design-with-tigerbeetle-joran-greefhttpswwwyoutubecomwatchv_jfok4l7ciy><a href="https://www.youtube.com/watch?v=_jfOk4L7CiY">A New Era for Database Design with TigerBeetle (Joran Greef)</a></h2><ul><li>TigerBeetle is a new type of database to track financial transactions</li><li>Databases still have room for innovation and improvement</li><li>Buffered I/O is broken, fsync has subtle issues which can cause loss of data</li><li>Databases that rely on fsync are trying to change fundamental design
-decisions, which is hard work for a project with a long history</li><li>TigerBeetle uses two write-ahead logs</li><li>Storage faults force us to reconsider database design</li><li>We need to move beyond a crash safety (power loss) model</li></ul><h2 id=more-speakers>More Speakers</h2><ul><li>Greg Young</li><li>Michael Feathers</li><li>Bryan Cantrill</li><li>Mark Seemann</li><li>Jimmy Bogard</li><li>Sam Newman</li><li>Chad Fowler</li><li>Kent Beck</li><li>Casey Rosenthal</li><li>Allen Holub</li><li>John Hughes</li><li>Andrew Kelley</li></ul></article></main><footer><p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p></footer></body></html>
+change?</li>
+<li>Technical neglect is the cause of technical debt</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgcbd3fc6" class="outline-2">
+<h2 id="orgcbd3fc6">A New Era for Database Design with TigerBeetle (Joran Greef)</h2>
+<div class="outline-text-2" id="text-orgcbd3fc6">
+<p>
+<a href="https://www.youtube.com/watch?v=_jfOk4L7CiY">https://www.youtube.com/watch?v=_jfOk4L7CiY</a>
+</p>
+
+<ul class="org-ul">
+<li>TigerBeetle is a new type of database to track financial transactions</li>
+<li>Databases still have room for innovation and improvement</li>
+<li>Buffered I/O is broken, fsync has subtle issues which can cause loss of data</li>
+<li>Databases that rely on fsync are trying to change fundamental design
+decisions, which is hard work for a project with a long history</li>
+<li>TigerBeetle uses two write-ahead logs</li>
+<li>Storage faults force us to reconsider database design</li>
+<li>We need to move beyond a crash safety (power loss) model</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgfe2d428" class="outline-2">
+<h2 id="orgfe2d428">More Speakers</h2>
+<div class="outline-text-2" id="text-orgfe2d428">
+<ul class="org-ul">
+<li>Greg Young</li>
+<li>Michael Feathers</li>
+<li>Bryan Cantrill</li>
+<li>Mark Seemann</li>
+<li>Jimmy Bogard</li>
+<li>Sam Newman</li>
+<li>Chad Fowler</li>
+<li>Kent Beck</li>
+<li>Casey Rosenthal</li>
+<li>Allen Holub</li>
+<li>John Hughes</li>
+<li>Andrew Kelley</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<footer>
+<p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p>
+</footer>
+</div>
+</body>
+</html>

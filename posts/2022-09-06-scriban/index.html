@@ -1,11 +1,36 @@
-<!doctype html><html lang=en><head><title>Text Templating is Rad</title><meta charset=utf-8><meta name=author content="Florian Winkelbauer"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://florianwinkelbauer.com/posts/2022-09-06-scriban/><link rel=alternate type=application/rss+xml title=RSS href=https://florianwinkelbauer.com/index.xml><link rel=stylesheet href=https://florianwinkelbauer.com/main.css></head><body><header class=dark><h2><a href=https://florianwinkelbauer.com/>Florian Winkelbauer</a></h2><nav><a href=/about>About</a>
-<a href=/notes>Notes</a>
-<a href=/projects>Projects</a></nav></header><main><article><header><h1><a href=https://florianwinkelbauer.com/posts/2022-09-06-scriban/>Text Templating is Rad</a></h1><time datetime=2022-09-06T00:00:00Z>September 06, 2022</time></header><p>This is just a quick post to mention an awesome library. <a href=https://github.com/scriban/scriban>Scriban</a> is a
-text templating library in C# which you can use to replace text in files to e.g.
-fill in placeholders in some generic config file. Browsing Scriban&rsquo;s
-documentation made me realize that its also pretty easy to retrieve secret
-values (e.g. passwords) from your favorite secrets management (key vault) API.
-Here&rsquo;s an example class:</p><pre><code class=language-c#>public static class TemplateEngine
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Text Templating is Rad</title>
+<meta name="generator" content="Org Mode" />
+<meta name="author" content="Florian Winkelbauer">
+<link rel="stylesheet" href="/site.css" type="text/css">
+</head>
+<body>
+<div id="preamble" class="status">
+<nav>
+<a href="/">Home</a>
+<a href="/notes">Notes</a>
+<a href="/posts">Posts</a>
+<a href="/projects">Projects</a>
+</nav>
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">Text Templating is Rad</h1>
+</header><p>
+This is just a quick post to mention an awesome library. <a href="https://github.com/scriban/scriban">Scriban</a> is a text
+templating library in C# which you can use to replace text in files to e.g. fill
+in placeholders in some generic config file. Browsing Scriban's documentation
+made me realize that its also pretty easy to retrieve secret values (e.g.
+passwords) from your favorite secrets management (key vault) API. Here's an
+example class:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-csharp">public static class TemplateEngine
 {
     public static string Render(string templateText, object model)
     {
@@ -18,7 +43,7 @@ Here&rsquo;s an example class:</p><pre><code class=language-c#>public static cla
             var message = string.Join(Environment.NewLine, template.Messages);
 
             throw new ArgumentException(
-                $&quot;Could not parse template: {message}&quot;);
+                $"Could not parse template: {message}");
         }
 
         var scriptObject = new VaultScriptObject();
@@ -40,7 +65,7 @@ Here&rsquo;s an example class:</p><pre><code class=language-c#>public static cla
         catch (Exception e)
         {
             throw new ArgumentException(
-                $&quot;Could not render template: {e.Message}&quot;);
+                $"Could not render template: {e.Message}");
         }
     }
 
@@ -52,28 +77,36 @@ Here&rsquo;s an example class:</p><pre><code class=language-c#>public static cla
             // library you are using
             var vault = new Dictionary&lt;string, string&gt;
             {
-                { &quot;super-secret-name&quot;, &quot;you, again&quot; }
+                { "super-secret-name", "you, again" }
             };
 
             return vault[secretName];
         }
     }
 }
-</code></pre><p>And a test class to highlight some features:</p><pre><code class=language-c#>public static class TemplateEngineTests
+</pre>
+</div>
+
+<p>
+And a test class to highlight some features:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-csharp">public static class TemplateEngineTests
 {
     public static TheoryData&lt;string, object&gt; IncompleteModelData =&gt; new()
     {
         {
-            &quot;Hello {{ name1 }}&quot;,
-            new SomeRecord(&quot;you&quot;)
+            "Hello {{ name1 }}",
+            new SomeRecord("you")
         },
         {
-            &quot;Hello {{ content1.name }}&quot;,
-            new ContainerRecord(new SomeRecord(&quot;you&quot;))
+            "Hello {{ content1.name }}",
+            new ContainerRecord(new SomeRecord("you"))
         },
         {
-            &quot;Hello {{ content.name1 }}&quot;,
-            new ContainerRecord(new SomeRecord(&quot;you&quot;))
+            "Hello {{ content.name1 }}",
+            new ContainerRecord(new SomeRecord("you"))
         }
     };
 
@@ -81,8 +114,8 @@ Here&rsquo;s an example class:</p><pre><code class=language-c#>public static cla
     public static void Render_Renders_Valid_Model()
     {
         Assert.Equal(
-            &quot;Hello you!&quot;,
-            TemplateEngine.Render(&quot;Hello {{ name }}!&quot;, new SomeRecord(&quot;you&quot;)));
+            "Hello you!",
+            TemplateEngine.Render("Hello {{ name }}!", new SomeRecord("you")));
     }
 
     [Theory, MemberData(nameof(IncompleteModelData))]
@@ -98,31 +131,41 @@ Here&rsquo;s an example class:</p><pre><code class=language-c#>public static cla
     public static void Render_Renders_Null_Properties()
     {
         Assert.Equal(
-            &quot;Hello !&quot;,
-            TemplateEngine.Render(&quot;Hello {{ name }}!&quot;, new SomeRecord(null)));
+            "Hello !",
+            TemplateEngine.Render("Hello {{ name }}!", new SomeRecord(null)));
     }
 
     [Fact]
     public static void Render_Resolves_Secret()
     {
         Assert.Equal(
-            &quot;Hello you, again!&quot;,
+            "Hello you, again!",
             TemplateEngine.Render(
-                &quot;Hello {{ vault name }}!&quot;,
-                new SomeRecord(&quot;super-secret-name&quot;)));
+                "Hello {{ vault name }}!",
+                new SomeRecord("super-secret-name")));
     }
 
     [Fact]
     public static void Render_Resolves_Secret_With_Empty_Model()
     {
         Assert.Equal(
-            &quot;Hello you, again!&quot;,
+            "Hello you, again!",
             TemplateEngine.Render(
-                &quot;Hello {{ vault \&quot;super-secret-name\&quot; }}!&quot;,
+                "Hello {{ vault \"super-secret-name\" }}!",
                 new { }));
     }
 
     private record SomeRecord(string? Name);
     private record ContainerRecord(SomeRecord Content);
 }
-</code></pre></article></main><footer><p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p></footer></body></html>
+</pre>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Published: 2022-09-06</p>
+<footer>
+<p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p>
+</footer>
+</div>
+</body>
+</html>

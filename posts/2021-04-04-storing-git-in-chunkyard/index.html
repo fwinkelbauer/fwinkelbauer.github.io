@@ -1,20 +1,73 @@
-<!doctype html><html lang=en><head><title>Storing Git Repositories using Chunkyard</title><meta charset=utf-8><meta name=author content="Florian Winkelbauer"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://florianwinkelbauer.com/posts/2021-04-04-storing-git-in-chunkyard/><link rel=alternate type=application/rss+xml title=RSS href=https://florianwinkelbauer.com/index.xml><link rel=stylesheet href=https://florianwinkelbauer.com/main.css></head><body><header class=dark><h2><a href=https://florianwinkelbauer.com/>Florian Winkelbauer</a></h2><nav><a href=/about>About</a>
-<a href=/notes>Notes</a>
-<a href=/projects>Projects</a></nav></header><main><article><header><h1><a href=https://florianwinkelbauer.com/posts/2021-04-04-storing-git-in-chunkyard/>Storing Git Repositories using Chunkyard</a></h1><time datetime=2021-04-04T00:00:00Z>April 04, 2021</time></header><p>Sometimes you don&rsquo;t want to store a Git repository on a dedicated server. An
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Storing Git Repositories using Chunkyard</title>
+<meta name="generator" content="Org Mode" />
+<meta name="author" content="Florian Winkelbauer">
+<link rel="stylesheet" href="/site.css" type="text/css">
+</head>
+<body>
+<div id="preamble" class="status">
+<nav>
+<a href="/">Home</a>
+<a href="/notes">Notes</a>
+<a href="/posts">Posts</a>
+<a href="/projects">Projects</a>
+</nav>
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">Storing Git Repositories using Chunkyard</h1>
+</header><p>
+Sometimes you don't want to store a Git repository on a dedicated server. An
 easy trick is to use a network drive or a cloud drive (e.g. Dropbox, NextCloud
-or others) by using a bare repository:</p><pre><code class=language-shell>cd ~/SynchronizedFolder
+or others) by using a bare repository:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">cd ~/SynchronizedFolder
 mkdir my-git-project
 cd my-git-project
 git init --bare
-</code></pre><p>Which can than be used like this:</p><pre><code class=language-shell>cd ~/Projects/my-git-project
+</pre>
+</div>
+
+<p>
+Which can than be used like this:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">cd ~/Projects/my-git-project
 git add remote origin ~/SynchronizedFolder/my-git-project
 git push --set-upstream origin master
-</code></pre><p>I have recently experimented with storing such repositories using my backup tool
-<a href=https://github.com/fwinkelbauer/chunkyard>Chunkyard</a>. After restoring one of these repositories I was
-surprised that I could not clone the bare repository:</p><pre><code class=language-shell>cd ~/temp
+</pre>
+</div>
+
+<p>
+I have recently experimented with storing such repositories using my backup tool
+<a href="https://github.com/fwinkelbauer/chunkyard">Chunkyard</a>. After restoring one of these repositories I was surprised that I
+could not clone the bare repository:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">cd ~/temp
 git clone ~/Restored/my-git-project
-</code></pre><pre><code class=language-text>fatal: repository '~/Restored/my-git-project' does not exist
-</code></pre><p>Running <code>ll ~/Restored/my-git-project</code> printed this result:</p><pre><code class=language-text>drwxrwxr-x 5 flo flo 4096 Apr  3 15:57 ./
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-text">fatal: repository '~/Restored/my-git-project' does not exist
+</pre>
+</div>
+
+<p>
+Running <code>ll ~/Restored/my-git-project</code> printed this result:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-text">drwxrwxr-x 5 flo flo 4096 Apr  3 15:57 ./
 drwxrwxr-x 4 flo flo 4096 Apr  3 15:57 ../
 -rw-rw-r-- 1 flo flo  104 Apr  3 15:57 config
 -rw-rw-r-- 1 flo flo   73 Apr  3 15:57 description
@@ -23,10 +76,28 @@ drwxrwxr-x 2 flo flo 4096 Apr  3 15:57 hooks/
 drwxrwxr-x 2 flo flo 4096 Apr  3 15:57 info/
 drwxrwxr-x 4 flo flo 4096 Apr  3 15:57 objects/
 -rw-rw-r-- 1 flo flo  105 Apr  3 15:57 packed-refs
-</code></pre><p>I ran <code>git gc</code> prior to creating the backup, which explains the <code>packed-refs</code>
+</pre>
+</div>
+
+<p>
+I ran <code>git gc</code> prior to creating the backup, which explains the <code>packed-refs</code>
 file. As a result the <code>refs</code> directory became empty. Chunkyard does only care
 about files, so any empty directory will not be included in a backup. And that
 caused Git to error out when trying to clone the repository. The fix is rather
-easy:</p><pre><code class=language-text>cd ~/Restored/my-git-project
+easy:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-text">cd ~/Restored/my-git-project
 mkdir refs
-</code></pre></article></main><footer><p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p></footer></body></html>
+</pre>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Published: 2021-04-04</p>
+<footer>
+<p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p>
+</footer>
+</div>
+</body>
+</html>

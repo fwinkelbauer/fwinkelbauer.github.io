@@ -1,47 +1,89 @@
-<!doctype html><html lang=en><head><title>Copy Files to a Remote Location using Cake</title><meta charset=utf-8><meta name=author content="Florian Winkelbauer"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://florianwinkelbauer.com/posts/2018-12-23-cake-netuse/><link rel=alternate type=application/rss+xml title=RSS href=https://florianwinkelbauer.com/index.xml><link rel=stylesheet href=https://florianwinkelbauer.com/main.css></head><body><header class=dark><h2><a href=https://florianwinkelbauer.com/>Florian Winkelbauer</a></h2><nav><a href=/about>About</a>
-<a href=/notes>Notes</a>
-<a href=/projects>Projects</a></nav></header><main><article><header><h1><a href=https://florianwinkelbauer.com/posts/2018-12-23-cake-netuse/>Copy Files to a Remote Location using Cake</a></h1><time datetime=2018-12-23T00:00:00Z>December 23, 2018</time></header><p>I have recently had the need to copy files from one Windows machine to another
-in a Cake build task. A rather easy way to achieve this is to use the <code>net</code>
-command line tool, which I have wrapped into a few lines of C#. Here&rsquo;s how to
-use the code:</p><pre><code class=language-csharp>readonly var target = Argument(&quot;target&quot;, &quot;Default&quot;);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Copy Files to a Remote Location using Cake</title>
+<meta name="generator" content="Org Mode" />
+<meta name="author" content="Florian Winkelbauer">
+<link rel="stylesheet" href="/site.css" type="text/css">
+</head>
+<body>
+<div id="preamble" class="status">
+<nav>
+<a href="/">Home</a>
+<a href="/notes">Notes</a>
+<a href="/posts">Posts</a>
+<a href="/projects">Projects</a>
+</nav>
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">Copy Files to a Remote Location using Cake</h1>
+</header><p>
+I have recently had the need to copy files from one Windows machine to another
+in a Cake build task. A rather easy way to achieve this is to use the `net`
+command line tool, which I have wrapped into a few lines of C#. Here's how to
+use the code:
+</p>
 
-Task(&quot;Default&quot;)
+<div class="org-src-container">
+<pre class="src src-csharp">readonly var target = Argument("target", "Default");
+
+Task("Default")
     .Does(() =&gt;
 {
-    using (var session = NetUse(&quot;\\\\some-machine&quot;, &quot;domain\\user&quot;, &quot;password&quot;))
+    using (var session = NetUse("\\\\some-machine", "domain\\user", "password"))
     {
         // Use Cake's existing IO library
-        CopyFileToDirectory(&quot;myfile.txt&quot;, session.ToRemote(&quot;C:/&quot;));
+        CopyFileToDirectory("myfile.txt", session.ToRemote("C:/"));
     }
 });
 
 RunTarget(target);
-</code></pre><p>The two most important bits include:</p><ul><li>Opening a session using the <code>NetUse</code> method</li><li>Using the <code>session.ToRemote</code> method to turn a &ldquo;normal&rdquo; path into a remote
-path (e.g. <code>C:\</code> -> <code>\\some-machine\c$\</code>)</li></ul><p>Here&rsquo;s the actual <code>NetUse</code> implementation:</p><pre><code class=language-csharp>public NetUseSession NetUse(string machine, string username, string password)
+</pre>
+</div>
+
+<p>
+The two most important bits include:
+</p>
+
+<ul class="org-ul">
+<li>Opening a session using the <code>NetUse</code> method</li>
+<li>Using the <code>session.ToRemote</code> method to turn a "normal" path into a remote
+path (e.g. <code>C:\</code> -&gt; <code>\\some-machine\c$\</code>)</li>
+</ul>
+
+<p>
+Here's the actual <code>NetUse</code> implementation:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-csharp">public NetUseSession NetUse(string machine, string username, string password)
 {
-    Information($&quot;Connecting to '{machine}'&quot;);
-    var exitCode = StartProcess(&quot;net&quot;, new ProcessSettings
+    Information($"Connecting to '{machine}'");
+    var exitCode = StartProcess("net", new ProcessSettings
     {
         Arguments = new ProcessArgumentBuilder()
-            .Append(&quot;use&quot;)
+            .Append("use")
             .Append(machine)
             .AppendSecret(password)
-            .Append($&quot;/user:{username}&quot;)
+            .Append($"/user:{username}")
     });
 
     if (exitCode != 0) {
-        throw new Exception($&quot;Could not connect to '{machine}'&quot;);
+        throw new Exception($"Could not connect to '{machine}'");
     }
 
     Func&lt;string, int&gt; closeFunc = (m) =&gt;
     {
-        Information($&quot;Deleting connection to '{m}'&quot;);
-        return StartProcess(&quot;net&quot;, new ProcessSettings
+        Information($"Deleting connection to '{m}'");
+        return StartProcess("net", new ProcessSettings
         {
             Arguments = new ProcessArgumentBuilder()
-                .Append(&quot;use&quot;)
+                .Append("use")
                 .Append(m)
-                .Append(&quot;/delete&quot;),
+                .Append("/delete"),
         });
     };
 
@@ -61,8 +103,8 @@ public sealed class NetUseSession : IDisposable
 
     public DirectoryPath ToRemote(DirectoryPath directory)
     {
-        var remoteDirectory = directory.ToString().Replace(&quot;:&quot;, &quot;$&quot;);
-        return $&quot;{_machine}/{remoteDirectory}&quot;;
+        var remoteDirectory = directory.ToString().Replace(":", "$");
+        return $"{_machine}/{remoteDirectory}";
     }
 
     public void Dispose()
@@ -70,8 +112,18 @@ public sealed class NetUseSession : IDisposable
         var exitCode = _close(_machine);
 
         if (exitCode != 0) {
-            throw new Exception($&quot;Could not delete connection to '{_machine}'&quot;);
+            throw new Exception($"Could not delete connection to '{_machine}'");
         }
     }
 }
-</code></pre></article></main><footer><p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p></footer></body></html>
+</pre>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Published: 2018-12-23</p>
+<footer>
+<p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p>
+</footer>
+</div>
+</body>
+</html>

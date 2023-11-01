@@ -1,11 +1,36 @@
-<!doctype html><html lang=en><head><title>Install a Visual Studio Extension using Powershell</title><meta charset=utf-8><meta name=author content="Florian Winkelbauer"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://florianwinkelbauer.com/posts/2019-03-07-install-vsix-powershell/><link rel=alternate type=application/rss+xml title=RSS href=https://florianwinkelbauer.com/index.xml><link rel=stylesheet href=https://florianwinkelbauer.com/main.css></head><body><header class=dark><h2><a href=https://florianwinkelbauer.com/>Florian Winkelbauer</a></h2><nav><a href=/about>About</a>
-<a href=/notes>Notes</a>
-<a href=/projects>Projects</a></nav></header><main><article><header><h1><a href=https://florianwinkelbauer.com/posts/2019-03-07-install-vsix-powershell/>Install a Visual Studio Extension using Powershell</a></h1><time datetime=2019-03-07T00:00:00Z>March 07, 2019</time></header><p>One of my previous posts outlined how to manage Visual Studio extension
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Install a Visual Studio Extension using Powershell</title>
+<meta name="generator" content="Org Mode" />
+<meta name="author" content="Florian Winkelbauer">
+<link rel="stylesheet" href="/site.css" type="text/css">
+</head>
+<body>
+<div id="preamble" class="status">
+<nav>
+<a href="/">Home</a>
+<a href="/notes">Notes</a>
+<a href="/posts">Posts</a>
+<a href="/projects">Projects</a>
+</nav>
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">Install a Visual Studio Extension using Powershell</h1>
+</header><p>
+One of my previous posts outlined how to manage Visual Studio extension
 installations by creating Chocolatey packages for each and every VSIX file you
 want to install. This works fine in an environment where you are already using
 an existing Chocolatey repository to hold custom or internalized packages. The
 following PowerShell snippet presents a way to install VSIX files without
-relying on Chocolatey:</p><pre><code class=language-powershell>function Get-VsixFile {
+relying on Chocolatey:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-powershell">function Get-VsixFile {
     param(
         [Parameter(Mandatory = $true)]
         [string]$Url
@@ -43,13 +68,13 @@ function Invoke-VsixInstaller2017Community {
 
     $psi = New-Object System.Diagnostics.ProcessStartInfo
     $psi.FileName = 'C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VSIXInstaller.exe'
-    $psi.Arguments = &quot;/q $File&quot;
+    $psi.Arguments = "/q $File"
 
     $process = [System.Diagnostics.Process]::Start($psi)
     $process.WaitForExit()
 
     if ($process.ExitCode -ne 0) {
-        throw &quot;VSIXInstaller exit code: '$($process.ExitCode)'&quot;
+        throw "VSIXInstaller exit code: '$($process.ExitCode)'"
     }
 }
 
@@ -68,8 +93,38 @@ function Install-Vsix2017Community {
         Remove-Item $file -Force
     }
 }
-</code></pre><p>These functions can be used like this:</p><pre><code class=language-powershell>Install-Vsix2017Community -Url 'https://marketplace.visualstudio.com/items?itemName=Suchiman.SerilogAnalyzer'
-</code></pre><p>Or like this:</p><pre><code class=language-powershell>Invoke-VsixInstaller2017Community -File 'C:\Users\MyUser\Downloads\SerilogAnalyzer.Vsix.vsix'
-</code></pre><p><strong>Note:</strong> The different editions of Visual Studio 2017 (Community, Professional,
-&mldr;) are installed in different locations, which is why the above PowerShell
-snippets carry &ldquo;2017Community&rdquo; in their names.</p></article></main><footer><p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p></footer></body></html>
+</pre>
+</div>
+
+<p>
+These functions can be used like this:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-powershell">Install-Vsix2017Community -Url 'https://marketplace.visualstudio.com/items?itemName=Suchiman.SerilogAnalyzer'
+</pre>
+</div>
+
+<p>
+Or like this:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-powershell">Invoke-VsixInstaller2017Community -File 'C:\Users\MyUser\Downloads\SerilogAnalyzer.Vsix.vsix'
+</pre>
+</div>
+
+<p>
+<b>Note:</b> The different editions of Visual Studio 2017 (Community, Professional,
+&#x2026;) are installed in different locations, which is why the above PowerShell
+snippets carry "2017Community" in their names.
+</p>
+</div>
+<div id="postamble" class="status">
+<p class="date">Published: 2019-03-07</p>
+<footer>
+<p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p>
+</footer>
+</div>
+</body>
+</html>

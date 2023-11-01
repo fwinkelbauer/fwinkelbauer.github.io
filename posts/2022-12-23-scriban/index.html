@@ -1,18 +1,51 @@
-<!doctype html><html lang=en><head><title>Configparser Interpolation in C#</title><meta charset=utf-8><meta name=author content="Florian Winkelbauer"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://florianwinkelbauer.com/posts/2022-12-23-scriban/><link rel=alternate type=application/rss+xml title=RSS href=https://florianwinkelbauer.com/index.xml><link rel=stylesheet href=https://florianwinkelbauer.com/main.css></head><body><header class=dark><h2><a href=https://florianwinkelbauer.com/>Florian Winkelbauer</a></h2><nav><a href=/about>About</a>
-<a href=/notes>Notes</a>
-<a href=/projects>Projects</a></nav></header><main><article><header><h1><a href=https://florianwinkelbauer.com/posts/2022-12-23-scriban/>Configparser Interpolation in C#</a></h1><time datetime=2022-12-23T00:00:00Z>December 23, 2022</time></header><p>I have only ever written a few hundred lines of Python, but I have appreciated
-its <a href=https://docs.python.org/3/library/configparser.html>configparser</a> library. One of the coolest features is its
-interpolation mechanism, which can be used to derive values using other values
-in an <code>.ini</code> file. Here&rsquo;s a quick example from the documentation:</p><pre><code class=language-ini>[Paths]
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Configparser Interpolation in C#</title>
+<meta name="generator" content="Org Mode" />
+<meta name="author" content="Florian Winkelbauer">
+<link rel="stylesheet" href="/site.css" type="text/css">
+</head>
+<body>
+<div id="preamble" class="status">
+<nav>
+<a href="/">Home</a>
+<a href="/notes">Notes</a>
+<a href="/posts">Posts</a>
+<a href="/projects">Projects</a>
+</nav>
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">Configparser Interpolation in C#</h1>
+</header><p>
+I have only ever written a few hundred lines of Python, but I have appreciated
+its <a href="https://docs.python.org/3/library/configparser.html">configparser</a> library. One of the coolest features is its interpolation
+mechanism, which can be used to derive values using other values in an <code>.ini</code>
+file. Here's a quick example from the documentation:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-conf">[Paths]
 home_dir: /Users
 my_dir: %(home_dir)s/lumberjack
 my_pictures: %(my_dir)s/Pictures
-</code></pre><p>I was wondering how I could implement a similar feature in a JSON or YAML
-configuration file and I realized that I could use <a href=https://github.com/scriban/scriban>scriban</a>. The trick
-is simple: we read the raw text, serialize it to an object and use this object
-on the raw text. We repeat this process until no more changes to the text input
-can be found (or we are reaching some predefined limit). Here is an
-implementation example:</p><pre><code class=language-c#>public static class TemplateEngine
+</pre>
+</div>
+
+<p>
+I was wondering how I could implement a similar feature in a JSON or YAML
+configuration file and I realized that I could use <a href="https://github.com/scriban/scriban">scriban</a>. The trick is simple:
+we read the raw text, serialize it to an object and use this object on the raw
+text. We repeat this process until no more changes to the text input can be
+found (or we are reaching some predefined limit). Here is an implementation
+example:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-csharp">public static class TemplateEngine
 {
     public static T RenderTextAsModelLoop&lt;T&gt;(
         string text,
@@ -35,7 +68,7 @@ implementation example:</p><pre><code class=language-c#>public static class Temp
         }
 
         throw new ArgumentException(
-            &quot;Exceeded loop limit while trying to render model&quot;);
+            "Exceeded loop limit while trying to render model");
     }
 
     public static string Render(string text, object model)
@@ -49,7 +82,7 @@ implementation example:</p><pre><code class=language-c#>public static class Temp
             var message = string.Join(Environment.NewLine, template.Messages);
 
             throw new ArgumentException(
-                $&quot;Could not parse template: {message}&quot;);
+                $"Could not parse template: {message}");
         }
 
         var scriptObject = new ScriptObject();
@@ -71,11 +104,25 @@ implementation example:</p><pre><code class=language-c#>public static class Temp
         catch (Exception e)
         {
             throw new ArgumentException(
-                $&quot;Could not render template: {e.Message}&quot;);
+                $"Could not render template: {e.Message}");
         }
     }
 }
-</code></pre><p>Keep in mind that the overall templating features that you can use are rather
+</pre>
+</div>
+
+<p>
+Keep in mind that the overall templating features that you can use are rather
 limited, since the initial raw text must be deserializable. That means that you
 cannot perform structural changes, but changes to a particular text
-field/property is doable. A limited, but useful trick.</p></article></main><footer><p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p></footer></body></html>
+field/property is doable. A limited, but useful trick.
+</p>
+</div>
+<div id="postamble" class="status">
+<p class="date">Published: 2022-12-23</p>
+<footer>
+<p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p>
+</footer>
+</div>
+</body>
+</html>

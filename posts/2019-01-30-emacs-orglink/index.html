@@ -1,11 +1,44 @@
-<!doctype html><html lang=en><head><title>Emacs Org-Mode Links are Fun</title><meta charset=utf-8><meta name=author content="Florian Winkelbauer"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://florianwinkelbauer.com/posts/2019-01-30-emacs-orglink/><link rel=alternate type=application/rss+xml title=RSS href=https://florianwinkelbauer.com/index.xml><link rel=stylesheet href=https://florianwinkelbauer.com/main.css></head><body><header class=dark><h2><a href=https://florianwinkelbauer.com/>Florian Winkelbauer</a></h2><nav><a href=/about>About</a>
-<a href=/notes>Notes</a>
-<a href=/projects>Projects</a></nav></header><main><article><header><h1><a href=https://florianwinkelbauer.com/posts/2019-01-30-emacs-orglink/>Emacs Org-Mode Links are Fun</a></h1><time datetime=2019-01-30T00:00:00Z>January 30, 2019</time></header><p>I have started to use a few of org-mode&rsquo;s link features to help me stay
-organized in my job. The top of my &ldquo;main&rdquo; org file now includes these
-statements:</p><pre><code class=language-org>#+LINK: issue https://company.issue.tracker.com/ticket?id=
-#+LINK: tree elisp:(neotree-dir &quot;%s&quot;)
-#+LINK: dir elisp:(setq default-directory &quot;%s&quot;)
-</code></pre><p>Now I can write outlines that look something like this:</p><pre><code class=language-org>* [[tree:D:/Projects/SomeProject][Some Project]]
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Emacs Org-Mode Links are Fun</title>
+<meta name="generator" content="Org Mode" />
+<meta name="author" content="Florian Winkelbauer">
+<link rel="stylesheet" href="/site.css" type="text/css">
+</head>
+<body>
+<div id="preamble" class="status">
+<nav>
+<a href="/">Home</a>
+<a href="/notes">Notes</a>
+<a href="/posts">Posts</a>
+<a href="/projects">Projects</a>
+</nav>
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">Emacs Org-Mode Links are Fun</h1>
+</header><p>
+I have started to use a few of org-mode's link features to help me stay
+organized in my job. The top of my "main" org file now includes these
+statements:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-org">#+LINK: issue https://company.issue.tracker.com/ticket?id=
+#+LINK: tree elisp:(neotree-dir "%s")
+#+LINK: dir elisp:(setq default-directory "%s")
+</pre>
+</div>
+
+<p>
+Now I can write outlines that look something like this:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-org">* [[tree:D:/Projects/SomeProject][Some Project]]
 
 ** [[issue:42][Major Bug]]
 
@@ -14,6 +47,20 @@ I have taken these steps to narrow the possible causes:
 - foo
 - bar
 - fizz
-</code></pre><p>The topmost headline can now give me a tree view of the &ldquo;Some Project&rdquo;
+</pre>
+</div>
+
+<p>
+The topmost headline can now give me a tree view of the "Some Project"
 directory, while the second headline opens a particular ticket in my default
-browser.</p></article></main><footer><p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p></footer></body></html>
+browser.
+</p>
+</div>
+<div id="postamble" class="status">
+<p class="date">Published: 2019-01-30</p>
+<footer>
+<p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p>
+</footer>
+</div>
+</body>
+</html>

@@ -1,20 +1,67 @@
-<!doctype html><html lang=en><head><title>Using Git with GNOME Keyring</title><meta charset=utf-8><meta name=author content="Florian Winkelbauer"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://florianwinkelbauer.com/posts/2021-05-27-git-gnome-keyring/><link rel=alternate type=application/rss+xml title=RSS href=https://florianwinkelbauer.com/index.xml><link rel=stylesheet href=https://florianwinkelbauer.com/main.css></head><body><header class=dark><h2><a href=https://florianwinkelbauer.com/>Florian Winkelbauer</a></h2><nav><a href=/about>About</a>
-<a href=/notes>Notes</a>
-<a href=/projects>Projects</a></nav></header><main><article><header><h1><a href=https://florianwinkelbauer.com/posts/2021-05-27-git-gnome-keyring/>Using Git with GNOME Keyring</a></h1><time datetime=2021-05-27T00:00:00Z>May 27, 2021</time></header><p>Since GitHub has deprecated password-based authentication when using the Git CLI
-I have been searching for a solution to store GitHub&rsquo;s personal access tokens
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Using Git with GNOME Keyring</title>
+<meta name="generator" content="Org Mode" />
+<meta name="author" content="Florian Winkelbauer">
+<link rel="stylesheet" href="/site.css" type="text/css">
+</head>
+<body>
+<div id="preamble" class="status">
+<nav>
+<a href="/">Home</a>
+<a href="/notes">Notes</a>
+<a href="/posts">Posts</a>
+<a href="/projects">Projects</a>
+</nav>
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">Using Git with GNOME Keyring</h1>
+</header><p>
+Since GitHub has deprecated password-based authentication when using the Git CLI
+I have been searching for a solution to store GitHub's personal access tokens
 (HTTPS authentication) in a safe manner on Linux. My Xubuntu installation uses
 GNOME Keyring, which is unlocked when I log onto the system, so using this
-keyring seemed to be the most reasonable approach.</p><p>A default Git installation ships with several credential helpers, so we need to
-configure Git to use one of these helpers. But this story wouldn&rsquo;t be about
+keyring seemed to be the most reasonable approach.
+</p>
+
+<p>
+A default Git installation ships with several credential helpers, so we need to
+configure Git to use one of these helpers. But this story wouldn't be about
 Linux if we could get away without running a <code>make</code> command. The directory
 <code>/usr/share/doc/git/contrib/credential</code> contains several helpers, including
-<code>libsecret</code> and <code>gnome-keyring</code>. According to <a href=https://stackoverflow.com/questions/36585496/error-when-using-git-credential-helper-with-gnome-keyring-as-sudo>this</a>
-StackOverflow post we should use <code>libsecret</code>, so lets configure Git to use it:</p><pre><code class=language-shell>sudo apt-get install make gcc libsecret-1-0 libsecret-1-dev
+<code>libsecret</code> and <code>gnome-keyring</code>. According to <a href="https://stackoverflow.com/questions/36585496/error-when-using-git-credential-helper-with-gnome-keyring-as-sudo">this</a> StackOverflow post we should
+use <code>libsecret</code>, so lets configure Git to use it:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">sudo apt-get install make gcc libsecret-1-0 libsecret-1-dev
 cd /usr/share/doc/git/contrib/credential/libsecret
 sudo make
 git config --global credential.helper /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
-</code></pre><p>The next time we call <code>git push</code> the provided credentials (GitHub username +
+</pre>
+</div>
+
+<p>
+The next time we call <code>git push</code> the provided credentials (GitHub username +
 personal access token) are stored in the keyring. Tools such as <code>seahorse</code> (GUI)
-or <code>secret-tool</code> (CLI) can be used to search or manage stored keys:</p><pre><code class=language-shell>sudo apt-get install seahorse
+or <code>secret-tool</code> (CLI) can be used to search or manage stored keys:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">sudo apt-get install seahorse
 sudo apt-get install libsecret-tools
-</code></pre></article></main><footer><p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p></footer></body></html>
+</pre>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Published: 2021-05-27</p>
+<footer>
+<p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p>
+</footer>
+</div>
+</body>
+</html>

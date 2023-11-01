@@ -1,36 +1,88 @@
-<!doctype html><html lang=en><head><title>Dealing with Version Information</title><meta charset=utf-8><meta name=author content="Florian Winkelbauer"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://florianwinkelbauer.com/posts/2019-11-01-version-management/><link rel=alternate type=application/rss+xml title=RSS href=https://florianwinkelbauer.com/index.xml><link rel=stylesheet href=https://florianwinkelbauer.com/main.css></head><body><header class=dark><h2><a href=https://florianwinkelbauer.com/>Florian Winkelbauer</a></h2><nav><a href=/about>About</a>
-<a href=/notes>Notes</a>
-<a href=/projects>Projects</a></nav></header><main><article><header><h1><a href=https://florianwinkelbauer.com/posts/2019-11-01-version-management/>Dealing with Version Information</a></h1><time datetime=2019-11-01T00:00:00Z>November 01, 2019</time></header><p>About two years ago I was using a tool called <a href=https://github.com/ploeh/ZeroToNine>zero29</a> to update
-<code>AssemblyInfo.cs</code> files in my C# projects. The author Mark Seemann (who&rsquo;s talks
-I can highly recommend) declined my request to add <a href=https://github.com/ploeh/ZeroToNine/issues/24>support for .nuspec
-files</a>. His point was, that zero29 is a tool to manage <code>AssemblyInfo.cs</code>
-files and that&rsquo;s all it should ever do. While I am a big proponent of the Unix
-philosophy, I wished that zero29 would act as a tool to manage version
-information across all kinds of files. This would (in my opinion) still be in
-line with the Unix philosophy, as there are tools such as awk, grep or sed which
-do &ldquo;one thing&rdquo;, but that &ldquo;one thing&rdquo; is defined in a generalized context. So I
-jumped down the rabbit hole and built <a href=https://github.com/fwinkelbauer/Bumpy>Bumpy</a>.</p><p>I had a lot of fun writing Bumpy. I took the time to &ldquo;make it right&rdquo;, so I wrote
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dealing with Version Information</title>
+<meta name="generator" content="Org Mode" />
+<meta name="author" content="Florian Winkelbauer">
+<link rel="stylesheet" href="/site.css" type="text/css">
+</head>
+<body>
+<div id="preamble" class="status">
+<nav>
+<a href="/">Home</a>
+<a href="/notes">Notes</a>
+<a href="/posts">Posts</a>
+<a href="/projects">Projects</a>
+</nav>
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">Dealing with Version Information</h1>
+</header><p>
+About two years ago I was using a tool called <a href="https://github.com/ploeh/ZeroToNine">zero29</a> to update <code>AssemblyInfo.cs</code>
+files in my C# projects. The author Mark Seemann (who's talks I can highly
+recommend) declined my request to add support for <a href="https://github.com/ploeh/ZeroToNine/issues/24">.nuspec files</a>. His point was,
+that zero29 is a tool to manage <code>AssemblyInfo.cs</code> files and that's all it should
+ever do. While I am a big proponent of the Unix philosophy, I wished that zero29
+would act as a tool to manage version information across all kinds of files.
+This would (in my opinion) still be in line with the Unix philosophy, as there
+are tools such as awk, grep or sed which do "one thing", but that "one thing" is
+defined in a generalized context. So I jumped down the rabbit hole and built
+<a href="https://github.com/fwinkelbauer/Bumpy">Bumpy</a>.
+</p>
+
+<p>
+I had a lot of fun writing Bumpy. I took the time to "make it right", so I wrote
 several unit tests, created a fully automated build process and I even took the
-time to write some form of documentation, as well as an <a href=https://github.com/cake-contrib/Cake.Bumpy/>addin</a> (an
-extension) for the C# build tool <a href=https://cakebuild.net/>Cake</a>. Inspired by
-<a href=https://editorconfig.org/>editorconfig&rsquo;s</a> configuration I was trying to create a config
-file in which I could define where to find version information in different
-files. I kept observing the download statistics on <a href=https://www.nuget.org/packages/Bumpy/>NuGet.org</a> as well as
-<a href=https://chocolatey.org/packages/bumpy.portable>Chocolatey.org</a> daily and I was really hyped when I received my
-<a href=https://github.com/fwinkelbauer/Bumpy/pull/25>very first pull request</a>.</p><p>The latest commit on the Bumpy project was in June 2018. I realized that while I
+time to write some form of documentation, as well as an <a href="https://github.com/cake-contrib/Cake.Bumpy/">addin</a> (an extension) for
+the C# build tool <a href="https://cakebuild.net/">Cake</a>. Inspired by <a href="https://editorconfig.org/">editorconfig's</a> configuration I was trying to
+create a config file in which I could define where to find version information
+in different files. I kept observing the download statistics on <a href="https://www.nuget.org/packages/Bumpy/">NuGet.org</a> as
+well as <a href="https://chocolatey.org/packages/bumpy.portable">Chocolatey.org</a> daily and I was really hyped when I received my <a href="https://github.com/fwinkelbauer/Bumpy/pull/25">very
+first pull request</a>.
+</p>
+
+<p>
+The latest commit on the Bumpy project was in June 2018. I realized that while I
 was trying to build the project right, I was in reality not building the right
 project. A core concept of Bumpy was to understand different version schemas and
 some people even suggested that I should detect versions that are scattered
-among <a href=https://github.com/cake-contrib/Cake.Bumpy/issues/7>several lines of text</a>. In the end, I decided that a different
-approach seemed simpler and more flexible: Why not build a &ldquo;search and replace
-text&rdquo; tool? So I wrote a prototype in Python, because its <code>.ini</code> library comes
-with a ton of interesting features. This first version of &ldquo;niles&rdquo; used two
-config files to describe where to find text snippets and to describe the desired
-content for these snippets. After a while, I found it cumbersome to manage two
-files, so I redesigned the tool, while also adding more commands. Here&rsquo;s the
-final script together which a short example:</p><p><strong>hello.txt:</strong></p><pre><code class=language-text>Hello! My name is Florian. How are you?
-</code></pre><p><strong>name.txt:</strong></p><pre><code class=language-text>My name is Florian.
-</code></pre><p><strong>niles.ini:</strong></p><pre><code class=language-ini># Python's .ini library comes with a ton of features such as referencing
+among <a href="https://github.com/cake-contrib/Cake.Bumpy/issues/7">several lines of text</a>. In the end, I decided that a different approach
+seemed simpler and more flexible: Why not build a "search and replace text"
+tool? So I wrote a prototype in Python, because its <code>.ini</code> library comes with a
+ton of interesting features. This first version of "niles" used two config files
+to describe where to find text snippets and to describe the desired content for
+these snippets. After a while, I found it cumbersome to manage two files, so I
+redesigned the tool, while also adding more commands. Here's the final script
+together which a short example:
+</p>
+
+<p>
+<b>hello.txt:</b>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-text">Hello! My name is Florian. How are you?
+</pre>
+</div>
+
+<p>
+<b>name.txt:</b>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-text">My name is Florian.
+</pre>
+</div>
+
+<p>
+<b>niles.ini:</b>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-conf"># Python's .ini library comes with a ton of features such as referencing
 # values or defined default values for other sections
 
 [DEFAULT]
@@ -44,24 +96,74 @@ _regex = My name is (?P&lt;name&gt;[A-za-z]+(\s[A-za-z]+)?)
 first_name = Max
 second_name = Mustermann
 name = %(first_name)s %(second_name)s
-</code></pre><p>Niles offers these commands:</p><ul><li><strong>files:</strong> To show all files which match the defined glob patterns</li><li><strong>values:</strong> To list all values which are grabbed through the regular expressions</li><li><strong>apply:</strong> To replace all declared values</li></ul><p>Running <code>niles apply</code>would create:</p><pre><code class=language-text>Hello! My name is Max Mustermann. How are you?
-</code></pre><p>and</p><pre><code class=language-text>My name is Max Mustermann.
-</code></pre><p>Here&rsquo;s a final example of a config file which can be used to manage versions in
-C# projects:</p><p><strong>niles.ini (C#):</strong></p><pre><code class=language-ini>[DEFAULT]
+</pre>
+</div>
+
+<p>
+Niles offers these commands:
+</p>
+
+<ul class="org-ul">
+<li><b>files:</b> To show all files which match the defined glob patterns</li>
+<li><b>values:</b> To list all values which are grabbed through the regular expressions</li>
+<li><b>apply:</b> To replace all declared values</li>
+</ul>
+
+<p>
+Running <code>niles apply</code> would create:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-text">Hello! My name is Max Mustermann. How are you?
+</pre>
+</div>
+
+<p>
+and
+</p>
+
+<div class="org-src-container">
+<pre class="src src-text">My name is Max Mustermann.
+</pre>
+</div>
+
+<p>
+Here's a final example of a config file which can be used to manage versions in
+C# projects:
+</p>
+
+<p>
+<b>niles.ini (C#):</b>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-conf">[DEFAULT]
 major = 5
 minor = 10
 patch = 0
 
 [**/AssemblyInfo.cs]
-_regex = ^\[assembly: Assembly(File)?Version\(&quot;(?P&lt;assembly_version&gt;.+)&quot;\)\]$
+_regex = ^\[assembly: Assembly(File)?Version\("(?P&lt;assembly_version&gt;.+)"\)\]$
 assembly_version = %(major)s.%(minor)s.%(patch)s.0
 
 [**/*.nuspec]
 _regex = ^\s*&lt;version&gt;(?P&lt;semantic_version&gt;.+)&lt;\/version&gt;$
 semantic_version = %(major)s.%(minor)s.%(patch)s
-</code></pre><p>So, is this the &ldquo;right&rdquo; approach? To be honest, I&rsquo;m not sure. At the moment I
+</pre>
+</div>
+
+<p>
+So, is this the "right" approach? To be honest, I'm not sure. At the moment I
 like the simplicity of a search and replace tool compared to a elaborate tool
-which can perform specific operations on versions.</p><p><strong>niles.py:</strong></p><pre><code class=language-python>#!/usr/bin/env python3
+which can perform specific operations on versions.
+</p>
+
+<p>
+<b>niles.py:</b>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">#!/usr/bin/env python3
 
 import argparse
 import collections
@@ -113,7 +215,7 @@ def parse_config(text):
             end_of_line = '\r\n'
         else:
             raise ValueError(
-                &quot;Supported end of line characters: 'lf' and 'crlf'&quot;)
+                "Supported end of line characters: 'lf' and 'crlf'")
         regex_list_text = section_data.get('_regex', '').splitlines()
         regex_list = [re.compile(r) for r in regex_list_text]
         config_list.append(Config(file_names, charset, end_of_line,
@@ -166,7 +268,7 @@ def list_values(config, read_file, log):
                     match = regex.search(line)
                     if match is not None:
                         for group_name in match.groupdict().keys():
-                            log(&quot;{}: {}&quot;.format(
+                            log("{}: {}".format(
                                 file_name, match.group(group_name)))
 
 
@@ -185,9 +287,9 @@ def apply_changes(config, read_file, write_file, log):
             if file_dirty:
                 write_file(
                     file_name, new_lines, entry.charset, entry.end_of_line)
-                print(&quot;Wrote file '{}'&quot;.format(file_name))
+                print("Wrote file '{}'".format(file_name))
             else:
-                print(&quot;Skipped file '{}'&quot;.format(file_name))
+                print("Skipped file '{}'".format(file_name))
 
 
 def list_files(config, log):
@@ -227,4 +329,14 @@ def main():
 
 if __name__ == '__main__':
     main()
-</code></pre></article></main><footer><p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p></footer></body></html>
+</pre>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Published: 2019-11-01</p>
+<footer>
+<p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p>
+</footer>
+</div>
+</body>
+</html>

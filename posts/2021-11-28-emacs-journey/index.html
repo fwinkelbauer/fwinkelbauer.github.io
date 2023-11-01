@@ -1,22 +1,89 @@
-<!doctype html><html lang=en><head><title>My Emacs Journey 2021</title><meta charset=utf-8><meta name=author content="Florian Winkelbauer"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://florianwinkelbauer.com/posts/2021-11-28-emacs-journey/><link rel=alternate type=application/rss+xml title=RSS href=https://florianwinkelbauer.com/index.xml><link rel=stylesheet href=https://florianwinkelbauer.com/main.css></head><body><header class=dark><h2><a href=https://florianwinkelbauer.com/>Florian Winkelbauer</a></h2><nav><a href=/about>About</a>
-<a href=/notes>Notes</a>
-<a href=/projects>Projects</a></nav></header><main><article><header><h1><a href=https://florianwinkelbauer.com/posts/2021-11-28-emacs-journey/>My Emacs Journey 2021</a></h1><time datetime=2021-11-28T00:00:00Z>November 28, 2021</time></header><p>Another year, another Emacs report!</p><h1 id=cutting-back>Cutting-Back</h1><p>As some sort of experiment I have tried to reduce the amount of plugins and
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>My Emacs Journey 2021</title>
+<meta name="generator" content="Org Mode" />
+<meta name="author" content="Florian Winkelbauer">
+<link rel="stylesheet" href="/site.css" type="text/css">
+</head>
+<body>
+<div id="preamble" class="status">
+<nav>
+<a href="/">Home</a>
+<a href="/notes">Notes</a>
+<a href="/posts">Posts</a>
+<a href="/projects">Projects</a>
+</nav>
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">My Emacs Journey 2021</h1>
+</header><p>
+Another year, another Emacs report!
+</p>
+
+<div id="outline-container-org882677f" class="outline-2">
+<h2 id="org882677f">Cutting-Back</h2>
+<div class="outline-text-2" id="text-org882677f">
+<p>
+As some sort of experiment I have tried to reduce the amount of plugins and
 custom code as much as possible to see if I can live without them. This gives me
 an opportunity to find ways that work with either vanilla Emacs or with tools
-that are already installed through plugin dependencies.</p><h1 id=one-transient-to-rule-them-all>One Transient To Rule Them All</h1><p>All of my custom keybindings are accessible using the <code>&lt;apps></code> or <code>&lt;menu></code> keys.
-<code>&lt;f5></code> is used as a fallback for keyboards which don&rsquo;t have either of these
+that are already installed through plugin dependencies.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1addade" class="outline-2">
+<h2 id="org1addade">One Transient To Rule Them All</h2>
+<div class="outline-text-2" id="text-org1addade">
+<p>
+All of my custom keybindings are accessible using the <code>&lt;apps&gt;</code> or <code>&lt;menu&gt;</code> keys.
+<code>&lt;f5&gt;</code> is used as a fallback for keyboards which don't have either of these
 keys. The major change to last year is that I have switched from the hydra
 package to transient, which is already installed if you are using magit. This
 change reduced the overall packages I need to install while also making my
-custom menus look really nice.</p><h1 id=goodbye-ivy>Goodbye Ivy</h1><p>Ivy, counsel and swiper were some of my most used packages. They have some
+custom menus look really nice.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1820763" class="outline-2">
+<h2 id="org1820763">Goodbye Ivy</h2>
+<div class="outline-text-2" id="text-org1820763">
+<p>
+Ivy, counsel and swiper were some of my most used packages. They have some
 quirks, but the overall feature set is just fantastic (thanks abo-abo!). Over
 the last few months several people have tried to use some of the newer
-completion frameworks, which made me curious. I&rsquo;m now using a combination of
+completion frameworks, which made me curious. I'm now using a combination of
 vertico, orderless, counsel and embark. While the number of packages has
 increased, the overall amount of code was reduced. Out of all these packages,
-embark is the one with the most unused potential in my setup. I miss ivy&rsquo;s
-minibuffer actions and I haven&rsquo;t grokked embark enough to re-implement them.</p><h1 id=org-publish>Org Publish</h1><p>I have tried (and failed) to rewrite this blog using <code>org-publish</code>. You can find
+embark is the one with the most unused potential in my setup. I miss ivy's
+minibuffer actions and I haven't grokked embark enough to re-implement them.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org47e469f" class="outline-2">
+<h2 id="org47e469f">Org Publish</h2>
+<div class="outline-text-2" id="text-org47e469f">
+<p>
+I have tried (and failed) to rewrite this blog using <code>org-publish</code>. You can find
 a dozen of tutorials on how people migrated their blog to org, but for some
-reason I just can&rsquo;t get it to work the way I want. This frustration makes you
+reason I just can't get it to work the way I want. This frustration makes you
 wonder if you should write your own static blog generator, but the world already
-has enough of these custom generator projects.</p></article></main><footer><p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p></footer></body></html>
+has enough of these custom generator projects.
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Published: 2021-11-28</p>
+<footer>
+<p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p>
+</footer>
+</div>
+</body>
+</html>

@@ -1,16 +1,51 @@
-<!doctype html><html lang=en><head><title>Writing a CLI Parser</title><meta charset=utf-8><meta name=author content="Florian Winkelbauer"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://florianwinkelbauer.com/posts/2023-07-29-cli-parser/><link rel=alternate type=application/rss+xml title=RSS href=https://florianwinkelbauer.com/index.xml><link rel=stylesheet href=https://florianwinkelbauer.com/main.css></head><body><header class=dark><h2><a href=https://florianwinkelbauer.com/>Florian Winkelbauer</a></h2><nav><a href=/about>About</a>
-<a href=/notes>Notes</a>
-<a href=/projects>Projects</a></nav></header><main><article><header><h1><a href=https://florianwinkelbauer.com/posts/2023-07-29-cli-parser/>Writing a CLI Parser</a></h1><time datetime=2023-07-29T00:00:00Z>July 29, 2023</time></header><p>C# offers a wide range of command line interface (CLI) parsers as NuGet
-packages. The package <a href=https://github.com/commandlineparser/commandline>commandlineparser</a> has sparked joy for
-a long time, but recently I&rsquo;ve been looking for something different. I could
-have tried one of several other CLI parsers (such as the prerelease package
-<a href=https://github.com/dotnet/command-line-api>System.Commandline</a>), but in the end I decided to write my own. Just
-for fun. <a href=https://github.com/fwinkelbauer/chunkyard>Chunkyard</a> only had one package dependency left anyway, so
-why not decrement that number once more?</p><p>The starting point for this little side-project came after I read the first half
-of <a href=https://craftinginterpreters.com>Crafting Interpreters</a> by Robert Nystrom. It gave me the courage
-to tinker with my own implementation. In the end I wrote just enough code to
-handle the use cases that I actually need.</p><h2 id=example>Example</h2><p>One of Chunkyard&rsquo;s command is <code>store</code>, which is used to create a snapshot/backup
-of a set of directories and/or files:</p><pre><code class=language-shell># Create a backup of a single directory
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Writing a CLI Parser</title>
+<meta name="generator" content="Org Mode" />
+<meta name="author" content="Florian Winkelbauer">
+<link rel="stylesheet" href="/site.css" type="text/css">
+</head>
+<body>
+<div id="preamble" class="status">
+<nav>
+<a href="/">Home</a>
+<a href="/notes">Notes</a>
+<a href="/posts">Posts</a>
+<a href="/projects">Projects</a>
+</nav>
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">Writing a CLI Parser</h1>
+</header><p>
+C# offers a wide range of command line interface (CLI) parsers as NuGet
+packages. The package <a href="https://github.com/commandlineparser/commandline">commandlineparser</a> has sparked joy for a long time, but
+recently I've been looking for something different. I could have tried one of
+several other CLI parsers (such as the prerelease package <a href="https://github.com/dotnet/command-line-api">System.Commandline</a>),
+but in the end I decided to write my own. Just for fun. <a href="https://github.com/fwinkelbauer/chunkyard">Chunkyard</a> only had one
+package dependency left anyway, so why not decrement that number once more?
+</p>
+
+<p>
+The starting point for this little side-project came after I read the first half
+of <a href="https://craftinginterpreters.com">Crafting Interpreters</a> by Robert Nystrom. It gave me the courage to tinker
+with my own implementation. In the end I wrote just enough code to handle the
+use cases that I actually need.
+</p>
+
+<div id="outline-container-org21cfd27" class="outline-2">
+<h2 id="org21cfd27">Example</h2>
+<div class="outline-text-2" id="text-org21cfd27">
+<p>
+One of Chunkyard's command is <code>store</code>, which is used to create a snapshot/backup
+of a set of directories and/or files:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"># Create a backup of a single directory
 chunkyard store --repository ~/Chunkyard --paths ~/Music
 
 # Create a backup of multiple directories
@@ -18,8 +53,32 @@ chunkyard store --repository ~/Chunkyard --paths ~/Music ~/Videos
 
 # Show what Chunkyard would do without any action
 chunkyard store --repository ~/Chunkyard --paths ~/Music ~/Videos --preview
-</code></pre><h2 id=overview>Overview</h2><p>Chunkyard&rsquo;s new parser works like this:</p><ul><li>Take a set of arguments (<code>string[] args</code>) and transform them into a semi
-structured representation described by the <code>Args</code> class</li><li>Try to find a command parser based on <code>Args</code></li><li>Transform <code>Args</code> into another type which encapsulates a particular command</li><li>Call a command handler based on the given type</li></ul><p>The simplified definition of the <code>store</code> command example above looks like this:</p><pre><code class=language-csharp>public sealed class StoreCommand
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org59ef2a7" class="outline-2">
+<h2 id="org59ef2a7">Overview</h2>
+<div class="outline-text-2" id="text-org59ef2a7">
+<p>
+Chunkyard's new parser works like this:
+</p>
+
+<ul class="org-ul">
+<li>Take a set of arguments (<code>string[] args</code>) and transform them into a semi
+structured representation described by the <code>Args</code> class</li>
+<li>Try to find a command parser based on <code>Args</code></li>
+<li>Transform <code>Args</code> into another type which encapsulates a particular command</li>
+<li>Call a command handler based on the given type</li>
+</ul>
+
+<p>
+The simplified definition of the <code>store</code> command example above looks like this:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-csharp">public sealed class StoreCommand
 {
     public StoreCommand(
         string repository,
@@ -37,10 +96,23 @@ structured representation described by the <code>Args</code> class</li><li>Try t
 
     public bool Preview { get; }
 }
-</code></pre><h2 id=language-specification>Language Specification</h2><p>Command line tools come with all sorts of different input methods, ranging from
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc2be7a4" class="outline-2">
+<h2 id="orgc2be7a4">Language Specification</h2>
+<div class="outline-text-2" id="text-orgc2be7a4">
+<p>
+Command line tools come with all sorts of different input methods, ranging from
 positional arguments, commands (also called verbs), flags to arguments or
-pipeline operations. To make things easier I decided to limit the &ldquo;language
-specification&rdquo; as much as possible. All Chunkyard commands follow this shape:</p><pre><code class=language-shell># Command with a boolean flag
+pipeline operations. To make things easier I decided to limit the "language
+specification" as much as possible. All Chunkyard commands follow this shape:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"># Command with a boolean flag
 chunkyard some-command --flag
 
 # Command with a list flag
@@ -48,8 +120,16 @@ chunkard some-command --flag element1 element2
 
 # Command with several flags
 chunkard some-command --flag1 --flag2 some-value --flag3 another-value and-another-value
-</code></pre><p>This simplification means that we can represent a list of arguments as a
-structure consisting of a command name and a dictionary (map) of flags:</p><pre><code class=language-csharp>public sealed class Arg
+</pre>
+</div>
+
+<p>
+This simplification means that we can represent a list of arguments as a
+structure consisting of a command name and a dictionary (map) of flags:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-csharp">public sealed class Arg
 {
     public Arg(
         string command,
@@ -63,12 +143,29 @@ structure consisting of a command name and a dictionary (map) of flags:</p><pre>
 
     public IReadOnlyDictionary&lt;string, IReadOnlyCollection&lt;string&gt;&gt; Flags { get; }
 }
-</code></pre><p><code>Args</code> represents semi-structured data. At this point we don&rsquo;t know if the
+</pre>
+</div>
+
+<p>
+<code>Args</code> represents semi-structured data. At this point we don't know if the
 command a user wants to invoke is actually available or if all its parameters
 are satisfied. We only know that the user input is valid according to the
-language specification.</p><h2 id=dispatching>Dispatching</h2><p>Our next step is to use <code>Args</code> to find a specific parser. In our example above
+language specification.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4a1ba92" class="outline-2">
+<h2 id="org4a1ba92">Dispatching</h2>
+<div class="outline-text-2" id="text-org4a1ba92">
+<p>
+Our next step is to use <code>Args</code> to find a specific parser. In our example above
 we would want to use a <code>StoreCommandParser</code>. I am using a small interface to
-define all command parsers:</p><pre><code class=language-csharp>public interface ICommandParser
+define all command parsers:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-csharp">public interface ICommandParser
 {
     string Command { get; }
 
@@ -76,8 +173,20 @@ define all command parsers:</p><pre><code class=language-csharp>public interface
 
     object Parse(FlagConsumer consumer);
 }
-</code></pre><p><code>FlagConsumer</code> is a helper class which contains <code>Args</code>. We will talk more about
-it in the following section.</p><p>The &ldquo;main parser&rdquo; has this structure:</p><pre><code class=language-csharp>public sealed class CommandParser
+</pre>
+</div>
+
+<p>
+<code>FlagConsumer</code> is a helper class which contains <code>Args</code>. We will talk more about
+it in the following section.
+</p>
+
+<p>
+The "main parser" has this structure:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-csharp">public sealed class CommandParser
 {
     private readonly IReadOnlyCollection&lt;ICommandParser&gt; _parsers;
 
@@ -95,26 +204,63 @@ it in the following section.</p><p>The &ldquo;main parser&rdquo; has this struct
         // - Return the output of ICommandParser
     }
 }
-</code></pre><p>This looks easy and neat, but things usually turn messy when we incorporate
-error handling. Let&rsquo;s take a look at a few error examples:</p><ul><li>Arguments do not follow the language specification</li><li>A user wants to call the command <code>foo</code> which does not exist</li><li>The <code>store</code> command is missing required flags</li><li>A command is called with unrecognized/unknown flags</li></ul><p>In case of an error our CLI tool can provide two ways to help:</p><ul><li>Inform a user which commands are available</li><li>Give specific information about a single command, including its flags and
-default values</li></ul><p>The cool thing is that we can solve all these issues with another command that
+</pre>
+</div>
+
+<p>
+This looks easy and neat, but things usually turn messy when we incorporate
+error handling. Let's take a look at a few error examples:
+</p>
+
+<ul class="org-ul">
+<li>Arguments do not follow the language specification</li>
+<li>A user wants to call the command <code>foo</code> which does not exist</li>
+<li>The <code>store</code> command is missing required flags</li>
+<li>A command is called with unrecognized/unknown flags</li>
+</ul>
+
+<p>
+In case of an error our CLI tool can provide two ways to help:
+</p>
+
+<ul class="org-ul">
+<li>Inform a user which commands are available</li>
+<li>Give specific information about a single command, including its flags and
+default values</li>
+</ul>
+
+<p>
+The cool thing is that we can solve all these issues with another command that
 we will call <code>HelpCommand</code>. A <code>HelpCommand</code> encapsulates all errors as well as
-general or specific command information.</p><h2 id=parsing>Parsing</h2><p>I mentioned in the last section that every command has its own <code>ICommandParser</code>.
+general or specific command information.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2e7fa8c" class="outline-2">
+<h2 id="org2e7fa8c">Parsing</h2>
+<div class="outline-text-2" id="text-org2e7fa8c">
+<p>
+I mentioned in the last section that every command has its own <code>ICommandParser</code>.
 Naturally we want to write as little code as possible in each parser. This is
 where the <code>FlagConsumer</code> class comes into play. It keeps track of which flags
 have been consumed/parsed, handles type conversion and also keeps track of all
 errors that occurred. A parser for the above <code>StoreCommand</code> could look like
-this:</p><pre><code class=language-csharp>public sealed class StoreCommandParser : ICommandParser
-{
-    public string Command =&gt; &quot;store&quot;;
+this:
+</p>
 
-    public string Info =&gt; &quot;Store a new snapshot&quot;;
+<div class="org-src-container">
+<pre class="src src-csharp">public sealed class StoreCommandParser : ICommandParser
+{
+    public string Command =&gt; "store";
+
+    public string Info =&gt; "Store a new snapshot";
 
     public object Parse(FlagConsumer consumer)
     {
-        if (consumer.TryString(&quot;--repository&quot;, &quot;The repository path&quot;, out repository)
-            &amp; consumer.TryStrings(&quot;--paths&quot;, &quot;The files and directories to store&quot;, out var paths)
-            &amp; consumer.TryBool(&quot;--preview&quot;, &quot;Show only a preview&quot;, out var preview))
+        if (consumer.TryString("--repository", "The repository path", out repository)
+            &amp; consumer.TryStrings("--paths", "The files and directories to store", out var paths)
+            &amp; consumer.TryBool("--preview", "Show only a preview", out var preview))
         {
             return new StoreCommand(repository, paths, preview);
         }
@@ -124,15 +270,39 @@ this:</p><pre><code class=language-csharp>public sealed class StoreCommandParser
         }
     }
 }
-</code></pre><p>There are few things to note in the above snippet:</p><ul><li>A parser contains all usage information</li><li>We are using <code>out</code> variables to capture parsed flags. A lot of developers
-don&rsquo;t like the <code>TryX</code> pattern, but I think it&rsquo;s really handy in a situation
+</pre>
+</div>
+
+<p>
+There are few things to note in the above snippet:
+</p>
+
+<ul class="org-ul">
+<li>A parser contains all usage information</li>
+<li>We are using <code>out</code> variables to capture parsed flags. A lot of developers
+don't like the <code>TryX</code> pattern, but I think it's really handy in a situation
 like this. Functional languages solve these kinds of problems using a
-technique called <a href=https://blog.ploeh.dk/2018/11/05/applicative-validation/>applicative functors</a></li><li>The usage of <code>&</code> instead of <code>&&</code> allows <code>FlagConsumer</code> to collect more than a
-single error message</li><li>Our parser returns a <code>HelpCommand</code> provided by <code>FlagConsumer</code> in case the
-parsing operation fails</li></ul><h2 id=handling>Handling</h2><p>The final part of this side-project is to perform the intend behind a command.
+technique called <a href="https://blog.ploeh.dk/2018/11/05/applicative-validation/">applicative functors</a></li>
+<li>The usage of <code>&amp;</code> instead of <code>&amp;&amp;</code> allows <code>FlagConsumer</code> to collect more than a
+single error message</li>
+<li>Our parser returns a <code>HelpCommand</code> provided by <code>FlagConsumer</code> in case the
+parsing operation fails</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org6204b4e" class="outline-2">
+<h2 id="org6204b4e">Handling</h2>
+<div class="outline-text-2" id="text-org6204b4e">
+<p>
+The final part of this side-project is to perform the intend behind a command.
 In the beginning I wanted to solve this problem using a visitor pattern, but
 since I wanted the parsing code to be reusable between projects, I was not able
-pull this off. Instead I have settled on the following snippet:</p><pre><code class=language-csharp>public static class CommandHandler
+pull this off. Instead I have settled on the following snippet:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-csharp">public static class CommandHandler
 {
     public static void Store(StoreCommand c)
     {
@@ -166,8 +336,33 @@ public static class Program
         }
     }
 }
-</code></pre><h2 id=conclusion>Conclusion</h2><p>And we are done! While my own implementation is not as neat or feature rich as
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgbf39195" class="outline-2">
+<h2 id="orgbf39195">Conclusion</h2>
+<div class="outline-text-2" id="text-orgbf39195">
+<p>
+And we are done! While my own implementation is not as neat or feature rich as
 other solutions, I am happy with what I have created. A CLI parser is a much
 easier problem than writing a parser for your own language, but it still gave me
-plenty opportunities to experiment and learn.</p><p>You can find the full implementation of the Chunkard.Cli namespace (and its test
-cases) <a href=https://github.com/fwinkelbauer/chunkyard/tree/0a797d6b3e1705c087b6cba05f7d2337c15b1af8/src/Chunkyard.Cli>here</a>.</p></article></main><footer><p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p></footer></body></html>
+plenty opportunities to experiment and learn.
+</p>
+
+<p>
+You can find the full implementation of the Chunkard.Cli namespace (and its test
+cases) <a href="https://github.com/fwinkelbauer/chunkyard/tree/0a797d6b3e1705c087b6cba05f7d2337c15b1af8/src/Chunkyard.Cli">here</a>.
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Published: 2023-07-29</p>
+<footer>
+<p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p>
+</footer>
+</div>
+</body>
+</html>

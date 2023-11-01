@@ -1,27 +1,126 @@
-<!doctype html><html lang=en><head><title>Learning New Old Tricks</title><meta charset=utf-8><meta name=author content="Florian Winkelbauer"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://florianwinkelbauer.com/posts/2019-07-06-new-old/><link rel=alternate type=application/rss+xml title=RSS href=https://florianwinkelbauer.com/index.xml><link rel=stylesheet href=https://florianwinkelbauer.com/main.css></head><body><header class=dark><h2><a href=https://florianwinkelbauer.com/>Florian Winkelbauer</a></h2><nav><a href=/about>About</a>
-<a href=/notes>Notes</a>
-<a href=/projects>Projects</a></nav></header><main><article><header><h1><a href=https://florianwinkelbauer.com/posts/2019-07-06-new-old/>Learning New Old Tricks</a></h1><time datetime=2019-07-06T00:00:00Z>July 06, 2019</time></header><p>Sometimes, you discover something, that others have known for a long time. Last
-week, I&rsquo;ve discovered how useful a <code>~/bin</code> directory can be.</p><h2 id=linux>Linux</h2><p>After creating a <code>~/bin</code> directory on my Ubuntu machine, the directory is
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Learning New Old Tricks</title>
+<meta name="generator" content="Org Mode" />
+<meta name="author" content="Florian Winkelbauer">
+<link rel="stylesheet" href="/site.css" type="text/css">
+</head>
+<body>
+<div id="preamble" class="status">
+<nav>
+<a href="/">Home</a>
+<a href="/notes">Notes</a>
+<a href="/posts">Posts</a>
+<a href="/projects">Projects</a>
+</nav>
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">Learning New Old Tricks</h1>
+</header><p>
+Sometimes, you discover something, that others have known for a long time. Last
+week, I've discovered how useful a <code>~/bin</code> directory can be.
+</p>
+
+<div id="outline-container-orgc8b5af7" class="outline-2">
+<h2 id="orgc8b5af7">Linux</h2>
+<div class="outline-text-2" id="text-orgc8b5af7">
+<p>
+After creating a <code>~/bin</code> directory on my Ubuntu machine, the directory is
 already part of the <code>PATH</code> variable. Any executable or script put in the <code>~/bin</code>
 directory can be turned into a global available command after changing
-permissions and reloading the profile:</p><pre><code class=language-shell>mkdir ~/bin
+permissions and reloading the profile:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">mkdir ~/bin
 cp /path/to/script ~/bin
 chmod +x ~/bin/script
 . ~/.profile
-</code></pre><h2 id=windows>Windows</h2><p>I had to manually add <code>~/bin</code> to the <code>PATH</code> variable:</p><pre><code class=language-powershell>$homeBinDir = Join-Path $env:USERPROFILE 'bin'
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org47859d3" class="outline-2">
+<h2 id="org47859d3">Windows</h2>
+<div class="outline-text-2" id="text-org47859d3">
+<p>
+I had to manually add <code>~/bin</code> to the <code>PATH</code> variable:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-powershell">$homeBinDir = Join-Path $env:USERPROFILE 'bin'
 New-Item $homeBinDir -ItemType Directory -Force | Out-Null
 [Environment]::SetEnvironmentVariable('Path', [Environment]::GetEnvironmentVariable('Path', 'User') + ';' + $homeBinDir, 'User')
-</code></pre><p>Windows uses two different shells: <code>cmd.exe</code> and <code>powershell.exe</code>. You can use
+</pre>
+</div>
+
+<p>
+Windows uses two different shells: <code>cmd.exe</code> and <code>powershell.exe</code>. You can use
 <code>.bat</code>, <code>.cmd</code> and <code>.ps1</code> scripts in PowerShell, but you cannot use <code>.ps1</code> in
-Cmd. Because of this, I&rsquo;ve written a simple &ldquo;wrapper script&rdquo; which I can use to
-make a <code>.ps1</code> script available in Cmd:</p><pre><code class=language-cmd>@ECHO OFF
-PowerShell.exe -NoProfile -File &quot;%~dpn0.ps1&quot;
-</code></pre><p>This <code>.cmd</code> script will call a <code>.ps1</code> with the same name (e.g. <code>foo.cmd</code> will
+Cmd. Because of this, I've written a simple "wrapper script" which I can use to
+make a <code>.ps1</code> script available in Cmd:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmd">@ECHO OFF
+PowerShell.exe -NoProfile -File "%~dpn0.ps1"
+</pre>
+</div>
+
+<p>
+This <code>.cmd</code> script will call a <code>.ps1</code> with the same name (e.g. <code>foo.cmd</code> will
 call <code>foo.ps1</code>). Such a script can also be used to start a <code>.ps1</code> script as an
-Administrator in a new process:</p><pre><code class=language-cmd>@ECHO OFF
-PowerShell.exe -NoProfile -Command &quot;&amp; {Start-Process PowerShell.exe -ArgumentList '-NoProfile -ExecutionPolicy Bypass -File &quot;&quot;%~dpn0.ps1&quot;&quot;' -Verb RunAs}&quot;
-</code></pre><p>Running <code>foo</code> in:</p><ul><li>a Cmd session will execute <code>foo.cmd</code></li><li>a PowerShell session will execute <code>foo.ps1</code> (or <code>foo.cmd</code> if <code>foo.ps1</code> cannot be found)</li></ul><h1 id=usage-examples>Usage Examples</h1><p>So we&rsquo;ve got our bin directory set up, now what? Well, here&rsquo;s a short list of
-scripts which I&rsquo;m using on my machines:</p><ul><li><strong>my-pull:</strong> Calls <code>git pull</code> on a bunch of different repositories. This makes
-it easy to download changes across several projects</li><li><strong>my-rsync:</strong> A custom &ldquo;backup&rdquo; script which relies on <code>rsync</code> to copy a snapshot of
-several directories to an external drive</li><li><strong>my-robo:</strong> Same as above, but using <code>robocopy.exe</code> on Windows</li><li><strong>my-restic:</strong> An experimental (real backup) script which uses <code>restic</code></li><li><strong>homebank-import:</strong> A script which transforms CSV export files from my bank
-to a CSV format which I can import in <code>homebank</code></li></ul></article></main><footer><p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p></footer></body></html>
+Administrator in a new process:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmd">@ECHO OFF
+PowerShell.exe -NoProfile -Command "&amp; {Start-Process PowerShell.exe -ArgumentList '-NoProfile -ExecutionPolicy Bypass -File ""%~dpn0.ps1""' -Verb RunAs}"
+</pre>
+</div>
+
+<p>
+Running <code>foo</code> in:
+</p>
+
+<ul class="org-ul">
+<li>a Cmd session will execute <code>foo.cmd</code></li>
+<li>a PowerShell session will execute <code>foo.ps1</code> (or <code>foo.cmd</code> if <code>foo.ps1</code> cannot be found)</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org9723de9" class="outline-2">
+<h2 id="org9723de9">Usage Examples</h2>
+<div class="outline-text-2" id="text-org9723de9">
+<p>
+So we've got our bin directory set up, now what? Well, here's a short list of
+scripts which I'm using on my machines:
+</p>
+
+<ul class="org-ul">
+<li><b>my-pull:</b> Calls <code>git pull</code> on a bunch of different repositories. This makes
+it easy to download changes across several projects</li>
+<li><b>my-rsync:</b> A custom "backup" script which relies on <code>rsync</code> to copy a snapshot of
+several directories to an external drive</li>
+<li><b>my-robo:</b> Same as above, but using <code>robocopy.exe</code> on Windows</li>
+<li><b>my-restic:</b> An experimental (real backup) script which uses <code>restic</code></li>
+<li><b>homebank-import:</b> A script which transforms CSV export files from my bank
+to a CSV format which I can import in <code>homebank</code></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Published: 2019-07-06</p>
+<footer>
+<p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p>
+</footer>
+</div>
+</body>
+</html>

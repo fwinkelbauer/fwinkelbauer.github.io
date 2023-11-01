@@ -1,11 +1,40 @@
-<!doctype html><html lang=en><head><title>Literate Dotfiles</title><meta charset=utf-8><meta name=author content="Florian Winkelbauer"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://florianwinkelbauer.com/posts/2019-08-10-literate-dotfiles/><link rel=alternate type=application/rss+xml title=RSS href=https://florianwinkelbauer.com/index.xml><link rel=stylesheet href=https://florianwinkelbauer.com/main.css></head><body><header class=dark><h2><a href=https://florianwinkelbauer.com/>Florian Winkelbauer</a></h2><nav><a href=/about>About</a>
-<a href=/notes>Notes</a>
-<a href=/projects>Projects</a></nav></header><main><article><header><h1><a href=https://florianwinkelbauer.com/posts/2019-08-10-literate-dotfiles/>Literate Dotfiles</a></h1><time datetime=2019-08-10T00:00:00Z>August 10, 2019</time></header><p>The Irreal blog has recently published a post about <a href="https://irreal.org/blog/?p=8227">Managing dotfiles with
-Org</a>. The idea is simple: Put your configuration files and other scripts
-in a central (version controlled) place and use Emacs to create the &ldquo;real files&rdquo;
-based on the content of your org file.</p><p>Here&rsquo;s a short example:</p><pre><code class=language-text>* Git
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Literate Dotfiles</title>
+<meta name="generator" content="Org Mode" />
+<meta name="author" content="Florian Winkelbauer">
+<link rel="stylesheet" href="/site.css" type="text/css">
+</head>
+<body>
+<div id="preamble" class="status">
+<nav>
+<a href="/">Home</a>
+<a href="/notes">Notes</a>
+<a href="/posts">Posts</a>
+<a href="/projects">Projects</a>
+</nav>
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">Literate Dotfiles</h1>
+</header><p>
+The Irreal blog has recently published a post about <a href="https://irreal.org/blog/?p=8227">Managing dotfiles with Org</a>.
+The idea is simple: Put your configuration files and other scripts in a central
+(version controlled) place and use Emacs to create the "real files" based on the
+content of your org file.
+</p>
 
-#+BEGIN_SRC conf :tangle &quot;~/.gitconfig&quot; :padline no
+<p>
+Here's a short example:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-org">* Git
+
+#+BEGIN_SRC conf :tangle "~/.gitconfig" :padline no
   [user]
     email = max@mustermann.com
     name = Max Mustermann
@@ -17,7 +46,7 @@ based on the content of your org file.</p><p>Here&rsquo;s a short example:</p><p
     lg = log --color --graph --oneline --decorate --abbrev-commit
 #+END_SRC
 
-#+BEGIN_SRC fundamental :tangle &quot;~/.gitmessage&quot; :padline no
+#+BEGIN_SRC fundamental :tangle "~/.gitmessage" :padline no
   # * Why was this change necessary?
   # * How does it address the problem?
   # * Are there any side effects?
@@ -26,14 +55,49 @@ based on the content of your org file.</p><p>Here&rsquo;s a short example:</p><p
 
 * Bash
 
-#+BEGIN_SRC sh :tangle &quot;~/bin/my-hello&quot; :shebang &quot;#!/bin/bash&quot; :mkdirp yes
+#+BEGIN_SRC sh :tangle "~/bin/my-hello" :shebang "#!/bin/bash" :mkdirp yes
   set -euo pipefail
 
   echo hello
 #+END_SRC
-</code></pre><p>Executing the Emacs function <code>(org-babel-tangle)</code> will create three files:</p><ul><li><code>~/.gitconfig</code></li><li><code>~/.gitmessage</code></li><li><code>~/bin/my-hello</code><ul><li><strong>Note:</strong> The tangling function will (based on the shebang property) make
-this script executable. So there&rsquo;s no need to call <code>chmod +x</code>.</li></ul></li></ul><p>Oh and yes, I can use the same solution on Windows and on Linux. Dealing with
+</pre>
+</div>
+
+<p>
+Executing the Emacs function <code>(org-babel-tangle)</code> will create three files:
+</p>
+
+<ul class="org-ul">
+<li><code>~/.gitconfig</code></li>
+<li><code>~/.gitmessage</code></li>
+<li><code>~/bin/my-hello</code>
+<ul class="org-ul">
+<li><b>Note:</b> The tangling function will (based on the shebang property) make
+this script executable. So there's no need to call <code>chmod +x</code>.</li>
+</ul></li>
+</ul>
+
+<p>
+Oh and yes, I can use the same solution on Windows and on Linux. Dealing with
 configuration or code in org-mode is also delightful: I can narrow the buffer to
-only show a specific file and I&rsquo;ll even get real syntax highlighting.</p><p>One last trick, just for fun: <code>(org-babel-tangle)</code> can be called via the command
-line:</p><pre><code class=language-shell>emacs --batch -l org --eval '(org-babel-tangle-file &quot;foo.org&quot;)'
-</code></pre></article></main><footer><p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p></footer></body></html>
+only show a specific file and I'll even get real syntax highlighting.
+</p>
+
+<p>
+One last trick, just for fun: <code>(org-babel-tangle)</code> can be called via the command
+line:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">emacs --batch -l org --eval '(org-babel-tangle-file "foo.org")'
+</pre>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Published: 2019-08-10</p>
+<footer>
+<p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p>
+</footer>
+</div>
+</body>
+</html>

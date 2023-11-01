@@ -1,17 +1,52 @@
-<!doctype html><html lang=en><head><title>Pretty Org-Agenda</title><meta charset=utf-8><meta name=author content="Florian Winkelbauer"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://florianwinkelbauer.com/posts/2020-07-13-org-agenda-icons/><link rel=alternate type=application/rss+xml title=RSS href=https://florianwinkelbauer.com/index.xml><link rel=stylesheet href=https://florianwinkelbauer.com/main.css></head><body><header class=dark><h2><a href=https://florianwinkelbauer.com/>Florian Winkelbauer</a></h2><nav><a href=/about>About</a>
-<a href=/notes>Notes</a>
-<a href=/projects>Projects</a></nav></header><main><article><header><h1><a href=https://florianwinkelbauer.com/posts/2020-07-13-org-agenda-icons/>Pretty Org-Agenda</a></h1><time datetime=2020-07-13T00:00:00Z>July 13, 2020</time></header><p>A few days ago <a href=https://www.reddit.com/r/emacs/comments/hnf3cw/my_orgmode_agenda_much_better_now_with_category/>this Reddit post</a> about icons in the org-agenda view took
-me by surprise. In the past I have tried to find ways to use different colors
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pretty Org-Agenda</title>
+<meta name="generator" content="Org Mode" />
+<meta name="author" content="Florian Winkelbauer">
+<link rel="stylesheet" href="/site.css" type="text/css">
+</head>
+<body>
+<div id="preamble" class="status">
+<nav>
+<a href="/">Home</a>
+<a href="/notes">Notes</a>
+<a href="/posts">Posts</a>
+<a href="/projects">Projects</a>
+</nav>
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">Pretty Org-Agenda</h1>
+</header><p>
+A few days ago <a href="https://www.reddit.com/r/emacs/comments/hnf3cw/my_orgmode_agenda_much_better_now_with_category/">this Reddit post</a> about icons in the org-agenda view took me by
+surprise. In the past I have tried to find ways to use different colors
 depending on the context of a TODO item (without any success), but I never
 thought about using icons (or that org-mode even supports category based icons).
-I was even more impressed when a user called &ldquo;asiledeneg&rdquo; posted some elisp code
+I was even more impressed when a user called "asiledeneg" posted some elisp code
 to use the all-the-icons Emacs package. Thank you kind internet strangers for
-your code samples. You made my org-agenda glorious:</p><pre><code class=language-emacs-lisp>(defun fw/agenda-icon-material (name)
-  &quot;Returns an all-the-icons-material icon&quot;
+your code samples. You made my org-agenda glorious:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(defun fw/agenda-icon-material (name)
+  "Returns an all-the-icons-material icon"
   (list (all-the-icons-material name)))
 
 ;; https://old.reddit.com/r/emacs/comments/hnf3cw/my_orgmode_agenda_much_better_now_with_category/
 (setq org-agenda-category-icon-alist
-      `((&quot;Birthday&quot; ,(fw/agenda-icon-material &quot;cake&quot;) nil nil :ascent center)
-        (&quot;Anniversary&quot; ,(fw/agenda-icon-material &quot;favorite&quot;) nil nil :ascent center)))
-</code></pre></article></main><footer><p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p></footer></body></html>
+      `(("Birthday" ,(fw/agenda-icon-material "cake") nil nil :ascent center)
+        ("Anniversary" ,(fw/agenda-icon-material "favorite") nil nil :ascent center)))
+</pre>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Published: 2020-07-13</p>
+<footer>
+<p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p>
+</footer>
+</div>
+</body>
+</html>

@@ -1,26 +1,68 @@
-<!doctype html><html lang=en><head><title>Building C# using C#</title><meta charset=utf-8><meta name=author content="Florian Winkelbauer"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://florianwinkelbauer.com/posts/2021-10-04-building-csharp/><link rel=alternate type=application/rss+xml title=RSS href=https://florianwinkelbauer.com/index.xml><link rel=stylesheet href=https://florianwinkelbauer.com/main.css></head><body><header class=dark><h2><a href=https://florianwinkelbauer.com/>Florian Winkelbauer</a></h2><nav><a href=/about>About</a>
-<a href=/notes>Notes</a>
-<a href=/projects>Projects</a></nav></header><main><article><header><h1><a href=https://florianwinkelbauer.com/posts/2021-10-04-building-csharp/>Building C# using C#</a></h1><time datetime=2021-10-04T00:00:00Z>October 04, 2021</time></header><p>Having your own <a href=https://github.com/fwinkelbauer/chunkyard>pet project</a> gives you the great possibility to try
-things you would not want to explore in a serious project. One of my latest
-experiments made me rethink how I create build scripts (which I have mentioned
-before in a <a href=https://florianwinkelbauer.com/posts/2020-04-04-dotnet-build/>previous blog post</a>): What if I would use C# as a
-&ldquo;scripting language&rdquo; in order to create a build script. Or even better: What if
-I could create a CLI tool which deals with all my build tasks? The advantages
-are rather nice:</p><ul><li>Using a single languages makes changing the build process as approachable as
-working on the main project itself</li><li>I can use my IDE with all its features (e.g. a debugger)</li><li>A command line interface makes it easy to pass variables into the build
-process</li><li>I can install and use NuGet packages (e.g.
-<a href=https://github.com/commandlineparser/commandline>commandlineparser</a> to create CLIs)</li></ul><p><a href=https://github.com/fwinkelbauer/chunkyard/blob/3d2b94035931c3852882a2dc00dde3e58e63bbfc/build/Chunkyard.Build/Cli/Commands.cs>Here&rsquo;s an example</a> of a class which contains all command line
-interface verbs such as <code>clean</code>, <code>build</code>, or <code>test</code>. Most of the methods found
-in this class simply call the <code>git</code> or the <code>dotnet</code> CLI with parameters. You can
-run the tool using <code>dotnet run</code>:</p><pre><code class=language-powershell>dotnet run --project MyProject.Build.csproj -- clean -c Debug
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Building C# using C#</title>
+<meta name="generator" content="Org Mode" />
+<meta name="author" content="Florian Winkelbauer">
+<link rel="stylesheet" href="/site.css" type="text/css">
+</head>
+<body>
+<div id="preamble" class="status">
+<nav>
+<a href="/">Home</a>
+<a href="/notes">Notes</a>
+<a href="/posts">Posts</a>
+<a href="/projects">Projects</a>
+</nav>
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">Building C# using C#</h1>
+</header><p>
+Having your own <a href="https://github.com/fwinkelbauer/chunkyard">pet project</a> gives you the great possibility to try things you
+would not want to explore in a serious project. One of my latest experiments
+made me rethink how I create build scripts (which I have mentioned before in a
+<a href="/posts/2020-04-04-dotnet-build">previous blog post</a>): What if I would use C# as a "scripting language" in order
+to create a build script. Or even better: What if I could create a CLI tool
+which deals with all my build tasks? The advantages are rather nice:
+</p>
+
+<ul class="org-ul">
+<li>Using a single languages makes changing the build process as approachable as
+working on the main project itself</li>
+<li>I can use my IDE with all its features (e.g. a debugger)</li>
+<li>A command line interface makes it easy to pass variables into the build
+process</li>
+<li>I can install and use NuGet packages (e.g. <a href="https://github.com/commandlineparser/commandline">commandlineparser</a> to create CLIs)</li>
+</ul>
+
+<p>
+<a href="https://github.com/fwinkelbauer/chunkyard/blob/3d2b94035931c3852882a2dc00dde3e58e63bbfc/build/Chunkyard.Build/Cli/Commands.cs">Here's an example</a> of a class which contains all command line interface verbs
+such as <code>clean</code>, <code>build</code>, or <code>test</code>. Most of the methods found in this class
+simply call the <code>git</code> or the <code>dotnet</code> CLI with parameters. You can run the tool
+using <code>dotnet run</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-powershell">dotnet run --project MyProject.Build.csproj -- clean -c Debug
 dotnet run --project MyProject.Build.csproj -- build -c Debug
 
 dotnet run --project MyProject.Build.csproj -- clean
 dotnet run --project MyProject.Build.csproj -- build
-</code></pre><p>Using <code>dotnet run</code> to run a C# program which in turn calls <code>dotnet build</code> to
+</pre>
+</div>
+
+<p>
+Using <code>dotnet run</code> to run a C# program which in turn calls <code>dotnet build</code> to
 build some other C# program might be weird in the beginning, but we can use
 wrapper scripts in PowerShell or Bash to forget about these messy details.
-Here&rsquo;s an example written in PowerShell:</p><pre><code class=language-powershell>$root = git rev-parse --show-toplevel
+Here's an example written in PowerShell:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-powershell">$root = git rev-parse --show-toplevel
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 try {
@@ -35,10 +77,36 @@ try {
 finally {
     Pop-Location
 }
-</code></pre><p>This script (let&rsquo;s call it <code>make.ps1</code>) changes the above <code>dotnet run</code> command to
-something like this:</p><pre><code class=language-powershell>./make.ps1 clean
+</pre>
+</div>
+
+<p>
+This script (let's call it <code>make.ps1</code>) changes the above <code>dotnet run</code> command to
+something like this:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-powershell">./make.ps1 clean
 ./make.ps1 build
-</code></pre><p>You could even copy this script to a place which is in your PATH variable so
+</pre>
+</div>
+
+<p>
+You could even copy this script to a place which is in your PATH variable so
 that you could call it from anywhere inside your project/repository. This is why
-the above script changes the root directory using a call to <code>git rev-parse</code>.</p><p>Some experiments give you an opportunity to learn. Some may end up nowhere. This
-one sparks joy. Well, at least for me.</p></article></main><footer><p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p></footer></body></html>
+the above script changes the root directory using a call to <code>git rev-parse</code>.
+</p>
+
+<p>
+Some experiments give you an opportunity to learn. Some may end up nowhere. This
+one sparks joy. Well, at least for me.
+</p>
+</div>
+<div id="postamble" class="status">
+<p class="date">Published: 2021-10-04</p>
+<footer>
+<p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p>
+</footer>
+</div>
+</body>
+</html>

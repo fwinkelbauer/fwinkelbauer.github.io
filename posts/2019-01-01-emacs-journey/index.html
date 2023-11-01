@@ -1,43 +1,160 @@
-<!doctype html><html lang=en><head><title>My Emacs Journey 2018</title><meta charset=utf-8><meta name=author content="Florian Winkelbauer"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://florianwinkelbauer.com/posts/2019-01-01-emacs-journey/><link rel=alternate type=application/rss+xml title=RSS href=https://florianwinkelbauer.com/index.xml><link rel=stylesheet href=https://florianwinkelbauer.com/main.css></head><body><header class=dark><h2><a href=https://florianwinkelbauer.com/>Florian Winkelbauer</a></h2><nav><a href=/about>About</a>
-<a href=/notes>Notes</a>
-<a href=/projects>Projects</a></nav></header><main><article><header><h1><a href=https://florianwinkelbauer.com/posts/2019-01-01-emacs-journey/>My Emacs Journey 2018</a></h1><time datetime=2019-01-01T00:00:00Z>January 01, 2019</time></header><p>I have started to use Emacs around the summer time after shelving the task of
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>My Emacs Journey 2018</title>
+<meta name="generator" content="Org Mode" />
+<meta name="author" content="Florian Winkelbauer">
+<link rel="stylesheet" href="/site.css" type="text/css">
+</head>
+<body>
+<div id="preamble" class="status">
+<nav>
+<a href="/">Home</a>
+<a href="/notes">Notes</a>
+<a href="/posts">Posts</a>
+<a href="/projects">Projects</a>
+</nav>
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">My Emacs Journey 2018</h1>
+</header><p>
+I have started to use Emacs around the summer time after shelving the task of
 getting started for several weeks. My intention was to find a cross-platform
 editor which is not Electron-based (e.g. Atom or Visual Studio Code). The
 thought of learning Emacs, an editor which is pretty much older than I am,
 seemed intimidating at first, which was the major reason for putting it off for
 so long. Now, at the start of the new year, I can look back and say, that the
-invested time was well spent. I&rsquo;d like to summarize a few concepts and tools
-that I have learned along the way.</p><h2 id=the-right-tool-for-the-right-job>The Right Tool for the Right Job</h2><p>I am still using other applications such as Notepad++ or Visual Studio and that
-is fine. I don&rsquo;t feel the need to use Emacs as a hammer for every nail or screw
-that I&rsquo;ll encounter.</p><h2 id=new-ways-of-thinking>New Ways of Thinking</h2><p>Emacs is different than most editors or IDEs that I have used in the past.
-Concepts such as buffer management, the &ldquo;everything is text&rdquo; philosophy or the
+invested time was well spent. I'd like to summarize a few concepts and tools
+that I have learned along the way.
+</p>
+
+<div id="outline-container-org9880f93" class="outline-2">
+<h2 id="org9880f93">The Right Tool for the Right Job</h2>
+<div class="outline-text-2" id="text-org9880f93">
+<p>
+I am still using other applications such as Notepad++ or Visual Studio and that
+is fine. I don't feel the need to use Emacs as a hammer for every nail or screw
+that I'll encounter.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org56448f2" class="outline-2">
+<h2 id="org56448f2">New Ways of Thinking</h2>
+<div class="outline-text-2" id="text-org56448f2">
+<p>
+Emacs is different than most editors or IDEs that I have used in the past.
+Concepts such as buffer management, the "everything is text" philosophy or the
 tinkering aspects were rather new to me. It took me a few days to internalize
 the common vocabulary (e.g. <code>M-x foobar</code>, minibuffer, killing and yanking or
 well known package names), which made re-reading several resources pretty
-important. The <a href=https://reddit.com/r/emacs>/r/emacs</a> subreddit has helped me a lot.</p><p>I intentionally decided to start with a plain vanilla version of GNU Emacs so
-that I could start with the &ldquo;original&rdquo; way of how to use to editor. Pretty soon
-some aspects started to itch, which is where I either had to learn the &ldquo;intended
-way&rdquo; or I had to bring in some external packages (extensions).</p><h2 id=org-mode>Org Mode</h2><p>Most of my personal or work related notes used to be written in Markdown. I have
+important. The <a href="https://reddit.com/r/emacs">/r/emacs</a> subreddit has helped me a lot.
+</p>
+
+<p>
+I intentionally decided to start with a plain vanilla version of GNU Emacs so
+that I could start with the "original" way of how to use to editor. Pretty soon
+some aspects started to itch, which is where I either had to learn the "intended
+way" or I had to bring in some external packages (extensions).
+</p>
+</div>
+</div>
+
+<div id="outline-container-org87ab1b9" class="outline-2">
+<h2 id="org87ab1b9">Org Mode</h2>
+<div class="outline-text-2" id="text-org87ab1b9">
+<p>
+Most of my personal or work related notes used to be written in Markdown. I have
 since migrated a major chunk of my personal notes to org-mode. The hierarchical
 and task-oriented nature of org-mode really appeals to me. I do not consider
-myself a power user, because I am only using a few of org-mode&rsquo;s features, e.g.
+myself a power user, because I am only using a few of org-mode's features, e.g.
 I still prefer a traditional calendar, even if org-agenda has some appealing
-features.</p><p>You can find my literate Emacs configuration <a href=https://github.com/fwinkelbauer/emacs>here</a>. Even though one
-would consider committing files managed by a package manager a no-go, I have
-decided to add all <code>.el</code> and <code>*.elc</code> files, so that I can get the exact same
-code when checking out the repository on a new computer.</p><h2 id=magit>Magit</h2><p>Magit was one of the reasons why I have decided to learn Emacs in the first
+features.
+</p>
+
+<p>
+You can find my literate Emacs configuration <a href="https://github.com/fwinkelbauer/emacs">here</a>. Even though one would
+consider committing files managed by a package manager a no-go, I have decided
+to add all <code>.el</code> and <code>*.elc</code> files, so that I can get the exact same code when
+checking out the repository on a new computer.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga81c89d" class="outline-2">
+<h2 id="orga81c89d">Magit</h2>
+<div class="outline-text-2" id="text-orga81c89d">
+<p>
+Magit was one of the reasons why I have decided to learn Emacs in the first
 place. I still like to fire up the good old console to use the git CLI, but
 because of its interactive nature, Magit has made the process of staging and
-committing files fun.</p><h2 id=ivy-counsel-and-swiper>Ivy, Counsel and Swiper</h2><p>Emacs ships with ido, a completion framework that you can turn on to e.g. speed up
+committing files fun.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4b1682b" class="outline-2">
+<h2 id="org4b1682b">Ivy, Counsel and Swiper</h2>
+<div class="outline-text-2" id="text-org4b1682b">
+<p>
+Emacs ships with ido, a completion framework that you can turn on to e.g. speed up
 the process of finding files in the minibuffer. I did not enjoy the look and
 feel of ido, which is why I turned to ivy. I have never tried helm (ivy and helm
-seem to be the two &ldquo;go-to&rdquo; completion packages), which is why I can&rsquo;t give an
+seem to be the two "go-to" completion packages), which is why I can't give an
 educated insight into their differences, but from what I have read, ivy seems to
-be more &ldquo;light weight&rdquo; compared to helm.</p><p>IDEs do offer features such as finding and replacing text in different files,
+be more "light weight" compared to helm.
+</p>
+
+<p>
+IDEs do offer features such as finding and replacing text in different files,
 but ivy offers these features in a way, that I have never seen before. I really
-enjoy the quick feedback and interactive nature that ivy can pull off.</p><h2 id=elfeed>Elfeed</h2><p>I have recently re-discovered RSS feeds for myself. Back in the day, I was a
+enjoy the quick feedback and interactive nature that ivy can pull off.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf2b1951" class="outline-2">
+<h2 id="orgf2b1951">Elfeed</h2>
+<div class="outline-text-2" id="text-orgf2b1951">
+<p>
+I have recently re-discovered RSS feeds for myself. Back in the day, I was a
 heavy Google Reader user, but those days are long gone. Elfeed is a decent RSS
 reader that I have started to enjoy. Based on some custom configuration from the
 author himself, I have written my own elisp functions which integrate the
-youtube-dl CLI to download podcasts and videos in my feed.</p><h2 id=further-improvements-and-closing-thoughts>Further Improvements and Closing Thoughts</h2><p>It might seem crazy that the process of learning and configuring Emacs is never
-really &ldquo;done&rdquo;, but most of the time it does not really feel like work.</p><p>Things that I might tinker on in the future include:</p><ul><li>Window management</li><li>In-buffer navigation</li><li>Customizing the mode line</li><li>Creating a simple theme</li></ul></article></main><footer><p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p></footer></body></html>
+youtube-dl CLI to download podcasts and videos in my feed.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org29e67c6" class="outline-2">
+<h2 id="org29e67c6">Further Improvements and Closing Thoughts</h2>
+<div class="outline-text-2" id="text-org29e67c6">
+<p>
+It might seem crazy that the process of learning and configuring Emacs is never
+really "done", but most of the time it does not really feel like work.
+</p>
+
+<p>
+Things that I might tinker on in the future include:
+</p>
+
+<ul class="org-ul">
+<li>Window management</li>
+<li>In-buffer navigation</li>
+<li>Customizing the mode line</li>
+<li>Creating a simple theme</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Published: 2019-01-01</p>
+<footer>
+<p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p>
+</footer>
+</div>
+</body>
+</html>

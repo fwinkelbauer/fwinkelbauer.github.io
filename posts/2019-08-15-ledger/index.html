@@ -1,10 +1,38 @@
-<!doctype html><html lang=en><head><title>Exporting from Homebank and Importing into Ledger</title><meta charset=utf-8><meta name=author content="Florian Winkelbauer"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://florianwinkelbauer.com/posts/2019-08-15-ledger/><link rel=alternate type=application/rss+xml title=RSS href=https://florianwinkelbauer.com/index.xml><link rel=stylesheet href=https://florianwinkelbauer.com/main.css></head><body><header class=dark><h2><a href=https://florianwinkelbauer.com/>Florian Winkelbauer</a></h2><nav><a href=/about>About</a>
-<a href=/notes>Notes</a>
-<a href=/projects>Projects</a></nav></header><main><article><header><h1><a href=https://florianwinkelbauer.com/posts/2019-08-15-ledger/>Exporting from Homebank and Importing into Ledger</a></h1><time datetime=2019-08-15T00:00:00Z>August 15, 2019</time></header><p>I am using <a href=http://homebank.free.fr/en/index.php>Homebank</a> to keep track of my financial situation.
-Recently, I thought about switching to <a href=https://www.ledger-cli.org>Ledger</a> (which belongs to a
-family of <a href=https://plaintextaccounting.org/>plaintext accounting tools</a>). Homebank does not offer any
-decent export features, so I had to come up with my own strategies to transfer
-my data into the Ledger format.</p><p>The following Python script transforms a Homebank file into CSV:</p><pre><code class=language-python>#!/usr/bin/env python3
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Exporting from Homebank and Importing into Ledger</title>
+<meta name="generator" content="Org Mode" />
+<meta name="author" content="Florian Winkelbauer">
+<link rel="stylesheet" href="/site.css" type="text/css">
+</head>
+<body>
+<div id="preamble" class="status">
+<nav>
+<a href="/">Home</a>
+<a href="/notes">Notes</a>
+<a href="/posts">Posts</a>
+<a href="/projects">Projects</a>
+</nav>
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">Exporting from Homebank and Importing into Ledger</h1>
+</header><p>
+I am using <a href="http://homebank.free.fr/en/index.php">Homebank</a> to keep track of my financial situation. Recently, I thought
+about switching to <a href="https://www.ledger-cli.org">Ledger</a> (which belongs to a family of <a href="https://plaintextaccounting.org/">plaintext accounting
+tools</a>). Homebank does not offer any decent export features, so I had to come up
+with my own strategies to transfer my data into the Ledger format.
+</p>
+
+<p>
+The following Python script transforms a Homebank file into CSV:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">#!/usr/bin/env python3
 
 import argparse
 import datetime
@@ -15,7 +43,7 @@ import xml.etree.ElementTree as ET
 def convert_homebank_date(serial_date):
     start_date = datetime.datetime(1, 1, 1, 0, 0)
     new_date = start_date + datetime.timedelta(serial_date - 1)
-    return new_date.strftime(&quot;%Y-%m-%d&quot;)
+    return new_date.strftime("%Y-%m-%d")
 
 
 def attrib_or_empty(node, attribute_name):
@@ -48,7 +76,7 @@ def parse_homebank(file_name):
             transfer_node, 'dst_account')]
         amount = to_decimal(transfer_node.attrib['amount'])
         wording = attrib_or_empty(
-            transfer_node, 'wording').replace(&quot;;&quot;, &quot;&quot;).replace(&quot;,&quot;, &quot;&quot;)
+            transfer_node, 'wording').replace(";", "").replace(",", "")
         category = category_lookup[attrib_or_empty(transfer_node, 'category')]
         info = attrib_or_empty(transfer_node, 'info')
         print('{},{},{},{},€{},{},{}'.format(
@@ -65,21 +93,49 @@ def main():
 
 if __name__ == '__main__':
     main()
-</code></pre><p>I&rsquo;m not using Homebank&rsquo;s payee field, which is why the created CSV output does
-not contain this information. Ledger&rsquo;s <code>convert</code> command expects a few
+</pre>
+</div>
+
+<p>
+I'm not using Homebank's payee field, which is why the created CSV output does
+not contain this information. Ledger's <code>convert</code> command expects a few
 predefined headers to create new records. Every other (unknown) header is added
-as a comment. There are still a few minor points to watch out for:</p><ul><li>De-duplication: The Homebank CSV export might contain duplicate entries for
+as a comment. There are still a few minor points to watch out for:
+</p>
+
+<ul class="org-ul">
+<li>De-duplication: The Homebank CSV export might contain duplicate entries for
 situations in which an amount is transferred between two accounts (e.g.
-transferring money from a checking account into a savings account).</li><li>Accounts mapping: Homebank&rsquo;s categories have to be &ldquo;translated&rdquo; (or &ldquo;mapped&rdquo;)
+transferring money from a checking account into a savings account).</li>
+<li>Accounts mapping: Homebank's categories have to be "translated" (or "mapped")
 into Ledger accounts. This task can be simplified if you are using an editor
-which supports macros.</li><li>Account inference: Ledger can be configured to infer an account based on the
+which supports macros.</li>
+<li>Account inference: Ledger can be configured to infer an account based on the
 Payee field. This feature can speed up the above step about mapping Homebank
-categories to Ledger accounts. Here&rsquo;s an example:</li></ul><pre><code class=language-text>account Expenses:Food
+categories to Ledger accounts. Here's an example:</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-text">account Expenses:Food
     payee (Walmart|Whole Foods)
 
 2019/01/01 * Thanks for shopping at Walmart
     Expenses:Food                              $ -25
     Bank:Checking
-</code></pre><p>Converting my Homebank file (which contains data for +3 years) into a Ledger
-file took me about one hour. I&rsquo;m not sure if I&rsquo;ll stick with Ledger, so I&rsquo;m
-maintaining both files until I&rsquo;ve made a decision.</p></article></main><footer><p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p></footer></body></html>
+</pre>
+</div>
+
+<p>
+Converting my Homebank file (which contains data for +3 years) into a Ledger
+file took me about one hour. I'm not sure if I'll stick with Ledger, so I'm
+maintaining both files until I've made a decision.
+</p>
+</div>
+<div id="postamble" class="status">
+<p class="date">Published: 2019-08-15</p>
+<footer>
+<p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p>
+</footer>
+</div>
+</body>
+</html>

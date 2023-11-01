@@ -1,30 +1,66 @@
-<!doctype html><html lang=en><head><title>Diffing Collaborative Text</title><meta charset=utf-8><meta name=author content="Florian Winkelbauer"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=canonical href=https://florianwinkelbauer.com/posts/2019-07-23-text-diff/><link rel=alternate type=application/rss+xml title=RSS href=https://florianwinkelbauer.com/index.xml><link rel=stylesheet href=https://florianwinkelbauer.com/main.css></head><body><header class=dark><h2><a href=https://florianwinkelbauer.com/>Florian Winkelbauer</a></h2><nav><a href=/about>About</a>
-<a href=/notes>Notes</a>
-<a href=/projects>Projects</a></nav></header><main><article><header><h1><a href=https://florianwinkelbauer.com/posts/2019-07-23-text-diff/>Diffing Collaborative Text</a></h1><time datetime=2019-07-23T00:00:00Z>July 23, 2019</time></header><p>A <a href=https://github.com/Wookai/paper-tips-and-tricks#one-sentence-per-line>common advice</a> I&rsquo;ve read in the past suggests, that we should write
-text documents (like LaTeX documents or Markdown documentation) in a way, so
-that each sentence is put on its own line. This gives us an easier time to
-create diffs of documents which are created in a collaborative fashion.</p><p>Emacs offers a function <code>fill-paragraph</code>, which breaks a given line before a
-specific column width. This might look like this:</p><pre><code class=language-text>A [common
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Diffing Collaborative Text</title>
+<meta name="generator" content="Org Mode" />
+<meta name="author" content="Florian Winkelbauer">
+<link rel="stylesheet" href="/site.css" type="text/css">
+</head>
+<body>
+<div id="preamble" class="status">
+<nav>
+<a href="/">Home</a>
+<a href="/notes">Notes</a>
+<a href="/posts">Posts</a>
+<a href="/projects">Projects</a>
+</nav>
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">Diffing Collaborative Text</h1>
+</header><p>
+A <a href="https://github.com/Wookai/paper-tips-and-tricks#one-sentence-per-line">common advice</a> I've read in the past suggests, that we should write text
+documents (like LaTeX documents or Markdown documentation) in a way, so that
+each sentence is put on its own line. This gives us an easier time to create
+diffs of documents which are created in a collaborative fashion.
+</p>
+
+<p>
+Emacs offers a function <code>fill-paragraph</code>, which breaks a given line before a
+specific column width. This might look like this:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-text">A [common
 advice](https://github.com/Wookai/paper-tips-and-tricks#one-sentence-per-line)
 I've read in the past suggests, that we should write text documents (like LaTeX
 documents or Markdown documentation) in a way, so that each sentence is put on
 its own line. This gives us an easier time to create diffs of documents which
 are created in a collaborative fashion.
-</code></pre><p><code>fill-paragraph</code> looks decent, but it can create massive diffs which are hard to
-reason about. There are several questions on StackOverflow (such as <a href=https://emacs.stackexchange.com/questions/443/editing-files-with-one-sentence-per-line>this
-one</a> where people ask for a customized version of
-<code>fill-paragraph</code> which could format a piece of text, so that each sentence is
-put onto a new line. I&rsquo;ve recently started to read the Emacs Lisp introduction
-tutorial (which ships with Emacs itself), so I&rsquo;ve tried to come up with my own
-solution to this problem. I took some inspiration from the above StackOverflow
-post. Here&rsquo;s the code:</p><pre><code class=language-emacs-lisp>(defun fw/unfill-paragraph ()
-  &quot;Unfill the paragraph at point.&quot;
+</pre>
+</div>
+
+<p>
+<code>fill-paragraph</code> looks decent, but it can create massive diffs which are hard to
+reason about. There are several questions on StackOverflow (such as <a href="https://emacs.stackexchange.com/questions/443/editing-files-with-one-sentence-per-line">this one</a>
+where people ask for a customized version of <code>fill-paragraph</code> which could format
+a piece of text, so that each sentence is put onto a new line. I've recently
+started to read the Emacs Lisp introduction tutorial (which ships with Emacs
+itself), so I've tried to come up with my own solution to this problem. I took
+some inspiration from the above StackOverflow post. Here's the code:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(defun fw/unfill-paragraph ()
+  "Unfill the paragraph at point."
   (interactive)
   (let ((fill-column (point-max)))
     (fill-paragraph)))
 
 (defun fw/wrap-at-sentences ()
-  &quot;Fills the current paragraph, but starts each sentence on a new line.&quot;
+  "Fills the current paragraph, but starts each sentence on a new line."
   (interactive)
   (save-excursion
     (fw/unfill-paragraph)
@@ -36,24 +72,78 @@ post. Here&rsquo;s the code:</p><pre><code class=language-emacs-lisp>(defun fw/u
           (newline-and-indent))))
   ;; The selection will not be cleared if there is only one sentence in a paragraph
   (deactivate-mark))
-</code></pre><p>The above code works for the most part, but there are still two edge cases which
-annoy me:</p><p>Emacs might treat phrases such as &ldquo;e.g.&rdquo; or &ldquo;i.e.&rdquo; as the end of a sentence,
+</pre>
+</div>
+
+<p>
+The above code works for the most part, but there are still two edge cases which
+annoy me:
+</p>
+
+<p>
+Emacs might treat phrases such as "e.g." or "i.e." as the end of a sentence,
 which means that a single sentence might end up on more than one line. This
 behavior can change depending on the configuration of your
 <code>sentence-end-double-space</code> variable, but we can still create examples in which
-<code>forward-sentence</code> does not behave as it should. Here&rsquo;s an example:</p><pre><code class=language-text>This sentence, which contains the phrase
+<code>forward-sentence</code> does not behave as it should. Here's an example:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-text">This sentence, which contains the phrase
 e.g.
 and because of how the new lines are put,
-Emacs intereprets it as two sentences.
-</code></pre><p>The <code>markdown-mode</code> package has ambiguous behavior regarding lists. Depending on
+Emacs interprets it as two sentences.
+</pre>
+</div>
+
+<p>
+The <code>markdown-mode</code> package has ambiguous behavior regarding lists. Depending on
 what operations you perform, a list might be formatted in two different ways.
-This can be visualized using an example:</p><p>Here&rsquo;s the initial text on one line:</p><pre><code class=language-text>- Some example sentence which contains no content. Another pointless example sentence. A third sentence.
-</code></pre><p>If we put a new line right after every sentence, the text will end up like this:</p><pre><code class=language-text>- Some example sentence which contains no content.
+This can be visualized using an example:
+</p>
+
+<p>
+Here's the initial text on one line:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-text">- Some example sentence which contains no content. Another pointless example sentence. A third sentence.
+</pre>
+</div>
+
+<p>
+If we put a new line right after every sentence, the text will end up like this:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-text">- Some example sentence which contains no content.
 Another pointless example sentence.
 A third sentence.
-</code></pre><p>If we instead indent the second sentence before we put a new line on every
-following sentence, each following sentence will have the correct indentation:</p><pre><code class=language-text>- Some example sentence which contains no content.
+</pre>
+</div>
+
+<p>
+If we instead indent the second sentence before we put a new line on every
+following sentence, each following sentence will have the correct indentation:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-text">- Some example sentence which contains no content.
   Another pointless example sentence.
   A third sentence.
-</code></pre><p>Both versions seem to be valid Markdown (well, at least for every interpreter
-that I&rsquo;ve tried), but I&rsquo;d still prefer the second version.</p></article></main><footer><p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p></footer></body></html>
+</pre>
+</div>
+
+<p>
+Both versions seem to be valid Markdown (well, at least for every interpreter
+that I've tried), but I'd still prefer the second version.
+</p>
+</div>
+<div id="postamble" class="status">
+<p class="date">Published: 2019-07-23</p>
+<footer>
+<p>Copyright 2023, Florian Winkelbauer. All rights reserved.</p>
+</footer>
+</div>
+</body>
+</html>
