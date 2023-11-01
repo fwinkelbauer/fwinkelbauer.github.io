@@ -35,15 +35,6 @@ a {
     color: #047bc2;
 }
 
-h2 a {
-    color: inherit;
-    text-decoration: inherit;
-}
-
-h2 a:hover {
-  color: #949494;
-}
-
 nav a {
     margin-right: .5em;
 }
