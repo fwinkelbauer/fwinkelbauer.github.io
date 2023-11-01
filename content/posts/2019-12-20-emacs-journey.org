@@ -33,7 +33,7 @@ sound too simple, but it took me several attempts before I pulled it off. Thanks
 
 Most of my config files and custom scripts live in an org file inside a git
 repository. Using a simple shortcut, I can create "real" config files based on
-this org file. I have mentioned this process in a [[file:2019-08-10-literate-dotfiles.org][previous post]].
+this org file. I have mentioned this process in a [[/posts/2019-08-10-literate-dotfiles][previous post]].
 
 * Keybindings
 

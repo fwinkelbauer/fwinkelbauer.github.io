@@ -1,4 +1,4 @@
-(when (version< emacs-version "27.1")
+(when (version< emacs-version "28.1")
   (error "Unsupported version of Emacs"))
 
 (require 'ox-publish)
@@ -25,20 +25,75 @@
         ((eq style 'tree) (file-name-nondirectory (directory-file-name entry)))
         (t entry)))
 
+(defun fw/get-article-output-path (org-file pub-dir)
+  (let ((article-dir (concat pub-dir
+                             (downcase
+                              (file-name-as-directory
+                               (file-name-sans-extension
+                                (file-name-nondirectory org-file)))))))
+
+    (if (string-match "\\/index.org\\|\\/404.org$" org-file)
+        pub-dir
+        (progn
+          (unless (file-directory-p article-dir)
+            (make-directory article-dir t))
+          article-dir))))
+
+(defun fw/org-html-link (link contents info)
+  "Removes file extension and changes the path into lowercase file:// links."
+  (when (and (string= 'file (org-element-property :type link))
+             (string= "org" (file-name-extension (org-element-property :path link))))
+    (org-element-put-property link :path
+                              (downcase
+                               (file-name-sans-extension
+                                (org-element-property :path link)))))
+
+  (let ((exported-link (org-export-custom-protocol-maybe link contents 'html info)))
+    (cond
+     (exported-link exported-link)
+     ((equal contents nil)
+      (format "<a href=\"%s\">%s</a>"
+              (org-element-property :raw-link link)
+              (org-element-property :raw-link link)))
+     ((string-prefix-p "/" (org-element-property :raw-link link))
+      (format "<a href=\"%s\">%s</a>"
+              (org-element-property :raw-link link)
+              contents))
+     (t (org-export-with-backend 'html link contents info)))))
+
+(org-export-define-derived-backend 'site-html 'html
+  :translate-alist '((link . fw/org-html-link)))
+
+(defun fw/org-html-publish-to-html (plist filename pub-dir)
+  "Publish an org file to HTML, using the FILENAME as the output directory."
+  (let ((article-path (fw/get-article-output-path filename pub-dir)))
+    (cl-letf (((symbol-function 'org-export-output-file-name)
+               (lambda (extension &optional subtreep pub-dir)
+                 ;; The 404 page is a special case, it must be named "404.html"
+                 (concat article-path
+                         (if (string= (file-name-nondirectory filename) "404.org") "404" "index")
+                         extension))))
+      (org-publish-org-to 'site-html filename
+                          (concat "." (or (plist-get plist :html-extension)
+                                          org-html-extension
+                                          "html"))
+                          plist
+                          article-path))))
+
 (defun fw/publish-website ()
   "Publish my website"
   (let ((org-publish-project-alist
          `(("content"
             :base-directory "./content/"
             :publishing-directory "./public/"
-            :publishing-function org-html-publish-to-html
+            :publishing-function fw/org-html-publish-to-html
             :recursive nil)
 
            ("notes"
             :auto-sitemap t
             :base-directory "./content/notes"
             :publishing-directory "./public/notes"
-            :publishing-function org-html-publish-to-html
+            :publishing-function fw/org-html-publish-to-html
             :recursive t
             :sitemap-filename "index.org"
             :sitemap-title "Notes")
@@ -47,7 +102,7 @@
             :auto-sitemap t
             :base-directory "./content/posts"
             :publishing-directory "./public/posts"
-            :publishing-function org-html-publish-to-html
+            :publishing-function fw/org-html-publish-to-html
             :recursive t
             :sitemap-filename "index.org"
             :sitemap-sort-files anti-chronologically
@@ -77,10 +132,10 @@
         (org-html-postamble 'fw/postamble)
         (org-html-preamble
          (fw/join-lines "<nav>"
-                        "<a href=\"/index.html\">Home</a>"
-                        "<a href=\"/notes/index.html\">Notes</a>"
-                        "<a href=\"/posts/index.html\">Posts</a>"
-                        "<a href=\"/projects.html\">Projects</a>"
+                        "<a href=\"/\">Home</a>"
+                        "<a href=\"/notes\">Notes</a>"
+                        "<a href=\"/posts\">Posts</a>"
+                        "<a href=\"/projects\">Projects</a>"
                         "</nav>"))
         (org-html-validation-link nil)
         (org-publish-timestamp-directory "./.org-timestamps/"))

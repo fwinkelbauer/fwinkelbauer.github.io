@@ -2,7 +2,7 @@
 #+DATE: [2021-05-26]
 #+STARTUP: showall
 
-This post builds upon a previous post about [[file:2019-01-30-emacs-orglink.org][org-mode links]].
+This post builds upon a previous post about [[/posts/2019-01-30-emacs-orglink][org-mode links]].
 
 * Custom Links
 

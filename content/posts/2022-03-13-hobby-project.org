@@ -29,7 +29,7 @@ suite that gives me enough confidence to explore ideas or implement features.
 
 Since I do not have any "real" users (besides myself), I can test out all sorts
 of designs without having to consider backwards compatibility. Re-reading older
-posts such as [[file:2020-10-03-chunkyard-explained.org][Chunkyard Explained]] makes me laugh, because the serialized data
+posts such as [[/posts/2020-10-03-chunkyard-explained][Chunkyard Explained]] makes me laugh, because the serialized data
 format has changed more than once since I have written that post.
 
 Chunkyard was the first project in which I have developed a makefile-style build

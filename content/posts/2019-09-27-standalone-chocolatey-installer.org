@@ -73,7 +73,7 @@ This script does a few things for us. It will:
   ~output/chocolateySetup.7z~, ~config.txt~ and the 7-zip SFX module
 
 All calls to 7-zip are wrapped in an ~exec~ function, which I've described in a
-previous [[file:2019-01-21-powershell-provision.org][post]].
+[[/posts/2019-01-21-powershell-provision][previous post]].
 
 You can tweak the ~$chocoUrl~ parameter to download a different version of
 Chocolatey. Keep in mind that you might need to delete the ~temp~ directory to
