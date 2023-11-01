@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 
 import argparse
-import subprocess
 import os
+import shutil
+import subprocess
+from pathlib import Path
 
 
 DIRECTORY = './public'
@@ -16,11 +18,14 @@ def publish(args):
     if not os.path.isdir(DIRECTORY):
         run(['git', 'worktree', 'prune'])
         run(['git', 'worktree', 'add', '-B', 'gh-pages', DIRECTORY, 'origin/gh-pages'])
-    files = query(['git', 'ls-files'], cwd=DIRECTORY)
-    for file in files:
-        relative_file = os.path.join(DIRECTORY, file)
-        if os.path.isfile(relative_file):
-            os.remove(relative_file)
+    for file in Path(DIRECTORY).iterdir():
+        path=str(file.resolve())
+        if path.endswith('.git'):
+            continue
+        elif os.path.isfile(path):
+            os.remove(path)
+        else:
+            shutil.rmtree(path)
     run(['emacs', '-Q', '--script', './publish.el'])
 
 
@@ -45,11 +50,6 @@ def add_cmd(sub, name, help, func):
 
 def run(args, cwd=None):
     subprocess.run(args, cwd=cwd, check=True)
-
-
-def query(args, cwd=None):
-    process = subprocess.run(args, cwd=cwd, check=True, capture_output=True, text=True)
-    return process.stdout.splitlines()
 
 
 if __name__ == '__main__':
