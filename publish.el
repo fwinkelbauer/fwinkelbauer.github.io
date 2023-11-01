@@ -1,3 +1,6 @@
+(when (version< emacs-version "27.1")
+  (error "Unsupported version of Emacs"))
+
 (require 'ox-publish)
 
 (defun fw/join-lines (&rest strings)
