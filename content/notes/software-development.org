@@ -456,7 +456,7 @@ https://www.youtube.com/watch?v=oxjT7veKi9c
   level in which one can absolutely precise" - Dijkstra
 - Think in terms of transformation and flow of data - not code!
 - Farley's second law: "As soon as you realize that most people don't know what
-  they are doing the world makes a lot more sense.."
+  they are doing the world makes a lot more sense..."
 
 * It's about time (Christin Gorman)
 
@@ -1422,3 +1422,5 @@ https://www.youtube.com/watch?v=_jfOk4L7CiY
 - Allen Holub
 - John Hughes
 - Andrew Kelley
+- Dave Farley
+- David Tielke (German)
