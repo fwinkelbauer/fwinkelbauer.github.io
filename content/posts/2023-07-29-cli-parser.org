@@ -85,9 +85,9 @@ This simplification means that we can represent a list of arguments as a
 structure consisting of a command name and a dictionary (map) of flags:
 
 #+begin_src csharp
-public sealed class Arg
+public sealed class Args
 {
-    public Arg(
+    public Args(
         string command,
         IReadOnlyDictionary<string, IReadOnlyCollection<string>> flags)
     {
