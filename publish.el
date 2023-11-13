@@ -118,6 +118,7 @@
 
            ("florianwinkelbauer.com" :components ("content" "notes" "posts" "static"))))
         (backup-inhibited t)
+        (indent-tabs-mode nil)
         (org-export-time-stamp-file nil)
         (org-export-with-author nil)
         (org-export-with-section-numbers nil)
@@ -129,6 +130,7 @@
                         "<link rel=\"stylesheet\" href=\"/site.css\" type=\"text/css\">"))
         (org-html-head-include-default-style nil)
         (org-html-head-include-scripts nil)
+        (org-html-mathjax-template "")
         (org-html-postamble 'fw/postamble)
         (org-html-preamble
          (fw/join-lines "<nav>"
