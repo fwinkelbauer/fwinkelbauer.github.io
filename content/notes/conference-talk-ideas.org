@@ -10,10 +10,10 @@ Command line tools such as git and dotnet are terrific assets for building and
 publishing your applications. We will investigate how they can be used in
 different situations:
 
-- Using git commands such as ~git rev-parse~ or ~git clean~ to improve a build
-  pipeline
+- Using git commands such as ~git rev-parse~, ~git clean~ and ~git describe~ to
+  improve a build pipeline
 - The versatility of ~dotnet publish~
-  - Single binary, ahead-of-time compilation or self-contained builds
+  - Single binary, ahead-of-time compilation and self-contained builds
   - Add commit ID information
 - Utility dotnet sub-commands such as ~dotnet format~ or ~dotnet list package
   --outdated~
@@ -24,11 +24,11 @@ different situations:
 
 In the last few years I built [[https://github.com/fwinkelbauer/chunkyard/][Chunkyard]], a backup tool which combines full and
 incremental backups while also including features such as copying and validating
-backups. Chunkyard does not offer much that other open source backups tool
+backups. Chunkyard does not offer anything that other open source backups tool
 provide, but it gave me several opportunities to explore topics such as:
 
-- How "modern" backup applications work
-- Use .NET on Windows and Linux
+- How backup applications with deduplication work
+- Cross platform development in .NET
 - Testing new language features
 - Limit myself to the standard library
 - Create a useful and fast testing suite
