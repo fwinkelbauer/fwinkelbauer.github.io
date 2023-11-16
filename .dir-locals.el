@@ -1,3 +1,2 @@
 ((org-mode .
-           ((eval . (flyspell-mode))
-            (eval . (flyspell-buffer)))))
+           ((eval . (flyspell-mode)))))
