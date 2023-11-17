@@ -10,14 +10,14 @@ from pathlib import Path
 DIRECTORY = './public'
 
 
-def clean(args):
-    run(['git', 'clean', '-dfx'])
+def clean():
+    run('git clean -dfx')
 
 
-def publish(args):
+def publish():
     if not os.path.isdir(DIRECTORY):
-        run(['git', 'worktree', 'prune'])
-        run(['git', 'worktree', 'add', '-B', 'gh-pages', DIRECTORY, 'origin/gh-pages'])
+        run('git worktree prune')
+        run(f"git worktree add -B gh-pages {DIRECTORY} origin/gh-pages")
     for file in Path(DIRECTORY).iterdir():
         path=str(file.resolve())
         if path.endswith('.git'):
@@ -26,11 +26,11 @@ def publish(args):
             os.remove(path)
         else:
             shutil.rmtree(path)
-    run(['emacs', '-Q', '--script', './publish.el'])
+    run('emacs -Q --script publish.el')
 
 
-def serve(args):
-    run(['python3', '-m', 'http.server'], cwd=DIRECTORY)
+def serve():
+    run('python3 -m http.server', cwd=DIRECTORY)
 
 
 def main():
@@ -45,11 +45,11 @@ def main():
 
 def add_cmd(sub, name, help, func):
     parser = sub.add_parser(name, help=help)
-    parser.set_defaults(func=func)
+    parser.set_defaults(func=lambda args: func())
 
 
 def run(args, cwd=None):
-    subprocess.run(args, cwd=cwd, check=True)
+    subprocess.run(args.split(), cwd=cwd, check=True)
 
 
 if __name__ == '__main__':
