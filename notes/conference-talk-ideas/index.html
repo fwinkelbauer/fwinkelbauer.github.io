@@ -35,11 +35,11 @@ different situations:
 </p>
 
 <ul class="org-ul">
-<li>Using git commands such as <code>git rev-parse</code> or <code>git clean</code> to improve a build
-pipeline</li>
+<li>Using git commands such as <code>git rev-parse</code>, <code>git clean</code> and <code>git describe</code> to
+improve a build pipeline</li>
 <li>The versatility of <code>dotnet publish</code>
 <ul class="org-ul">
-<li>Single binary, ahead-of-time compilation or self-contained builds</li>
+<li>Single binary, ahead-of-time compilation and self-contained builds</li>
 <li>Add commit ID information</li>
 </ul></li>
 <li>Utility dotnet sub-commands such as <code>dotnet format</code> or <code>dotnet list package
@@ -56,13 +56,13 @@ commits and tagging</li>
 <p>
 In the last few years I built <a href="https://github.com/fwinkelbauer/chunkyard/">Chunkyard</a>, a backup tool which combines full and
 incremental backups while also including features such as copying and validating
-backups. Chunkyard does not offer much that other open source backups tool
+backups. Chunkyard does not offer anything that other open source backups tool
 provide, but it gave me several opportunities to explore topics such as:
 </p>
 
 <ul class="org-ul">
-<li>How "modern" backup applications work</li>
-<li>Use .NET on Windows and Linux</li>
+<li>How backup applications with deduplication work</li>
+<li>Cross platform development in .NET</li>
 <li>Testing new language features</li>
 <li>Limit myself to the standard library</li>
 <li>Create a useful and fast testing suite</li>
