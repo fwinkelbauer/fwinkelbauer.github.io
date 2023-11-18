@@ -117,8 +117,6 @@
             :recursive t)
 
            ("florianwinkelbauer.com" :components ("content" "notes" "posts" "static"))))
-        (backup-inhibited t)
-        (indent-tabs-mode nil)
         (org-export-time-stamp-file nil)
         (org-export-with-author nil)
         (org-export-with-section-numbers nil)
