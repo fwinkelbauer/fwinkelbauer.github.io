@@ -12,7 +12,7 @@ The following commands requires Python and Emacs:
 - Run ~./make serve~ to start a local web server on [[http://localhost:8000]] which
   serves ~public/~
 
-A typical org-mode page found in this repository follows this pattern:
+A typical org-mode page found in this repository contains a header like this:
 
 #+begin_src org
 ,#+TITLE: The Title
