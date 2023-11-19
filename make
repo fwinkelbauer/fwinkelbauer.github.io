@@ -30,7 +30,7 @@ def publish():
 
 
 def serve():
-    run('python3 -m http.server', cwd=DIRECTORY)
+    run(f"python3 -m http.server -d {DIRECTORY}")
 
 
 def main():
@@ -48,8 +48,8 @@ def add_cmd(sub, name, help, func):
     parser.set_defaults(func=lambda args: func())
 
 
-def run(args, cwd=None):
-    subprocess.run(args.split(), cwd=cwd, check=True)
+def run(args):
+    subprocess.run(args.split(), check=True)
 
 
 if __name__ == '__main__':
