@@ -2,9 +2,9 @@
 #+STARTUP: showall
 
 I got interested in theater after participating in a [[http://www.somak.at/][musical course]] back
-in 2014. Since then I've taken a few other courses where I stumbled over clown
-theater. In 2019 I had the opportunity to be part of a newcomer show at the
-lovely [[https://www.theater-ole.at/][Theater Olé]], Vienna's first and only clown theater.
+in 2014. Since then I've taken a few other courses, including clown theater. In
+2019 I had the opportunity to be part of a newcomer show at the lovely [[https://www.theater-ole.at/][Theater
+Olé]], Vienna's first and only clown theater.
 
 Here's the full list:
 
