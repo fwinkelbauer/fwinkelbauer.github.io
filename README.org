@@ -5,7 +5,7 @@ This repository contains the [[https://orgmode.org/][org-mode]] sources for my [
 
 * Development
 
-The following commands requires Python and Emacs:
+The following commands require Python and Emacs:
 
 - Run ~./make clean~ to remove all generated files
 - Run ~./make publish~ to populate the ~public/~ directory
