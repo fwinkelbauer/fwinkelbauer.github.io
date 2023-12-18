@@ -1408,6 +1408,39 @@ https://www.youtube.com/watch?v=_jfOk4L7CiY
 - Storage faults force us to reconsider database design
 - We need to move beyond a crash safety (power loss) model
 
+* It's a Noisy World Out There (Linda Rising)
+
+https://www.youtube.com/watch?v=k8LxUKx85X0
+
+- Humans are terrible at decision making. Flipping a coin is often an easier
+  solution than "analyzing data" or "trusting your gut". We have known this
+  since 1954, but we don't want to believe it's true
+- Simple models can achieve better decisions than we can
+- Human decision making is noisy
+- Bias: predictable error that always has the same effect on thinking and
+  decision-making
+- Noise: variable error that can move thinking and decision-making in any
+  direction
+- We never really track our decision or estimation making accuracy. But we
+  should!
+- Create a simple algorithm but don't go overboard. Allow some "human wiggle
+  room"
+- Premortems are a reliable way to reduce bias and noise
+- Structured interviews are a great hiring tool. Google does it too!
+- If you do new things, you'll never accurately estimate time and effort to
+  build the software
+- The real question is: What can you build for this much money?
+- Build iteratively:
+  - Prioritize requirements. Identify core functionality
+  - Build framework and core functionality
+  - If there's time and money, continue
+- Linda is 81 years old and she's never seen an estimation process work
+- Improving decision making processes: 50% come from reducing noise, 25% from
+  reducing bias and 25% from increasing information
+- Noise and bias are independent sources of error, reducing either improves
+  forecasts
+- Intuition is still critical in decision-making. Don't eliminate it, delay it!
+
 * More Speakers
 
 - Greg Young
