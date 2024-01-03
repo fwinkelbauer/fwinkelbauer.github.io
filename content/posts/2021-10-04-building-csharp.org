@@ -1,6 +1,5 @@
 #+TITLE: Building C# using C#
 #+DATE: [2021-10-04]
-#+STARTUP: showall
 
 Having your own [[https://github.com/fwinkelbauer/chunkyard][pet project]] gives you the great possibility to try things you
 would not want to explore in a serious project. One of my latest experiments

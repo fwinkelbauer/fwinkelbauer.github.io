@@ -1,6 +1,5 @@
 #+TITLE: Chunkyard Explained
 #+DATE: [2020-10-03]
-#+STARTUP: showall
 
 Since my last [[/posts/2020-03-13-building-chunkyard][blog post]] about [[https://github.com/fwinkelbauer/chunkyard][Chunkyard]] the project has reached v1.1.1.
 Chunkyard is now a single .NET project and does no longer rely on components

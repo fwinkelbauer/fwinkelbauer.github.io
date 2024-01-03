@@ -1,5 +1,4 @@
 #+TITLE: Conference Talk Ideas
-#+STARTUP: showall
 
 In the future I would like to give presentations at software conferences. Here
 are few topic ideas:

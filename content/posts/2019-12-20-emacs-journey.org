@@ -1,6 +1,5 @@
 #+TITLE: My Emacs Journey 2019
 #+DATE: [2019-12-20]
-#+STARTUP: showall
 
 Let me start my saying that yes, I still use Emacs. What a surprise. In fact,
 Emacs is one of my most used tools besides other stables such as a browser. What

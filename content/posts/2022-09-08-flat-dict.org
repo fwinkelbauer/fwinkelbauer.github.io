@@ -1,6 +1,5 @@
 #+TITLE: A Flat Dictionary Serializer in C#
 #+DATE: [2022-09-08]
-#+STARTUP: showall
 
 Recently I have been working with rather large YAML config files and I was
 wondering if there was an easy way to diff them. [[https://github.com/TomNomNom/gron][Gron]] is a pretty cool command

@@ -1,6 +1,5 @@
 #+TITLE: Dreaming of Git with Chunks
 #+DATE: [2020-02-08]
-#+STARTUP: showall
 
 I see more and more people using content addressable storage together with
 content defined chunking (CDC) to pull off interesting applications. Here are a

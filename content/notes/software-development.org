@@ -1,5 +1,4 @@
 #+TITLE: Software Development
-#+STARTUP: showall
 
 This post contains a list of notes about systems and software development.
 

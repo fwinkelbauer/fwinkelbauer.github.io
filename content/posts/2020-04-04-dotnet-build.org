@@ -1,6 +1,5 @@
 #+TITLE: Dotnet Build Tools
 #+DATE: [2020-04-04]
-#+STARTUP: showall
 
 In the last five years, the dotnet build environment has grown so much. When I
 started as a C# developer a few years ago, all my builds were done by hand.

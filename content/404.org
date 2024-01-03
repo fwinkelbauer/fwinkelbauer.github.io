@@ -1,4 +1,3 @@
 #+TITLE: 404: Page not found
-#+STARTUP: showall
 
 Unfortunately, this page does not exist.

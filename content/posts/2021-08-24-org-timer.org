@@ -1,6 +1,5 @@
 #+TITLE: Org-Mode Timer
 #+DATE: [2021-08-24]
-#+STARTUP: showall
 
 Org-mode appears to be one of those friends you have known for a long time but
 for some reason you just keep stumbling upon new profound things you just didn't

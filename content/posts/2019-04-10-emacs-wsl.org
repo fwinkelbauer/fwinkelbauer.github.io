@@ -1,6 +1,5 @@
 #+TITLE: Emacs and Windows Subsystem for Linux
 #+DATE: [2019-04-10]
-#+STARTUP: showall
 
 While setting up Flyspell on Linux was a really straightforward process, I was
 really struggling with spell checking on Windows. After giving up and trying

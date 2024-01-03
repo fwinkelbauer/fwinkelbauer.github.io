@@ -1,6 +1,5 @@
 #+TITLE: Writing a CLI Parser
 #+DATE: [2023-07-29]
-#+STARTUP: showall
 
 C# offers a wide range of command line interface (CLI) parsers as NuGet
 packages. The package [[https://github.com/commandlineparser/commandline][commandlineparser]] has sparked joy for a long time, but

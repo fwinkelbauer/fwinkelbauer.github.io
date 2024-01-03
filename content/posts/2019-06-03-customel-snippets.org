@@ -1,6 +1,5 @@
 #+TITLE: Custom.el Snippets
 #+DATE: [2019-06-03]
-#+STARTUP: showall
 
 My Emacs configuration contains a ~custom.el~ file, which should contain custom
 code that is only relevant on a specific machine. That's why this file is not

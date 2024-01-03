@@ -1,5 +1,4 @@
 #+TITLE: Website
-#+STARTUP: showall
 
 This repository contains the [[https://orgmode.org/][org-mode]] sources for my [[https://florianwinkelbauer.com][website]].
 
@@ -17,5 +16,4 @@ A typical org-mode page found in this repository contains a header like this:
 #+begin_src org
 ,#+TITLE: The Title
 ,#+DATE: [2000-12-24]
-,#+STARTUP: showall
 #+end_src

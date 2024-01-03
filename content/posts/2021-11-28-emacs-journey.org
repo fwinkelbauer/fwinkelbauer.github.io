@@ -1,6 +1,5 @@
 #+TITLE: My Emacs Journey 2021
 #+DATE: [2021-11-28]
-#+STARTUP: showall
 
 Another year, another Emacs report!
 

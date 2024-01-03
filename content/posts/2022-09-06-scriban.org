@@ -1,6 +1,5 @@
 #+TITLE: Text Templating is Rad
 #+DATE: [2022-09-06]
-#+STARTUP: showall
 
 This is just a quick post to mention an awesome library. [[https://github.com/scriban/scriban][Scriban]] is a text
 templating library in C# which you can use to replace text in files to e.g. fill

@@ -1,6 +1,5 @@
 #+TITLE: Notes on Building Chunkyard
 #+DATE: [2020-03-13]
-#+STARTUP: showall
 
 Based on my previous blog post I have started a new C# project called [[https://github.com/fwinkelbauer/chunkyard][Chunkyard]]
 where I can play with concepts such as content addressable storage and content

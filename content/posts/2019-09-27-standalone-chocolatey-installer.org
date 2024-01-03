@@ -1,6 +1,5 @@
 #+TITLE: Creating a Standalone Offline Chocolatey Installer
 #+DATE: [2019-09-27]
-#+STARTUP: showall
 
 The [[https://chocolatey.org/docs/installation#why-isnt-there-an-msi][Chocolatey install documentation]] includes a section about why there isn't an
 MSI to install Chocolatey. In case that you are still searching for an

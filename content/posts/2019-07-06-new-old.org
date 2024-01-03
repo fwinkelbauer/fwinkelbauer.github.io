@@ -1,6 +1,5 @@
 #+TITLE: Learning New Old Tricks
 #+DATE: [2019-07-06]
-#+STARTUP: showall
 
 Sometimes, you discover something, that others have known for a long time. Last
 week, I've discovered how useful a ~~/bin~ directory can be.

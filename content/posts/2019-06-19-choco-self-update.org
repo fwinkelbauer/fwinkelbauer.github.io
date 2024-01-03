@@ -1,6 +1,5 @@
 #+TITLE: Creating a Self-Updating Chocolatey Package
 #+DATE: [2019-06-19]
-#+STARTUP: showall
 
 More and more applications ship with an automatic update mechanisms, which
 downloads new versions of the application as soon as they are available. A

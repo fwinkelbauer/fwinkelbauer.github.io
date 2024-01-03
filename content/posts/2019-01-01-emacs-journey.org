@@ -1,6 +1,5 @@
 #+TITLE: My Emacs Journey 2018
 #+DATE: [2019-01-01]
-#+STARTUP: showall
 
 I have started to use Emacs around the summer time after shelving the task of
 getting started for several weeks. My intention was to find a cross-platform

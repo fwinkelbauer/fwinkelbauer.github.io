@@ -1,6 +1,5 @@
 #+TITLE: Having A Hobby Project
 #+DATE: [2022-03-13]
-#+STARTUP: showall
 
 It has been two years since I have started to work on my hobby project
 [[https://github.com/fwinkelbauer/chunkyard][Chunkyard]]. Over these years I have used this project to test out different ideas

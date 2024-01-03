@@ -1,6 +1,5 @@
 #+TITLE: Poor Man's PowerShell Provisioning
 #+DATE: [2019-01-21]
-#+STARTUP: showall
 
 I'm a fan of "infrastructure as code", which is why I have scripts which help me
 to setup my own computers. Instead of relying on "heavy hitters" such as Chef,
