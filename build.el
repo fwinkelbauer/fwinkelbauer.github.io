@@ -80,8 +80,8 @@
                           plist
                           article-path))))
 
-(defun fw/publish-website ()
-  "Publish my website"
+(defun fw/build-website ()
+  "Build my website"
   (let ((org-publish-project-alist
          `(("content"
             :base-directory "./content/"
@@ -141,4 +141,4 @@
         (org-publish-timestamp-directory "./.org-timestamps/"))
     (org-publish "florianwinkelbauer.com" t)))
 
-(fw/publish-website)
+(fw/build-website)
