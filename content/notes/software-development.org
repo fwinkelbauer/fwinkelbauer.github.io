@@ -1440,6 +1440,15 @@ https://www.youtube.com/watch?v=k8LxUKx85X0
   forecasts
 - Intuition is still critical in decision-making. Don't eliminate it, delay it!
 
+* Hibernate Should Be To Programmers What Cake Mixes Are To Bakers (Christin Gorman)
+
+https://vimeo.com/28885655
+
+- Gordon Ramsay doesn't use cake mixes
+- Cake mixes are full of stuff that you don't want, don't save you any time and
+  often taste worse
+- Frameworks are the cake mixes of software development
+
 * More Speakers
 
 - Greg Young
