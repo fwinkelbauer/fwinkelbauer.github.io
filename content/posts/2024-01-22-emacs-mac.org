@@ -1,0 +1,25 @@
+#+TITLE: Emacs on a MacBook
+#+DATE: [2024-01-22]
+
+I have been using a MacBook as a development machine since I have started my new
+job back in November. This was the first time that I have used MacOS for more
+than a few minutes. Installing Emacs was easy using the package manager
+HomeBrew, but it took me a couple of days to figure out all customization that I
+need to be comfortable. So if you are a Windows/Linux user and feel lost (just
+like I did), this might be useful to you:
+
+#+begin_src emacs-lisp
+; Change modifier keys so that they are similar to Windows/Linux:
+(setq mac-option-modifier nil
+      mac-command-modifier 'meta)
+
+; MacOS has a different version of ls compared to GNU ls. You can install "gls"
+; using HomeBrew. After that you can configure dired the way you want to:
+(setq insert-directory-program "/usr/local/bin/gls"
+      dired-listing-switches "-alh --group-directories-first --ignore=.DS_Store")
+
+; Make sure that Emacs uses the same PATH as zsh:
+(let ((path (shell-command-to-string ". ~/.zshrc; echo -n $PATH")))
+  (setenv "PATH" path)
+  (setq exec-path (append (split-string-and-unquote path ":") exec-path)))
+#+end_src
