@@ -35,7 +35,8 @@ def build():
 def publish():
     build()
     announce('Publish')
-    run(['git', 'commit', '-am', 'Update website'], DIRECTORY)
+    run(['git', 'add', '-A'], DIRECTORY)
+    run(['git', 'commit', '-m', 'Update website'], DIRECTORY)
     run(['git', 'push'], DIRECTORY)
 
 
