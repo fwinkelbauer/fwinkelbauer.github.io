@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Emacs on a MacBook</title>
+<meta name="generator" content="Org Mode" />
+<meta name="author" content="Florian Winkelbauer">
+<link rel="stylesheet" href="/site.css" type="text/css">
+</head>
+<body>
+<div id="preamble" class="status">
+<nav>
+<a href="/">Home</a>
+<a href="/notes">Notes</a>
+<a href="/posts">Posts</a>
+<a href="/projects">Projects</a>
+</nav>
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">Emacs on a MacBook</h1>
+</header><p>
+I have been using a MacBook as a development machine since I have started my new
+job back in November. This was the first time that I have used MacOS for more
+than a few minutes. Installing Emacs was easy using the package manager
+HomeBrew, but it took me a couple of days to figure out all customization that I
+need to be comfortable. So if you are a Windows/Linux user and feel lost (just
+like I did), this might be useful to you:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">; Change modifier keys so that they are similar to Windows/Linux:
+(setq mac-option-modifier nil
+      mac-command-modifier 'meta)
+
+; MacOS has a different version of ls compared to GNU ls. You can install "gls"
+; using HomeBrew. After that you can configure dired the way you want to:
+(setq insert-directory-program "/usr/local/bin/gls"
+      dired-listing-switches "-alh --group-directories-first --ignore=.DS_Store")
+
+; Make sure that Emacs uses the same PATH as zsh:
+(let ((path (shell-command-to-string ". ~/.zshrc; echo -n $PATH")))
+  (setenv "PATH" path)
+  (setq exec-path (append (split-string-and-unquote path ":") exec-path)))
+</pre>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Published: 2024-01-22</p>
+<footer>
+<p>Copyright 2024, Florian Winkelbauer. All rights reserved.</p>
+</footer>
+</div>
+</body>
+</html>
