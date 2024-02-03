@@ -1451,17 +1451,17 @@ https://vimeo.com/28885655
 
 * More Speakers
 
-- Greg Young
-- Michael Feathers
-- Bryan Cantrill
-- Mark Seemann
-- Jimmy Bogard
-- Sam Newman
-- Chad Fowler
-- Kent Beck
-- Casey Rosenthal
-- Allen Holub
-- John Hughes
-- Andrew Kelley
-- Dave Farley
-- David Tielke (German)
+- [[https://www.youtube.com/results?search_query=Greg+Young][Greg Young]]
+- [[https://www.youtube.com/results?search_query=Michael+Feathers][Michael Feathers]]
+- [[https://www.youtube.com/results?search_query=Bryan+Cantrill][Bryan Cantrill]]
+- [[https://www.youtube.com/results?search_query=Mark+Seemann][Mark Seemann]]
+- [[https://www.youtube.com/results?search_query=Jimmy+Bogard][Jimmy Bogard]]
+- [[https://www.youtube.com/results?search_query=Sam+Newman][Sam Newman]]
+- [[https://www.youtube.com/results?search_query=Chad+Fowler][Chad Fowler]]
+- [[https://www.youtube.com/results?search_query=Kent+Beck][Kent Beck]]
+- [[https://www.youtube.com/results?search_query=Casey+Rosenthal][Casey Rosenthal]]
+- [[https://www.youtube.com/results?search_query=Allen+Holub][Allen Holub]]
+- [[https://www.youtube.com/results?search_query=John+Hughes][John Hughes]]
+- [[https://www.youtube.com/results?search_query=Andrew+Kelley][Andrew Kelley]]
+- [[https://www.youtube.com/results?search_query=Dave+Farley][Dave Farley]]
+- [[https://www.youtube.com/results?search_query=David+Tielke][David Tielke (German)]]
