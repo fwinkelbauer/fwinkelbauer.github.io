@@ -1449,6 +1449,17 @@ https://vimeo.com/28885655
   often taste worse
 - Frameworks are the cake mixes of software development
 
+* Trust Deterministic Execution to Scale & Simplify Your Systems (Frank Yu)
+
+https://www.youtube.com/watch?v=siEtKc6Sq2Y
+
+- Ordered Inputs + Deterministic Execution = Same State and Outputs
+- Sequenced Requests + Determinism = Replicated State and Events
+- Request replication is much cheaper than event replication. This only works
+  when all your system is ordered and deterministic
+- You can enable/disable behavior using inputs/request instead of using
+  configuration files
+
 * More Speakers
 
 - [[https://www.youtube.com/results?search_query=Greg+Young][Greg Young]]
