@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Gitea/Forgejo Package Uploader</title>
+<meta name="generator" content="Org Mode" />
+<meta name="author" content="Florian Winkelbauer">
+<link rel="stylesheet" href="/site.css" type="text/css">
+</head>
+<body>
+<div id="preamble" class="status">
+<nav>
+<a href="/">Home</a>
+<a href="/notes">Notes</a>
+<a href="/posts">Posts</a>
+<a href="/projects">Projects</a>
+</nav>
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">Gitea/Forgejo Package Uploader</h1>
+</header><p>
+<a href="https://about.gitea.com/">Gitea</a> and <a href="https://forgejo.org/">Forgejo</a> are pretty rad Git servers which also ship with package
+registries for a bunch of different languages. In a language such as .NET
+uploading a package is as simple as registering the server/source:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">dotnet nuget add source --name my-nuget --username user --password password https://gitea.example.com/api/packages/someuser/nuget/index.json
+</pre>
+</div>
+
+<p>
+Followed by a publishing command:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">dotnet nuget push --source my-nuget some-package.nupkg
+</pre>
+</div>
+
+<p>
+Most of the Gitea/Forgejo's package registries can be accessed by a simple POST
+call, so I started to fiddle around with a Python script called <code>forgejo-push</code>
+which could give me the same kind of neat experience when dealing with other
+registries such as Debian, Red Hat or the generic package registry.
+</p>
+
+<p>
+So let's start with the <code>~/.config/forgejo-push.conf</code> configuration file:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-conf">[my-debian]
+url = https://gitea.example.com/api/packages/someuser/debian/pool/bookworm/main/upload
+token = some-token
+
+[my-rpm]
+url = https://gitea.example.com/api/packages/someuser/rpm/upload
+token = another-token
+
+[my-generic]
+url = https://gitea.example.com/api/packages/someuser/generic/
+token = some-other-token
+</pre>
+</div>
+
+<p>
+Follow it up with some examples:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"># Upload all .deb files using a recursive glob pattern:
+forgejo-push --glob '**/**.deb' --section 'my-debian'
+
+# Upload a single .rpm files:
+forgejo-push --glob 'my-package.rpm' --section 'my-rpm'
+
+# The generic registry is different since it requires more parameters, so we
+# squeeze them in using a hacky --postfix parameter:
+forgejo-push --glob 'artifacts/my-binary' --section 'my-generic' --postfix 'my-pkg/1.0.0/my-binary'
+
+# The --postfix flag also supports a {file_name} placeholder, so the above line
+# could also look like this. It's a handy feature when combined with globs:
+forgejo-push --glob 'artifacts/my-binary' --section 'my-generic' --postfix 'my-pkg/1.0.0/{file_name}'
+</pre>
+</div>
+
+<p>
+And finally, show the code in all its bare and unpolished glory:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">#!/usr/bin/env python3
+
+import argparse
+import collections
+import configparser
+import glob
+import os
+import requests
+
+
+class Config(collections.namedtuple('Config', 'url token')):
+    __slots__ = ()
+
+
+def parse_config(text):
+    config_parser = configparser.ConfigParser()
+    config_parser.read_string(text)
+    config = {}
+    for section in config_parser.sections():
+        section_data = config_parser[section]
+        url = section_data.get('url')
+        token = section_data.get('token')
+        config[section] = Config(url, token)
+    return config
+
+
+def load_config(profile):
+    with open(profile, 'r') as f:
+        return parse_config(f.read())
+
+
+def upload_package(url, token, path_name):
+    headers = {
+        'Authorization': f'token {token}'
+    }
+    with open(path_name, 'rb') as f:
+        try:
+            response = requests.put(url, headers=headers, data=f.read())
+            response.raise_for_status()
+        except requests.exceptions.HTTPError as err:
+            raise SystemExit(f'Could not upload {path_name}. {err}')
+
+
+def main():
+    parser = argparse.ArgumentParser(description='Upload packages to Gitea/Forgejo.')
+    parser.add_argument('--glob', help='The file glob pattern to upload', required=True)
+    parser.add_argument('--section', help='The config file section name', required=True)
+    parser.add_argument('--postfix', help='An optional URL postfix', default='')
+    args = parser.parse_args()
+    path_names = glob.glob(args.glob, recursive=True)
+    postfix = args.postfix
+    config = load_config(os.path.expanduser('~/.config/forgejo-push.conf'))[args.section]
+    for path_name in path_names:
+        url = config.url + postfix.replace('{file_name}', os.path.basename(path_name))
+        upload_package(url, config.token, path_name)
+        print(f'{path_name}: {url}')
+
+
+if __name__ == '__main__':
+    main()
+</pre>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Published: 2024-02-16</p>
+<footer>
+<p>Copyright 2024, Florian Winkelbauer. All rights reserved.</p>
+</footer>
+</div>
+</body>
+</html>
