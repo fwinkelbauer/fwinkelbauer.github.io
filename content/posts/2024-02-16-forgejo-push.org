@@ -47,11 +47,12 @@ forgejo-push --glob 'my-package.rpm' --section 'my-rpm'
 
 # The generic registry is different since it requires more parameters, so we
 # squeeze them in using a hacky --postfix parameter:
-forgejo-push --glob 'artifacts/my-binary' --section 'my-generic' --postfix 'my-pkg/1.0.0/my-binary'
+forgejo-push --glob 'artifacts/my-binary1' --section 'my-generic' --postfix 'my-pkg/1.0.0/my-binary1'
+forgejo-push --glob 'artifacts/my-binary2' --section 'my-generic' --postfix 'my-pkg/1.0.0/my-binary2'
 
-# The --postfix flag also supports a {file_name} placeholder, so the above line
-# could also look like this. It's a handy feature when combined with globs:
-forgejo-push --glob 'artifacts/my-binary' --section 'my-generic' --postfix 'my-pkg/1.0.0/{file_name}'
+# The --postfix flag also supports a {file_name} placeholder, so the above two
+# lines can be changed to:
+forgejo-push --glob 'artifacts/my-*' --section 'my-generic' --postfix 'my-pkg/1.0.0/{file_name}'
 #+end_src
 
 And finally, show the code in all its bare and unpolished glory:
