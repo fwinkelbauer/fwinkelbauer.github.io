@@ -16,9 +16,12 @@ def announce(msg):
     print('========================================')
 
 
-def build():
-    announce('Build')
-    if not os.path.isdir(DIRECTORY):
+def clean():
+    announce('Clean')
+    if os.path.isdir(DIRECTORY):
+        run(['git', 'reset', '--hard'], DIRECTORY)
+        run(['git', 'pull'], DIRECTORY)
+    else:
         run(['git', 'worktree', 'prune'])
         run(['git', 'worktree', 'add', '-B', 'gh-pages', DIRECTORY, 'origin/gh-pages'])
     for file in Path(DIRECTORY).iterdir():
@@ -29,10 +32,15 @@ def build():
             os.remove(path)
         else:
             shutil.rmtree(path)
+
+
+def build():
+    announce('Build')
     run(['emacs', '-Q', '--script', 'build.el'])
 
 
 def publish():
+    clean()
     build()
     announce('Publish')
     run(['git', 'add', '-A'], DIRECTORY)
@@ -48,6 +56,7 @@ def serve():
 def main():
     parser = argparse.ArgumentParser(prog='make')
     sub = parser.add_subparsers(required=True)
+    add_cmd(sub, 'clean', 'Clean all artifacts', clean)
     add_cmd(sub, 'build', 'Build the website', build)
     add_cmd(sub, 'publish', 'Build and publish the website', publish)
     add_cmd(sub, 'serve', 'Start a webserver', serve)
