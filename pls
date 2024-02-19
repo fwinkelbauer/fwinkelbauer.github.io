@@ -39,10 +39,10 @@ def build():
     run(['emacs', '-Q', '--script', 'build.el'])
 
 
-def publish():
+def deploy():
     clean()
     build()
-    announce('Publish')
+    announce('Deploy')
     run(['git', 'add', '-A'], DIRECTORY)
     run(['git', 'commit', '-m', 'Update website'], DIRECTORY)
     run(['git', 'push'], DIRECTORY)
@@ -58,7 +58,7 @@ def main():
     sub = parser.add_subparsers(required=True)
     add_cmd(sub, 'clean', 'Clean all artifacts', clean)
     add_cmd(sub, 'build', 'Build the website', build)
-    add_cmd(sub, 'publish', 'Build and publish the website', publish)
+    add_cmd(sub, 'deploy', 'Build and deploy the website', deploy)
     add_cmd(sub, 'serve', 'Start a webserver', serve)
     args = parser.parse_args()
     args.func(args)

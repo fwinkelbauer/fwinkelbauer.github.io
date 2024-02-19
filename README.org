@@ -9,7 +9,7 @@ The following commands require Python and Emacs:
 - Run ~./pls build~ to populate the ~public/~ directory
 - Run ~./pls serve~ to start a local web server on [[http://localhost:8000]] which
   serves ~public/~
-- Run ~./pls publish~ to build and publish/upload this website
+- Run ~./pls deploy~ to build and deploy this website
 
 A typical org-mode page found in this repository contains a header like this:
 
