@@ -40,7 +40,7 @@ Follow it up with some examples:
 
 #+begin_src sh
 # Upload all .deb files using a recursive glob pattern:
-forgejo-push --glob '**/**.deb' --section 'my-debian'
+forgejo-push --glob '**/*.deb' --section 'my-debian'
 
 # Upload a single .rpm files:
 forgejo-push --glob 'my-package.rpm' --section 'my-rpm'
