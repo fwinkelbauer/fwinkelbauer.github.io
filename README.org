@@ -10,6 +10,7 @@ The following commands require Python and Emacs:
 - Run ~./pls serve~ to start a local web server on [[http://localhost:8000]] which
   serves ~public/~
 - Run ~./pls deploy~ to build and deploy this website
+- Run ~./pls --help~ to learn more about all available commands
 
 A typical org-mode page found in this repository contains a header like this:
 

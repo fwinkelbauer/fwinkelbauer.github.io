@@ -7,7 +7,8 @@ import subprocess
 from pathlib import Path
 
 
-DIRECTORY = './public'
+DIRECTORY = 'public/'
+BRANCH = 'gh-pages'
 
 
 def announce(msg):
@@ -18,12 +19,8 @@ def announce(msg):
 
 def clean():
     announce('Clean')
-    if os.path.isdir(DIRECTORY):
-        run(['git', 'reset', '--hard'], DIRECTORY)
-        run(['git', 'pull'], DIRECTORY)
-    else:
-        run(['git', 'worktree', 'prune'])
-        run(['git', 'worktree', 'add', '-B', 'gh-pages', DIRECTORY, 'origin/gh-pages'])
+    if not os.path.isdir(DIRECTORY):
+        return
     for file in Path(DIRECTORY).iterdir():
         path=str(file.resolve())
         if path.endswith('.git'):
@@ -34,13 +31,23 @@ def clean():
             shutil.rmtree(path)
 
 
+def worktree():
+    announce('Worktree')
+    if os.path.isdir(DIRECTORY):
+        shutil.rmtree(DIRECTORY)
+    run(['git', 'fetch'])
+    run(['git', 'worktree', 'prune'])
+    run(['git', 'worktree', 'add', '--no-checkout', '-B', BRANCH, DIRECTORY, 'origin/gh-pages'])
+    run(['git', 'restore', '--staged', '.'], DIRECTORY)
+
+
 def build():
     announce('Build')
     run(['emacs', '-Q', '--script', 'build.el'])
 
 
 def deploy():
-    clean()
+    worktree()
     build()
     announce('Deploy')
     run(['git', 'add', '-A'], DIRECTORY)
@@ -56,10 +63,11 @@ def serve():
 def main():
     parser = argparse.ArgumentParser(prog='make')
     sub = parser.add_subparsers(required=True)
-    add_cmd(sub, 'clean', 'Clean all artifacts', clean)
+    add_cmd(sub, 'clean', 'Delete build artifacts', clean)
+    add_cmd(sub, 'worktree', f'Setup {BRANCH} in {DIRECTORY}', worktree)
     add_cmd(sub, 'build', 'Build the website', build)
     add_cmd(sub, 'deploy', 'Build and deploy the website', deploy)
-    add_cmd(sub, 'serve', 'Start a webserver', serve)
+    add_cmd(sub, 'serve', f'Start a webserver in {DIRECTORY}', serve)
     args = parser.parse_args()
     args.func(args)
 
