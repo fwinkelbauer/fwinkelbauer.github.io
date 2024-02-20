@@ -17,20 +17,6 @@ def announce(msg):
     print('========================================')
 
 
-def clean():
-    announce('Clean')
-    if not os.path.isdir(DIRECTORY):
-        return
-    for file in Path(DIRECTORY).iterdir():
-        path=str(file.resolve())
-        if path.endswith('.git'):
-            continue
-        elif os.path.isfile(path):
-            os.remove(path)
-        else:
-            shutil.rmtree(path)
-
-
 def worktree():
     announce('Worktree')
     if os.path.isdir(DIRECTORY):
@@ -63,7 +49,6 @@ def serve():
 def main():
     parser = argparse.ArgumentParser(prog='make')
     sub = parser.add_subparsers(required=True)
-    add_cmd(sub, 'clean', 'Delete published artifacts', clean)
     add_cmd(sub, 'worktree', f'Setup {BRANCH} in {DIRECTORY}', worktree)
     add_cmd(sub, 'publish', 'Publish the website', publish)
     add_cmd(sub, 'deploy', 'Publish and deploy the website', deploy)
