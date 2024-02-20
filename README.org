@@ -6,10 +6,10 @@ This repository contains the [[https://orgmode.org/][org-mode]] sources for my [
 
 The following commands require Python and Emacs:
 
-- Run ~./pls build~ to populate the ~public/~ directory
+- Run ~./pls publish~ to populate the ~public/~ directory
 - Run ~./pls serve~ to start a local web server on [[http://localhost:8000]] which
   serves ~public/~
-- Run ~./pls deploy~ to build and deploy this website
+- Run ~./pls deploy~ to publish and deploy this website to [[https://github.com/fwinkelbauer/fwinkelbauer.github.io/tree/gh-pages][gh-pages]]
 - Run ~./pls --help~ to learn more about all available commands
 
 A typical org-mode page found in this repository contains a header like this:

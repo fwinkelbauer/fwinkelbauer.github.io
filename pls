@@ -41,14 +41,14 @@ def worktree():
     run(['git', 'restore', '--staged', '.'], DIRECTORY)
 
 
-def build():
-    announce('Build')
-    run(['emacs', '-Q', '--script', 'build.el'])
+def publish():
+    announce('Publish')
+    run(['emacs', '-Q', '--script', 'publish.el'])
 
 
 def deploy():
     worktree()
-    build()
+    publish()
     announce('Deploy')
     run(['git', 'add', '-A'], DIRECTORY)
     run(['git', 'commit', '-m', 'Update website'], DIRECTORY)
@@ -63,10 +63,10 @@ def serve():
 def main():
     parser = argparse.ArgumentParser(prog='make')
     sub = parser.add_subparsers(required=True)
-    add_cmd(sub, 'clean', 'Delete build artifacts', clean)
+    add_cmd(sub, 'clean', 'Delete published artifacts', clean)
     add_cmd(sub, 'worktree', f'Setup {BRANCH} in {DIRECTORY}', worktree)
-    add_cmd(sub, 'build', 'Build the website', build)
-    add_cmd(sub, 'deploy', 'Build and deploy the website', deploy)
+    add_cmd(sub, 'publish', 'Publish the website', publish)
+    add_cmd(sub, 'deploy', 'Publish and deploy the website', deploy)
     add_cmd(sub, 'serve', f'Start a webserver in {DIRECTORY}', serve)
     args = parser.parse_args()
     args.func(args)
