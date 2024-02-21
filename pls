@@ -17,11 +17,10 @@ def announce(msg):
     print('========================================')
 
 
-def worktree():
-    announce('Worktree')
+def clean():
+    announce('Clean')
     if os.path.isdir(DIRECTORY):
         shutil.rmtree(DIRECTORY)
-    run(['git', 'fetch'])
     run(['git', 'worktree', 'prune'])
     run(['git', 'worktree', 'add', '--no-checkout', '-B', BRANCH, DIRECTORY, 'origin/gh-pages'])
     run(['git', 'restore', '--staged', '.'], DIRECTORY)
@@ -33,7 +32,7 @@ def publish():
 
 
 def deploy():
-    worktree()
+    clean()
     publish()
     announce('Deploy')
     run(['git', 'add', '-A'], DIRECTORY)
@@ -49,10 +48,10 @@ def serve():
 def main():
     parser = argparse.ArgumentParser(prog='make')
     sub = parser.add_subparsers(required=True)
-    add_cmd(sub, 'worktree', f'Setup {BRANCH} in {DIRECTORY}', worktree)
+    add_cmd(sub, 'clean', 'Delete published artifacts', clean)
     add_cmd(sub, 'publish', 'Publish the website', publish)
     add_cmd(sub, 'deploy', 'Publish and deploy the website', deploy)
-    add_cmd(sub, 'serve', f'Start a webserver in {DIRECTORY}', serve)
+    add_cmd(sub, 'serve', 'Serve the published website on localhost', serve)
     args = parser.parse_args()
     args.func(args)
 
