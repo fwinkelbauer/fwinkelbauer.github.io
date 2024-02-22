@@ -45,6 +45,9 @@ forgejo-push --glob '**/*.deb' --section 'my-debian'
 # Upload a single .rpm files:
 forgejo-push --glob 'my-package.rpm' --section 'my-rpm'
 
+# Do not throw an error when a package already exists:
+forgejo-push --glob 'my-package.rpm' --section 'my-rpm' --skip-duplicate
+
 # The generic registry is different since it requires more parameters, so we
 # squeeze them in using a hacky --postfix parameter:
 forgejo-push --glob 'artifacts/my-binary1' --section 'my-generic' --postfix 'my-pkg/1.0.0/my-binary1'
@@ -89,16 +92,16 @@ def load_config(profile):
         return parse_config(f.read())
 
 
-def upload_package(url, token, path_name):
+def upload_package(url, token, path_name, skip_duplicate):
     headers = {
         'Authorization': f'token {token}'
     }
     with open(path_name, 'rb') as f:
-        try:
-            response = requests.put(url, headers=headers, data=f.read())
-            response.raise_for_status()
-        except requests.exceptions.HTTPError as err:
-            raise SystemExit(f'Could not upload {path_name}. {err}')
+        response = requests.put(url, headers=headers, data=f.read())
+        if response.ok or (response.status_code == 409 and skip_duplicate):
+            print(f'{path_name}: {url}')
+        else:
+            raise SystemExit(f'Could not upload {path_name}: {response.reason} ({response.status_code})')
 
 
 def main():
@@ -106,14 +109,13 @@ def main():
     parser.add_argument('--glob', help='The file glob pattern to upload', required=True)
     parser.add_argument('--section', help='The config file section name', required=True)
     parser.add_argument('--postfix', help='An optional URL postfix', default='')
+    parser.add_argument('--skip-duplicate', help='Succeed when uploading a duplicate package', action='store_true')
     args = parser.parse_args()
     path_names = glob.glob(args.glob, recursive=True)
-    postfix = args.postfix
     config = load_config(os.path.expanduser('~/.config/forgejo-push.conf'))[args.section]
     for path_name in path_names:
-        url = config.url + postfix.replace('{file_name}', os.path.basename(path_name))
-        upload_package(url, config.token, path_name)
-        print(f'{path_name}: {url}')
+        url = config.url + args.postfix.replace('{file_name}', os.path.basename(path_name))
+        upload_package(url, config.token, path_name, args.skip_duplicate)
 
 
 if __name__ == '__main__':
