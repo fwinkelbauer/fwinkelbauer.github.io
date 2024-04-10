@@ -1476,3 +1476,8 @@ https://www.youtube.com/watch?v=siEtKc6Sq2Y
 - [[https://www.youtube.com/results?search_query=Andrew+Kelley][Andrew Kelley]]
 - [[https://www.youtube.com/results?search_query=Dave+Farley][Dave Farley]]
 - [[https://www.youtube.com/results?search_query=David+Tielke][David Tielke (German)]]
+
+* Conferences
+
+- [[https://www.youtube.com/@NDC][NDC Conferences]]
+- [[https://www.youtube.com/@GOTO-/videos][GOTO Conferences]]
