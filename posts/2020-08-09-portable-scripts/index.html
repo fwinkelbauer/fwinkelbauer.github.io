@@ -43,7 +43,7 @@ A script to run <code>git pull</code> in several directories:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">set -euo pipefail
+<pre class="src src-sh">#!/bin/bash -eu
 
 repositories=(~/.emacs.d/ ~/Projects/*/)
 
@@ -62,7 +62,7 @@ And a simple <code>rsync</code> backup script:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">set -euo pipefail
+<pre class="src src-sh">#!/bin/bash -eu
 
 dest=/some/backup/location
 

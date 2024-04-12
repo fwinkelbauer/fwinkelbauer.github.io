@@ -55,9 +55,7 @@ Here's a short example:
 
 * Bash
 
-#+BEGIN_SRC sh :tangle "~/bin/my-hello" :shebang "#!/bin/bash" :mkdirp yes
-  set -euo pipefail
-
+#+BEGIN_SRC sh :tangle "~/bin/my-hello" :shebang "#!/bin/bash -eu" :mkdirp yes
   echo hello
 #+END_SRC
 </pre>
