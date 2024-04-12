@@ -16,7 +16,7 @@ friend Emacs. Let's start with two Bash examples:
 A script to run ~git pull~ in several directories:
 
 #+begin_src sh
-set -euo pipefail
+#!/bin/bash -eu
 
 repositories=(~/.emacs.d/ ~/Projects/*/)
 
@@ -32,7 +32,7 @@ done
 And a simple ~rsync~ backup script:
 
 #+begin_src sh
-set -euo pipefail
+#!/bin/bash -eu
 
 dest=/some/backup/location
 
