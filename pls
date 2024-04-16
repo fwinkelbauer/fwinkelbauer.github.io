@@ -21,28 +21,28 @@ def clean():
     announce('Clean')
     if os.path.isdir(DIRECTORY):
         shutil.rmtree(DIRECTORY)
-    run(['git', 'worktree', 'prune'])
-    run(['git', 'worktree', 'add', '--no-checkout', '-B', BRANCH, DIRECTORY, 'origin/gh-pages'])
-    run(['git', 'restore', '--staged', '.'], DIRECTORY)
+    run('git worktree prune')
+    run(f'git worktree add --no-checkout -B {BRANCH} {DIRECTORY} origin/gh-pages')
+    run('git restore --staged .', DIRECTORY)
 
 
 def publish():
     announce('Publish')
-    run(['emacs', '-Q', '--script', 'publish.el'])
+    run('emacs -Q --script publish.el')
 
 
 def deploy():
     clean()
     publish()
     announce('Deploy')
-    run(['git', 'add', '-A'], DIRECTORY)
-    run(['git', 'commit', '-m', 'Update website'], DIRECTORY)
-    run(['git', 'push'], DIRECTORY)
+    run('git add -A', DIRECTORY)
+    run('git commit -m "Update website"', DIRECTORY)
+    run('git push', DIRECTORY)
 
 
 def serve():
     announce('Serve')
-    run(['python3', '-m', 'http.server', '-d', DIRECTORY])
+    run(f'python3 -m http.server -d {DIRECTORY}')
 
 
 def main():
@@ -62,7 +62,7 @@ def add_cmd(sub, name, help, func):
 
 
 def run(args, cwd=None):
-    subprocess.run(args, check=True, cwd=cwd)
+    subprocess.run(args, check=True, shell=True, cwd=cwd)
 
 
 if __name__ == '__main__':
