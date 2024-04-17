@@ -6,7 +6,7 @@ file names and their content. While this feature does not come out of the box,
 it turns out that one can implement it in a straightforward way. Ripgrep comes
 with a ~--files~ flag which lists all files that a search operation would
 consider (Remember: ripgrep can decide to skip files based on some criteria,
-e.g. if a file is listed in a ~.gitignore~ file). Since the output of ~--files~
+e.g. if a file is listed in a =.gitignore= file). Since the output of ~--files~
 is text based, we can use a pipe to also search through those lines as well. A
 bash script could look like this:
 

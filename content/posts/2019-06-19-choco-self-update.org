@@ -62,13 +62,13 @@ if (Test-Path $appDir) {
 
 The technique works like this:
 
-- Calling ~choco install myapp~ installs the ~myapp.zip~ file to the Chocolatey
-  lib directory (~$env:ChocolateyInstall\lib\myapp\tools~) and extracts the
-  archive to ~C:\SomeFolder\myapp\1.0.0\~
+- Calling ~choco install myapp~ installs the =myapp.zip= file to the Chocolatey
+  lib directory (=$env:ChocolateyInstall\lib\myapp\tools=) and extracts the
+  archive to =C:\SomeFolder\myapp\1.0.0\=
 - The install script creates a cmd and a Powershell file, which point to
-  ~C:\SomeFolder\myapp\1.0.0\myapp.exe~
+  =C:\SomeFolder\myapp\1.0.0\myapp.exe=
 - The application can now be called in PowerShell and cmd by typing ~myapp~
 - We can now update the application using ~choco upgrade myapp~, even while it
   is running. The batch file will point to the new version (e.g.
-  ~C:\SomeFolder\myapp\2.0.0\myapp.exe~), which will work for any future calls
+  =C:\SomeFolder\myapp\2.0.0\myapp.exe=), which will work for any future calls
   to ~myapp~

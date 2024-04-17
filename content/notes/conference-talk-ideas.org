@@ -16,7 +16,7 @@ different situations:
   - Add commit ID information
 - Utility dotnet sub-commands such as ~dotnet format~ or ~dotnet list package
   --outdated~
-- Derive version information from a ~CHANGELOG.md~ file, automate release
+- Derive version information from a =CHANGELOG.md= file, automate release
   commits and tagging
 
 * Having a Hobby Project

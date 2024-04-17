@@ -1,10 +1,10 @@
 #+TITLE: Dealing with Version Information
 #+DATE: [2019-11-01]
 
-About two years ago I was using a tool called [[https://github.com/ploeh/ZeroToNine][zero29]] to update ~AssemblyInfo.cs~
+About two years ago I was using a tool called [[https://github.com/ploeh/ZeroToNine][zero29]] to update =AssemblyInfo.cs=
 files in my C# projects. The author Mark Seemann (who's talks I can highly
 recommend) declined my request to add support for [[https://github.com/ploeh/ZeroToNine/issues/24][.nuspec files]]. His point was,
-that zero29 is a tool to manage ~AssemblyInfo.cs~ files and that's all it should
+that zero29 is a tool to manage =AssemblyInfo.cs= files and that's all it should
 ever do. While I am a big proponent of the Unix philosophy, I wished that zero29
 would act as a tool to manage version information across all kinds of files.
 This would (in my opinion) still be in line with the Unix philosophy, as there
@@ -27,7 +27,7 @@ project. A core concept of Bumpy was to understand different version schemas and
 some people even suggested that I should detect versions that are scattered
 among [[https://github.com/cake-contrib/Cake.Bumpy/issues/7][several lines of text]]. In the end, I decided that a different approach
 seemed simpler and more flexible: Why not build a "search and replace text"
-tool? So I wrote a prototype in Python, because its ~.ini~ library comes with a
+tool? So I wrote a prototype in Python, because its =.ini= library comes with a
 ton of interesting features. This first version of "niles" used two config files
 to describe where to find text snippets and to describe the desired content for
 these snippets. After a while, I found it cumbersome to manage two files, so I

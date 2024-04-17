@@ -6,8 +6,8 @@ suspects such as ~add~, ~commit~, ~push~ or ~pull~. One of them is [[https://git
 which can be used to delete untracked files in a repository. This is useful when
 you are trying to delete generated files, but can be annoying if your repository
 contains user specific files which are not in version control. Visual Studio
-creates directories such as ~.vs~, or files like ~*.user~ and
-~launchSettings.json~ which contain IDE configuration which are only relevant
+creates directories such as =.vs=, or files like =*.user= and
+=launchSettings.json= which contain IDE configuration which are only relevant
 for a specific user. You can exclude these files from ~git clean~ using the ~-x
 -e <expression>~ option:
 
@@ -15,9 +15,9 @@ for a specific user. You can exclude these files from ~git clean~ using the ~-x
 git clean -dfx -e .vs/ -e *.user -e launchSettings.json
 #+end_src
 
-These expressions looked similar to the content of a ~.gitignore~ file to me, so
+These expressions looked similar to the content of a =.gitignore= file to me, so
 I added a function to my [[/posts/2021-10-04-building-csharp][C# build tool]] which feeds the content of a
-~.cleanignore~ file into ~git clean~:
+=.cleanignore= file into ~git clean~:
 
 #+begin_src text
 # My .cleanignore file

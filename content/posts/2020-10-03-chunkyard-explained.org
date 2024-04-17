@@ -11,7 +11,7 @@ take the time to document how a file is stored.
 
 * Creating The Repository
 
-So let's imagine that we want to store a snapshot of the ~hello-world.txt~ file
+So let's imagine that we want to store a snapshot of the =hello-world.txt= file
 using the command:
 
 #+begin_src sh
@@ -21,7 +21,7 @@ chunkyard create -r ~/chunkyard-repository -f ~/Documents/hello-world.txt
 After the initial password prompt Chunkyard will perform the following
 operations:
 
-- The file ~hello-world.txt~ is read and split into pieces (chunks) using the
+- The file =hello-world.txt= is read and split into pieces (chunks) using the
   [[https://www.usenix.org/system/files/conference/atc16/atc16-paper-xia.pdf][FastCdc]] algorithm. Since text files tend to be rather small, we'll most likely
   end up with a single chunk
 - Each chunk will be AES (Galois/Counter Mode) encrypted using a 256 bit key
@@ -30,7 +30,7 @@ operations:
 - Every encrypted chunk will be stored in a content addressable storage using
   its SHA256 hash value
 
-In order the reconstruct the ~hello-world.txt~ file, we need to keep track of
+In order the reconstruct the =hello-world.txt= file, we need to keep track of
 several pieces of data:
 
 - Parameters to reproduce the 256 bit key
@@ -38,7 +38,7 @@ several pieces of data:
 - The address of every file chunk in the storage system
 - The AES GCM tag and the cryptographic nonce to decrypt the file chunks
 
-Here's an overview of the file structure of the ~~/chunkyard-repository~
+Here's an overview of the file structure of the =~/chunkyard-repository=
 directory:
 
 #+begin_src text
@@ -53,12 +53,12 @@ chunkyard-repository/
       0.json
 #+end_src
 
-The file ~116d11f1a1a7301a720848382893cb931e781f31f93eeae3cbb88106b3d88ba5~
-contains our encrypted ~hello-world.txt~ file.
+The file =116d11f1a1a7301a720848382893cb931e781f31f93eeae3cbb88106b3d88ba5=
+contains our encrypted =hello-world.txt= file.
 
-All the information to reconstruct a snapshot of ~hello-world.txt~ is also
+All the information to reconstruct a snapshot of =hello-world.txt= is also
 stored as an encrypted chunk. Here's how the snapshot file
-~58c767a0b5c211fd26d2869ea36691b98270b7db5f22038d9c902ecdc8a818d8~ looks like
+=58c767a0b5c211fd26d2869ea36691b98270b7db5f22038d9c902ecdc8a818d8= looks like
 when it is decrypted:
 
 #+begin_src js
@@ -80,9 +80,9 @@ when it is decrypted:
 #+end_src
 
 In this example the snapshot contains a single file which consists of a single
-chunk (~116d11f1a1a7301a720848382893cb931e781f31f93eeae3cbb88106b3d88ba5~).
+chunk (=116d11f1a1a7301a720848382893cb931e781f31f93eeae3cbb88106b3d88ba5=).
 
-Finally ~0.json~ contains a reference to the above snapshot as well as the salt
+Finally =0.json= contains a reference to the above snapshot as well as the salt
 and hashing iterations parameters needed to create our cryptographic key:
 
 #+begin_src js
@@ -105,8 +105,8 @@ and hashing iterations parameters needed to create our cryptographic key:
 
 * Create A New Backup
 
-Let's change the content of our ~hello-world.txt~ example and re-run the
-~create~ command. Here's what happened to the ~~/chunkyard-repository~ directory:
+Let's change the content of our =hello-world.txt= example and re-run the
+~create~ command. Here's what happened to the =~/chunkyard-repository= directory:
 
 #+begin_src text
 chunkyard-repository/
@@ -148,7 +148,7 @@ The snapshot:
 }
 #+end_src
 
-And the ~1.json~ file:
+And the =1.json= file:
 
 #+begin_src js
 {
@@ -178,11 +178,11 @@ chunkyard restore -r ~/chunkyard-repository -d ~/chunkyard-restored
 #+end_src
 
 - Prompt the user for a password
-- Read the unencrypted JSON file found in the ~reflog~ directory. In our example
-  this would be ~1.json~
+- Read the unencrypted JSON file found in the =reflog= directory. In our example
+  this would be =1.json=
 - Create the cryptographic key based on the password, salt and iteration parameters
 - Decrypt and reconstruct the snapshot based on the information found in
-  ~1.json~
+  =1.json=
 - Decrypt and reconstruct every file in the snapshot
 
 * Closing Thoughts

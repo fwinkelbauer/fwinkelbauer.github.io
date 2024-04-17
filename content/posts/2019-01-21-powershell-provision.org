@@ -176,7 +176,7 @@ exec -ValidExitCodes 0, 1, 2 { $global:LASTEXITCODE = 2 }
 #+end_src
 
 I can even create a wrapper function to deal with restarts if a Chocolatey
-package installation returns the exit code ~3010~:
+package installation returns the exit code 3010:
 
 #+begin_src powershell
 function choco-exec {

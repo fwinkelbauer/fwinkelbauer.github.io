@@ -39,9 +39,9 @@ Here's a short example:
 
 Executing the Emacs function ~(org-babel-tangle)~ will create three files:
 
-- ~~/.gitconfig~
-- ~~/.gitmessage~
-- ~~/bin/my-hello~
+- =~/.gitconfig=
+- =~/.gitmessage=
+- =~/bin/my-hello=
   - *Note:* The tangling function will (based on the shebang property) make
     this script executable. So there's no need to call ~chmod +x~.
 
