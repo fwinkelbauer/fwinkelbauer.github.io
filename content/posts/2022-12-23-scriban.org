@@ -3,7 +3,7 @@
 
 I have only ever written a few hundred lines of Python, but I have appreciated
 its [[https://docs.python.org/3/library/configparser.html][configparser]] library. One of the coolest features is its interpolation
-mechanism, which can be used to derive values using other values in an =.ini=
+mechanism, which can be used to derive values using other values in an ~.ini~
 file. Here's a quick example from the documentation:
 
 #+begin_src conf

@@ -26,7 +26,7 @@ The two most important bits include:
 
 - Opening a session using the ~NetUse~ method
 - Using the ~session.ToRemote~ method to turn a "normal" path into a remote
-  path (e.g. =C:\= -> =\\some-machine\c$\=)
+  path (e.g. ~C:\~ -> ~\\some-machine\c$\~)
 
 Here's the actual ~NetUse~ implementation:
 

@@ -51,7 +51,7 @@ finally {
 }
 #+end_src
 
-This script (let's call it =make.ps1=) changes the above ~dotnet run~ command to
+This script (let's call it ~make.ps1~) changes the above ~dotnet run~ command to
 something like this:
 
 #+begin_src powershell

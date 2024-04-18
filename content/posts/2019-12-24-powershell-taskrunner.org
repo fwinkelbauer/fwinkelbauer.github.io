@@ -14,7 +14,7 @@ might operate like this:
 - Run these tasks one after the other
 - Mark these tasks as finished (which "removes" them from the graph)
 
-Here's a short =build.ps1= script which defines a few tasks:
+Here's a short ~build.ps1~ script which defines a few tasks:
 
 #+begin_src powershell
 param(
@@ -52,7 +52,7 @@ We can run any task by passing its name:
 - ~build.ps1 -Target Second~
 - ...
 
-The =task.psm1= file looks like this:
+The ~task.psm1~ file looks like this:
 
 #+begin_src powershell
 $registeredTasks = @{}

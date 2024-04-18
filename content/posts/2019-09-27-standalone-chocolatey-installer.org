@@ -6,21 +6,21 @@ MSI to install Chocolatey. In case that you are still searching for an
 executable, this post outlines a way to create your own "setup" using a self
 extracting [[https://www.7-zip.org/][7-zip]] archive. We'll need the following directory structure:
 
-- =config.txt=: A 7-zip configuration file
-- =install.bat=: A wrapper script to call =install.ps1=
-- =install.ps1=: This script will perform the actual installation inside the
+- ~config.txt~: A 7-zip configuration file
+- ~install.bat~: A wrapper script to call ~install.ps1~
+- ~install.ps1~: This script will perform the actual installation inside the
   7-zip archive
-- =build.ps1=: The script which will create our target file =output/chocolateySetup.exe=
+- ~build.ps1~: The script which will create our target file ~output/chocolateySetup.exe~
 
 * config.txt
 
 We're using a rather simple configuration, which will:
 
 - Show the user a "Do you want to install Chocolatey?" yes/no prompt
-- Run =install.bat= after extracting the archive
+- Run ~install.bat~ after extracting the archive
 
 The [[https://sevenzip.osdn.jp/chm/cmdline/switches/sfx.htm][7-zip SFX documentation]] outlines all available format options of a
-=config.txt= file.
+~config.txt~ file.
 
 #+begin_src text
 ;!@Install@!UTF-8!
@@ -32,7 +32,7 @@ ExecuteFile="install.bat"
 
 * install.bat
 
-=install.bat= is a simple wrapper script which calls =install.ps1=. I found this
+~install.bat~ is a simple wrapper script which calls ~install.ps1~. I found this
 to be more convenient than trying to let the 7-zip SFX module call PowerShell
 directly.
 
@@ -45,7 +45,7 @@ PAUSE
 * install.ps1
 
 This script performs the actual installation by calling Chocolatey's
-=chocolateyInstall.ps1=.
+~chocolateyInstall.ps1~.
 
 #+begin_src powershell
 if ($env:ChocolateyInstall) {
@@ -64,18 +64,18 @@ $root = if ($PSScriptRoot) { $PSScriptRoot } else { Split-Path -Path $psISE.Curr
 
 This script does a few things for us. It will:
 
-- Download Chocolatey (v0.10.13) and extract it in a =temp= directory
-- Download and extract the 7-zip SFX module in a =temp= directory
-- Create the 7-zip archive =output\chocolateySetup.7z= containing Chocolatey,
-  =install.ps1= and =install.bat=
-- And finally, create the executable =output/chocolateySetup.exe= by combining
-  =output/chocolateySetup.7z=, =config.txt= and the 7-zip SFX module
+- Download Chocolatey (v0.10.13) and extract it in a ~temp~ directory
+- Download and extract the 7-zip SFX module in a ~temp~ directory
+- Create the 7-zip archive ~output\chocolateySetup.7z~ containing Chocolatey,
+  ~install.ps1~ and ~install.bat~
+- And finally, create the executable ~output/chocolateySetup.exe~ by combining
+  ~output/chocolateySetup.7z~, ~config.txt~ and the 7-zip SFX module
 
 All calls to 7-zip are wrapped in an ~exec~ function, which I've described in a
 [[/posts/2019-01-21-powershell-provision][previous post]].
 
 You can tweak the ~$chocoUrl~ parameter to download a different version of
-Chocolatey. Keep in mind that you might need to delete the =temp= directory to
+Chocolatey. Keep in mind that you might need to delete the ~temp~ directory to
 remove all "cached" files.
 
 #+begin_src powershell
@@ -143,7 +143,7 @@ Get-Content $sfxFile, $configFile, $installerZipFile -Encoding Byte -Read 512 | 
 
 * Usage
 
-Given the above files, call =build.ps1= to create =output\chocolateySetup.exe=.
+Given the above files, call ~build.ps1~ to create ~output\chocolateySetup.exe~.
 Run the setup file, confirm the UAC prompt and the "Do you want to install Chocolatey?"
 dialog to start the install process.
 

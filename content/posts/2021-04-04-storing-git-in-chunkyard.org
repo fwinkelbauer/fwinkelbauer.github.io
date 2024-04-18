@@ -47,8 +47,8 @@ drwxrwxr-x 4 flo flo 4096 Apr  3 15:57 objects/
 -rw-rw-r-- 1 flo flo  105 Apr  3 15:57 packed-refs
 #+end_src
 
-I ran ~git gc~ prior to creating the backup, which explains the =packed-refs=
-file. As a result the =refs= directory became empty. Chunkyard does only care
+I ran ~git gc~ prior to creating the backup, which explains the ~packed-refs~
+file. As a result the ~refs~ directory became empty. Chunkyard does only care
 about files, so any empty directory will not be included in a backup. And that
 caused Git to error out when trying to clone the repository. The fix is rather
 easy:

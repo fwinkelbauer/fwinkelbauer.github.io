@@ -20,7 +20,7 @@ call, so I started to fiddle around with a Python script called ~forgejo-push~
 which could give me the same kind of neat experience when dealing with other
 registries such as Debian, Red Hat or the generic package registry.
 
-So let's start with the =~/.config/forgejo-push.conf= configuration file:
+So let's start with the ~~/.config/forgejo-push.conf~ configuration file:
 
 #+begin_src conf
 [my-debian]

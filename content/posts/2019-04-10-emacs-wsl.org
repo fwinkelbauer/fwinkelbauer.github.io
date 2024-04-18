@@ -16,14 +16,14 @@ Ubuntu1804 run sudo apt-get update
 Ubuntu1804 run sudo apt-get install aspell -y
 #+end_src
 
-- Create a script =aspell.cmd= with the following content:
+- Create a script ~aspell.cmd~ with the following content:
 
 #+begin_src cmd
 @echo off
 Ubuntu1804 run %~n0 %*
 #+end_src
 
-- Put =aspell.cmd= on your ~$PATH~
+- Put ~aspell.cmd~ on your ~$PATH~
 
 We can now call aspell with whatever parameters we would like without the
 "Ubuntu1804 run" prefix. This is for sure not the best solution, but I've

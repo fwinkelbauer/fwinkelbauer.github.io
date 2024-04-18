@@ -10,7 +10,7 @@ keyring seemed to be the most reasonable approach.
 A default Git installation ships with several credential helpers, so we need to
 configure Git to use one of these helpers. But this story wouldn't be about
 Linux if we could get away without running a ~make~ command. The directory
-=/usr/share/doc/git/contrib/credential= contains several helpers, including
+~/usr/share/doc/git/contrib/credential~ contains several helpers, including
 ~libsecret~ and ~gnome-keyring~. According to [[https://stackoverflow.com/questions/36585496/error-when-using-git-credential-helper-with-gnome-keyring-as-sudo][this]] StackOverflow post we should
 use ~libsecret~, so lets configure Git to use it:
 
