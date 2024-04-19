@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Fun Monday Links</title>
+<meta name="generator" content="Org Mode" />
+<meta name="author" content="Florian Winkelbauer">
+<link rel="stylesheet" href="/site.css" type="text/css">
+</head>
+<body>
+<div id="preamble" class="status">
+<nav>
+<a href="/">Home</a>
+<a href="/notes">Notes</a>
+<a href="/posts">Posts</a>
+<a href="/projects">Projects</a>
+</nav>
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">Fun Monday Links</h1>
+</header><p>
+"Fun Monday Links" was a work related fun project in which I tried to lighten up
+the start of the work week by talking about an interesting link in a humorous
+way. You can find all entries (slightly edited) below:
+</p>
+
+<div id="outline-container-org0a3af73" class="outline-2">
+<h2 id="org0a3af73">FML #1</h2>
+<div class="outline-text-2" id="text-org0a3af73">
+<p>
+Welcome to "Fun Monday Links" (FML)! A weekly post about rad tech stuff. Our
+first edition is about our favorite topic: version control!
+</p>
+
+<p>
+Who wouldn't want to tell their non-technical friends how cool git is, right?
+Well, good news! <a href="https://store.steampowered.com/app/1349230/5D_Chess_With_Multiverse_Time_Travel/">5D Chess With Multiverse Time Travel</a> is the perfect game to
+explain git. Be the star at any party while explaining concepts such as non-fast
+forward merges, cherry-picks, rebases or more advanced commands like git rerere.
+</p>
+
+<p>
+And for the people who crave more, <a href="https://www.youtube.com/watch?v=M75aENmuzmo">here</a> and <a href="https://www.youtube.com/watch?v=WtUCZYyv-_w">here</a> are two videos about more fancy
+git features.
+</p>
+
+<p>
+My personal favorites include:
+</p>
+
+<ul class="org-ul">
+<li><code>git clean</code> to delete files that are not in version control</li>
+<li><code>git rev-parse --show-toplevel</code> gives you the current directory which houses
+your git repo. Very useful for scripting!</li>
+<li><code>git ls-files</code> to search files in your git index</li>
+<li><code>git grep</code> works the same as a normal grep but is limited to the index</li>
+<li><code>git reflog</code> for when I screwed up and I need a hero that I don't deserve</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgad9ea0a" class="outline-2">
+<h2 id="orgad9ea0a">FML #2</h2>
+<div class="outline-text-2" id="text-orgad9ea0a">
+<p>
+It's Monday! Welcome to FML Episode #2.
+</p>
+
+<p>
+We all know that computers are fast, right? But how fast are they really? Humans
+have no good intuition on the difference between nano- and microseconds. The
+following <a href="https://www.youtube.com/watch?v=pDBOC6I3K8g">video link</a> (8 minutes) puts things into perspective using a 1 Hertz
+CPU.
+</p>
+
+<p>
+Here's the gist. This is a list of access times of a 3ghz CPU:
+</p>
+
+<ul class="org-ul">
+<li>Register: 0.3ns</li>
+<li>L1 cache: 1.5ns</li>
+<li>L2 cache: 3ns</li>
+<li>L3 cache 13ns</li>
+<li>RAM: 0.1 microseconds</li>
+<li>HDD: 6ms</li>
+<li>SSD: 80 microseconds</li>
+</ul>
+
+<p>
+All these values seem "low enough", but let's compare them using a 1 Hertz CPU:
+</p>
+
+<ul class="org-ul">
+<li>Register: 1 second</li>
+<li>L1 cache: 4.5 seconds</li>
+<li>L2 cache: 9 seconds</li>
+<li>L3 cache: 39 seconds</li>
+<li>RAM: 5 minutes</li>
+<li>HDD: 9 months</li>
+<li>SSD: 1 day</li>
+</ul>
+
+<p>
+The next time you say to yourself "oh cool XYZ only took a couple of minutes",
+think about how many centuries have past for a computer. It's insane.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge7cecb1" class="outline-2">
+<h2 id="orge7cecb1">FML #3</h2>
+<div class="outline-text-2" id="text-orge7cecb1">
+<p>
+Another Monday, another FML!
+</p>
+
+<p>
+This week is about performance as well. And some history: LMAX probably built
+the first open source financial exchange, a high performance, low latency system
+built for trading. You might think that the overall architecture is very
+complicated and that it was written in a systems language such as C++, but no.
+LMAX and the underlying main data structure (known as The Disruptor - yes,
+that's the official name) are built using Java.
+</p>
+
+<p>
+Martin Fowler has written <a href="https://martinfowler.com/articles/lmax.html">a long article</a> about the project.
+</p>
+
+<p>
+The Disruptor has influenced a bunch of other technologies, such as a new
+database called Tigerbeetle and it even found its way into the Linux kernel:
+iouring was inspired by LMAX as well.
+</p>
+
+<p>
+Martin Thompson, one of the initial people who worked on LMAX/The Disruptor, is
+now developing a high performance, low latency messaging queue called <a href="https://aeron.io/">Aeron</a>. In
+Java. Obviously.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org666ab3e" class="outline-2">
+<h2 id="org666ab3e">FML #4</h2>
+<div class="outline-text-2" id="text-org666ab3e">
+<p>
+Time flies when you love Mondays. Welcome to FML #4!
+</p>
+
+<p>
+In the old times backup tools differentiated between "full" and "incremental"
+backups in order to safe space. Nowadays newer tools such as restic or borg use
+deduplication techniques to unify these backups into a single
+directory/repository. In a way every backup is now full and incremental at the
+same time.
+</p>
+
+<p>
+Restic in particular uses (among other things) a technique called content
+defined chunking to split files into pieces. The cool thing about this technique
+is that it can also be applied in cases where you want to ship data updates to
+people.
+</p>
+
+<p>
+This <a href="https://technology.riotgames.com/news/supercharging-data-delivery-new-league-patcher">blog post</a> describes how Riot Games (the company behind a game called League
+Of Legends) uses content defined chunking to ship updates to players/users.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org00beed0" class="outline-2">
+<h2 id="org00beed0">FML #5</h2>
+<div class="outline-text-2" id="text-org00beed0">
+<p>
+Monday, yay! FML!
+</p>
+
+<p>
+Conway's Law states, that a software architecture mirrors the structure of an
+organization. In other words: If you have two development teams you end up with
+a software that consists of at least two components.
+</p>
+
+<p>
+In <a href="https://www.youtube.com/watch?v=5IUj1EZwpJY">this video</a> Casey claims that Conway's Law is too optimistic. In his mind a
+software architecture mirrors all organizational structures that a company has
+and has had. That means that you will find abandoned code lingering in your code
+base of previous employees. He gives a concrete example using Windows 10, where
+you can find the same GUI to control volume settings implemented in 3-4
+different ways.
+</p>
+
+<p>
+If we consider a sociotechnical system where we humans are part of the software
+system, we are in a way responsible to grow but also to trim software since it
+can't do that on its own. So "dealing with technical debt" is more or less
+ensuring that we kill and recreate something so that components do not grow
+uncontrollable. Cell growth and an immune system do basically the same thing.
+And we know what happens in a biological body if stuff (cells) refuse to die,
+right?
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb52baa2" class="outline-2">
+<h2 id="orgb52baa2">FML #6</h2>
+<div class="outline-text-2" id="text-orgb52baa2">
+<p>
+It's Monday! Time for another Fun Link. FML #6!
+</p>
+
+<p>
+<a href="https://www.youtube.com/watch?v=8pTEmbeENF4">This</a> is a presentation from Bret Victor in 2013. The fun bit is that he pretends
+to be presenting in the year 1973 (using overhead slides, of course). He talks
+about recent developments in computers and programming (remember, it's 1973) and
+explains how some cool ideas and concepts will shape the next 30-40 years. I
+could say "no spoilers" but we pretty much know "the future"&#x2026;
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5e2cc6d" class="outline-2">
+<h2 id="org5e2cc6d">FML #7</h2>
+<div class="outline-text-2" id="text-org5e2cc6d">
+<p>
+Happy New Monday!
+</p>
+
+<p>
+I got a treat for you if your new year resolutions include "building something
+very nerdy": <a href="https://craftinginterpreters.com/">Crafting Interpreters</a> is a book about building your own programming
+language. It's a great read and the online version is free ! Last year the book
+inspired me to write my own command line parser. It's a much more narrow, but
+also interesting challenge.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb2c987d" class="outline-2">
+<h2 id="orgb2c987d">FML #8</h2>
+<div class="outline-text-2" id="text-orgb2c987d">
+<p>
+Have a great Monday!
+</p>
+
+<p>
+Ever wondered what Frameworks (e.g. Object Relational Mappers) and Cake Mixes
+have in common? In her lightning talk (&lt;10min) <a href="https://vimeo.com/28885655">Christin Gorman</a> argues that they
+are beneath our dignity. It's a fun watch.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0fece99" class="outline-2">
+<h2 id="org0fece99">FML #9</h2>
+<div class="outline-text-2" id="text-org0fece99">
+<p>
+Dear Monday Enjoyers!
+</p>
+
+<p>
+Here's a handy page to help you get out of your most recent <a href="https://ohshitgit.com/">git-upsies</a>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga57b6b7" class="outline-2">
+<h2 id="orga57b6b7">FML #10</h2>
+<div class="outline-text-2" id="text-orga57b6b7">
+<p>
+'member Napster? 'member KaZaA and others?
+</p>
+
+<p>
+Back then I always thought that random people would upload their music to those
+platforms, but it turns out that most stolen long-term borrowed music was
+uploaded by a few individuals. The book <a href="https://www.goodreads.com/book/show/23398715-how-music-got-free">How music got free</a> tells that story.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org912aeeb" class="outline-2">
+<h2 id="org912aeeb">FML #11</h2>
+<div class="outline-text-2" id="text-org912aeeb">
+<p>
+Another week, another Monday. Welcome!
+</p>
+
+<p>
+Here's a talk by <a href="https://www.youtube.com/watch?v=uAwJEFLJunk">James Lewis</a> where he talks about team topologies and complexity
+science. He talks about hierarchical fractal networks such as mammals, companies
+or cities and how they show sub-linear and super-linear scaling.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org211acb3" class="outline-2">
+<h2 id="org211acb3">FML #12</h2>
+<div class="outline-text-2" id="text-org211acb3">
+<p>
+Have a great Monday!
+</p>
+
+<p>
+Ever felt like your Computer Science university courses were missing something
+essential? Well, <a href="https://missing.csail.mit.edu/">MIT got you covered</a>.
+</p>
+
+<p>
+This free literature teaches a broad field of useful day-to-day stuff including:
+</p>
+
+<ul class="org-ul">
+<li>Command line tools</li>
+<li>Version control under the hood (how is Git actually built?)</li>
+<li>Debugging</li>
+<li>Cryptography</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org0bda875" class="outline-2">
+<h2 id="org0bda875">FML #13</h2>
+<div class="outline-text-2" id="text-org0bda875">
+<p>
+Welcome to a non-technical edition of "Fun Monday Links"!
+</p>
+
+<p>
+This <a href="https://waitbutwhy.com/2015/12/the-tail-end.html">blog post</a> is nearly 10 years old, but re-reading it always gives some
+perspective.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga2f5e3e" class="outline-2">
+<h2 id="orga2f5e3e">FML #14</h2>
+<div class="outline-text-2" id="text-orga2f5e3e">
+<p>
+Hello Monday My Old Friend!
+</p>
+
+<p>
+We all know that software has bugs. We sometimes forget that file systems are
+software too. Have fun watching Dan Luu talk about the horrors that lurk
+below&#x2026; bugs in <a href="https://www.deconstructconf.com/2019/dan-luu-files">file systems</a>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7533d4a" class="outline-2">
+<h2 id="org7533d4a">FML #15</h2>
+<div class="outline-text-2" id="text-org7533d4a">
+<p>
+Happy Monday!
+</p>
+
+<p>
+Last week we talked about how spooky file systems are. Good think that we can
+still rely on our trusty old friend the database, right? &#x2026; right?
+</p>
+
+<p>
+Watch <a href="https://www.youtube.com/watch?v=5ZjhNTM8XU8">Martin Kleppmann</a> talk about ACID and how that term is more or less just
+marketing slang without any real meaning. My favorite bits from this talk: Hope
+that your red cross organization does not use Oracle Do you know the default
+isolation level of your database and what kind of read or write race conditions
+that can cause? Very spooky!
+</p>
+
+<p>
+Martin is also the author of <a href="https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/">Designing Data-Intensive Applications</a>. A terrific
+book!
+</p>
+</div>
+</div>
+
+<div id="outline-container-org130e702" class="outline-2">
+<h2 id="org130e702">FML #16</h2>
+<div class="outline-text-2" id="text-org130e702">
+<p>
+Oh Monday, how have I missed you!
+</p>
+
+<p>
+Last week we told our self horror stories about transaction. Let's go a level
+deeper and talk about how buffered IO and fsync are fundamentally broken. Check
+out <a href="https://www.youtube.com/watch?v=sC1B3d9C_sI">this presentation</a> about Tiger Beetle, a database that deals with financial
+transactions that was built from scratch. The coolest bit is the demo in the
+second half of the video where they simulate several instances of Tiger Beetle
+communicating with each other in a freaking game engine. As the "player" you can
+simulate events such as network partitions or an instance becoming offline. Much
+cool. Very techy. Wow.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7719f59" class="outline-2">
+<h2 id="org7719f59">FML #17</h2>
+<div class="outline-text-2" id="text-org7719f59">
+<p>
+I just got complains that FML #17 is missing. Sorry, I've lost sense of time
+since Mondays are just so fantastic.
+</p>
+
+<p>
+The holy war between programming paradigms has been going on for all eternity.
+What's better? Functional or object oriented programming? If you are curious,
+Rafal Dittwald gives a <a href="https://www.youtube.com/watch?v=vK1DazRK_a0">great example</a> of how the thinking between those two are
+different. Both paradigms agree that state is the root of all evil. But
+computers would just be expensive heating machines if we would just ignore
+state.
+</p>
+
+<ul class="org-ul">
+<li>OOP: state is hard. So let's split it and hide it as much as possible</li>
+<li>FP: state is hard. Minimize it or move all of this confusing stuff into one
+place</li>
+</ul>
+
+<p>
+The video contains an example code in Java with cool color coding to highlight
+statements which are having evil side effects/state manipulation. Rafal then
+goes on to refactor the code into a more functional style while keeping the
+color coding.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3bc3122" class="outline-2">
+<h2 id="org3bc3122">FML #18</h2>
+<div class="outline-text-2" id="text-org3bc3122">
+<p>
+Monday, yay!
+</p>
+
+<p>
+Anytime you're having a bad day, remember that somebody's code base might be
+even worse. Have fun reading the top comments in the <a href="https://news.ycombinator.com/item?id=18442637">Hacker News thread</a> "What's
+the largest amount of bad code you have ever seen work?".
+</p>
+</div>
+</div>
+
+<div id="outline-container-org48ac6e8" class="outline-2">
+<h2 id="org48ac6e8">FML #19</h2>
+<div class="outline-text-2" id="text-org48ac6e8">
+<p>
+Oh look it's Monday!
+</p>
+
+<p>
+It's a rather old video, but I don't often have to laugh that much when watching
+<a href="https://www.youtube.com/watch?v=7FeqF1-Z1g0">a technical talk</a>.
+</p>
+
+<p>
+We know that computers are complicated, but scanners should be simple, shouldn't
+they? A scanner would never change the content of a piece of paper it scans,
+right? No scanner would do that. I mean why should they, right?! David Kriesel
+has some bad news for you.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgff24cff" class="outline-2">
+<h2 id="orgff24cff">FML #20</h2>
+<div class="outline-text-2" id="text-orgff24cff">
+<p>
+I'm happily married to a lovely wife, but as a grown man I still have my overly
+manly crushes on other man. One of them is Rich Hickey.
+</p>
+
+<p>
+Rich used to be a C++/Java developer until the day he got fed up with writing
+the same programs over and over. He took a sabbatical (burning through his own
+money) to build a new programming language based on the JVM. Today we know this
+language as Clojure. Clojure became popular in some circles and Rich ended up
+with his own consulting company which was bought by a bank a few years ago.
+</p>
+
+<p>
+The <a href="https://github.com/tallesl/Rich-Hickey-fanclub">Rich Hickey Fanclub</a> has the cool subtext "every time I watch one of his
+talks I feel like someone has gone in and organized my brain" which I find to be
+true. His insights about programming are interesting and I love to watch his
+talks. It takes some time to get used to all the Clojure related stuff, but the
+general ideas he has are often interesting.
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Published: 2024-04-18</p>
+<footer>
+<p>Copyright 2024, Florian Winkelbauer. All rights reserved.</p>
+</footer>
+</div>
+</body>
+</html>
