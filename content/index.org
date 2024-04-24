@@ -5,9 +5,8 @@ development and about whatever else seems to catch my interest. In my free time
 I tinker with small projects on [[https://github.com/fwinkelbauer][GitHub]]. In the past I have been a clown on more
 than one occasion. [[/notes/theater][Literally]].
 
-I am currently working at [[https://invenium.io/][Invenium]] where I deal with server infrastructure and
-build pipelines. Before that I was automating whatever I could get my hands on
-at [[https://intact-systems.com/][Intact]].
+I am currently working at [[https://intact-systems.com/][Intact]] where I try to automate whatever I can get my
+hands on.
 
 My wife, son and I live near Leibnitz, Austria. You can reach me at "mail@(this
 domain)".
