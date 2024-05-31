@@ -1460,6 +1460,26 @@ https://www.youtube.com/watch?v=siEtKc6Sq2Y
 - You can enable/disable behavior using inputs/request instead of using
   configuration files
 
+* The Most Dangerous Phrase (Daniel Terhorst-North)
+
+https://www.youtube.com/watch?v=WPCrGYjrJ1Y
+
+- Why do we do what we do?
+  - Out of habit, because it is "obviously right", because this is the way I was
+    taught
+  - Because everyone else does it this way
+  - Because we have always done it this way
+- Technology can bring benefits if, and only if, it diminishes a limitation
+  - What is the power of the technology?
+  - What limitation does the technology diminish
+  - Which rules enables us to manage this limitation?
+  - Which new rules will we need?
+- Modern alternative to Scrum
+  - Two planning cadences: quarterly OKRs and in the moment
+  - Organize teams around anticipated demand
+  - Deployment is a technical decision, release is a commercial one
+  - Daily steering is about what is left, not what is done
+
 * More Speakers
 
 - [[https://www.youtube.com/results?search_query=Greg+Young][Greg Young]]
