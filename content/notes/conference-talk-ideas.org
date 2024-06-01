@@ -47,9 +47,9 @@ such as:
 
 * Teaching an Old +Dog+ Monolith New Tricks
 
-Its 2023 but some of us are still doing manual deployments to ship software.
-Let's have a look at a concrete example of a distributed monolith and what we
-can do to automate its deployment:
+Some of us are still doing manual deployments to ship software. Let's have a
+look at a concrete example of a distributed monolith and what we can do to
+automate its deployment:
 
 - Implement a "deployment configuration" using a templating language, reusable
   configuration files and scripts
