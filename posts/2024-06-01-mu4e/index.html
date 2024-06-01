@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Using mu4e with mailbox.org</title>
+<meta name="generator" content="Org Mode" />
+<meta name="author" content="Florian Winkelbauer">
+<link rel="stylesheet" href="/site.css" type="text/css">
+</head>
+<body>
+<div id="preamble" class="status">
+<nav>
+<a href="/">Home</a>
+<a href="/notes">Notes</a>
+<a href="/posts">Posts</a>
+<a href="/projects">Projects</a>
+</nav>
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">Using mu4e with mailbox.org</h1>
+</header><p>
+Alright. At some point in time any Emacs user wants to figure out how he or she
+can read and write mails using Emacs. Personally I'm not really a fan, but I'll
+give you a configuration that works with <a href="https://mailbox.org">https://mailbox.org</a> on Linux. It took
+me a lot of online searching and reading other peoples blog posts to stitch this
+together, so maybe this will help another lost soul.
+</p>
+
+<p>
+Let's start with the OS setup. We need the package <code>isync</code> (which contains the
+<code>mbsync</code> binary) and <code>mu4e</code> (which ships <code>mu</code> and also some Emacs code):
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">sudo apt install isync mu4e
+</pre>
+</div>
+
+<p>
+Next we'll configure <code>mbsync</code> using a <code>~/.mbsyncrc</code> configuration file:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-conf">IMAPStore mailbox-remote
+Host imap.mailbox.org
+User your.name@mailbox.org
+Pass super-secret-password
+SSLType STARTTLS
+
+MaildirStore mailbox-local
+Path ~/Mail/
+Inbox ~/Mail/Inbox
+Subfolders Verbatim
+
+Channel mailbox
+Far :mailbox-remote:
+Near :mailbox-local:
+Patterns *
+SyncState *
+Create Both
+Expunge Both
+CopyArrivalDate yes
+</pre>
+</div>
+
+<p>
+<b><b>Note:</b></b> The <code>Pass</code> config section can also be replaced by <code>PassCmd</code>.
+</p>
+
+<p>
+And we will also add a <code>~/.authinfo</code> file so that we can send mails:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-authinfo">machine smtp.mailbox.org
+  port 587
+  login your.name@mailbox.org
+  password super-secret-password
+</pre>
+</div>
+
+<p>
+After this we can create a local directory with all our mail data:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">mkdir ~/Mail
+mbsync -a
+mu init --maildir=~/Mail --my-address=your.name@mailbox.org
+mu index
+</pre>
+</div>
+
+<p>
+And finally we can configure Emacs. The below folder/maildir structure is based
+on the default folder structure that you find in your <a href="https://mailbox.org">https://mailbox.org</a>
+account:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(use-package mu4e
+  :config
+  (setq user-full-name "Your Name"
+        user-mail-address "your.name@mailbox.org"
+        mu4e-change-filenames-when-moving t
+        mu4e-get-mail-command "mbsync -a"
+        mu4e-attachment-dir "~/Downloads"
+        mu4e-drafts-folder "/Drafts"
+        mu4e-sent-folder   "/Sent"
+        mu4e-refile-folder "/Archive"
+        mu4e-trash-folder  "/Trash"
+        mu4e-maildir-shortcuts '((:maildir "/Inbox"    :key ?i)
+                                 (:maildir "/Sent"     :key ?s)
+                                 (:maildir "/Trash"    :key ?t)
+                                 (:maildir "/Drafts"   :key ?d)
+                                 (:maildir "/Junk"     :key ?j)
+                                 (:maildir "/Archive"  :key ?a))
+        smtpmail-smtp-server "smtp.mailbox.org"
+        smtpmail-smtp-service 587
+        smtpmail-stream-type 'starttls
+        send-mail-function 'smtpmail-send-it))
+</pre>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Published: 2024-06-01</p>
+<footer>
+<p>Copyright 2024, Florian Winkelbauer. All rights reserved.</p>
+</footer>
+</div>
+</body>
+</html>
