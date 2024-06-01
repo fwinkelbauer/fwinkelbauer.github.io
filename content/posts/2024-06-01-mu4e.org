@@ -1,0 +1,87 @@
+#+TITLE: Using mu4e with mailbox.org
+#+DATE: [2024-06-01]
+
+Alright. At some point in time any Emacs user wants to figure out how he or she
+can read and write mails using Emacs. Personally I'm not really a fan, but I'll
+give you a configuration that works with https://mailbox.org on Linux. It took
+me a lot of online searching and reading other peoples blog posts to stitch this
+together, so maybe this will help another lost soul.
+
+Let's start with the OS setup. We need the package ~isync~ (which contains the
+~mbsync~ binary) and ~mu4e~ (which ships ~mu~ and also some Emacs code):
+
+#+begin_src sh
+sudo apt install isync mu4e
+#+end_src
+
+Next we'll configure ~mbsync~ using a ~~/.mbsyncrc~ configuration file:
+
+#+begin_src conf
+IMAPStore mailbox-remote
+Host imap.mailbox.org
+User your.name@mailbox.org
+Pass super-secret-password
+SSLType STARTTLS
+
+MaildirStore mailbox-local
+Path ~/Mail/
+Inbox ~/Mail/Inbox
+Subfolders Verbatim
+
+Channel mailbox
+Far :mailbox-remote:
+Near :mailbox-local:
+Patterns *
+SyncState *
+Create Both
+Expunge Both
+CopyArrivalDate yes
+#+end_src
+
+**Note:** The ~Pass~ config section can also be replaced by ~PassCmd~.
+
+And we will also add a ~~/.authinfo~ file so that we can send mails:
+
+#+begin_src authinfo
+machine smtp.mailbox.org
+  port 587
+  login your.name@mailbox.org
+  password super-secret-password
+#+end_src
+
+After this we can create a local directory with all our mail data:
+
+#+begin_src sh
+mkdir ~/Mail
+mbsync -a
+mu init --maildir=~/Mail --my-address=your.name@mailbox.org
+mu index
+#+end_src
+
+And finally we can configure Emacs. The below folder/maildir structure is based
+on the default folder structure that you find in your https://mailbox.org
+account:
+
+#+begin_src emacs-lisp
+(use-package mu4e
+  :config
+  (setq user-full-name "Your Name"
+        user-mail-address "your.name@mailbox.org"
+        mu4e-change-filenames-when-moving t
+        mu4e-get-mail-command "mbsync -a"
+        mu4e-attachment-dir "~/Downloads"
+        mu4e-drafts-folder "/Drafts"
+        mu4e-sent-folder   "/Sent"
+        mu4e-refile-folder "/Archive"
+        mu4e-trash-folder  "/Trash"
+        mu4e-maildir-shortcuts '((:maildir "/Inbox"    :key ?i)
+                                 (:maildir "/Sent"     :key ?s)
+                                 (:maildir "/Trash"    :key ?t)
+                                 (:maildir "/Drafts"   :key ?d)
+                                 (:maildir "/Junk"     :key ?j)
+                                 (:maildir "/Archive"  :key ?a))
+        smtpmail-smtp-server "smtp.mailbox.org"
+        smtpmail-smtp-service 587
+        smtpmail-stream-type 'starttls
+        send-mail-function 'smtpmail-send-it))
+#+end_src
