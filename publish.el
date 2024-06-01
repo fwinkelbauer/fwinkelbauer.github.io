@@ -26,6 +26,7 @@
         (t entry)))
 
 (defun fw/get-article-output-path (org-file pub-dir)
+  "Create and ensure an output path."
   (let ((article-dir (concat pub-dir
                              (downcase
                               (file-name-as-directory
@@ -34,10 +35,10 @@
 
     (if (string-match "\\/index.org\\|\\/404.org$" org-file)
         pub-dir
-        (progn
-          (unless (file-directory-p article-dir)
-            (make-directory article-dir t))
-          article-dir))))
+      (progn
+        (unless (file-directory-p article-dir)
+          (make-directory article-dir t))
+        article-dir))))
 
 (defun fw/org-html-link (link contents info)
   "Removes file extension and changes the path into lowercase file:// links."
@@ -61,8 +62,7 @@
               contents))
      (t (org-export-with-backend 'html link contents info)))))
 
-(org-export-define-derived-backend 'site-html 'html
-  :translate-alist '((link . fw/org-html-link)))
+(org-export-define-derived-backend 'site-html 'html :translate-alist '((link . fw/org-html-link)))
 
 (defun fw/org-html-publish-to-html (plist filename pub-dir)
   "Publish an org file to HTML, using the FILENAME as the output directory."
