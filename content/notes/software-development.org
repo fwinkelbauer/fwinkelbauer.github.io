@@ -1480,6 +1480,25 @@ https://www.youtube.com/watch?v=WPCrGYjrJ1Y
   - Deployment is a technical decision, release is a commercial one
   - Daily steering is about what is left, not what is done
 
+* Continuous Delivery: Sounds Great But It Won't Work Here (Jez Humble)
+
+https://www.youtube.com/watch?v=IvWr29afDF8
+
+- In 2008 HP had some quality issues
+- They used activity accounting
+  - Found that only 5% of the overall time could be used for innovation
+- They redesigned their firmware development process and invested in continuous
+  integration and automated tests. They even built a simulator
+- In 2011 the activity accounting showed that their innovation capacity has
+  improved by a factor of eight. The overall time investment for planning and
+  product support decreased
+  - This was possible even though the new activity accounting showed that 23% of
+    their time was now invested in maintaining automated tests
+- What would happen if you went to your manager and said: "Please can we have
+  23% of our engineering budget to spend on test automation"?
+- Costs went down, quality went up, time to market went down. Continuous
+  delivery works. Even when building firmware
+
 * More Speakers
 
 - [[https://www.youtube.com/results?search_query=Greg+Young][Greg Young]]
