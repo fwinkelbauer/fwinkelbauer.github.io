@@ -2,19 +2,4 @@
 
 This repository contains the [[https://orgmode.org/][org-mode]] sources for my [[https://florianwinkelbauer.com][website]].
 
-* Development
-
-The following commands require Python and Emacs:
-
-- Run ~./pls publish~ to populate the ~public/~ directory
-- Run ~./pls serve~ to start a local web server on [[http://localhost:8000]] which
-  serves ~public/~
-- Run ~./pls deploy~ to publish and deploy this website to the branch "gh-pages"
-- Run ~./pls --help~ to learn more about all available commands
-
-A typical org-mode page found in this repository contains a header like this:
-
-#+begin_src org
-,#+TITLE: The Title
-,#+DATE: [2000-12-24]
-#+end_src
+Run ~./pls~ to populate the ~public/~ directory.
