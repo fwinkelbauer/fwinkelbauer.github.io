@@ -55,3 +55,14 @@ automate its deployment:
   configuration files and scripts
 - Generate a "deployment configuration" using different criteria
 - Use a package manager like [[https://chocolatey.org/][Chocolatey]] (Windows)
+
+* Git as a Tool for Thinking
+
+Gamers know that it's a good idea to click "save" whenever they are about to do
+something significant, risky or stupid. In the same sense developers should
+"save" (commit) all the freaking time too:
+
+- Feel the power of resets and interactive rebases
+- Use stashes, branches and WIP commits for experiments
+- Apply partial staging to reflect and review your work
+- Use worktrees for some sweet documentation
