@@ -1499,25 +1499,147 @@ https://www.youtube.com/watch?v=IvWr29afDF8
 - Costs went down, quality went up, time to market went down. Continuous
   delivery works. Even when building firmware
 
-* More Speakers
+* You Keep Using That Word (Sam Newman)
 
-- [[https://www.youtube.com/results?search_query=Greg+Young][Greg Young]]
-- [[https://www.youtube.com/results?search_query=Michael+Feathers][Michael Feathers]]
-- [[https://www.youtube.com/results?search_query=Bryan+Cantrill][Bryan Cantrill]]
-- [[https://www.youtube.com/results?search_query=Mark+Seemann][Mark Seemann]]
-- [[https://www.youtube.com/results?search_query=Jimmy+Bogard][Jimmy Bogard]]
-- [[https://www.youtube.com/results?search_query=Sam+Newman][Sam Newman]]
-- [[https://www.youtube.com/results?search_query=Chad+Fowler][Chad Fowler]]
-- [[https://www.youtube.com/results?search_query=Kent+Beck][Kent Beck]]
-- [[https://www.youtube.com/results?search_query=Casey+Rosenthal][Casey Rosenthal]]
-- [[https://www.youtube.com/results?search_query=Allen+Holub][Allen Holub]]
-- [[https://www.youtube.com/results?search_query=John+Hughes][John Hughes]]
-- [[https://www.youtube.com/results?search_query=Andrew+Kelley][Andrew Kelley]]
-- [[https://www.youtube.com/results?search_query=Dave+Farley][Dave Farley]]
-- [[https://www.youtube.com/results?search_query=David+Tielke][David Tielke (German)]]
-- [[https://www.youtube.com/results?search_query=Charity+Majors][Charity Majors]]
+https://www.youtube.com/watch?v=rZxIzrjvSGg
 
-* Conferences
+- "You keep using that word. I do not think it means what you think it means."
+- What does asynchronous and synchronous communication actually mean?
+- Focus instead on understanding what your application needs
+  - What happens when a server becomes unreachable?
+  - How fast should something be?
+  - What if the client crashes?
 
-- [[https://www.youtube.com/@NDC][NDC Conferences]]
-- [[https://www.youtube.com/@GOTO-/videos][GOTO Conferences]]
+* TDD Isn't Hard, It's Something Else (Dave Farley)
+
+https://www.youtube.com/watch?v=WDFN_u5FTyM
+
+- Designing is the hard bit
+- TDD exposes us to our own design choices
+- Focus on the objectives instead of the implementation details
+- Use tests to define/explain the public API of your code
+- Tests specify your objectives
+
+* Der Faktor Mensch in der Softwareentwicklung (David Tielke)
+
+https://www.youtube.com/watch?v=Eh-UaaxBYDk
+
+- We focus too much on technical skills
+- Instead we should also consider areas such as
+  - Leadership
+  - Conflict management
+  - Teamwork & communication
+  - Problem solving
+  - Time management
+
+* Practical DOD (Andrew Kelley)
+
+https://vimeo.com/649009599
+
+- Every couple of years I look back at my code and think "oh wow that's crap".
+  That stopped after 10 years
+- Learned about Data-Oriented Design (e.g. by watching Mike Acton's talks)
+- CPU is fast, main memory is slow. Do more stuff with the CPU and less stuff
+  with main memory!
+- Reduce memory footprint
+
+* The Art of Destroying Software (Greg Young)
+
+https://www.youtube.com/watch?v=1FPsJ-if2RU
+
+- Doesn't it feel good to have a pull request that deletes more code than it
+  adds?
+- Have a look at the "waterfall paper". Really, read it!
+- The "big ball of mud" is inevitable and even optimal
+- Write code for the purpose of deleting it
+- What would a code base look like if you would optimize for deletion?
+- When refactoring you either change code or a test, never both
+- How hard would it be to rewrite ~ls~?
+- The Linux way = the microservices way = the Erlang way
+- Changing existing code is hard if the overall model does not fit your new
+  thing
+
+* Testing the Hard Stuff and Staying Sane (John Hughes)
+
+https://www.youtube.com/watch?v=zi0rHwfiX1Q
+
+- Property based testing: find more bugs with less effort
+- AUTOSAR theory: car manufactures can buy code from different providers and
+  have them work together seamlessly
+- AUTOSAR reality: Nope, the processes can't talk to each other
+- Are you having a bug that only shows up every couple of months? That smells
+  like a race condition, doesn't it?
+
+* Legacy (Chad Fowler)
+
+https://www.youtube.com/watch?v=YruzQgWdv48
+
+- In the real world "legacy" is a good thing
+- In software "legacy" has this bad taste
+- Micheal Feathers on how to create legacy software: fear, stasis, difficult to
+  change
+
+* The Sociotechnical Path to High-Performing Teams (Charity Majors)
+
+https://www.youtube.com/watch?v=oV8VSBSBrr4
+
+- How do you build high-performing teams?
+- False: "Just hire the best engineers and you'll get the best team"
+- True:
+  - Hire people who share your values
+  - Construct sociotechnical feedback loops
+  - Instrument, observe, iterate and repeat
+- The next generation of systems won't be built and run by burned out, exhausted
+  people, or command-and-control teams just following orders
+
+* Deprecating Simplicity 3.0 (Casey Rosenthal)
+
+https://www.youtube.com/watch?v=JfT9UxcEcOE
+
+- All components could be 100% correct and yet the system can exhibit
+  undesirable behavior
+- Root causes are a lie
+- Embrace complexity
+- https://principlesofchaos.org/
+- Economic pillars of complexity
+  - States
+  - Relationships
+  - Environment
+  - Reversibility
+- Software engineering: the bureaucratic profession
+
+* Agile & Scrum Don't Work (Allen Holub)
+
+https://www.youtube.com/watch?v=hxXmTnb3mFU
+
+- Agile has came to mean "half of scrum doing badly and using Jira"
+- The word "Agile" has changed over the time
+- Scrum started as a wrapper around Extreme Programming
+- Martin Fowler: SAFe is Shitty Agile For Enterprise
+- Lean was invented for manufacturing, some aspects just don't work for software
+  development
+- https://www.thisamericanlife.org/561/nummi-2015
+
+* Increasing Team Velocity While Improving Quality (Kent Beck)
+
+https://www.youtube.com/watch?v=65YhzYSL5Hw
+
+- His mission: make geeks feel save in the world
+- Extreme programming's foundation: communication, feedback, courage and respect
+- Some organizations value the opposite of these factors
+- Use 50% of your time to help other people, deal with interruptions or deal
+  with opportunities
+- If you can't do something meaningful in one week: figure out why and fix that
+- Who is going to use your estimate to make what decision?
+- Tidy first: Dealing with a hard change? Start by changing the environment so
+  that the change becomes easy (Warning: this might be hard) and then do the
+  easy change
+
+* Repeatable Execution (Mark Seemann)
+
+https://www.youtube.com/watch?v=Ak1hGQuGBhY
+
+- Favor pure functions over impure actions
+- Make impure actions polymorphic
+- Log with decorators
+- Use logs to enable replay
