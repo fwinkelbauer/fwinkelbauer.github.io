@@ -1643,3 +1643,20 @@ https://www.youtube.com/watch?v=Ak1hGQuGBhY
 - Make impure actions polymorphic
 - Log with decorators
 - Use logs to enable replay
+
+* Moving IO to the edges of your app: Functional Core, Imperative Shell (Scott Wlaschin)
+
+https://www.youtube.com/watch?v=P1vES9AgfC4
+
+- Traditional layered architecture has the database at the bottom
+- If you map out a request that travels through your layers the database is in
+  the middle (since you go down the layers and up again)
+- Instead we want to have our domain logic in the middle and our I/O at the edges
+- "Good design": pure functions (deterministic functions that have input and
+  output without side effects)
+- "Bad design": anything that uses I/O
+- [[https://www.youtube.com/watch?v=yTkzNHF6rMs][Garry Burnhardt]] coined the term "Functional Core, Imperative Shell"
+- This model doesn't fit well with heavy ORMs or a unit of work pattern
+- In rare cases you might need to do: I/O, pure logic, I/O, pure logic, I/O
+- Don't mock classes if they are pure
+- Dependency injection can lead to interface creep
