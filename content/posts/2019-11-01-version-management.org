@@ -50,7 +50,7 @@ My name is Florian.
 
 #+begin_src conf
 # Python's .ini library comes with a ton of features such as referencing
-# values or defined default values for other sections
+# values or defining default values for other sections
 
 [DEFAULT]
 # Optional parameters. If not set, niles will use the default encoding and
