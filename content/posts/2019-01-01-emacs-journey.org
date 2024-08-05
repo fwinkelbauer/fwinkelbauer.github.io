@@ -39,11 +39,6 @@ myself a power user, because I am only using a few of org-mode's features, e.g.
 I still prefer a traditional calendar, even if org-agenda has some appealing
 features.
 
-You can find my literate Emacs configuration [[https://github.com/fwinkelbauer/emacs][here]]. Even though one would
-consider committing files managed by a package manager a no-go, I have decided
-to add all ~.el~ and ~*.elc~ files, so that I can get the exact same code when
-checking out the repository on a new computer.
-
 * Magit
 
 Magit was one of the reasons why I have decided to learn Emacs in the first
