@@ -2,4 +2,4 @@
 
 This repository contains the [[https://orgmode.org/][org-mode]] sources for my [[https://florianwinkelbauer.com][website]].
 
-Run ~./pls~ to populate the ~public/~ directory.
+Run ~./publish~ to populate the ~public/~ directory.
