@@ -11,9 +11,9 @@
   "Create a custom postamble."
   (let ((date (org-export-data (org-export-get-date info "%Y-%m-%d") info)))
     (fw.com/join-lines (unless (string-empty-p date) (concat "<p class=\"date\">Published: " date "</p>"))
-                   "<footer>"
-                   "<p>Copyright 2024, Florian Winkelbauer. All rights reserved.</p>"
-                   "</footer>")))
+                       "<footer>"
+                       "<p>Copyright 2024, Florian Winkelbauer. All rights reserved.</p>"
+                       "</footer>")))
 
 (defun fw.com/sitemap-format-entry (entry style project)
   "Add date to a sitemap entry."
@@ -125,18 +125,18 @@
         (org-html-html5-fancy t)
         (org-html-head
          (fw.com/join-lines "<meta name=\"author\" content=\"Florian Winkelbauer\">"
-                        "<link rel=\"stylesheet\" href=\"/site.css\" type=\"text/css\">"))
+                            "<link rel=\"stylesheet\" href=\"/site.css\" type=\"text/css\">"))
         (org-html-head-include-default-style nil)
         (org-html-head-include-scripts nil)
         (org-html-mathjax-template "")
         (org-html-postamble 'fw.com/postamble)
         (org-html-preamble
          (fw.com/join-lines "<nav>"
-                        "<a href=\"/\">Home</a>"
-                        "<a href=\"/notes\">Notes</a>"
-                        "<a href=\"/posts\">Posts</a>"
-                        "<a href=\"/projects\">Projects</a>"
-                        "</nav>"))
+                            "<a href=\"/\">Home</a>"
+                            "<a href=\"/notes\">Notes</a>"
+                            "<a href=\"/posts\">Posts</a>"
+                            "<a href=\"/projects\">Projects</a>"
+                            "</nav>"))
         (org-html-validation-link nil)
         (org-publish-timestamp-directory "./.org-timestamps/"))
     (org-publish "florianwinkelbauer.com" t)))
