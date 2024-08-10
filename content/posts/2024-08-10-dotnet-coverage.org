@@ -1,0 +1,28 @@
+#+TITLE: Dotnet Coverage for Manual Tests
+#+DATE: [2024-08-10]
+
+Code coverage tools are a well known way to find untested code when working with
+automated tests. I have recently learned that these tools can also be used when
+performing manual tests. I know, it sounds obvious, but for some reason I have
+never even considered it. And it turns out that its incredible easy to do using
+[[https://learn.microsoft.com/en-us/dotnet/core/additional-tools/dotnet-coverage][dotnet-coverage]]. The official repository contains a few sweet [[https://github.com/microsoft/codecoverage/blob/main/samples/Calculator/scenarios/scenario08/README.md][examples]].
+
+Here is another one:
+
+#+begin_src sh
+# Setup
+git clone https://github.com/fwinkelbauer/chunkyard
+cd chunkyard/src/Chunkyard
+dotnet tool install --global dotnet-coverage
+dotnet build
+
+# Start coverage
+dotnet-coverage collect --session-id my-session --server-mode --background --include-files **/*.dll
+
+# Perform manual tests
+dotnet run -- store --help
+dotnet run -- store --repository example --paths . --preview
+
+# Create coverage report "output.coverage"
+dotnet-coverage shutdown my-session
+#+end_src
