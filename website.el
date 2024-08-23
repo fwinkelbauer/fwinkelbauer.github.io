@@ -26,7 +26,7 @@
         (t entry)))
 
 (defun fw.com/get-article-output-path (org-file pub-dir)
-  "Create and ensure an output path."
+  "Ensure an output path."
   (let ((article-dir (concat pub-dir
                              (downcase
                               (file-name-as-directory
@@ -61,8 +61,6 @@
               (org-element-property :raw-link link)
               contents))
      (t (org-export-with-backend 'html link contents info)))))
-
-(org-export-define-derived-backend 'site-html 'html :translate-alist '((link . fw.com/org-html-link)))
 
 (defun fw.com/org-html-publish-to-html (plist filename pub-dir)
   "Publish an org file to HTML, using the FILENAME as the output directory."
@@ -141,4 +139,5 @@
         (org-publish-timestamp-directory "./.org-timestamps/"))
     (org-publish "florianwinkelbauer.com" t)))
 
+(org-export-define-derived-backend 'site-html 'html :translate-alist '((link . fw.com/org-html-link)))
 (fw.com/publish-website)
