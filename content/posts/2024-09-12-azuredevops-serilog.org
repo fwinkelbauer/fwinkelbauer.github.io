@@ -1,0 +1,86 @@
+#+TITLE: Custom AzureDevOps Serilog Sink
+#+DATE: [2024-09-12]
+
+The other day I was wondering how I can add warnings and error indicators to
+pipeline summaries of Azure DevOps. It turns out that you can write simple echo
+statements to trigger all sorts of cool [[https://learn.microsoft.com/en-us/azure/devops/pipelines/scripts/logging-commands][commands]]. I was even more stoked when I
+realized that I could write a [[https://github.com/serilog/serilog/wiki/Developing-a-sink][custom sink]] for my beloved logging framework
+[[https://serilog.net/][Serilog]] to send pipeline error/warning commands right from a C# application.
+It's nothing fancy, but for some reason this little code snippet brought me joy:
+
+#+begin_src csharp
+using Serilog.Configuration;
+using Serilog.Core;
+using Serilog.Events;
+using Serilog;
+
+namespace Example;
+
+public static class Program
+{
+    public static void Main()
+    {
+        Log.Logger = new LoggerConfiguration()
+            .WriteTo.AzureDevOpsOr(l => l.Console())
+            .MinimumLevel.Debug()
+            .CreateLogger();
+
+        try
+        {
+            Log.Warning("A warning message");
+            Log.Error("An error message");
+
+            throw new NotSupportedException("An example exception");
+        }
+        catch (Exception e)
+        {
+            Log.Error(e, "Unexpected error");
+            Environment.ExitCode = 1;
+        }
+        finally
+        {
+            Log.CloseAndFlush();
+        }
+    }
+}
+
+public sealed class AzureDevOpsSink : ILogEventSink
+{
+    public void Emit(LogEvent logEvent)
+    {
+        var rendered = logEvent.RenderMessage();
+        var annotated = logEvent.Level switch
+        {
+            LogEventLevel.Verbose => $"##[debug]{rendered}",
+            LogEventLevel.Debug => $"##[debug]{rendered}",
+            LogEventLevel.Information => rendered,
+            LogEventLevel.Warning => $"##vso[task.logissue type=warning]{rendered}",
+            LogEventLevel.Error => $"##vso[task.logissue type=error]{rendered}",
+            LogEventLevel.Fatal => $"##vso[task.logissue type=error]{rendered}",
+            _ => throw new NotImplementedException()
+        };
+
+        Console.WriteLine(annotated);
+
+        if (logEvent.Exception != null)
+        {
+            Console.WriteLine($"##[debug]{logEvent.Exception}");
+        }
+    }
+}
+
+public static class AzureDevOpsSinkExtensions
+{
+    public static LoggerConfiguration AzureDevOpsOr(
+        this LoggerSinkConfiguration config,
+        Func<LoggerSinkConfiguration, LoggerConfiguration> orFunc)
+    {
+        var runningOnAzureDevops = !string.IsNullOrEmpty(
+            Environment.GetEnvironmentVariable("BUILD_BUILDNUMBER"));
+
+        return runningOnAzureDevops
+            ? config.Sink(new AzureDevOpsSink())
+            : orFunc(config);
+    }
+}
+#+end_src
