@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Custom AzureDevOps Serilog Sink</title>
+<meta name="generator" content="Org Mode" />
+<meta name="author" content="Florian Winkelbauer">
+<link rel="stylesheet" href="/site.css" type="text/css">
+</head>
+<body>
+<div id="preamble" class="status">
+<nav>
+<a href="/">Home</a>
+<a href="/notes">Notes</a>
+<a href="/posts">Posts</a>
+<a href="/projects">Projects</a>
+</nav>
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">Custom AzureDevOps Serilog Sink</h1>
+</header><p>
+The other day I was wondering how I can add warnings and error indicators to
+pipeline summaries of Azure DevOps. It turns out that you can write simple echo
+statements to trigger all sorts of cool <a href="https://learn.microsoft.com/en-us/azure/devops/pipelines/scripts/logging-commands">commands</a>. I was even more stoked when I
+realized that I could write a <a href="https://github.com/serilog/serilog/wiki/Developing-a-sink">custom sink</a> for my beloved logging framework
+<a href="https://serilog.net/">Serilog</a> to send pipeline error/warning commands right from a C# application.
+It's nothing fancy, but for some reason this little code snippet brought me joy:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-csharp">using Serilog.Configuration;
+using Serilog.Core;
+using Serilog.Events;
+using Serilog;
+
+namespace Example;
+
+public static class Program
+{
+    public static void Main()
+    {
+        Log.Logger = new LoggerConfiguration()
+            .WriteTo.AzureDevOpsOr(l =&gt; l.Console())
+            .MinimumLevel.Debug()
+            .CreateLogger();
+
+        try
+        {
+            Log.Warning("A warning message");
+            Log.Error("An error message");
+
+            throw new NotSupportedException("An example exception");
+        }
+        catch (Exception e)
+        {
+            Log.Error(e, "Unexpected error");
+            Environment.ExitCode = 1;
+        }
+        finally
+        {
+            Log.CloseAndFlush();
+        }
+    }
+}
+
+public sealed class AzureDevOpsSink : ILogEventSink
+{
+    public void Emit(LogEvent logEvent)
+    {
+        var rendered = logEvent.RenderMessage();
+        var annotated = logEvent.Level switch
+        {
+            LogEventLevel.Verbose =&gt; $"##[debug]{rendered}",
+            LogEventLevel.Debug =&gt; $"##[debug]{rendered}",
+            LogEventLevel.Information =&gt; rendered,
+            LogEventLevel.Warning =&gt; $"##vso[task.logissue type=warning]{rendered}",
+            LogEventLevel.Error =&gt; $"##vso[task.logissue type=error]{rendered}",
+            LogEventLevel.Fatal =&gt; $"##vso[task.logissue type=error]{rendered}",
+            _ =&gt; throw new NotImplementedException()
+        };
+
+        Console.WriteLine(annotated);
+
+        if (logEvent.Exception != null)
+        {
+            Console.WriteLine($"##[debug]{logEvent.Exception}");
+        }
+    }
+}
+
+public static class AzureDevOpsSinkExtensions
+{
+    public static LoggerConfiguration AzureDevOpsOr(
+        this LoggerSinkConfiguration config,
+        Func&lt;LoggerSinkConfiguration, LoggerConfiguration&gt; orFunc)
+    {
+        var runningOnAzureDevops = !string.IsNullOrEmpty(
+            Environment.GetEnvironmentVariable("BUILD_BUILDNUMBER"));
+
+        return runningOnAzureDevops
+            ? config.Sink(new AzureDevOpsSink())
+            : orFunc(config);
+    }
+}
+</pre>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Published: 2024-09-12</p>
+<footer>
+<p>Copyright 2024, Florian Winkelbauer. All rights reserved.</p>
+</footer>
+</div>
+</body>
+</html>
