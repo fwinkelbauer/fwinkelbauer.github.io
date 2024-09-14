@@ -82,15 +82,15 @@
   "Publish my website"
   (let ((org-publish-project-alist
          `(("content"
-            :base-directory "./content/"
-            :publishing-directory "./public/"
+            :base-directory "content/"
+            :publishing-directory "artifacts/"
             :publishing-function fw.com/org-html-publish-to-html
             :recursive nil)
 
            ("notes"
             :auto-sitemap t
-            :base-directory "./content/notes/"
-            :publishing-directory "./public/notes/"
+            :base-directory "content/notes/"
+            :publishing-directory "artifacts/notes/"
             :publishing-function fw.com/org-html-publish-to-html
             :recursive t
             :sitemap-filename "index.org"
@@ -98,8 +98,8 @@
 
            ("posts"
             :auto-sitemap t
-            :base-directory "./content/posts/"
-            :publishing-directory "./public/posts/"
+            :base-directory "content/posts/"
+            :publishing-directory "artifacts/posts/"
             :publishing-function fw.com/org-html-publish-to-html
             :recursive t
             :sitemap-filename "index.org"
@@ -108,9 +108,9 @@
             :sitemap-title "Posts")
 
            ("static"
-            :base-directory "./static/"
+            :base-directory "static/"
             :base-extension any
-            :publishing-directory "./public/"
+            :publishing-directory "artifacts/"
             :publishing-function org-publish-attachment
             :recursive t)
 
@@ -136,7 +136,7 @@
                             "<a href=\"/projects\">Projects</a>"
                             "</nav>"))
         (org-html-validation-link nil)
-        (org-publish-timestamp-directory "./.org-timestamps/"))
+        (org-publish-timestamp-directory ".org-timestamps/"))
     (org-publish "florianwinkelbauer.com" t)))
 
 (org-export-define-derived-backend 'site-html 'html :translate-alist '((link . fw.com/org-html-link)))

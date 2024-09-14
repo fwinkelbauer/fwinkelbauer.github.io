@@ -4,8 +4,8 @@ script=$(readlink -f "${BASH_SOURCE[0]}")
 directory=$(dirname "$script")
 cd "$directory"
 
-rm -rf public/
+rm -rf artifacts/
 git worktree prune
-git worktree add --no-checkout -B gh-pages public/ origin/gh-pages
-git -C public/ restore --staged .
-emacs -Q --script website.el
+git worktree add --no-checkout -B gh-pages artifacts/ origin/gh-pages
+git -C artifacts/ restore --staged .
+emacs -Q --script publish.el
