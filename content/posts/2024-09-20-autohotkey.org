@@ -1,0 +1,10 @@
+#+TITLE: AutoHotkey
+#+DATE: [2024-09-20]
+
+[[https://www.autohotkey.com/][AutoHotkey]] is a great tool to do many sorts of cool automation tasks on Windows
+that does not seem to be known well. Some of my developer friends have recently
+picked up this little script language in our last company hackathon. Many years
+ago I used to host a couple of my own scripts on ahk.florianwinkelbauer.com. The
+subdomain and the scripts are long gone, but you can still find references to
+them scattered over the web. One of my most proudest mentions was on [[https://lifehacker.com/droppub-sends-any-file-to-dropboxs-public-folder-and-co-5634056][Lifehacker]],
+which overflowed my mailbox for a day.
