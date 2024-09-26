@@ -19,19 +19,20 @@ different situations:
 - Derive version information from a ~CHANGELOG.md~ file, automate release
   commits and tagging
 
-* Having a Hobby Project
+* Home Cooked Software: A Backup Story
 
 In the last few years I built [[https://github.com/fwinkelbauer/chunkyard/][Chunkyard]], a backup tool which combines full and
 incremental backups while also including features such as copying and validating
-backups. Chunkyard does not offer anything that other open source backups tool
-provide, but it gave me several opportunities to explore topics such as:
+backups. Chunkyard does not offer anything new that other open source backup
+tools miss, but it gave me several opportunities to explore topics such as:
 
 - How backup applications with deduplication work
 - Cross platform development in .NET
 - Testing new language features
-- Limit myself to the standard library
+- Limit myself to the standard library (e.g. writing my own CLI parser)
 - Create a useful and fast testing suite
 - Tinker with build and publish automation
+- Do tiny performance experiments
 
 * Content Addressable Storage + Content Defined Chunking
 
