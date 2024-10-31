@@ -34,9 +34,9 @@ I have created three PowerShell functions which help me to keep my provisioning
 scripts simple and well-arranged:
 </p>
 
-<div id="outline-container-org7e1ebf6" class="outline-2">
-<h2 id="org7e1ebf6">Step</h2>
-<div class="outline-text-2" id="text-org7e1ebf6">
+<div id="outline-container-orgb7586a9" class="outline-2">
+<h2 id="orgb7586a9">Step</h2>
+<div class="outline-text-2" id="text-orgb7586a9">
 <p>
 Several PowerShell instructions can be grouped together as a step:
 </p>
@@ -108,9 +108,9 @@ step 'Write important config file' -If {
 </div>
 </div>
 
-<div id="outline-container-org4d5a760" class="outline-2">
-<h2 id="org4d5a760">Once</h2>
-<div class="outline-text-2" id="text-org4d5a760">
+<div id="outline-container-orgde37f90" class="outline-2">
+<h2 id="orgde37f90">Once</h2>
+<div class="outline-text-2" id="text-orgde37f90">
 <p>
 Sometimes I'd like to run a block of code once, but I don't have any decent way
 of checking if the block was already executed. The <code>once</code> function is a
@@ -160,9 +160,9 @@ Here's an example:
 </div>
 </div>
 
-<div id="outline-container-orga20de08" class="outline-2">
-<h2 id="orga20de08">Manual</h2>
-<div class="outline-text-2" id="text-orga20de08">
+<div id="outline-container-org2690ceb" class="outline-2">
+<h2 id="org2690ceb">Manual</h2>
+<div class="outline-text-2" id="text-org2690ceb">
 <p>
 If all automation attempts fail, I use <code>manual</code> as a fallback:
 </p>
@@ -187,7 +187,11 @@ If all automation attempts fail, I use <code>manual</code> as a fallback:
         &amp; $ScriptBlock
 
         Write-Output ''
-        Read-Host 'Press ENTER to continue'
+        $userInput = ''
+
+        while ($userInput -ne 'y') {
+            $userInput = Read-Host 'Press "y" and "Enter" to continue'
+        }
     }
 }
 </pre>
@@ -195,9 +199,9 @@ If all automation attempts fail, I use <code>manual</code> as a fallback:
 </div>
 </div>
 
-<div id="outline-container-org44e3ea6" class="outline-2">
-<h2 id="org44e3ea6">Exec</h2>
-<div class="outline-text-2" id="text-org44e3ea6">
+<div id="outline-container-orga92234f" class="outline-2">
+<h2 id="orga92234f">Exec</h2>
+<div class="outline-text-2" id="text-orga92234f">
 <p>
 <code>exec</code> makes sure that I can monitor the exit code of a command line tool:
 </p>

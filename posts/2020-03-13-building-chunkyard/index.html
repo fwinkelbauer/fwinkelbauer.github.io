@@ -30,9 +30,9 @@ this post I'd like to highlight a few topics that came up while figuring out how
 to implement Chunkyard.
 </p>
 
-<div id="outline-container-org7972449" class="outline-2">
-<h2 id="org7972449">Encryption</h2>
-<div class="outline-text-2" id="text-org7972449">
+<div id="outline-container-orga8baadb" class="outline-2">
+<h2 id="orga8baadb">Encryption</h2>
+<div class="outline-text-2" id="text-orga8baadb">
 <p>
 To encrypt a piece of data, algorithms such as AES need a key and an
 initialization vector (IV). While the key must be kept private, we need to store
@@ -59,9 +59,9 @@ re-usage on a file based level.
 </div>
 </div>
 
-<div id="outline-container-org582ea68" class="outline-2">
-<h2 id="org582ea68">Compression</h2>
-<div class="outline-text-2" id="text-org582ea68">
+<div id="outline-container-orgb05568d" class="outline-2">
+<h2 id="orgb05568d">Compression</h2>
+<div class="outline-text-2" id="text-orgb05568d">
 <p>
 The data ingestion process can be seen as a pipeline. We throw in a file and we
 get out chunks which are encrypted and compressed. The specific order of these
@@ -79,9 +79,9 @@ strategy depends on the given data.
 </div>
 </div>
 
-<div id="outline-container-org76728aa" class="outline-2">
-<h2 id="org76728aa">Language Split</h2>
-<div class="outline-text-2" id="text-org76728aa">
+<div id="outline-container-org52625cf" class="outline-2">
+<h2 id="org52625cf">Language Split</h2>
+<div class="outline-text-2" id="text-org52625cf">
 <p>
 I am using the FastCDC algorithm to perform the actual chunking. I could not
 find any C# library which implements this algorithm (or any other chunking
@@ -104,9 +104,9 @@ Right now I am relying on a combination of the first two strategies.
 </div>
 </div>
 
-<div id="outline-container-org73ac265" class="outline-2">
-<h2 id="org73ac265">Open Questions</h2>
-<div class="outline-text-2" id="text-org73ac265">
+<div id="outline-container-orgceb1feb" class="outline-2">
+<h2 id="orgceb1feb">Open Questions</h2>
+<div class="outline-text-2" id="text-orgceb1feb">
 <ul class="org-ul">
 <li>How can we support "branches" so that we can still benefit from encryption and
 deduplication?</li>
