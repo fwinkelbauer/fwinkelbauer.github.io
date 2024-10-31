@@ -140,7 +140,11 @@ function manual {
         & $ScriptBlock
 
         Write-Output ''
-        Read-Host 'Press ENTER to continue'
+        $userInput = ''
+
+        while ($userInput -ne 'y') {
+            $userInput = Read-Host 'Press "y" and "Enter" to continue'
+        }
     }
 }
 #+end_src
