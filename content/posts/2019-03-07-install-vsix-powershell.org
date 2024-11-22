@@ -1,4 +1,4 @@
-#+TITLE: Install a Visual Studio Extension using Powershell
+#+TITLE: Install a Visual Studio Extension Using Powershell
 #+DATE: [2019-03-07]
 
 One of my previous posts outlined how to manage Visual Studio extension

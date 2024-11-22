@@ -1,4 +1,4 @@
-#+TITLE: Using mu4e with mailbox.org
+#+TITLE: Using Mu4e with Mailbox.Org
 #+DATE: [2024-06-01]
 
 Alright. At some point in time any Emacs user wants to figure out how he or she

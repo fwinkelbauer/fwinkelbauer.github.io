@@ -1,4 +1,4 @@
-#+TITLE: Copy Files to a Remote Location using Cake
+#+TITLE: Copy Files to a Remote Location Using Cake
 #+DATE: [2018-12-23]
 
 I have recently had the need to copy files from one Windows machine to another

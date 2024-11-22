@@ -1,4 +1,4 @@
-#+TITLE: Search File Names using ripgrep
+#+TITLE: Search File Names Using Ripgrep
 #+DATE: [2023-01-07]
 
 The other day I was wondering if I could use [[https://github.com/BurntSushi/ripgrep][ripgrep]] to do a combined search of

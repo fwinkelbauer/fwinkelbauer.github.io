@@ -1,4 +1,4 @@
-#+TITLE: Storing Git Repositories using Chunkyard
+#+TITLE: Storing Git Repositories Using Chunkyard
 #+DATE: [2021-04-04]
 
 Sometimes you don't want to store a Git repository on a dedicated server. An

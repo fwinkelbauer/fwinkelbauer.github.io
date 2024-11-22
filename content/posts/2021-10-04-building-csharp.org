@@ -1,4 +1,4 @@
-#+TITLE: Building C# using C#
+#+TITLE: Building C# Using C#
 #+DATE: [2021-10-04]
 
 Having your own [[https://github.com/fwinkelbauer/chunkyard][pet project]] gives you the great possibility to try things you

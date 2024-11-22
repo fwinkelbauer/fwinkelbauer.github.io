@@ -1,4 +1,4 @@
-#+TITLE: Emacs Org-Mode Links are Fun
+#+TITLE: Emacs Org-Mode Links Are Fun
 #+DATE: [2019-01-30]
 
 I have started to use a few of org-mode's link features to help me stay
