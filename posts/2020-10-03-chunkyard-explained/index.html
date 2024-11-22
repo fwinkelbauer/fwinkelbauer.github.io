@@ -32,9 +32,9 @@ I believe that the overall internal data structure is stable, so I'd like to
 take the time to document how a file is stored.
 </p>
 
-<div id="outline-container-org0f8d4e1" class="outline-2">
-<h2 id="org0f8d4e1">Creating The Repository</h2>
-<div class="outline-text-2" id="text-org0f8d4e1">
+<div id="outline-container-org0e4b31d" class="outline-2">
+<h2 id="org0e4b31d">Creating The Repository</h2>
+<div class="outline-text-2" id="text-org0e4b31d">
 <p>
 So let's imagine that we want to store a snapshot of the <code>hello-world.txt</code> file
 using the command:
@@ -153,9 +153,9 @@ and hashing iterations parameters needed to create our cryptographic key:
 </div>
 </div>
 
-<div id="outline-container-org98b688e" class="outline-2">
-<h2 id="org98b688e">Create A New Backup</h2>
-<div class="outline-text-2" id="text-org98b688e">
+<div id="outline-container-orgc3fc05c" class="outline-2">
+<h2 id="orgc3fc05c">Create A New Backup</h2>
+<div class="outline-text-2" id="text-orgc3fc05c">
 <p>
 Let's change the content of our <code>hello-world.txt</code> example and re-run the
 <code>create</code> command. Here's what happened to the <code>~/chunkyard-repository</code> directory:
@@ -232,9 +232,9 @@ And the <code>1.json</code> file:
 </div>
 </div>
 
-<div id="outline-container-org0f1304f" class="outline-2">
-<h2 id="org0f1304f">Restoring Files</h2>
-<div class="outline-text-2" id="text-org0f1304f">
+<div id="outline-container-orgbb16618" class="outline-2">
+<h2 id="orgbb16618">Restoring Files</h2>
+<div class="outline-text-2" id="text-orgbb16618">
 <p>
 Finally, let's walk through the performed operations when we are restoring a
 snapshot using:
@@ -257,9 +257,9 @@ this would be <code>1.json</code></li>
 </div>
 </div>
 
-<div id="outline-container-org21797bb" class="outline-2">
-<h2 id="org21797bb">Closing Thoughts</h2>
-<div class="outline-text-2" id="text-org21797bb">
+<div id="outline-container-org4e02570" class="outline-2">
+<h2 id="org4e02570">Closing Thoughts</h2>
+<div class="outline-text-2" id="text-org4e02570">
 <p>
 Chunkyard is by far not as sophisticated as other modern backup tools, but
 building the project helped me to learn more about encryption, chunking and
