@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dotfiles</title>
+<meta name="generator" content="Org Mode" />
+<meta name="author" content="Florian Winkelbauer">
+<link rel="stylesheet" href="/site.css" type="text/css">
+</head>
+<body>
+<div id="preamble" class="status">
+<nav>
+<a href="/">Home</a>
+<a href="/notes">Notes</a>
+<a href="/posts">Posts</a>
+<a href="/projects">Projects</a>
+</nav>
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">Dotfiles</h1>
+</header>
+<div id="outline-container-org31b961f" class="outline-2">
+<h2 id="org31b961f">Setup</h2>
+<div class="outline-text-2" id="text-org31b961f">
+<p>
+This is my setup script for Linux Mint 22:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">sudo apt update
+sudo apt install numix-icon-theme-circle emacs git keepassxc homebank dotnet-sdk-8.0 -y
+
+sudo locale-gen 'de_DE.UTF-8'
+
+git clone https://github.com/fwinkelbauer/chunkyard ~/Projects/chunkyard
+git clone https://github.com/fwinkelbauer/fwinkelbauer.github.io.git ~/Projects/website
+
+emacs -Q --batch -l org --eval '(org-babel-tangle-file "~/Projects/website/content/notes/dotfiles.org")'
+
+# ==============================================================================
+# After a restart
+# ==============================================================================
+
+my-upgrade
+my-copy
+my-restore
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org4af77bd" class="outline-2">
+<h2 id="org4af77bd">Configuration</h2>
+<div class="outline-text-2" id="text-org4af77bd">
+</div>
+
+<div id="outline-container-orgfba8b6a" class="outline-3">
+<h3 id="orgfba8b6a">Desktop</h3>
+<div class="outline-text-3" id="text-orgfba8b6a">
+<p>
+Open text files with Emacs:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-conf">[Default Applications]
+text/plain=emacs.desktop
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2ba312d" class="outline-3">
+<h3 id="org2ba312d">Git</h3>
+<div class="outline-text-3" id="text-org2ba312d">
+<div class="org-src-container">
+<pre class="src src-conf">[user]
+  email = mail@florianwinkelbauer.com
+  name = Florian Winkelbauer
+  signingKey = ~/.ssh/git-commit.ed25519.pub
+
+[gpg]
+  format = ssh
+
+[init]
+  defaultBranch = main
+
+[status]
+  showUntrackedFiles = all
+
+[commit]
+  gpgSign = true
+
+[tag]
+  gpgSign = true
+
+[fetch]
+  prune = true
+
+[push]
+  followTags = true
+
+[merge]
+  ff = only
+  conflictStyle = zdiff3
+
+[log]
+  date = iso
+
+[url "git@github.com:fwinkelbauer/"]
+  insteadOf = "https://github.com/fwinkelbauer/"
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgc880c8f" class="outline-2">
+<h2 id="orgc880c8f">Scripts</h2>
+<div class="outline-text-2" id="text-orgc880c8f">
+</div>
+
+<div id="outline-container-org7b0ad94" class="outline-3">
+<h3 id="org7b0ad94">Chunkyard</h3>
+<div class="outline-text-3" id="text-org7b0ad94">
+<p>
+A utility script to access my backup:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">chunkyard "$@" --prompt 'Libsecret' --repository ~/.chunkyard
+</pre>
+</div>
+
+<p>
+Create new backup:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">paths=(
+    ~/.local/share/fonts
+    ~/.ssh
+    ~/Documents
+    ~/Music
+    ~/Pictures
+    ~/Videos
+)
+
+includes=(
+    '!\~$'
+    '!\.uuid$'
+    '!authorized_keys$'
+)
+
+chunkyard store --prompt 'Libsecret' --repository ~/.chunkyard --path "${paths[@]}" --include "${includes[@]}" "$@"
+</pre>
+</div>
+
+<p>
+Restore the latest backup:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">chunkyard restore --prompt 'Libsecret' --repository ~/.chunkyard --directory ~/ "$@"
+
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/*
+</pre>
+</div>
+
+<p>
+Copy local backup data from/to external devices:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">local=~/.chunkyard
+
+remotes=(
+    /media/florian/Backup1/Florian/main.chunkyard
+    /media/florian/Backup2/Florian/main.chunkyard
+    /media/florian/DORA1/main.chunkyard
+)
+
+for remote in "${remotes[@]}"; do
+    if ! [ -d "$remote" ]; then
+        continue
+    fi
+
+    if ! [ -x "$(command -v chunkyard)" ]; then
+        cp "$remote/chunkyard" ~/.local/bin/
+        chmod +x ~/.local/bin/chunkyard
+    fi
+
+    echo "Synchronizing with: $remote"
+    chunkyard copy --repository "$local" --destination "$remote" --prompt 'Libsecret' --last 20
+    chunkyard copy --repository "$remote" --destination "$local" --prompt 'Libsecret' --last 20
+done
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3782bff" class="outline-3">
+<h3 id="org3782bff">Homebank</h3>
+<div class="outline-text-3" id="text-org3782bff">
+<p>
+A script to turn my bank statements into csv files that I can import into
+Homebank:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">input=$(find ~/Downloads -name 'meinElba*.csv')
+output=~/Downloads/homebank.csv
+
+awk '{ FS=";"; gsub("\"", ""); print $1 ";8;;;" $2 ";" $4 ";;" }' "$input" &gt; "$output"
+rm "$input"
+read -rp "Press Enter to delete $output: "
+rm "$output"
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgcbcf928" class="outline-3">
+<h3 id="orgcbcf928">Updates</h3>
+<div class="outline-text-3" id="text-orgcbcf928">
+<p>
+A script to update my system:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">sudo apt update
+sudo apt upgrade -y
+sudo apt autoremove -y
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org5d3cfad" class="outline-2">
+<h2 id="org5d3cfad">Emacs</h2>
+<div class="outline-text-2" id="text-org5d3cfad">
+</div>
+
+<div id="outline-container-orgbc802ec" class="outline-3">
+<h3 id="orgbc802ec">Package Manager</h3>
+<div class="outline-text-3" id="text-orgbc802ec">
+<p>
+Make sure that we are running a newer version of Emacs:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(when (version&lt; emacs-version "29.1")
+  (error "Unsupported version of Emacs"))
+</pre>
+</div>
+
+<p>
+Setup the package manager:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(require 'package)
+(require 'use-package-ensure)
+
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+
+(package-initialize)
+
+(setq package-selected-packages '(embark-consult embark consult vertico orderless company magit color-theme-sanityinc-tomorrow)
+      use-package-always-ensure t)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0bb913d" class="outline-3">
+<h3 id="org0bb913d">General</h3>
+<div class="outline-text-3" id="text-org0bb913d">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(setq global-auto-revert-non-file-buffers t
+      gc-cons-threshold (* 128 1024 1024)
+      use-short-answers t
+      backup-inhibited t
+      auto-save-default nil
+      create-lockfiles nil
+      visible-bell t
+      inhibit-startup-message t
+      initial-scratch-message nil
+      column-number-mode t
+      sentence-end-double-space nil
+      require-final-newline t)
+
+(setq-default fill-column 80
+              indent-tabs-mode nil)
+
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))
+(pixel-scroll-precision-mode)
+(tool-bar-mode 0)
+(set-face-attribute 'default nil :family "JetBrains Mono" :foundry "JB" :slant 'normal :weight 'medium :height 120 :width 'normal)
+(global-auto-revert-mode t)
+(delete-selection-mode t)
+(add-hook 'before-save-hook #'delete-trailing-whitespace)
+(show-paren-mode t)
+
+(setq-default mode-line-format
+              '("%e" mode-line-front-space
+                (:propertize
+                 ("" mode-line-mule-info mode-line-client mode-line-modified
+                  mode-line-remote)
+                 display (min-width (5.0)))
+                mode-line-frame-identification mode-line-buffer-identification
+                "  %l:%c  " mode-line-modes
+                mode-line-misc-info mode-line-end-spaces))
+
+(add-hook 'dired-mode-hook #'dired-hide-details-mode)
+(setq dired-auto-revert-buffer t
+      dired-dwim-target t
+      dired-listing-switches "-alhv --time-style=+%Y-%m-%d --group-directories-first")
+
+(defun fw/split-window-vertically ()
+  "Split the selected window into two vertical windows."
+  (interactive)
+  (split-window-vertically)
+  (other-window 1))
+
+(defun fw/split-window-horizontally ()
+  "Split the selected window into two horizontal windows."
+  (interactive)
+  (split-window-horizontally)
+  (other-window 1))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org0411f6b" class="outline-3">
+<h3 id="org0411f6b">Org</h3>
+<div class="outline-text-3" id="text-org0411f6b">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(use-package org
+  :config
+  (setq org-directory "~/Documents/org/"
+        org-default-notes-file (concat org-directory "inbox.org")
+        org-agenda-files (list org-directory)
+        org-edit-src-content-indentation 0)
+
+  (add-hook 'org-mode-hook (lambda () (electric-indent-local-mode -1)))
+
+  (setq org-capture-bookmark nil
+        org-capture-templates '(("i" "Inbox" entry (file org-default-notes-file)
+                                 "* %?" :empty-lines-before 1)))
+
+  (defun fw/org-capture-inbox ()
+    "Opens the `org-capture' inbox template."
+    (interactive)
+    (org-capture nil "i"))
+
+  (setq org-agenda-custom-commands
+        '(("." "Overview"
+           ((agenda ""
+                    ((org-agenda-overriding-header "Kalender\n")
+                     (org-agenda-prefix-format "%-11c%?-12t")
+                     (org-agenda-time-grid '((daily today require-timed)
+                                             (800 1000 1200 1400 1600 1800 2000)
+                                             " ....."
+                                             "----------------"))
+                     (org-agenda-time-leading-zero t)
+                     (org-agenda-show-future-repeats nil)
+                     (org-agenda-current-time-string "&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;")
+                     (org-agenda-scheduled-leaders '("" ""))
+                     (org-agenda-skip-deadline-prewarning-if-scheduled t)))
+            (todo "*"
+                  ((org-agenda-overriding-header "\nSonstiges\n")
+                   (org-agenda-block-separator nil)
+                   (org-agenda-prefix-format "%-11c%?-12t")
+                   (org-agenda-sorting-strategy '(todo-state-up))
+                   (org-agenda-todo-ignore-deadlines 'all)
+                   (org-agenda-todo-ignore-scheduled 'all)))))))
+
+  (defun fw/org-overview ()
+    "Show my inbox and custom org-agenda."
+    (interactive)
+    (delete-other-windows)
+    (find-file org-default-notes-file)
+    (org-agenda nil "."))
+
+  (defun fw/org-icalendar-export ()
+    "Export current buffer to an iCalendar file in ~/Downloads/"
+    (let ((icalendar-export-sexp-enumeration-days 128))
+      (rename-file (org-icalendar-export-to-ics)
+                   "~/Downloads/"
+                   t))))
+</pre>
+</div>
+
+<p>
+The calendar should use my native language and know about my holidays:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(set-locale-environment "de_DE.UTF-8")
+
+(setq calendar-week-start-day 1
+      calendar-day-header-array ["So" "Mo" "Di" "Mi" "Do" "Fr" "Sa"]
+      calendar-day-name-array ["Sonntag" "Montag" "Dienstag" "Mittwoch"
+                               "Donnerstag" "Freitag" "Samstag"]
+      calendar-month-name-array ["Jänner" "Februar" "März" "April"
+                                 "Mai" "Juni" "Juli" "August"
+                                 "September" "Oktober" "November" "Dezember"])
+
+(setq parse-time-weekdays '(("so" . 0) ("mo" . 1) ("di" . 2) ("mi" . 3)
+                            ("do" . 4) ("fr" . 5) ("sa" . 6)))
+
+(setq calendar-holidays '((holiday-fixed 1 1 "Neujahr (frei)")
+                          (holiday-fixed 1 6 "Heilige Drei Könige (frei)")
+                          (holiday-fixed 2 14 "Valentinstag")
+                          (holiday-easter-etc 1 "Ostermontag (frei)")
+                          (holiday-easter-etc -46 "Aschermittwoch")
+                          (holiday-easter-etc -2 "Karfreitag")
+                          (holiday-fixed 5 1 "Österreichischer Staatsfeiertag (frei)")
+                          (holiday-easter-etc 39 "Christi Himmelfahrt (frei)")
+                          (holiday-easter-etc 50 "Pfingstmontag (frei)")
+                          (holiday-easter-etc 60 "Fronleichnam (frei)")
+                          (holiday-float 5 0 2 "Muttertag")
+                          (holiday-float 6 0 2 "Vatertag")
+                          (holiday-fixed 8 15 "Mariä Himmelfahrt (frei)")
+                          (holiday-fixed 10 26 "Nationalfeiertag (frei)")
+                          (holiday-fixed 11 1 "Allerheiligen (frei)")
+                          (holiday-fixed 12 8 "Maria Empfängnis (frei)")
+                          (holiday-fixed 12 24 "Heiliger Abend")
+                          (holiday-fixed 12 25 "Erster Weihnachtstag (frei)")
+                          (holiday-fixed 12 26 "Zweiter Weihnachtstag (frei)")))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org539c4d1" class="outline-3">
+<h3 id="org539c4d1">Theme</h3>
+<div class="outline-text-3" id="text-org539c4d1">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(use-package color-theme-sanityinc-tomorrow
+  :config
+  (load-theme 'sanityinc-tomorrow-night t)
+  (set-face-attribute 'org-agenda-structure nil :height 1.25)
+  (set-face-attribute 'org-agenda-date-today nil :slant 'normal :underline t))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4344ffa" class="outline-3">
+<h3 id="org4344ffa">Magit</h3>
+<div class="outline-text-3" id="text-org4344ffa">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(use-package magit
+  :config
+  (setq magit-display-buffer-function 'magit-display-buffer-same-window-except-diff-v1
+        magit-save-repository-buffers 'dontask
+        magit-repository-directories '(("~/Projects" . 1))))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org249ede3" class="outline-3">
+<h3 id="org249ede3">Completion</h3>
+<div class="outline-text-3" id="text-org249ede3">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(use-package vertico
+  :config
+  (vertico-mode)
+  (keymap-set vertico-map "DEL" #'vertico-directory-delete-char))
+
+(use-package orderless
+  :config
+  (setq completion-styles '(orderless basic)
+        completion-category-overrides '((file (styles partial-completion)))))
+
+(use-package embark
+  :config
+  (setq prefix-help-command #'embark-prefix-help-command)
+  (keymap-global-set "&lt;remap&gt; &lt;describe-bindings&gt;" #'embark-bindings))
+
+(use-package consult
+  :config
+  (defun fw/find-file ()
+    "Find files in current project or directory."
+    (interactive)
+    (if (project-current)
+        (project-find-file)
+      (consult-find)))
+
+  (defun fw/grep ()
+    "Run grep in current project or directory."
+    (interactive)
+    (if (project-current)
+        (consult-git-grep)
+      (consult-grep))))
+
+(use-package embark-consult)
+
+(use-package company
+  :config
+  (setq company-dabbrev-downcase nil
+        company-dabbrev-ignore-case nil)
+  (global-company-mode t))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1d21525" class="outline-3">
+<h3 id="org1d21525">Keybindings</h3>
+<div class="outline-text-3" id="text-org1d21525">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(bind-keys :prefix "&lt;menu&gt;"
+           :prefix-map fw/main-map
+           ("RET" . embark-act)
+           ("f" . find-file)
+           ("s" . consult-line)
+           ("q" . query-replace)
+           ("l" . consult-goto-line)
+           ("k" . kill-this-buffer)
+           ("b" . consult-buffer)
+           ("h" . mark-whole-buffer)
+           ("0" . delete-window)
+           ("1" . delete-other-windows)
+           ("2" . fw/split-window-vertically)
+           ("3" . fw/split-window-horizontally)
+           ("o" . other-window)
+           ("." . highlight-symbol-at-point)
+           ("r" . highlight-regexp)
+           ("u" . unhighlight-regexp)
+           ("SPC" . rectangle-mark-mode)
+           ("t" . string-rectangle)
+           ("d" . delete-rectangle)
+           ("?" . count-words-region))
+
+(bind-keys :prefix "&lt;menu&gt; g"
+           :prefix-map fw/project-map
+           ("f" . fw/find-file)
+           ("s" . fw/grep)
+           ("d" . magit-file-dispatch)
+           ("g" . magit-status))
+
+(bind-keys :prefix "&lt;menu&gt; c"
+           :prefix-map fw/org-map
+           ("c" . fw/org-overview)
+           ("i" . fw/org-capture-inbox)
+           ("l" . org-insert-link)
+           ("t" . org-todo)
+           ("s" . org-schedule)
+           ("d" . org-deadline)
+           ("." . org-time-stamp)
+           (":" . org-time-stamp-inactive)
+           ("m" . org-insert-structure-template)
+           ("b" . org-babel-tangle))
+
+(bind-keys :prefix "&lt;menu&gt; x"
+           :prefix-map fw/x-map
+           ("s" . save-buffer)
+           ("c" . save-buffers-kill-terminal))
+
+(bind-key* "C-z" 'undo)
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<footer>
+<p>Copyright 2024, Florian Winkelbauer. All rights reserved.</p>
+</footer>
+</div>
+</body>
+</html>
