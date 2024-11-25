@@ -184,15 +184,6 @@ sudo apt autoremove -y
 
 ** Package Manager
 
-Make sure that we are running a newer version of Emacs:
-
-#+begin_src emacs-lisp
-(when (version< emacs-version "29.1")
-  (error "Unsupported version of Emacs"))
-#+end_src
-
-Setup the package manager:
-
 #+begin_src emacs-lisp
 (require 'package)
 (require 'use-package-ensure)
