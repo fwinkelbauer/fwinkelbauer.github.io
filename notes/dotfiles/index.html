@@ -38,14 +38,6 @@ git clone https://github.com/fwinkelbauer/chunkyard ~/Projects/chunkyard
 git clone https://github.com/fwinkelbauer/fwinkelbauer.github.io.git ~/Projects/website
 
 emacs -Q --batch -l org --eval '(org-babel-tangle-file "~/Projects/website/content/notes/dotfiles.org")'
-
-# ==============================================================================
-# After a restart
-# ==============================================================================
-
-my-upgrade
-my-copy
-my-restore
 </pre>
 </div>
 </div>
@@ -250,20 +242,6 @@ sudo apt autoremove -y
 <div id="outline-container-orgbc802ec" class="outline-3">
 <h3 id="orgbc802ec">Package Manager</h3>
 <div class="outline-text-3" id="text-orgbc802ec">
-<p>
-Make sure that we are running a newer version of Emacs:
-</p>
-
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(when (version&lt; emacs-version "29.1")
-  (error "Unsupported version of Emacs"))
-</pre>
-</div>
-
-<p>
-Setup the package manager:
-</p>
-
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(require 'package)
 (require 'use-package-ensure)
