@@ -158,16 +158,6 @@ read -rp "Press Enter to delete $output: "
 rm "$output"
 #+end_src
 
-** Updates
-
-A script to update my system:
-
-#+begin_src sh :tangle "~/.local/bin/my-upgrade"
-sudo apt update
-sudo apt upgrade -y
-sudo apt autoremove -y
-#+end_src
-
 
 * Emacs
 :PROPERTIES:
