@@ -7,7 +7,7 @@ This is my setup script for Linux Mint 22:
 
 #+begin_src sh
 sudo apt update
-sudo apt install numix-icon-theme-circle emacs git keepassxc homebank dotnet-sdk-8.0 -y
+sudo apt install emacs git keepassxc homebank
 
 sudo locale-gen 'de_DE.UTF-8'
 
@@ -199,7 +199,8 @@ rm "$output"
 
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 (pixel-scroll-precision-mode)
-(tool-bar-mode 0)
+(menu-bar-mode -1)
+(tool-bar-mode -1)
 (set-face-attribute 'default nil :family "JetBrains Mono" :foundry "JB" :slant 'normal :weight 'medium :height 120 :width 'normal)
 (global-auto-revert-mode t)
 (delete-selection-mode t)
@@ -216,10 +217,14 @@ rm "$output"
                 "  %l:%c  " mode-line-modes
                 mode-line-misc-info mode-line-end-spaces))
 
-(add-hook 'dired-mode-hook #'dired-hide-details-mode)
-(setq dired-auto-revert-buffer t
-      dired-dwim-target t
-      dired-listing-switches "-alhv --time-style=+%Y-%m-%d --group-directories-first")
+(use-package dired
+  :ensure nil
+  :hook
+  ((dired-mode . dired-hide-details-mode))
+  :config
+  (setq dired-auto-revert-buffer t
+        dired-dwim-target t
+        dired-listing-switches "-alhv --time-style=+%Y-%m-%d --group-directories-first"))
 
 (defun fw/split-window-vertically ()
   "Split the selected window into two vertical windows."
@@ -233,17 +238,18 @@ rm "$output"
   (split-window-horizontally)
   (other-window 1))
 #+end_src
+
 ** Org
 
 #+begin_src emacs-lisp
 (use-package org
+  :ensure nil
+  :hook ((org-mode . (lambda () (electric-indent-local-mode -1))))
   :config
   (setq org-directory "~/Documents/org/"
         org-default-notes-file (concat org-directory "inbox.org")
         org-agenda-files (list org-directory)
         org-edit-src-content-indentation 0)
-
-  (add-hook 'org-mode-hook (lambda () (electric-indent-local-mode -1)))
 
   (setq org-capture-bookmark nil
         org-capture-templates '(("i" "Inbox" entry (file org-default-notes-file)
