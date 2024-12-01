@@ -123,8 +123,8 @@ for remote in "${remotes[@]}"; do
     fi
 
     echo "Synchronizing with: $remote"
-    chunkyard copy --repository "$local" --destination "$remote" --prompt 'Libsecret' --last 20
-    chunkyard copy --repository "$remote" --destination "$local" --prompt 'Libsecret' --last 20
+    chunkyard copy --repository "$local" --destination "$remote" --prompt 'Libsecret' --last 20 "$@"
+    chunkyard copy --repository "$remote" --destination "$local" --prompt 'Libsecret' --last 20 "$@"
 done
 #+end_src
 
