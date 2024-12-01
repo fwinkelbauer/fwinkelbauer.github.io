@@ -1,13 +1,11 @@
 #+TITLE: Dotfiles
 #+STARTUP: content
 
-* Setup
-
 This is my setup script for Linux Mint 22:
 
 #+begin_src sh
 sudo apt update
-sudo apt install emacs git keepassxc homebank
+sudo apt install emacs git homebank keepassxc
 
 sudo locale-gen 'de_DE.UTF-8'
 
@@ -17,22 +15,12 @@ git clone https://github.com/fwinkelbauer/fwinkelbauer.github.io.git ~/Projects/
 emacs -Q --batch -l org --eval '(org-babel-tangle-file "~/Projects/website/content/notes/dotfiles.org")'
 #+end_src
 
+* Tools
 
-* Configuration
+** Git
 :PROPERTIES:
 :header-args: :mkdirp yes
 :END:
-
-** Desktop
-
-Open text files with Emacs:
-
-#+begin_src conf :tangle "~/.config/mimeapps.list"
-[Default Applications]
-text/plain=emacs.desktop
-#+end_src
-
-** Git
 
 #+begin_src conf :tangle "~/.config/git/config"
 [user]
@@ -72,13 +60,10 @@ text/plain=emacs.desktop
   insteadOf = "https://github.com/fwinkelbauer/"
 #+end_src
 
-
-* Scripts
+** Chunkyard
 :PROPERTIES:
 :header-args: :mkdirp yes :shebang "#!/bin/bash -eu"
 :END:
-
-** Chunkyard
 
 A utility script to access my backup:
 
@@ -144,6 +129,9 @@ done
 #+end_src
 
 ** Homebank
+:PROPERTIES:
+:header-args: :mkdirp yes :shebang "#!/bin/bash -eu"
+:END:
 
 A script to turn my bank statements into csv files that I can import into
 Homebank:
