@@ -20,17 +20,13 @@
 <div id="content" class="content">
 <header>
 <h1 class="title">Dotfiles</h1>
-</header>
-<div id="outline-container-org31b961f" class="outline-2">
-<h2 id="org31b961f">Setup</h2>
-<div class="outline-text-2" id="text-org31b961f">
-<p>
+</header><p>
 This is my setup script for Linux Mint 22:
 </p>
 
 <div class="org-src-container">
 <pre class="src src-sh">sudo apt update
-sudo apt install emacs git keepassxc homebank
+sudo apt install emacs git homebank keepassxc
 
 sudo locale-gen 'de_DE.UTF-8'
 
@@ -40,30 +36,11 @@ git clone https://github.com/fwinkelbauer/fwinkelbauer.github.io.git ~/Projects/
 emacs -Q --batch -l org --eval '(org-babel-tangle-file "~/Projects/website/content/notes/dotfiles.org")'
 </pre>
 </div>
-</div>
-</div>
 
-
-<div id="outline-container-org4af77bd" class="outline-2">
-<h2 id="org4af77bd">Configuration</h2>
-<div class="outline-text-2" id="text-org4af77bd">
+<div id="outline-container-org9cf1bd4" class="outline-2">
+<h2 id="org9cf1bd4">Tools</h2>
+<div class="outline-text-2" id="text-org9cf1bd4">
 </div>
-
-<div id="outline-container-orgfba8b6a" class="outline-3">
-<h3 id="orgfba8b6a">Desktop</h3>
-<div class="outline-text-3" id="text-orgfba8b6a">
-<p>
-Open text files with Emacs:
-</p>
-
-<div class="org-src-container">
-<pre class="src src-conf">[Default Applications]
-text/plain=emacs.desktop
-</pre>
-</div>
-</div>
-</div>
-
 <div id="outline-container-org2ba312d" class="outline-3">
 <h3 id="org2ba312d">Git</h3>
 <div class="outline-text-3" id="text-org2ba312d">
@@ -106,13 +83,6 @@ text/plain=emacs.desktop
 </pre>
 </div>
 </div>
-</div>
-</div>
-
-
-<div id="outline-container-orgc880c8f" class="outline-2">
-<h2 id="orgc880c8f">Scripts</h2>
-<div class="outline-text-2" id="text-orgc880c8f">
 </div>
 
 <div id="outline-container-org7b0ad94" class="outline-3">
@@ -187,8 +157,8 @@ for remote in "${remotes[@]}"; do
     fi
 
     echo "Synchronizing with: $remote"
-    chunkyard copy --repository "$local" --destination "$remote" --prompt 'Libsecret' --last 20
-    chunkyard copy --repository "$remote" --destination "$local" --prompt 'Libsecret' --last 20
+    chunkyard copy --repository "$local" --destination "$remote" --prompt 'Libsecret' --last 20 "$@"
+    chunkyard copy --repository "$remote" --destination "$local" --prompt 'Libsecret' --last 20 "$@"
 done
 </pre>
 </div>
