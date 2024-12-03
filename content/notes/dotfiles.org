@@ -1,5 +1,6 @@
 #+TITLE: Dotfiles
 #+STARTUP: content
+#+PROPERTY: header-args :mkdirp yes
 
 This is my setup script for Linux Mint 22:
 
@@ -18,9 +19,6 @@ emacs -Q --batch -l org --eval '(org-babel-tangle-file "~/Projects/website/conte
 * Tools
 
 ** Git
-:PROPERTIES:
-:header-args: :mkdirp yes
-:END:
 
 #+begin_src conf :tangle "~/.config/git/config"
 [user]
@@ -62,7 +60,7 @@ emacs -Q --batch -l org --eval '(org-babel-tangle-file "~/Projects/website/conte
 
 ** Chunkyard
 :PROPERTIES:
-:header-args: :mkdirp yes :shebang "#!/bin/bash -eu"
+:header-args+: :shebang "#!/bin/bash -eu"
 :END:
 
 A utility script to access my backup:
@@ -130,7 +128,7 @@ done
 
 ** Homebank
 :PROPERTIES:
-:header-args: :mkdirp yes :shebang "#!/bin/bash -eu"
+:header-args+: :shebang "#!/bin/bash -eu"
 :END:
 
 A script to turn my bank statements into csv files that I can import into
@@ -149,7 +147,7 @@ rm "$output"
 
 * Emacs
 :PROPERTIES:
-:header-args: :mkdirp yes :tangle "~/.config/emacs/init.el"
+:header-args+: :tangle "~/.config/emacs/init.el"
 :END:
 
 ** Package Manager
