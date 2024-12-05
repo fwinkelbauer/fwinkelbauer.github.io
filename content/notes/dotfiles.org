@@ -66,7 +66,7 @@ emacs -Q --batch -l org --eval '(org-babel-tangle-file "~/Projects/website/conte
 A utility script to access my backup:
 
 #+begin_src sh :tangle "~/.local/bin/my-backup"
-chunkyard "$@" --prompt 'Libsecret' --repository ~/.chunkyard
+chunkyard "$@" --repository ~/.chunkyard --prompt 'Libsecret'
 #+end_src
 
 Create new backup:
@@ -81,19 +81,13 @@ paths=(
     ~/Videos
 )
 
-includes=(
-    '!\~$'
-    '!\.uuid$'
-    '!authorized_keys$'
-)
-
-chunkyard store --prompt 'Libsecret' --repository ~/.chunkyard --path "${paths[@]}" --include "${includes[@]}" "$@"
+chunkyard store --path "${paths[@]}" --include '^(?!.*\.uuid$|.*~$).*$' --repository ~/.chunkyard --prompt 'Libsecret' "$@"
 #+end_src
 
 Restore the latest backup:
 
 #+begin_src sh :tangle "~/.local/bin/my-restore"
-chunkyard restore --prompt 'Libsecret' --repository ~/.chunkyard --directory ~/ "$@"
+chunkyard restore --repository ~/.chunkyard --directory ~/ --prompt 'Libsecret' "$@"
 
 chmod 700 ~/.ssh
 chmod 600 ~/.ssh/*
