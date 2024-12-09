@@ -32,9 +32,6 @@ emacs -Q --batch -l org --eval '(org-babel-tangle-file "~/Projects/website/conte
 [init]
   defaultBranch = main
 
-[status]
-  showUntrackedFiles = all
-
 [commit]
   gpgSign = true
 
