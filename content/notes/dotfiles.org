@@ -264,14 +264,7 @@ rm "$output"
     (interactive)
     (delete-other-windows)
     (find-file org-default-notes-file)
-    (org-agenda nil "."))
-
-  (defun fw/org-icalendar-export ()
-    "Export current buffer to an iCalendar file in ~/Downloads/"
-    (let ((icalendar-export-sexp-enumeration-days 128))
-      (rename-file (org-icalendar-export-to-ics)
-                   "~/Downloads/"
-                   t))))
+    (org-agenda nil ".")))
 #+end_src
 
 The calendar should use my native language and know about my holidays:
