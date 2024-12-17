@@ -1660,3 +1660,23 @@ https://www.youtube.com/watch?v=P1vES9AgfC4
 - In rare cases you might need to do: I/O, pure logic, I/O, pure logic, I/O
 - Don't mock classes if they are pure
 - Dependency injection can lead to interface creep
+
+* Exploring the Unintended Consequences of Automation in Software (Courtney Nash)
+
+https://www.youtube.com/watch?v=rdJXUN4YV_M
+
+- Ironies of automation
+  - Humans design the automation and then also deal with its unanticipated, often negatie consequences
+  - Human operators have to monitor that the automation is working properly
+  - The amount of knowledge required to make things right again is likely to be
+    greater than that required during normal operations
+  - Automation designers' intention is to train humans in following instructions
+    ("Use the run book!") and put them in a system that requires them to provide
+    intelligence outside or beyond those instructions
+- 75% of the time, humans have to intervene to resolve automation-involved incidents
+- Automation plays multiple roles in (the same) incident
+- Automation can unexpectedly make things worse
+- Human intervention remains essential to resolve issues
+- Better automation through joint cognitive systems
+- Use automation to augment what we do. Transform automation from a "bad
+  colleague" to a collaborative team player
