@@ -56,9 +56,6 @@ emacs -Q --batch -l org --eval '(org-babel-tangle-file "~/Projects/website/conte
 [init]
   defaultBranch = main
 
-[status]
-  showUntrackedFiles = all
-
 [commit]
   gpgSign = true
 
@@ -93,7 +90,7 @@ A utility script to access my backup:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">chunkyard "$@" --prompt 'Libsecret' --repository ~/.chunkyard
+<pre class="src src-sh">chunkyard "$@" --repository ~/.chunkyard --prompt 'Libsecret'
 </pre>
 </div>
 
@@ -111,13 +108,7 @@ Create new backup:
     ~/Videos
 )
 
-includes=(
-    '!\~$'
-    '!\.uuid$'
-    '!authorized_keys$'
-)
-
-chunkyard store --prompt 'Libsecret' --repository ~/.chunkyard --path "${paths[@]}" --include "${includes[@]}" "$@"
+chunkyard store --path "${paths[@]}" --include '^(?!.*\.uuid$|.*~$).*$' --repository ~/.chunkyard --prompt 'Libsecret' "$@"
 </pre>
 </div>
 
@@ -126,7 +117,7 @@ Restore the latest backup:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">chunkyard restore --prompt 'Libsecret' --repository ~/.chunkyard --directory ~/ "$@"
+<pre class="src src-sh">chunkyard restore --repository ~/.chunkyard --directory ~/ --prompt 'Libsecret' "$@"
 
 chmod 700 ~/.ssh
 chmod 600 ~/.ssh/*
@@ -325,14 +316,7 @@ rm "$output"
     (interactive)
     (delete-other-windows)
     (find-file org-default-notes-file)
-    (org-agenda nil "."))
-
-  (defun fw/org-icalendar-export ()
-    "Export current buffer to an iCalendar file in ~/Downloads/"
-    (let ((icalendar-export-sexp-enumeration-days 128))
-      (rename-file (org-icalendar-export-to-ics)
-                   "~/Downloads/"
-                   t))))
+    (org-agenda nil ".")))
 </pre>
 </div>
 
