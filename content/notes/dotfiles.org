@@ -373,6 +373,7 @@ The calendar should use my native language and know about my holidays:
 (bind-keys :prefix "<menu>"
            :prefix-map fw/main-map
            ("RET" . embark-act)
+           ("w" . save-buffer)
            ("f" . find-file)
            ("s" . consult-line)
            ("q" . query-replace)
@@ -391,7 +392,8 @@ The calendar should use my native language and know about my holidays:
            ("SPC" . rectangle-mark-mode)
            ("t" . string-rectangle)
            ("d" . delete-rectangle)
-           ("?" . count-words-region))
+           ("?" . count-words-region)
+           ("ESC" . save-buffers-kill-terminal))
 
 (bind-keys :prefix "<menu> g"
            :prefix-map fw/project-map
@@ -412,11 +414,6 @@ The calendar should use my native language and know about my holidays:
            (":" . org-time-stamp-inactive)
            ("m" . org-insert-structure-template)
            ("b" . org-babel-tangle))
-
-(bind-keys :prefix "<menu> x"
-           :prefix-map fw/x-map
-           ("s" . save-buffer)
-           ("c" . save-buffers-kill-terminal))
 
 (bind-key* "C-z" 'undo)
 #+end_src
