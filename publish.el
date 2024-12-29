@@ -12,7 +12,7 @@
   (let ((date (org-export-data (org-export-get-date info "%Y-%m-%d") info)))
     (fw.com/join-lines (unless (string-empty-p date) (concat "<p class=\"date\">Published: " date "</p>"))
                        "<footer>"
-                       "<p>Copyright 2024, Florian Winkelbauer. All rights reserved.</p>"
+                       "<p>Copyright 2025, Florian Winkelbauer. All rights reserved.</p>"
                        "</footer>")))
 
 (defun fw.com/sitemap-format-entry (entry style project)
