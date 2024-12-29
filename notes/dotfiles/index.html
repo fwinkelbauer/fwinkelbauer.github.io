@@ -37,13 +37,13 @@ emacs -Q --batch -l org --eval '(org-babel-tangle-file "~/Projects/website/conte
 </pre>
 </div>
 
-<div id="outline-container-org9cf1bd4" class="outline-2">
-<h2 id="org9cf1bd4">Tools</h2>
-<div class="outline-text-2" id="text-org9cf1bd4">
+<div id="outline-container-org85dcc8f" class="outline-2">
+<h2 id="org85dcc8f">Tools</h2>
+<div class="outline-text-2" id="text-org85dcc8f">
 </div>
-<div id="outline-container-org2ba312d" class="outline-3">
-<h3 id="org2ba312d">Git</h3>
-<div class="outline-text-3" id="text-org2ba312d">
+<div id="outline-container-org2179c5b" class="outline-3">
+<h3 id="org2179c5b">Git</h3>
+<div class="outline-text-3" id="text-org2179c5b">
 <div class="org-src-container">
 <pre class="src src-conf">[user]
   email = mail@florianwinkelbauer.com
@@ -82,9 +82,9 @@ emacs -Q --batch -l org --eval '(org-babel-tangle-file "~/Projects/website/conte
 </div>
 </div>
 
-<div id="outline-container-org7b0ad94" class="outline-3">
-<h3 id="org7b0ad94">Chunkyard</h3>
-<div class="outline-text-3" id="text-org7b0ad94">
+<div id="outline-container-org61dc1f0" class="outline-3">
+<h3 id="org61dc1f0">Chunkyard</h3>
+<div class="outline-text-3" id="text-org61dc1f0">
 <p>
 A utility script to access my backup:
 </p>
@@ -108,7 +108,13 @@ Create new backup:
     ~/Videos
 )
 
-chunkyard store --path "${paths[@]}" --include '^(?!.*\.uuid$|.*~$).*$' --repository ~/.chunkyard --prompt 'Libsecret' "$@"
+includes=(
+    '!\~$'
+    '!\.uuid$'
+    '!authorized_keys$'
+)
+
+chunkyard store --path "${paths[@]}" --include "${includes[@]}" --repository ~/.chunkyard --prompt 'Libsecret' "$@"
 </pre>
 </div>
 
@@ -156,9 +162,9 @@ done
 </div>
 </div>
 
-<div id="outline-container-org3782bff" class="outline-3">
-<h3 id="org3782bff">Homebank</h3>
-<div class="outline-text-3" id="text-org3782bff">
+<div id="outline-container-orgaece89a" class="outline-3">
+<h3 id="orgaece89a">Homebank</h3>
+<div class="outline-text-3" id="text-orgaece89a">
 <p>
 A script to turn my bank statements into csv files that I can import into
 Homebank:
@@ -179,14 +185,14 @@ rm "$output"
 </div>
 
 
-<div id="outline-container-org5d3cfad" class="outline-2">
-<h2 id="org5d3cfad">Emacs</h2>
-<div class="outline-text-2" id="text-org5d3cfad">
+<div id="outline-container-org0efa2b7" class="outline-2">
+<h2 id="org0efa2b7">Emacs</h2>
+<div class="outline-text-2" id="text-org0efa2b7">
 </div>
 
-<div id="outline-container-orgbc802ec" class="outline-3">
-<h3 id="orgbc802ec">Package Manager</h3>
-<div class="outline-text-3" id="text-orgbc802ec">
+<div id="outline-container-org8e247bf" class="outline-3">
+<h3 id="org8e247bf">Package Manager</h3>
+<div class="outline-text-3" id="text-org8e247bf">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(require 'package)
 (require 'use-package-ensure)
@@ -202,9 +208,9 @@ rm "$output"
 </div>
 </div>
 
-<div id="outline-container-org0bb913d" class="outline-3">
-<h3 id="org0bb913d">General</h3>
-<div class="outline-text-3" id="text-org0bb913d">
+<div id="outline-container-orgbd123bf" class="outline-3">
+<h3 id="orgbd123bf">General</h3>
+<div class="outline-text-3" id="text-orgbd123bf">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(setq global-auto-revert-non-file-buffers t
       gc-cons-threshold (* 128 1024 1024)
@@ -267,9 +273,9 @@ rm "$output"
 </div>
 </div>
 
-<div id="outline-container-org0411f6b" class="outline-3">
-<h3 id="org0411f6b">Org</h3>
-<div class="outline-text-3" id="text-org0411f6b">
+<div id="outline-container-org5de6acd" class="outline-3">
+<h3 id="org5de6acd">Org</h3>
+<div class="outline-text-3" id="text-org5de6acd">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(use-package org
   :ensure nil
@@ -362,9 +368,9 @@ The calendar should use my native language and know about my holidays:
 </div>
 </div>
 
-<div id="outline-container-org539c4d1" class="outline-3">
-<h3 id="org539c4d1">Theme</h3>
-<div class="outline-text-3" id="text-org539c4d1">
+<div id="outline-container-org0a2f692" class="outline-3">
+<h3 id="org0a2f692">Theme</h3>
+<div class="outline-text-3" id="text-org0a2f692">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(use-package color-theme-sanityinc-tomorrow
   :config
@@ -376,9 +382,9 @@ The calendar should use my native language and know about my holidays:
 </div>
 </div>
 
-<div id="outline-container-org4344ffa" class="outline-3">
-<h3 id="org4344ffa">Magit</h3>
-<div class="outline-text-3" id="text-org4344ffa">
+<div id="outline-container-org9e6f7c5" class="outline-3">
+<h3 id="org9e6f7c5">Magit</h3>
+<div class="outline-text-3" id="text-org9e6f7c5">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(use-package magit
   :config
@@ -390,9 +396,9 @@ The calendar should use my native language and know about my holidays:
 </div>
 </div>
 
-<div id="outline-container-org249ede3" class="outline-3">
-<h3 id="org249ede3">Completion</h3>
-<div class="outline-text-3" id="text-org249ede3">
+<div id="outline-container-org3d8f380" class="outline-3">
+<h3 id="org3d8f380">Completion</h3>
+<div class="outline-text-3" id="text-org3d8f380">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(use-package vertico
   :config
@@ -437,13 +443,14 @@ The calendar should use my native language and know about my holidays:
 </div>
 </div>
 
-<div id="outline-container-org1d21525" class="outline-3">
-<h3 id="org1d21525">Keybindings</h3>
-<div class="outline-text-3" id="text-org1d21525">
+<div id="outline-container-org9eb5bfd" class="outline-3">
+<h3 id="org9eb5bfd">Keybindings</h3>
+<div class="outline-text-3" id="text-org9eb5bfd">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(bind-keys :prefix "&lt;menu&gt;"
            :prefix-map fw/main-map
            ("RET" . embark-act)
+           ("w" . save-buffer)
            ("f" . find-file)
            ("s" . consult-line)
            ("q" . query-replace)
@@ -462,7 +469,8 @@ The calendar should use my native language and know about my holidays:
            ("SPC" . rectangle-mark-mode)
            ("t" . string-rectangle)
            ("d" . delete-rectangle)
-           ("?" . count-words-region))
+           ("?" . count-words-region)
+           ("ESC" . save-buffers-kill-terminal))
 
 (bind-keys :prefix "&lt;menu&gt; g"
            :prefix-map fw/project-map
@@ -484,11 +492,6 @@ The calendar should use my native language and know about my holidays:
            ("m" . org-insert-structure-template)
            ("b" . org-babel-tangle))
 
-(bind-keys :prefix "&lt;menu&gt; x"
-           :prefix-map fw/x-map
-           ("s" . save-buffer)
-           ("c" . save-buffers-kill-terminal))
-
 (bind-key* "C-z" 'undo)
 </pre>
 </div>
@@ -498,7 +501,7 @@ The calendar should use my native language and know about my holidays:
 </div>
 <div id="postamble" class="status">
 <footer>
-<p>Copyright 2024, Florian Winkelbauer. All rights reserved.</p>
+<p>Copyright 2025, Florian Winkelbauer. All rights reserved.</p>
 </footer>
 </div>
 </body>

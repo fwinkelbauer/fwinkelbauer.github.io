@@ -36,9 +36,9 @@ with my own implementation. In the end I wrote just enough code to handle the
 use cases that I actually need.
 </p>
 
-<div id="outline-container-orge151bb0" class="outline-2">
-<h2 id="orge151bb0">Example</h2>
-<div class="outline-text-2" id="text-orge151bb0">
+<div id="outline-container-org54fab9f" class="outline-2">
+<h2 id="org54fab9f">Example</h2>
+<div class="outline-text-2" id="text-org54fab9f">
 <p>
 One of Chunkyard's command is <code>store</code>, which is used to create a snapshot/backup
 of a set of directories and/or files:
@@ -58,9 +58,9 @@ chunkyard store --repository ~/Chunkyard --paths ~/Music ~/Videos --preview
 </div>
 </div>
 
-<div id="outline-container-org14de9e3" class="outline-2">
-<h2 id="org14de9e3">Overview</h2>
-<div class="outline-text-2" id="text-org14de9e3">
+<div id="outline-container-orge80ad8d" class="outline-2">
+<h2 id="orge80ad8d">Overview</h2>
+<div class="outline-text-2" id="text-orge80ad8d">
 <p>
 Chunkyard's new parser works like this:
 </p>
@@ -101,9 +101,9 @@ The simplified definition of the <code>store</code> command example above looks 
 </div>
 </div>
 
-<div id="outline-container-orgbf3691c" class="outline-2">
-<h2 id="orgbf3691c">Language Specification</h2>
-<div class="outline-text-2" id="text-orgbf3691c">
+<div id="outline-container-org6bc68a1" class="outline-2">
+<h2 id="org6bc68a1">Language Specification</h2>
+<div class="outline-text-2" id="text-org6bc68a1">
 <p>
 Command line tools come with all sorts of different input methods, ranging from
 positional arguments, commands (also called verbs), flags to arguments or
@@ -155,9 +155,9 @@ language specification.
 </div>
 </div>
 
-<div id="outline-container-org7c2bce3" class="outline-2">
-<h2 id="org7c2bce3">Dispatching</h2>
-<div class="outline-text-2" id="text-org7c2bce3">
+<div id="outline-container-org5cf6dfd" class="outline-2">
+<h2 id="org5cf6dfd">Dispatching</h2>
+<div class="outline-text-2" id="text-org5cf6dfd">
 <p>
 Our next step is to use <code>Args</code> to find a specific parser. In our example above
 we would want to use a <code>StoreCommandParser</code>. I am using a small interface to
@@ -237,9 +237,9 @@ general or specific command information.
 </div>
 </div>
 
-<div id="outline-container-org5ede029" class="outline-2">
-<h2 id="org5ede029">Parsing</h2>
-<div class="outline-text-2" id="text-org5ede029">
+<div id="outline-container-org7c20f1f" class="outline-2">
+<h2 id="org7c20f1f">Parsing</h2>
+<div class="outline-text-2" id="text-org7c20f1f">
 <p>
 I mentioned in the last section that every command has its own <code>ICommandParser</code>.
 Naturally we want to write as little code as possible in each parser. This is
@@ -291,9 +291,9 @@ parsing operation fails</li>
 </div>
 </div>
 
-<div id="outline-container-org5b92897" class="outline-2">
-<h2 id="org5b92897">Handling</h2>
-<div class="outline-text-2" id="text-org5b92897">
+<div id="outline-container-org3281b75" class="outline-2">
+<h2 id="org3281b75">Handling</h2>
+<div class="outline-text-2" id="text-org3281b75">
 <p>
 The final part of this side-project is to perform the intend behind a command.
 In the beginning I wanted to solve this problem using a visitor pattern, but
@@ -341,9 +341,9 @@ public static class Program
 </div>
 </div>
 
-<div id="outline-container-orgc123d68" class="outline-2">
-<h2 id="orgc123d68">Conclusion</h2>
-<div class="outline-text-2" id="text-orgc123d68">
+<div id="outline-container-org75e2867" class="outline-2">
+<h2 id="org75e2867">Conclusion</h2>
+<div class="outline-text-2" id="text-org75e2867">
 <p>
 And we are done! While my own implementation is not as neat or feature rich as
 other solutions, I am happy with what I have created. A CLI parser is a much
@@ -361,7 +361,7 @@ cases) <a href="https://github.com/fwinkelbauer/chunkyard/tree/0a797d6b3e1705c08
 <div id="postamble" class="status">
 <p class="date">Published: 2023-07-29</p>
 <footer>
-<p>Copyright 2024, Florian Winkelbauer. All rights reserved.</p>
+<p>Copyright 2025, Florian Winkelbauer. All rights reserved.</p>
 </footer>
 </div>
 </body>
