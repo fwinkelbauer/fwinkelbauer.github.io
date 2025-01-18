@@ -202,8 +202,7 @@ rm "$output"
 
 (use-package dired
   :ensure nil
-  :hook
-  ((dired-mode . dired-hide-details-mode))
+  :hook (dired-mode . dired-hide-details-mode)
   :config
   (setq dired-auto-revert-buffer t
         dired-dwim-target t
