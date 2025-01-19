@@ -175,8 +175,7 @@ rm "$output"
       initial-scratch-message nil
       column-number-mode t
       sentence-end-double-space nil
-      require-final-newline t
-      visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
+      require-final-newline t)
 
 (setq-default fill-column 80
               indent-tabs-mode nil)
@@ -220,12 +219,6 @@ rm "$output"
   (interactive)
   (split-window-horizontally)
   (other-window 1))
-
-(defun fw/unfill-paragraph ()
-  "Unfill the paragraph at point."
-  (interactive)
-  (let ((fill-column most-positive-fixnum))
-    (fill-paragraph)))
 #+end_src
 
 ** Org
@@ -233,8 +226,7 @@ rm "$output"
 #+begin_src emacs-lisp
 (use-package org
   :ensure nil
-  :hook ((org-mode . (lambda () (electric-indent-local-mode -1)))
-         (org-mode . (lambda () (visual-line-mode))))
+  :hook ((org-mode . (lambda () (electric-indent-local-mode -1))))
   :config
   (setq org-directory "~/Documents/org/"
         org-default-notes-file (concat org-directory "inbox.org")
@@ -429,6 +421,4 @@ The calendar should use my native language and know about my holidays:
            ("b" . org-babel-tangle))
 
 (bind-key* "C-z" 'undo)
-
-(unbind-key "M-q")
 #+end_src
