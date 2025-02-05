@@ -69,7 +69,7 @@ chunkyard "$@" --repository ~/.chunkyard --prompt 'Libsecret'
 Create new backup:
 
 #+begin_src sh :tangle "~/.local/bin/my-store"
-paths=(
+directories=(
     ~/.local/share/fonts
     ~/.ssh
     ~/Documents
@@ -84,7 +84,7 @@ includes=(
     '!authorized_keys$'
 )
 
-chunkyard store --path "${paths[@]}" --include "${includes[@]}" --repository ~/.chunkyard --prompt 'Libsecret' "$@"
+chunkyard store --directory "${directories[@]}" --include "${includes[@]}" --repository ~/.chunkyard --prompt 'Libsecret' "$@"
 #+end_src
 
 Restore the latest backup:
