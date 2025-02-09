@@ -29,9 +29,6 @@ emacs -Q --batch -l org --eval '(org-babel-tangle-file "~/Projects/website/conte
 [gpg]
   format = ssh
 
-[init]
-  defaultBranch = main
-
 [commit]
   gpgSign = true
 
@@ -109,6 +106,7 @@ remotes=(
 
 for remote in "${remotes[@]}"; do
     if ! [ -d "$remote" ]; then
+        echo "Missing: $remote"
         continue
     fi
 
@@ -180,16 +178,6 @@ rm "$output"
 (setq-default fill-column 80
               indent-tabs-mode nil)
 
-(add-to-list 'initial-frame-alist '(fullscreen . maximized))
-(pixel-scroll-precision-mode)
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(set-face-attribute 'default nil :family "JetBrains Mono" :foundry "JB" :slant 'normal :weight 'medium :height 120 :width 'normal)
-(global-auto-revert-mode t)
-(delete-selection-mode t)
-(add-hook 'before-save-hook #'delete-trailing-whitespace)
-(show-paren-mode t)
-
 (setq-default mode-line-format
               '("%e" mode-line-front-space
                 (:propertize
@@ -199,6 +187,16 @@ rm "$output"
                 mode-line-frame-identification mode-line-buffer-identification
                 "  %l:%c  " mode-line-modes
                 mode-line-misc-info mode-line-end-spaces))
+
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))
+(pixel-scroll-precision-mode)
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(set-face-attribute 'default nil :family "JetBrains Mono" :foundry "JB" :slant 'normal :weight 'medium :height 120 :width 'normal)
+(global-auto-revert-mode t)
+(delete-selection-mode t)
+(add-hook 'before-save-hook #'delete-trailing-whitespace)
+(show-paren-mode t)
 
 (use-package dired
   :ensure nil
@@ -283,12 +281,8 @@ The calendar should use my native language and know about my holidays:
                                "Donnerstag" "Freitag" "Samstag"]
       calendar-month-name-array ["Jänner" "Februar" "März" "April"
                                  "Mai" "Juni" "Juli" "August"
-                                 "September" "Oktober" "November" "Dezember"])
-
-(setq parse-time-weekdays '(("so" . 0) ("mo" . 1) ("di" . 2) ("mi" . 3)
-                            ("do" . 4) ("fr" . 5) ("sa" . 6)))
-
-(setq calendar-holidays '((holiday-fixed 1 1 "Neujahr (frei)")
+                                 "September" "Oktober" "November" "Dezember"]
+      calendar-holidays '((holiday-fixed 1 1 "Neujahr (frei)")
                           (holiday-fixed 1 6 "Heilige Drei Könige (frei)")
                           (holiday-fixed 2 14 "Valentinstag")
                           (holiday-easter-etc 1 "Ostermontag (frei)")
@@ -307,6 +301,9 @@ The calendar should use my native language and know about my holidays:
                           (holiday-fixed 12 24 "Heiliger Abend")
                           (holiday-fixed 12 25 "Erster Weihnachtstag (frei)")
                           (holiday-fixed 12 26 "Zweiter Weihnachtstag (frei)")))
+
+(setq parse-time-weekdays '(("so" . 0) ("mo" . 1) ("di" . 2) ("mi" . 3)
+                            ("do" . 4) ("fr" . 5) ("sa" . 6)))
 #+end_src
 
 ** Theme
