@@ -380,7 +380,7 @@ The calendar should use my native language and know about my holidays:
            ("s" . consult-line)
            ("q" . query-replace)
            ("l" . consult-goto-line)
-           ("k" . kill-this-buffer)
+           ("k" . kill-current-buffer)
            ("b" . consult-buffer)
            ("h" . mark-whole-buffer)
            ("0" . delete-window)
