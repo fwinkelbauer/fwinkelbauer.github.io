@@ -37,6 +37,7 @@ emacs -Q --batch -l org --eval '(org-babel-tangle-file "~/Projects/website/conte
 
 [fetch]
   prune = true
+  pruneTags = true
 
 [push]
   followTags = true
@@ -45,8 +46,14 @@ emacs -Q --batch -l org --eval '(org-babel-tangle-file "~/Projects/website/conte
   ff = only
   conflictStyle = zdiff3
 
+[tag]
+  sort = version:refname
+
 [log]
   date = iso
+
+[init]
+  defaultBranch = main
 
 [url "git@github.com:fwinkelbauer/"]
   insteadOf = "https://github.com/fwinkelbauer/"
