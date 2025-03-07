@@ -6,7 +6,7 @@ This is my setup script for Linux Mint 22:
 
 #+begin_src sh
 sudo apt update
-sudo apt install emacs git homebank keepassxc
+sudo apt install emacs git homebank keepassxc libenchant-2-dev
 
 sudo locale-gen 'de_DE.UTF-8'
 
@@ -162,7 +162,7 @@ rm "$output"
 
 (package-initialize)
 
-(setq package-selected-packages '(embark-consult embark consult vertico orderless company magit color-theme-sanityinc-tomorrow)
+(setq package-selected-packages '(embark-consult embark consult vertico orderless company magit color-theme-sanityinc-tomorrow jinx)
       use-package-always-ensure t)
 #+end_src
 
@@ -374,6 +374,19 @@ The calendar should use my native language and know about my holidays:
   (setq company-dabbrev-downcase nil
         company-dabbrev-ignore-case nil)
   (global-company-mode t))
+#+end_src
+
+** Spell Checking
+
+#+begin_src emacs-lisp
+(use-package jinx
+  :hook (emacs-startup . global-jinx-mode)
+  :bind (("M-$" . jinx-correct)
+         ("C-M-$" . jinx-languages)))
+#+end_src
+
+#+begin_src emacs-lisp :tangle "~/Projects/.dir-locals.el"
+((nil . ((jinx-languages . "en_US"))))
 #+end_src
 
 ** Keybindings
