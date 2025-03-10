@@ -167,7 +167,7 @@ rm "$output"
 
 (package-initialize)
 
-(setq package-selected-packages '(embark-consult embark consult vertico orderless corfu cape magit color-theme-sanityinc-tomorrow)
+(setq package-selected-packages '(embark-consult embark consult vertico orderless company magit color-theme-sanityinc-tomorrow)
       use-package-always-ensure t)
 #+end_src
 
@@ -374,18 +374,11 @@ The calendar should use my native language and know about my holidays:
 
 (use-package embark-consult)
 
-(use-package corfu
-  :init
-  (global-corfu-mode)
+(use-package company
   :config
-  (setq corfu-auto t
-        corfu-auto-delay 0.1
-        corfu-auto-prefix 3))
-
-(use-package cape
-  :init
-  (add-hook 'completion-at-point-functions #'cape-dabbrev)
-  (add-hook 'completion-at-point-functions #'cape-file))
+  (setq company-dabbrev-downcase nil
+        company-dabbrev-ignore-case nil)
+  (global-company-mode t))
 #+end_src
 
 ** Keybindings
