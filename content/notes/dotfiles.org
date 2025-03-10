@@ -5,8 +5,13 @@
 This is my setup script for Linux Mint 22:
 
 #+begin_src sh
+sudo apt remove firefox -y
+sudo apt install extrepo -y
+sudo extrepo enable librewolf
+
 sudo apt update
-sudo apt install emacs git homebank keepassxc
+sudo apt install emacs git homebank keepassxc librewolf
+sudo apt autoremove -y
 
 sudo locale-gen 'de_DE.UTF-8'
 
