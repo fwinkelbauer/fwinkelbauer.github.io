@@ -94,7 +94,7 @@ A utility script to access my backup:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">chunkyard "$@" --repository ~/.chunkyard --prompt 'Libsecret'
+<pre class="src src-sh">chunkyard "$@" --repository ~/.chunkyard --password 'Libsecret'
 </pre>
 </div>
 
@@ -118,7 +118,7 @@ includes=(
     '!authorized_keys$'
 )
 
-chunkyard store --directory "${directories[@]}" --include "${includes[@]}" --repository ~/.chunkyard --prompt 'Libsecret' "$@"
+chunkyard store --directory "${directories[@]}" --include "${includes[@]}" --repository ~/.chunkyard --password 'Libsecret' "$@"
 </pre>
 </div>
 
@@ -127,7 +127,7 @@ Restore the latest backup:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">chunkyard restore --repository ~/.chunkyard --directory ~/ --prompt 'Libsecret' "$@"
+<pre class="src src-sh">chunkyard restore --repository ~/.chunkyard --directory ~/ --password 'Libsecret' "$@"
 
 chmod 700 ~/.ssh
 chmod 600 ~/.ssh/*
@@ -159,8 +159,8 @@ for remote in "${remotes[@]}"; do
     fi
 
     echo "Synchronizing with: $remote"
-    chunkyard copy --repository "$local" --destination "$remote" --prompt 'Libsecret' --last 20 "$@"
-    chunkyard copy --repository "$remote" --destination "$local" --prompt 'Libsecret' --last 20 "$@"
+    chunkyard copy --repository "$local" --destination "$remote" --password 'Libsecret' --last 20 "$@"
+    chunkyard copy --repository "$remote" --destination "$local" --password 'Libsecret' --last 20 "$@"
 done
 </pre>
 </div>
