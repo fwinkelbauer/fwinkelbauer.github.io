@@ -402,7 +402,7 @@ The calendar should use my native language and know about my holidays:
            ("t" . string-rectangle)
            ("d" . delete-rectangle)
            ("?" . count-words-region)
-           ("ESC" . save-buffers-kill-terminal))
+           ("DEL" . save-buffers-kill-terminal))
 
 (bind-keys :prefix "<menu> g"
            :prefix-map fw/project-map
