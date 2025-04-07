@@ -183,20 +183,11 @@ rm "$output"
 (setq-default fill-column 80
               indent-tabs-mode nil)
 
-(setq-default mode-line-format
-              '("%e" mode-line-front-space
-                (:propertize
-                 ("" mode-line-mule-info mode-line-client mode-line-modified
-                  mode-line-remote)
-                 display (min-width (5.0)))
-                mode-line-frame-identification mode-line-buffer-identification
-                "  %l:%c  " mode-line-modes
-                mode-line-misc-info mode-line-end-spaces))
-
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 (pixel-scroll-precision-mode)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
+(scroll-bar-mode -1)
 (set-face-attribute 'default nil :family "JetBrains Mono" :foundry "JB" :slant 'normal :weight 'medium :height 120 :width 'normal)
 (load-theme 'modus-operandi t)
 (global-auto-revert-mode t)
