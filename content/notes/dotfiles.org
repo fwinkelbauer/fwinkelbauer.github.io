@@ -158,11 +158,9 @@ rm "$output"
 (require 'package)
 (require 'use-package-ensure)
 
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-
 (package-initialize)
 
-(setopt package-selected-packages '(embark-consult embark consult vertico orderless company magit color-theme-sanityinc-tomorrow)
+(setopt package-selected-packages '(embark-consult embark consult vertico orderless company magit)
         use-package-always-ensure t)
 #+end_src
 
@@ -200,6 +198,7 @@ rm "$output"
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (set-face-attribute 'default nil :family "JetBrains Mono" :foundry "JB" :slant 'normal :weight 'medium :height 120 :width 'normal)
+(load-theme 'modus-operandi t)
 (global-auto-revert-mode t)
 (delete-selection-mode t)
 (add-hook 'before-save-hook #'delete-trailing-whitespace)
@@ -311,16 +310,6 @@ The calendar should use my native language and know about my holidays:
 
 (setopt parse-time-weekdays '(("so" . 0) ("mo" . 1) ("di" . 2) ("mi" . 3)
                               ("do" . 4) ("fr" . 5) ("sa" . 6)))
-#+end_src
-
-** Theme
-
-#+begin_src emacs-lisp
-(use-package color-theme-sanityinc-tomorrow
-  :config
-  (load-theme 'sanityinc-tomorrow-night t)
-  (set-face-attribute 'org-agenda-structure nil :height 1.25)
-  (set-face-attribute 'org-agenda-date-today nil :slant 'normal :underline t))
 #+end_src
 
 ** Magit
