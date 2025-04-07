@@ -162,25 +162,25 @@ rm "$output"
 
 (package-initialize)
 
-(setq package-selected-packages '(embark-consult embark consult vertico orderless company magit color-theme-sanityinc-tomorrow)
-      use-package-always-ensure t)
+(setopt package-selected-packages '(embark-consult embark consult vertico orderless company magit color-theme-sanityinc-tomorrow)
+        use-package-always-ensure t)
 #+end_src
 
 ** General
 
 #+begin_src emacs-lisp
-(setq global-auto-revert-non-file-buffers t
-      gc-cons-threshold (* 128 1024 1024)
-      use-short-answers t
-      backup-inhibited t
-      auto-save-default nil
-      create-lockfiles nil
-      visible-bell t
-      inhibit-startup-message t
-      initial-scratch-message nil
-      column-number-mode t
-      sentence-end-double-space nil
-      require-final-newline t)
+(setopt global-auto-revert-non-file-buffers t
+        gc-cons-threshold (* 128 1024 1024)
+        use-short-answers t
+        backup-inhibited t
+        auto-save-default nil
+        create-lockfiles nil
+        visible-bell t
+        inhibit-startup-message t
+        initial-scratch-message nil
+        column-number-mode t
+        sentence-end-double-space nil
+        require-final-newline t)
 
 (setq-default fill-column 80
               indent-tabs-mode nil)
@@ -209,9 +209,9 @@ rm "$output"
   :ensure nil
   :hook (dired-mode . dired-hide-details-mode)
   :config
-  (setq dired-auto-revert-buffer t
-        dired-dwim-target t
-        dired-listing-switches "-alhv --time-style=+%Y-%m-%d --group-directories-first"))
+  (setopt dired-auto-revert-buffer t
+          dired-dwim-target t
+          dired-listing-switches "-alhv --time-style=+%Y-%m-%d --group-directories-first"))
 
 (defun fw/split-window-vertically ()
   "Split the selected window into two vertical windows."
@@ -233,41 +233,41 @@ rm "$output"
   :ensure nil
   :hook ((org-mode . (lambda () (electric-indent-local-mode -1))))
   :config
-  (setq org-directory "~/Documents/org/"
-        org-default-notes-file (concat org-directory "inbox.org")
-        org-agenda-files (list org-directory)
-        org-edit-src-content-indentation 0)
+  (setopt org-directory "~/Documents/org/"
+          org-default-notes-file (concat org-directory "inbox.org")
+          org-agenda-files (list org-directory)
+          org-edit-src-content-indentation 0)
 
-  (setq org-capture-bookmark nil
-        org-capture-templates '(("i" "Inbox" entry (file org-default-notes-file)
-                                 "* %?" :empty-lines-before 1)))
+  (setopt org-capture-bookmark nil
+          org-capture-templates '(("i" "Inbox" entry (file org-default-notes-file)
+                                   "* %?" :empty-lines-before 1)))
 
   (defun fw/org-capture-inbox ()
     "Opens the `org-capture' inbox template."
     (interactive)
     (org-capture nil "i"))
 
-  (setq org-agenda-custom-commands
-        '(("." "Overview"
-           ((agenda ""
-                    ((org-agenda-overriding-header "Kalender\n")
+  (setopt org-agenda-custom-commands
+          '(("." "Overview"
+             ((agenda ""
+                      ((org-agenda-overriding-header "Kalender\n")
+                       (org-agenda-prefix-format "%-11c%?-12t")
+                       (org-agenda-time-grid '((daily today require-timed)
+                                               (800 1000 1200 1400 1600 1800 2000)
+                                               " ....."
+                                               "----------------"))
+                       (org-agenda-time-leading-zero t)
+                       (org-agenda-show-future-repeats nil)
+                       (org-agenda-current-time-string "<<<<<<<<<<<<<<<<")
+                       (org-agenda-scheduled-leaders '("" ""))
+                       (org-agenda-skip-deadline-prewarning-if-scheduled t)))
+              (todo "*"
+                    ((org-agenda-overriding-header "\nSonstiges\n")
+                     (org-agenda-block-separator nil)
                      (org-agenda-prefix-format "%-11c%?-12t")
-                     (org-agenda-time-grid '((daily today require-timed)
-                                             (800 1000 1200 1400 1600 1800 2000)
-                                             " ....."
-                                             "----------------"))
-                     (org-agenda-time-leading-zero t)
-                     (org-agenda-show-future-repeats nil)
-                     (org-agenda-current-time-string "<<<<<<<<<<<<<<<<")
-                     (org-agenda-scheduled-leaders '("" ""))
-                     (org-agenda-skip-deadline-prewarning-if-scheduled t)))
-            (todo "*"
-                  ((org-agenda-overriding-header "\nSonstiges\n")
-                   (org-agenda-block-separator nil)
-                   (org-agenda-prefix-format "%-11c%?-12t")
-                   (org-agenda-sorting-strategy '(todo-state-up))
-                   (org-agenda-todo-ignore-deadlines 'all)
-                   (org-agenda-todo-ignore-scheduled 'all)))))))
+                     (org-agenda-sorting-strategy '(todo-state-up))
+                     (org-agenda-todo-ignore-deadlines 'all)
+                     (org-agenda-todo-ignore-scheduled 'all)))))))
 
   (defun fw/org-overview ()
     "Show my inbox and custom org-agenda."
@@ -282,35 +282,35 @@ The calendar should use my native language and know about my holidays:
 #+begin_src emacs-lisp
 (set-locale-environment "de_DE.UTF-8")
 
-(setq calendar-week-start-day 1
-      calendar-day-header-array ["So" "Mo" "Di" "Mi" "Do" "Fr" "Sa"]
-      calendar-day-name-array ["Sonntag" "Montag" "Dienstag" "Mittwoch"
-                               "Donnerstag" "Freitag" "Samstag"]
-      calendar-month-name-array ["Jänner" "Februar" "März" "April"
-                                 "Mai" "Juni" "Juli" "August"
-                                 "September" "Oktober" "November" "Dezember"]
-      calendar-holidays '((holiday-fixed 1 1 "Neujahr (frei)")
-                          (holiday-fixed 1 6 "Heilige Drei Könige (frei)")
-                          (holiday-fixed 2 14 "Valentinstag")
-                          (holiday-easter-etc 1 "Ostermontag (frei)")
-                          (holiday-easter-etc -46 "Aschermittwoch")
-                          (holiday-easter-etc -2 "Karfreitag")
-                          (holiday-fixed 5 1 "Österreichischer Staatsfeiertag (frei)")
-                          (holiday-easter-etc 39 "Christi Himmelfahrt (frei)")
-                          (holiday-easter-etc 50 "Pfingstmontag (frei)")
-                          (holiday-easter-etc 60 "Fronleichnam (frei)")
-                          (holiday-float 5 0 2 "Muttertag")
-                          (holiday-float 6 0 2 "Vatertag")
-                          (holiday-fixed 8 15 "Mariä Himmelfahrt (frei)")
-                          (holiday-fixed 10 26 "Nationalfeiertag (frei)")
-                          (holiday-fixed 11 1 "Allerheiligen (frei)")
-                          (holiday-fixed 12 8 "Maria Empfängnis (frei)")
-                          (holiday-fixed 12 24 "Heiliger Abend")
-                          (holiday-fixed 12 25 "Erster Weihnachtstag (frei)")
-                          (holiday-fixed 12 26 "Zweiter Weihnachtstag (frei)")))
+(setopt calendar-week-start-day 1
+        calendar-day-header-array ["So" "Mo" "Di" "Mi" "Do" "Fr" "Sa"]
+        calendar-day-name-array ["Sonntag" "Montag" "Dienstag" "Mittwoch"
+                                 "Donnerstag" "Freitag" "Samstag"]
+        calendar-month-name-array ["Jänner" "Februar" "März" "April"
+                                   "Mai" "Juni" "Juli" "August"
+                                   "September" "Oktober" "November" "Dezember"]
+        calendar-holidays '((holiday-fixed 1 1 "Neujahr (frei)")
+                            (holiday-fixed 1 6 "Heilige Drei Könige (frei)")
+                            (holiday-fixed 2 14 "Valentinstag")
+                            (holiday-easter-etc 1 "Ostermontag (frei)")
+                            (holiday-easter-etc -46 "Aschermittwoch")
+                            (holiday-easter-etc -2 "Karfreitag")
+                            (holiday-fixed 5 1 "Österreichischer Staatsfeiertag (frei)")
+                            (holiday-easter-etc 39 "Christi Himmelfahrt (frei)")
+                            (holiday-easter-etc 50 "Pfingstmontag (frei)")
+                            (holiday-easter-etc 60 "Fronleichnam (frei)")
+                            (holiday-float 5 0 2 "Muttertag")
+                            (holiday-float 6 0 2 "Vatertag")
+                            (holiday-fixed 8 15 "Mariä Himmelfahrt (frei)")
+                            (holiday-fixed 10 26 "Nationalfeiertag (frei)")
+                            (holiday-fixed 11 1 "Allerheiligen (frei)")
+                            (holiday-fixed 12 8 "Maria Empfängnis (frei)")
+                            (holiday-fixed 12 24 "Heiliger Abend")
+                            (holiday-fixed 12 25 "Erster Weihnachtstag (frei)")
+                            (holiday-fixed 12 26 "Zweiter Weihnachtstag (frei)")))
 
-(setq parse-time-weekdays '(("so" . 0) ("mo" . 1) ("di" . 2) ("mi" . 3)
-                            ("do" . 4) ("fr" . 5) ("sa" . 6)))
+(setopt parse-time-weekdays '(("so" . 0) ("mo" . 1) ("di" . 2) ("mi" . 3)
+                              ("do" . 4) ("fr" . 5) ("sa" . 6)))
 #+end_src
 
 ** Theme
@@ -328,9 +328,9 @@ The calendar should use my native language and know about my holidays:
 #+begin_src emacs-lisp
 (use-package magit
   :config
-  (setq magit-display-buffer-function 'magit-display-buffer-same-window-except-diff-v1
-        magit-save-repository-buffers 'dontask
-        magit-repository-directories '(("~/Projects" . 1))))
+  (setopt magit-display-buffer-function 'magit-display-buffer-same-window-except-diff-v1
+          magit-save-repository-buffers 'dontask
+          magit-repository-directories '(("~/Projects" . 1))))
 #+end_src
 
 ** Completion
@@ -343,12 +343,12 @@ The calendar should use my native language and know about my holidays:
 
 (use-package orderless
   :config
-  (setq completion-styles '(orderless basic)
-        completion-category-overrides '((file (styles partial-completion)))))
+  (setopt completion-styles '(orderless basic)
+          completion-category-overrides '((file (styles partial-completion)))))
 
 (use-package embark
   :config
-  (setq prefix-help-command #'embark-prefix-help-command)
+  (setopt prefix-help-command #'embark-prefix-help-command)
   (keymap-global-set "<remap> <describe-bindings>" #'embark-bindings))
 
 (use-package consult
@@ -371,8 +371,8 @@ The calendar should use my native language and know about my holidays:
 
 (use-package company
   :config
-  (setq company-dabbrev-downcase nil
-        company-dabbrev-ignore-case nil)
+  (setopt company-dabbrev-downcase nil
+          company-dabbrev-ignore-case nil)
   (global-company-mode t))
 #+end_src
 
