@@ -160,7 +160,7 @@ rm "$output"
 
 (package-initialize)
 
-(setopt package-selected-packages '(embark-consult embark consult vertico orderless company magit)
+(setopt package-selected-packages '(embark-consult embark consult vertico orderless magit)
         use-package-always-ensure t)
 #+end_src
 
@@ -348,12 +348,6 @@ The calendar should use my native language and know about my holidays:
       (consult-grep))))
 
 (use-package embark-consult)
-
-(use-package company
-  :config
-  (setopt company-dabbrev-downcase nil
-          company-dabbrev-ignore-case nil)
-  (global-company-mode t))
 #+end_src
 
 ** Keybindings
