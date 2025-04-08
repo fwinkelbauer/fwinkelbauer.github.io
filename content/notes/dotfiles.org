@@ -168,7 +168,7 @@ rm "$output"
 
 #+begin_src emacs-lisp
 (setopt global-auto-revert-non-file-buffers t
-        gc-cons-threshold (* 128 1024 1024)
+        gc-cons-threshold (* 64 1024 1024)
         use-short-answers t
         backup-inhibited t
         auto-save-default nil
