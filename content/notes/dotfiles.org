@@ -146,7 +146,7 @@ rm "$output"
 
 (package-initialize)
 
-(setopt package-selected-packages '(embark-consult embark consult vertico orderless magit)
+(setopt package-selected-packages '(embark-consult embark consult vertico orderless magit modus-themes)
         use-package-always-ensure t
         global-auto-revert-non-file-buffers t
         gc-cons-threshold (* 64 1024 1024)
@@ -170,7 +170,6 @@ rm "$output"
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (set-face-attribute 'default nil :family "JetBrains Mono" :foundry "JB" :slant 'normal :weight 'medium :height 120 :width 'normal)
-(load-theme 'modus-operandi t)
 (global-auto-revert-mode t)
 (delete-selection-mode t)
 (add-hook 'before-save-hook #'delete-trailing-whitespace)
@@ -309,6 +308,10 @@ rm "$output"
       (consult-grep))))
 
 (use-package embark-consult)
+
+(use-package modus-themes
+  :config
+  (load-theme 'modus-operandi-tinted t))
 
 (bind-keys :prefix "<menu>"
            :prefix-map fw/main-map
