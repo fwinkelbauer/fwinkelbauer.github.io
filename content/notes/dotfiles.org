@@ -2,7 +2,7 @@
 #+STARTUP: content
 #+PROPERTY: header-args :mkdirp yes
 
-This is my setup script for Linux Mint 22:
+This is my setup script for Linux Mint 22.1:
 
 #+begin_src sh
 sudo apt update
@@ -169,6 +169,7 @@ rm "$output"
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
+(blink-cursor-mode -1)
 (set-face-attribute 'default nil :family "JetBrains Mono" :foundry "JB" :slant 'normal :weight 'medium :height 120 :width 'normal)
 (global-auto-revert-mode t)
 (delete-selection-mode t)
