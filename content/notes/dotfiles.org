@@ -142,24 +142,22 @@ rm "$output"
 
 #+begin_src emacs-lisp :tangle "~/.config/emacs/init.el"
 (require 'package)
-(require 'use-package-ensure)
 
 (package-initialize)
 
-(setopt package-selected-packages '(embark-consult embark consult vertico orderless magit modus-themes)
-        use-package-always-ensure t
-        global-auto-revert-non-file-buffers t
-        gc-cons-threshold (* 64 1024 1024)
-        use-short-answers t
-        backup-inhibited t
-        auto-save-default nil
-        create-lockfiles nil
-        visible-bell t
-        inhibit-startup-message t
-        initial-scratch-message nil
-        column-number-mode t
-        sentence-end-double-space nil
-        require-final-newline t)
+(setq package-selected-packages '(embark-consult embark consult vertico orderless magit modus-themes)
+      global-auto-revert-non-file-buffers t
+      gc-cons-threshold (* 64 1024 1024)
+      use-short-answers t
+      backup-inhibited t
+      auto-save-default nil
+      create-lockfiles nil
+      visible-bell t
+      inhibit-startup-message t
+      initial-scratch-message nil
+      column-number-mode t
+      sentence-end-double-space nil
+      require-final-newline t)
 
 (setq-default fill-column 80
               indent-tabs-mode nil)
@@ -189,76 +187,74 @@ rm "$output"
   (other-window 1))
 
 (use-package dired
-  :ensure nil
   :hook (dired-mode . dired-hide-details-mode)
-  :config
-  (setopt dired-auto-revert-buffer t
-          dired-dwim-target t
-          dired-listing-switches "-alhv --time-style=+%Y-%m-%d --group-directories-first"))
+  :custom
+  (dired-auto-revert-buffer t)
+  (dired-dwim-target t)
+  (dired-listing-switches "-alhv --time-style=+%Y-%m-%d --group-directories-first"))
 
 (use-package org
-  :ensure nil
   :hook ((org-mode . (lambda () (electric-indent-local-mode -1))))
   :config
-  (setopt org-directory "~/Documents/org/"
-          org-default-notes-file (concat org-directory "inbox.org")
-          org-agenda-files (list org-directory)
-          org-edit-src-content-indentation 0)
+  (setq org-directory "~/Documents/org/"
+        org-default-notes-file (concat org-directory "inbox.org")
+        org-agenda-files (list org-directory)
+        org-edit-src-content-indentation 0)
 
-  (setopt org-capture-bookmark nil
-          org-capture-templates '(("i" "Inbox" entry (file org-default-notes-file)
-                                   "* %?" :empty-lines-before 1)))
+  (setq org-capture-bookmark nil
+        org-capture-templates '(("i" "Inbox" entry (file org-default-notes-file)
+                                 "* %?" :empty-lines-before 1)))
 
-  (setopt org-agenda-custom-commands
-          '(("." "Overview"
-             ((agenda ""
-                      ((org-agenda-overriding-header "Kalender\n")
-                       (org-agenda-prefix-format "%-11c%?-12t")
-                       (org-agenda-time-grid '((daily today require-timed)
-                                               (800 1000 1200 1400 1600 1800 2000)
-                                               " ....."
-                                               "----------------"))
-                       (org-agenda-time-leading-zero t)
-                       (org-agenda-show-future-repeats nil)
-                       (org-agenda-current-time-string "<<<<<<<<<<<<<<<<")
-                       (org-agenda-scheduled-leaders '("" ""))
-                       (org-agenda-skip-deadline-prewarning-if-scheduled t)))
-              (todo "*"
-                    ((org-agenda-overriding-header "\nSonstiges\n")
-                     (org-agenda-block-separator nil)
+  (setq org-agenda-custom-commands
+        '(("." "Overview"
+           ((agenda ""
+                    ((org-agenda-overriding-header "Kalender\n")
                      (org-agenda-prefix-format "%-11c%?-12t")
-                     (org-agenda-sorting-strategy '(todo-state-up))
-                     (org-agenda-todo-ignore-deadlines 'all)
-                     (org-agenda-todo-ignore-scheduled 'all)))))))
+                     (org-agenda-time-grid '((daily today require-timed)
+                                             (800 1000 1200 1400 1600 1800 2000)
+                                             " ....."
+                                             "----------------"))
+                     (org-agenda-time-leading-zero t)
+                     (org-agenda-show-future-repeats nil)
+                     (org-agenda-current-time-string "<<<<<<<<<<<<<<<<")
+                     (org-agenda-scheduled-leaders '("" ""))
+                     (org-agenda-skip-deadline-prewarning-if-scheduled t)))
+            (todo "*"
+                  ((org-agenda-overriding-header "\nSonstiges\n")
+                   (org-agenda-block-separator nil)
+                   (org-agenda-prefix-format "%-11c%?-12t")
+                   (org-agenda-sorting-strategy '(todo-state-up))
+                   (org-agenda-todo-ignore-deadlines 'all)
+                   (org-agenda-todo-ignore-scheduled 'all)))))))
 
-  (setopt calendar-week-start-day 1
-          calendar-day-header-array ["So" "Mo" "Di" "Mi" "Do" "Fr" "Sa"]
-          calendar-day-name-array ["Sonntag" "Montag" "Dienstag" "Mittwoch"
-                                   "Donnerstag" "Freitag" "Samstag"]
-          calendar-month-name-array ["Jänner" "Februar" "März" "April"
-                                     "Mai" "Juni" "Juli" "August"
-                                     "September" "Oktober" "November" "Dezember"]
-          calendar-holidays '((holiday-fixed 1 1 "Neujahr (frei)")
-                              (holiday-fixed 1 6 "Heilige Drei Könige (frei)")
-                              (holiday-fixed 2 14 "Valentinstag")
-                              (holiday-easter-etc 1 "Ostermontag (frei)")
-                              (holiday-easter-etc -46 "Aschermittwoch")
-                              (holiday-easter-etc -2 "Karfreitag")
-                              (holiday-fixed 5 1 "Österreichischer Staatsfeiertag (frei)")
-                              (holiday-easter-etc 39 "Christi Himmelfahrt (frei)")
-                              (holiday-easter-etc 50 "Pfingstmontag (frei)")
-                              (holiday-easter-etc 60 "Fronleichnam (frei)")
-                              (holiday-float 5 0 2 "Muttertag")
-                              (holiday-float 6 0 2 "Vatertag")
-                              (holiday-fixed 8 15 "Mariä Himmelfahrt (frei)")
-                              (holiday-fixed 10 26 "Nationalfeiertag (frei)")
-                              (holiday-fixed 11 1 "Allerheiligen (frei)")
-                              (holiday-fixed 12 8 "Maria Empfängnis (frei)")
-                              (holiday-fixed 12 24 "Heiliger Abend")
-                              (holiday-fixed 12 25 "Erster Weihnachtstag (frei)")
-                              (holiday-fixed 12 26 "Zweiter Weihnachtstag (frei)"))
-          parse-time-weekdays '(("so" . 0) ("mo" . 1) ("di" . 2) ("mi" . 3)
-                                ("do" . 4) ("fr" . 5) ("sa" . 6)))
+  (setq calendar-week-start-day 1
+        calendar-day-header-array ["So" "Mo" "Di" "Mi" "Do" "Fr" "Sa"]
+        calendar-day-name-array ["Sonntag" "Montag" "Dienstag" "Mittwoch"
+                                 "Donnerstag" "Freitag" "Samstag"]
+        calendar-month-name-array ["Jänner" "Februar" "März" "April"
+                                   "Mai" "Juni" "Juli" "August"
+                                   "September" "Oktober" "November" "Dezember"]
+        calendar-holidays '((holiday-fixed 1 1 "Neujahr (frei)")
+                            (holiday-fixed 1 6 "Heilige Drei Könige (frei)")
+                            (holiday-fixed 2 14 "Valentinstag")
+                            (holiday-easter-etc 1 "Ostermontag (frei)")
+                            (holiday-easter-etc -46 "Aschermittwoch")
+                            (holiday-easter-etc -2 "Karfreitag")
+                            (holiday-fixed 5 1 "Österreichischer Staatsfeiertag (frei)")
+                            (holiday-easter-etc 39 "Christi Himmelfahrt (frei)")
+                            (holiday-easter-etc 50 "Pfingstmontag (frei)")
+                            (holiday-easter-etc 60 "Fronleichnam (frei)")
+                            (holiday-float 5 0 2 "Muttertag")
+                            (holiday-float 6 0 2 "Vatertag")
+                            (holiday-fixed 8 15 "Mariä Himmelfahrt (frei)")
+                            (holiday-fixed 10 26 "Nationalfeiertag (frei)")
+                            (holiday-fixed 11 1 "Allerheiligen (frei)")
+                            (holiday-fixed 12 8 "Maria Empfängnis (frei)")
+                            (holiday-fixed 12 24 "Heiliger Abend")
+                            (holiday-fixed 12 25 "Erster Weihnachtstag (frei)")
+                            (holiday-fixed 12 26 "Zweiter Weihnachtstag (frei)"))
+        parse-time-weekdays '(("so" . 0) ("mo" . 1) ("di" . 2) ("mi" . 3)
+                              ("do" . 4) ("fr" . 5) ("sa" . 6)))
 
   (defun fw/org-capture-inbox ()
     "Opens the `org-capture' inbox template."
@@ -273,27 +269,31 @@ rm "$output"
     (org-agenda nil ".")))
 
 (use-package magit
-  :config
-  (setopt magit-display-buffer-function 'magit-display-buffer-same-window-except-diff-v1
-          magit-save-repository-buffers 'dontask
-          magit-repository-directories '(("~/Projects" . 1))))
+  :ensure t
+  :custom
+  (magit-display-buffer-function 'magit-display-buffer-same-window-except-diff-v1)
+  (magit-save-repository-buffers 'dontask)
+  (magit-repository-directories '(("~/Projects" . 1))))
 
 (use-package vertico
+  :ensure t
   :config
   (vertico-mode)
   (keymap-set vertico-map "DEL" #'vertico-directory-delete-char))
 
 (use-package orderless
-  :config
-  (setopt completion-styles '(orderless basic)
-          completion-category-overrides '((file (styles partial-completion)))))
+  :ensure t
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles partial-completion)))))
 
 (use-package embark
-  :config
-  (setopt prefix-help-command #'embark-prefix-help-command)
-  (keymap-global-set "<remap> <describe-bindings>" #'embark-bindings))
+  :ensure t
+  :custom
+  (prefix-help-command #'embark-prefix-help-command))
 
 (use-package consult
+  :ensure t
   :config
   (defun fw/find-file ()
     "Find files in current project or directory."
@@ -309,9 +309,10 @@ rm "$output"
         (consult-git-grep)
       (consult-grep))))
 
-(use-package embark-consult)
+(use-package embark-consult :ensure t)
 
 (use-package modus-themes
+  :ensure t
   :config
   (load-theme 'modus-operandi-tinted t))
 
