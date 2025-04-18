@@ -145,7 +145,7 @@ rm "$output"
 
 (package-initialize)
 
-(setq package-selected-packages '(embark-consult embark consult vertico orderless magit modus-themes)
+(setq package-selected-packages '(magit vertico orderless embark consult embark-consult modus-themes)
       global-auto-revert-non-file-buffers t
       gc-cons-threshold (* 64 1024 1024)
       use-short-answers t
@@ -194,7 +194,7 @@ rm "$output"
   (dired-listing-switches "-alhv --time-style=+%Y-%m-%d --group-directories-first"))
 
 (use-package org
-  :hook ((org-mode . (lambda () (electric-indent-local-mode -1))))
+  :hook (org-mode . (lambda () (electric-indent-local-mode -1)))
   :config
   (setq org-directory "~/Documents/org/"
         org-default-notes-file (concat org-directory "inbox.org")
@@ -305,7 +305,8 @@ rm "$output"
         (consult-git-grep)
       (consult-grep))))
 
-(use-package embark-consult :ensure t)
+(use-package embark-consult
+  :ensure t)
 
 (use-package modus-themes
   :ensure t
