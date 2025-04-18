@@ -1,0 +1,47 @@
+#+TITLE: Presentations in Org-Mode
+#+DATE: [2025-04-18]
+
+I recently came up with my own take on doing presentations using org-mode. There
+are probably far better approaches and feature-rich packages out there, but at
+this point it's all about fun. The ~fw/org-present-mode~ minor mode narrows down
+an org document to the current subtree when pressing F5. Afterwards you can use
+the left/right arrow keys to jump to the next/previous subtree at the same
+level. Pressing F5 a second time quits the minor mode.
+
+#+begin_src emacs-lisp
+(define-minor-mode fw/org-present-mode
+  "Do a presentation based on an org-mode file."
+  :lighter " fw/org-present"
+  :keymap (let ((map (make-sparse-keymap)))
+            (define-key map (kbd "<left>") 'fw/org-present-backward)
+            (define-key map (kbd "<right>") 'fw/org-present-forward)
+            map)
+
+  (defun fw/org-present-backward ()
+    (interactive)
+    (let ((inhibit-message t))
+      (widen)
+      (org-backward-heading-same-level 1)
+      (org-toggle-narrow-to-subtree)))
+
+  (defun fw/org-present-forward ()
+    (interactive)
+    (let ((inhibit-message t))
+      (widen)
+      (org-forward-heading-same-level 1)
+      (org-toggle-narrow-to-subtree)))
+
+  (toggle-frame-fullscreen)
+
+  (if (buffer-narrowed-p)
+      (progn
+        (kill-local-variable 'mode-line-format)
+        (read-only-mode -1)
+        (widen))
+    (progn
+      (setq-local mode-line-format nil)
+      (org-toggle-narrow-to-subtree)
+      (read-only-mode 1))))
+
+(bind-keys ("<f5>" . fw/org-present-mode))
+#+end_src
