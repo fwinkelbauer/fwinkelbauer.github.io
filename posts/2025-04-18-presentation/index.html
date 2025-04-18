@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Presentations in Org-Mode</title>
+<meta name="generator" content="Org Mode" />
+<meta name="author" content="Florian Winkelbauer">
+<link rel="stylesheet" href="/site.css" type="text/css">
+</head>
+<body>
+<div id="preamble" class="status">
+<nav>
+<a href="/">Home</a>
+<a href="/notes">Notes</a>
+<a href="/posts">Posts</a>
+<a href="/projects">Projects</a>
+</nav>
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">Presentations in Org-Mode</h1>
+</header><p>
+I recently came up with my own take on doing presentations using org-mode. There
+are probably far better approaches and feature-rich packages out there, but at
+this point it's all about fun. The <code>fw/org-present-mode</code> minor mode narrows down
+an org document to the current subtree when pressing F5. Afterwards you can use
+the left/right arrow keys to jump to the next/previous subtree at the same
+level. Pressing F5 a second time quits the minor mode.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(define-minor-mode fw/org-present-mode
+  "Do a presentation based on an org-mode file."
+  :lighter " fw/org-present"
+  :keymap (let ((map (make-sparse-keymap)))
+            (define-key map (kbd "&lt;left&gt;") 'fw/org-present-backward)
+            (define-key map (kbd "&lt;right&gt;") 'fw/org-present-forward)
+            map)
+
+  (defun fw/org-present-backward ()
+    (interactive)
+    (let ((inhibit-message t))
+      (widen)
+      (org-backward-heading-same-level 1)
+      (org-toggle-narrow-to-subtree)))
+
+  (defun fw/org-present-forward ()
+    (interactive)
+    (let ((inhibit-message t))
+      (widen)
+      (org-forward-heading-same-level 1)
+      (org-toggle-narrow-to-subtree)))
+
+  (toggle-frame-fullscreen)
+
+  (if (buffer-narrowed-p)
+      (progn
+        (kill-local-variable 'mode-line-format)
+        (read-only-mode -1)
+        (widen))
+    (progn
+      (setq-local mode-line-format nil)
+      (org-toggle-narrow-to-subtree)
+      (read-only-mode 1))))
+
+(bind-keys ("&lt;f5&gt;" . fw/org-present-mode))
+</pre>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Published: 2025-04-18</p>
+<footer>
+<p>Copyright 2025, Florian Winkelbauer. All rights reserved.</p>
+</footer>
+</div>
+</body>
+</html>
