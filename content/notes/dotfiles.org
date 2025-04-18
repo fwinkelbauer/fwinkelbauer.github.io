@@ -209,7 +209,7 @@ rm "$output"
         '(("." "Overview"
            ((agenda ""
                     ((org-agenda-overriding-header "Kalender\n")
-                     (org-agenda-prefix-format "%-11c%?-12t")
+                     (org-agenda-prefix-format " %-11c%?-12t")
                      (org-agenda-time-grid '((daily today require-timed)
                                              (800 1000 1200 1400 1600 1800 2000)
                                              " ....."
@@ -229,11 +229,8 @@ rm "$output"
 
   (setq calendar-week-start-day 1
         calendar-day-header-array ["So" "Mo" "Di" "Mi" "Do" "Fr" "Sa"]
-        calendar-day-name-array ["Sonntag" "Montag" "Dienstag" "Mittwoch"
-                                 "Donnerstag" "Freitag" "Samstag"]
-        calendar-month-name-array ["Jänner" "Februar" "März" "April"
-                                   "Mai" "Juni" "Juli" "August"
-                                   "September" "Oktober" "November" "Dezember"]
+        calendar-day-name-array ["Sonntag" "Montag" "Dienstag" "Mittwoch" "Donnerstag" "Freitag" "Samstag"]
+        calendar-month-name-array ["Jänner" "Februar" "März" "April" "Mai" "Juni" "Juli" "August" "September" "Oktober" "November" "Dezember"]
         calendar-holidays '((holiday-fixed 1 1 "Neujahr (frei)")
                             (holiday-fixed 1 6 "Heilige Drei Könige (frei)")
                             (holiday-fixed 2 14 "Valentinstag")
@@ -253,11 +250,10 @@ rm "$output"
                             (holiday-fixed 12 24 "Heiliger Abend")
                             (holiday-fixed 12 25 "Erster Weihnachtstag (frei)")
                             (holiday-fixed 12 26 "Zweiter Weihnachtstag (frei)"))
-        parse-time-weekdays '(("so" . 0) ("mo" . 1) ("di" . 2) ("mi" . 3)
-                              ("do" . 4) ("fr" . 5) ("sa" . 6)))
+        parse-time-weekdays '(("so" . 0) ("mo" . 1) ("di" . 2) ("mi" . 3) ("do" . 4) ("fr" . 5) ("sa" . 6)))
 
   (defun fw/org-capture-inbox ()
-    "Opens the `org-capture' inbox template."
+    "Opens my `org-capture' inbox template."
     (interactive)
     (org-capture nil "i"))
 
