@@ -1,4 +1,4 @@
-#+TITLE: Having A Hobby Project
+#+TITLE: Having a Hobby Project
 #+DATE: [2022-03-13]
 
 It has been two years since I have started to work on my hobby project
