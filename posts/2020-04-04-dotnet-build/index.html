@@ -27,9 +27,9 @@ Deploying an artifact meant to manually copy it onto the target machine. Since
 then I have improved my process step by step.
 </p>
 
-<div id="outline-container-orge0ae880" class="outline-2">
-<h2 id="orge0ae880">Abusing the Pre/Post Build Snippets</h2>
-<div class="outline-text-2" id="text-orge0ae880">
+<div id="outline-container-org1128c4f" class="outline-2">
+<h2 id="org1128c4f">Abusing the Pre/Post Build Snippets</h2>
+<div class="outline-text-2" id="text-org1128c4f">
 <p>
 A <code>csproj</code> file can contain pre- and post-build snippets. I have used this
 feature to create an automated deployment when switching the build configuration
@@ -39,9 +39,9 @@ I could run these snippets on accident when testing something in Visual Studio.
 </div>
 </div>
 
-<div id="outline-container-orga75b280" class="outline-2">
-<h2 id="orga75b280">Custom MSBuild Scripts</h2>
-<div class="outline-text-2" id="text-orga75b280">
+<div id="outline-container-org9cb2361" class="outline-2">
+<h2 id="org9cb2361">Custom MSBuild Scripts</h2>
+<div class="outline-text-2" id="text-org9cb2361">
 <p>
 MSBuild is a fully fledged build tool, which supports custom actions and even
 comes with predefined commands to do various operations such as copying or
@@ -52,9 +52,9 @@ scripts is a pain.
 </div>
 </div>
 
-<div id="outline-container-org628c334" class="outline-2">
-<h2 id="org628c334">Psake</h2>
-<div class="outline-text-2" id="text-org628c334">
+<div id="outline-container-org9211d3b" class="outline-2">
+<h2 id="org9211d3b">Psake</h2>
+<div class="outline-text-2" id="text-org9211d3b">
 <p>
 Several languages come with their own version of <code>make</code>. Psake is a build system
 written in PowerShell. We still need to call MSBuild to compile a C# solution,
@@ -64,9 +64,9 @@ linter, or archiving artifacts.
 </div>
 </div>
 
-<div id="outline-container-orgf888ce4" class="outline-2">
-<h2 id="orgf888ce4">Cake</h2>
-<div class="outline-text-2" id="text-orgf888ce4">
+<div id="outline-container-orgd0921ef" class="outline-2">
+<h2 id="orgd0921ef">Cake</h2>
+<div class="outline-text-2" id="text-orgd0921ef">
 <p>
 Back when I found psake, the project did not have an active maintainer, which
 meant that at one point I could not use it with newer versions of MSBuild and
@@ -80,9 +80,9 @@ tools without any wrapper code.
 </div>
 </div>
 
-<div id="outline-container-orgd3e96f5" class="outline-2">
-<h2 id="orgd3e96f5">Back to Psake</h2>
-<div class="outline-text-2" id="text-orgd3e96f5">
+<div id="outline-container-org450a41b" class="outline-2">
+<h2 id="org450a41b">Back to Psake</h2>
+<div class="outline-text-2" id="text-org450a41b">
 <p>
 While switching most of my projects over from .NET Framework to .NET Core, I was
 surprised how terrific the <code>dotnet</code> CLI is. Instead of downloading <code>nuget.exe</code>
