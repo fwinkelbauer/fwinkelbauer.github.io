@@ -4,3 +4,8 @@
 I'll be speaking at this year's [[https://www.linuxtage.at/en/][Grazer Linuxtage]]. You can find my session [[https://pretalx.linuxtage.at/glt25/talk/YJXACY/][here]].
 In the future you can also find other relevant links attached to this post once
 the conference is over. See you there!
+
+Updated: 2025-04-27
+
+- [[https://pretalx.linuxtage.at/media/glt25/submissions/YJXACY/resources/home-cooked-software_W8FT3Px.pdf][Slides]]
+- [[https://media.ccc.de/v/glt25-512-home-cooked-software-a-backup-tale][Recording]]
