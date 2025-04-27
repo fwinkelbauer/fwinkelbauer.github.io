@@ -1690,3 +1690,15 @@ https://www.youtube.com/watch?v=rdJXUN4YV_M
 - https://www.youtube.com/watch?v=L9sXk0t8Iro
 - https://www.youtube.com/watch?v=vzr4HiQZhdY
 - https://www.youtube.com/watch?v=IN9lftH0cJc
+
+* Communicating in Types (Kris Jenkins)
+
+https://www.youtube.com/watch?v=SOz66dcsuT8
+
+- A good type system let's you describe things, relationships and context
+- Most languages have "and" types (e.g. records) and "or" types (e.g. enums) but
+  only a few languages let you mix and match these types together (e.g. unions).
+- Create functions with specific types (e.g. ~string -> string~ is very vague)
+- Rich type systems can give you context
+  - ~OrderID -> UserId -> Db Invoice~, or even better
+  - ~OrderID -> UserId -> DbRead Invoice~
