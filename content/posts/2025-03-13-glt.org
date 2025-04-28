@@ -8,4 +8,4 @@ the conference is over. See you there!
 Updated: 2025-04-27
 
 - [[https://pretalx.linuxtage.at/media/glt25/submissions/YJXACY/resources/home-cooked-software_W8FT3Px.pdf][Slides]]
-- [[https://media.ccc.de/v/glt25-512-home-cooked-software-a-backup-tale][Recording]]
+- Talk on [[https://media.ccc.de/v/glt25-512-home-cooked-software-a-backup-tale][media.ccc.de]] or [[https://www.youtube.com/watch?v=iLKW6-UIvTM][youtube.com]]
