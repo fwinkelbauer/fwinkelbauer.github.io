@@ -141,10 +141,6 @@ rm "$output"
 * Emacs
 
 #+begin_src emacs-lisp :tangle "~/.config/emacs/init.el"
-(require 'package)
-
-(package-initialize)
-
 (setq package-selected-packages '(magit vertico orderless embark consult embark-consult modus-themes)
       global-auto-revert-non-file-buffers t
       gc-cons-threshold (* 64 1024 1024)
