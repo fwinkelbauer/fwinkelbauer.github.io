@@ -6,7 +6,7 @@ This is my setup script for Linux Mint 22.1:
 
 #+begin_src sh
 sudo apt update
-sudo apt install emacs git homebank keepassxc
+sudo apt install emacs git homebank keepassxc fonts-jetbrains-mono
 
 sudo locale-gen 'de_DE.UTF-8'
 
@@ -69,7 +69,6 @@ Create new backup:
 
 #+begin_src sh :shebang "#!/bin/bash -eu" :tangle "~/.local/bin/my-store"
 directories=(
-    ~/.local/share/fonts
     ~/.ssh
     ~/Documents
     ~/Music
@@ -79,7 +78,6 @@ directories=(
 
 includes=(
     '!\~$'
-    '!\.uuid$'
     '!authorized_keys$'
 )
 
@@ -141,8 +139,7 @@ rm "$output"
 * Emacs
 
 #+begin_src emacs-lisp :tangle "~/.config/emacs/init.el"
-(setq package-selected-packages '(magit vertico orderless embark consult embark-consult modus-themes)
-      global-auto-revert-non-file-buffers t
+(setq global-auto-revert-non-file-buffers t
       gc-cons-threshold (* 64 1024 1024)
       use-short-answers t
       backup-inhibited t
@@ -153,7 +150,8 @@ rm "$output"
       initial-scratch-message nil
       column-number-mode t
       sentence-end-double-space nil
-      require-final-newline t)
+      require-final-newline t
+      uniquify-buffer-name-style 'forward)
 
 (setq-default fill-column 80
               indent-tabs-mode nil)
