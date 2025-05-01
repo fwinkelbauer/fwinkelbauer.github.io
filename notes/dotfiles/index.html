@@ -26,7 +26,7 @@ This is my setup script for Linux Mint 22.1:
 
 <div class="org-src-container">
 <pre class="src src-sh">sudo apt update
-sudo apt install emacs git homebank keepassxc
+sudo apt install -y emacs git homebank keepassxc fonts-jetbrains-mono
 
 sudo locale-gen 'de_DE.UTF-8'
 
@@ -100,7 +100,6 @@ Create new backup:
 
 <div class="org-src-container">
 <pre class="src src-sh">directories=(
-    ~/.local/share/fonts
     ~/.ssh
     ~/Documents
     ~/Music
@@ -110,7 +109,6 @@ Create new backup:
 
 includes=(
     '!\~$'
-    '!\.uuid$'
     '!authorized_keys$'
 )
 
@@ -188,12 +186,7 @@ rm "$output"
 <h2 id="org1f6e440">Emacs</h2>
 <div class="outline-text-2" id="text-org1f6e440">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(require 'package)
-
-(package-initialize)
-
-(setq package-selected-packages '(magit vertico orderless embark consult embark-consult modus-themes)
-      global-auto-revert-non-file-buffers t
+<pre class="src src-emacs-lisp">(setq global-auto-revert-non-file-buffers t
       gc-cons-threshold (* 64 1024 1024)
       use-short-answers t
       backup-inhibited t
@@ -204,22 +197,23 @@ rm "$output"
       initial-scratch-message nil
       column-number-mode t
       sentence-end-double-space nil
-      require-final-newline t)
+      require-final-newline t
+      uniquify-buffer-name-style 'forward)
 
 (setq-default fill-column 80
               indent-tabs-mode nil)
 
-(add-to-list 'initial-frame-alist '(fullscreen . maximized))
-(pixel-scroll-precision-mode)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (blink-cursor-mode -1)
-(set-face-attribute 'default nil :family "JetBrains Mono" :foundry "JB" :slant 'normal :weight 'medium :height 120 :width 'normal)
 (global-auto-revert-mode t)
 (delete-selection-mode t)
-(add-hook 'before-save-hook #'delete-trailing-whitespace)
 (show-paren-mode t)
+(pixel-scroll-precision-mode t)
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))
+(add-hook 'before-save-hook #'delete-trailing-whitespace)
+(set-face-attribute 'default nil :family "JetBrains Mono" :foundry "JB" :slant 'normal :weight 'medium :height 120 :width 'normal)
 
 (defun fw/split-window-vertically ()
   "Split the selected window into two vertical windows."
