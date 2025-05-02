@@ -78,7 +78,6 @@ directories=(
 
 includes=(
     '!\~$'
-    '!authorized_keys$'
 )
 
 chunkyard store --directory "${directories[@]}" --include "${includes[@]}" --repository ~/.chunkyard --password 'Libsecret' "$@"
