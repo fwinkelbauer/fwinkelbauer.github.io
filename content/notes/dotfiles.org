@@ -203,20 +203,19 @@ rm "$output"
         '(("." "Overview"
            ((agenda ""
                     ((org-agenda-overriding-header "Kalender\n")
-                     (org-agenda-prefix-format " %-11c%?-12t")
+                     (org-agenda-prefix-format " %-13c%?-6t")
                      (org-agenda-time-grid '((daily today require-timed)
                                              (800 1000 1200 1400 1600 1800 2000)
-                                             " ....."
-                                             "----------------"))
+                                             ""
+                                             ""))
+                     (org-agenda-current-time-string "<<<<<<<<<<<<<<<<")
                      (org-agenda-time-leading-zero t)
                      (org-agenda-show-future-repeats nil)
-                     (org-agenda-current-time-string "<<<<<<<<<<<<<<<<")
-                     (org-agenda-scheduled-leaders '("" ""))
                      (org-agenda-skip-deadline-prewarning-if-scheduled t)))
             (todo "*"
                   ((org-agenda-overriding-header "\nSonstiges\n")
                    (org-agenda-block-separator nil)
-                   (org-agenda-prefix-format "%-11c%?-12t")
+                   (org-agenda-prefix-format " %-13c%?-6t")
                    (org-agenda-sorting-strategy '(todo-state-up))
                    (org-agenda-todo-ignore-deadlines 'all)
                    (org-agenda-todo-ignore-scheduled 'all)))))))
