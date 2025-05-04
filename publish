@@ -2,10 +2,14 @@
 
 script=$(readlink -f "${BASH_SOURCE[0]}")
 directory=$(dirname "$script")
-cd "$directory"
+artifacts="artifacts/"
 
-rm -rf artifacts/
+cd "$directory"
+rm -rf "$artifacts"
 git worktree prune
-git worktree add --no-checkout -B gh-pages artifacts/ origin/gh-pages
-git -C artifacts/ restore --staged .
+git worktree add --no-checkout -B gh-pages "$artifacts" origin/gh-pages
+git -C "$artifacts" restore --staged .
 emacs -Q --script publish.el
+
+cd "$artifacts"
+git commit -am '.'
