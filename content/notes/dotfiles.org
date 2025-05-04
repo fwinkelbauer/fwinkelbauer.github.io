@@ -327,8 +327,7 @@ rm "$output"
            ("SPC" . rectangle-mark-mode)
            ("t" . string-rectangle)
            ("d" . delete-rectangle)
-           ("?" . count-words-region)
-           ("DEL" . save-buffers-kill-terminal))
+           ("?" . count-words-region))
 
 (bind-keys :prefix "<menu> g"
            :prefix-map fw/project-map
