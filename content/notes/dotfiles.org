@@ -6,7 +6,7 @@ This is my setup script for Linux Mint 22.1:
 
 #+begin_src sh
 sudo apt update
-sudo apt install -y emacs git homebank keepassxc fonts-jetbrains-mono
+sudo apt install -y emacs fonts-jetbrains-mono git homebank keepassxc
 
 sudo locale-gen 'de_DE.UTF-8'
 
