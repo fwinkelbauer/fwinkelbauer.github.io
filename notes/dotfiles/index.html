@@ -26,7 +26,7 @@ This is my setup script for Linux Mint 22.1:
 
 <div class="org-src-container">
 <pre class="src src-sh">sudo apt update
-sudo apt install -y emacs git homebank keepassxc fonts-jetbrains-mono
+sudo apt install -y emacs fonts-jetbrains-mono git homebank keepassxc
 
 sudo locale-gen 'de_DE.UTF-8'
 
@@ -249,19 +249,20 @@ rm "$output"
         '(("." "Overview"
            ((agenda ""
                     ((org-agenda-overriding-header "Kalender\n")
-                     (org-agenda-prefix-format " %-13c%?-6t")
                      (org-agenda-time-grid '((daily today require-timed)
                                              (800 1000 1200 1400 1600 1800 2000)
                                              ""
                                              ""))
                      (org-agenda-current-time-string "&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;")
+                     (org-agenda-timerange-leaders '("" ""))
+                     (org-agenda-scheduled-leaders '("Geplant:   " "Verscho:   "))
+                     (org-agenda-deadline-leaders '("Frist:     " "Bald:      " "Verpasst:  "))
                      (org-agenda-time-leading-zero t)
                      (org-agenda-show-future-repeats nil)
                      (org-agenda-skip-deadline-prewarning-if-scheduled t)))
             (todo "*"
                   ((org-agenda-overriding-header "\nSonstiges\n")
                    (org-agenda-block-separator nil)
-                   (org-agenda-prefix-format " %-13c%?-6t")
                    (org-agenda-sorting-strategy '(todo-state-up))
                    (org-agenda-todo-ignore-deadlines 'all)
                    (org-agenda-todo-ignore-scheduled 'all)))))))
