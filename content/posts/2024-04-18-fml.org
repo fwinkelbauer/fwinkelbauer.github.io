@@ -145,7 +145,7 @@ also interesting challenge.
 
 Have a great Monday!
 
-Ever wondered what Frameworks (e.g. Object Relational Mappers) and Cake Mixes
+Ever wondered what Frameworks (e.g. object relational mappers) and cake mixes
 have in common? In her lightning talk (<10min) [[https://vimeo.com/28885655][Christin Gorman]] argues that they
 are beneath our dignity. It's a fun watch.
 
@@ -160,8 +160,8 @@ Here's a handy page to help you get out of your most recent [[https://ohshitgit.
 'member Napster? 'member KaZaA and others?
 
 Back then I always thought that random people would upload their music to those
-platforms, but it turns out that most stolen long-term borrowed music was
-uploaded by a few individuals. The book [[https://www.goodreads.com/book/show/23398715-how-music-got-free][How music got free]] tells that story.
+platforms, but it turns out that most pirated music was uploaded by a few
+individuals. The book [[https://www.goodreads.com/book/show/23398715-how-music-got-free][How music got free]] tells that story.
 
 * FML #11
 
