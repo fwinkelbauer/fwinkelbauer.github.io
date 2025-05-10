@@ -59,12 +59,6 @@ emacs -Q --batch -l org --eval '(org-babel-tangle-file "~/Projects/website/conte
 
 * Chunkyard
 
-A utility script to access my backup:
-
-#+begin_src sh :shebang "#!/bin/bash -eu" :tangle "~/.local/bin/my-backup"
-chunkyard "$@" --repository ~/.chunkyard --password 'Libsecret'
-#+end_src
-
 Create new backup:
 
 #+begin_src sh :shebang "#!/bin/bash -eu" :tangle "~/.local/bin/my-store"
