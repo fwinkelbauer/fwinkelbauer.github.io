@@ -22,7 +22,7 @@ emacs -Q --batch -l org --eval '(org-babel-tangle-file "~/Projects/website/conte
 [user]
   email = mail@florianwinkelbauer.com
   name = Florian Winkelbauer
-  signingKey = ~/.ssh/git-commit.ed25519.pub
+  signingKey = key::ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGNtvxcmXUsGJJ152xMSHJdro/P41CIYtfwFUOXYbQlS git-commits
 
 [gpg]
   format = ssh
@@ -63,7 +63,6 @@ Create new backup:
 
 #+begin_src sh :shebang "#!/bin/bash -eu" :tangle "~/.local/bin/my-store"
 directories=(
-    ~/.ssh
     ~/Documents
     ~/Music
     ~/Pictures
@@ -81,9 +80,6 @@ Restore the latest backup:
 
 #+begin_src sh :shebang "#!/bin/bash -eu" :tangle "~/.local/bin/my-restore"
 chunkyard restore --repository ~/.chunkyard --directory ~/ --password 'Libsecret' "$@"
-
-chmod 700 ~/.ssh
-chmod 600 ~/.ssh/*
 #+end_src
 
 Copy local backup data from/to external devices:
