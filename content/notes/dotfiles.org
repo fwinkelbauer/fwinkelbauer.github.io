@@ -154,7 +154,7 @@ rm "$output"
 (show-paren-mode t)
 (pixel-scroll-precision-mode t)
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
-(add-hook 'before-save-hook #'delete-trailing-whitespace)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 (set-face-attribute 'default nil :family "JetBrains Mono" :foundry "JB" :slant 'normal :weight 'medium :height 120 :width 'normal)
 
 (defun fw/split-window-vertically ()
@@ -258,7 +258,7 @@ rm "$output"
   :ensure t
   :config
   (vertico-mode)
-  (keymap-set vertico-map "DEL" #'vertico-directory-delete-char))
+  (keymap-set vertico-map "DEL" 'vertico-directory-delete-char))
 
 (use-package orderless
   :ensure t
@@ -269,7 +269,7 @@ rm "$output"
 (use-package embark
   :ensure t
   :custom
-  (prefix-help-command #'embark-prefix-help-command))
+  (prefix-help-command 'embark-prefix-help-command))
 
 (use-package consult
   :ensure t
