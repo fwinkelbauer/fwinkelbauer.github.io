@@ -167,11 +167,12 @@ done
   (setq org-directory "~/Documents/org/"
         org-default-notes-file (concat org-directory "inbox.org")
         org-agenda-files (list org-directory)
-        org-edit-src-content-indentation 0)
+        org-edit-src-content-indentation 0
+        fw/org-default-diary-file (concat org-directory "diary.org"))
 
   (setq org-capture-bookmark nil
-        org-capture-templates '(("i" "Inbox" entry (file org-default-notes-file)
-                                 "* %?" :empty-lines-before 1)))
+        org-capture-templates '(("i" "Inbox" entry (file org-default-notes-file) "* %?" :empty-lines-before 1)
+                                ("a" "Diary" entry (file fw/org-default-diary-file) "* %?\n%u" :empty-lines-before 1)))
 
   (setq org-agenda-custom-commands
         '(("." "Overview"
@@ -224,6 +225,11 @@ done
     "Opens my `org-capture' inbox template."
     (interactive)
     (org-capture nil "i"))
+
+  (defun fw/org-capture-diary ()
+    "Opens my `org-capture' diary template."
+    (interactive)
+    (org-capture nil "a"))
 
   (defun fw/org-overview ()
     "Show my inbox and custom org-agenda."
@@ -316,6 +322,7 @@ done
            :prefix-map fw/org-map
            ("c" . fw/org-overview)
            ("i" . fw/org-capture-inbox)
+           ("a" . fw/org-capture-diary)
            ("l" . org-insert-link)
            ("t" . org-todo)
            ("s" . org-schedule)
