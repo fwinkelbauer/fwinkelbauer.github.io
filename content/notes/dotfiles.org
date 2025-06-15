@@ -110,21 +110,6 @@ for remote in "${remotes[@]}"; do
 done
 #+end_src
 
-* Homebank
-
-A script to turn my bank statements into csv files that I can import into
-Homebank:
-
-#+begin_src sh :shebang "#!/bin/bash -eu" :tangle "~/.local/bin/my-homebank"
-input=$(find ~/Downloads -name 'meinElba*.csv')
-output=~/Downloads/homebank.csv
-
-awk '{ FS=";"; gsub("\"", ""); print $1 ";8;;;" $2 ";" $4 ";;" }' "$input" > "$output"
-rm "$input"
-read -rp "Press Enter to delete $output: "
-rm "$output"
-#+end_src
-
 * Emacs
 
 #+begin_src emacs-lisp :tangle "~/.config/emacs/init.el"
