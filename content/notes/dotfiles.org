@@ -142,18 +142,6 @@ done
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (set-face-attribute 'default nil :family "JetBrains Mono" :foundry "JB" :slant 'normal :weight 'medium :height 120 :width 'normal)
 
-(defun fw/split-window-vertically ()
-  "Split the selected window into two vertical windows."
-  (interactive)
-  (split-window-vertically)
-  (other-window 1))
-
-(defun fw/split-window-horizontally ()
-  "Split the selected window into two horizontal windows."
-  (interactive)
-  (split-window-horizontally)
-  (other-window 1))
-
 (use-package dired
   :hook (dired-mode . dired-hide-details-mode)
   :custom
@@ -163,6 +151,8 @@ done
 
 (use-package org
   :hook (org-mode . (lambda () (electric-indent-local-mode -1)))
+  :bind (("C-c c" . fw/org-overview)
+         ("C-c i" . org-capture))
   :config
   (setq org-directory "~/Documents/org/"
         org-default-notes-file (concat org-directory "inbox.org")
@@ -172,7 +162,7 @@ done
 
   (setq org-capture-bookmark nil
         org-capture-templates '(("i" "Inbox" entry (file org-default-notes-file) "* %?" :empty-lines-before 1)
-                                ("a" "Diary" entry (file fw/org-default-diary-file) "* %?\n%u" :empty-lines-before 1)))
+                                ("d" "Diary" entry (file fw/org-default-diary-file) "* %?\n%u" :empty-lines-before 1)))
 
   (setq org-agenda-custom-commands
         '(("." "Overview"
@@ -221,16 +211,6 @@ done
                             (holiday-fixed 12 26 "Zweiter Weihnachtstag (frei)"))
         parse-time-weekdays '(("so" . 0) ("mo" . 1) ("di" . 2) ("mi" . 3) ("do" . 4) ("fr" . 5) ("sa" . 6)))
 
-  (defun fw/org-capture-inbox ()
-    "Opens my `org-capture' inbox template."
-    (interactive)
-    (org-capture nil "i"))
-
-  (defun fw/org-capture-diary ()
-    "Opens my `org-capture' diary template."
-    (interactive)
-    (org-capture nil "a"))
-
   (defun fw/org-overview ()
     "Show my inbox and custom org-agenda."
     (interactive)
@@ -259,11 +239,18 @@ done
 
 (use-package embark
   :ensure t
+  :bind (("C-." . embark-act))
   :custom
   (prefix-help-command 'embark-prefix-help-command))
 
 (use-package consult
   :ensure t
+  :bind (("C-x f" . find-file)
+         ("C-x b" . consult-buffer)
+         ("C-x k" . kill-current-buffer)
+         ("C-c s" . consult-line)
+         ("C-c f" . fw/find-file)
+         ("C-c g" . fw/grep))
   :config
   (defun fw/find-file ()
     "Find files in current project or directory."
@@ -287,50 +274,5 @@ done
   :config
   (load-theme 'modus-operandi-tinted t))
 
-(bind-keys :prefix "<menu>"
-           :prefix-map fw/main-map
-           ("RET" . embark-act)
-           ("w" . save-buffer)
-           ("f" . find-file)
-           ("s" . consult-line)
-           ("q" . query-replace)
-           ("l" . consult-goto-line)
-           ("k" . kill-current-buffer)
-           ("b" . consult-buffer)
-           ("h" . mark-whole-buffer)
-           ("0" . delete-window)
-           ("1" . delete-other-windows)
-           ("2" . fw/split-window-vertically)
-           ("3" . fw/split-window-horizontally)
-           ("o" . other-window)
-           ("." . highlight-symbol-at-point)
-           ("r" . highlight-regexp)
-           ("u" . unhighlight-regexp)
-           ("SPC" . rectangle-mark-mode)
-           ("t" . string-rectangle)
-           ("d" . delete-rectangle)
-           ("?" . count-words-region))
-
-(bind-keys :prefix "<menu> g"
-           :prefix-map fw/project-map
-           ("f" . fw/find-file)
-           ("s" . fw/grep)
-           ("d" . magit-file-dispatch)
-           ("g" . magit-status))
-
-(bind-keys :prefix "<menu> c"
-           :prefix-map fw/org-map
-           ("c" . fw/org-overview)
-           ("i" . fw/org-capture-inbox)
-           ("a" . fw/org-capture-diary)
-           ("l" . org-insert-link)
-           ("t" . org-todo)
-           ("s" . org-schedule)
-           ("d" . org-deadline)
-           ("." . org-time-stamp)
-           (":" . org-time-stamp-inactive)
-           ("m" . org-insert-structure-template)
-           ("b" . org-babel-tangle))
-
-(bind-key* "C-z" 'undo)
+(bind-key "C-z" 'undo)
 #+end_src
