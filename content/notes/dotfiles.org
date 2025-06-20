@@ -57,7 +57,7 @@ emacs -Q --batch -l org --eval '(org-babel-tangle-file "~/Projects/website/conte
   insteadOf = "https://github.com/fwinkelbauer/"
 #+end_src
 
-* Chunkyard
+* Bash
 
 Create new backup:
 
@@ -108,6 +108,46 @@ for remote in "${remotes[@]}"; do
     chunkyard copy --repository "$local" --destination "$remote" --password 'Libsecret' --last 20 "$@"
     chunkyard copy --repository "$remote" --destination "$local" --password 'Libsecret' --last 20 "$@"
 done
+#+end_src
+
+Manipulate files based on some rules:
+
+#+begin_src sh :shebang "#!/bin/bash -eu" :tangle "~/.local/bin/my-curator"
+remove_file ()  {
+    rm -f "$1"
+    echo "Removed $1"
+}
+
+to_archive () {
+    archive=~/Documents/archive
+    year=$(date -r "$1" '+%Y')
+    date=$(date -r "$1" '+%Y-%m-%d')
+    dir="$archive/$year"
+    base=$(basename "$1")
+    output="$dir/$date-$2.${base##*.}"
+    mkdir -p "$dir"
+    mv "$1" "$output"
+    echo "Archived $output"
+}
+
+to_homebank () {
+    input=$(find ~/Downloads -name "$1")
+    if [ -f "$input" ]; then
+        dir=~/Downloads
+        output="$dir/$2.qif"
+        awk -v acc="$2" '{ print "!Account\nN" acc "\n^\n!Type:Bank"; FS=";"; sub(/^\xef\xbb\xbf/, ""); gsub("\"", ""); print "D" $1 "\nM" $2 "\nT" $4 "\n^" }' "$input" > "$output"
+        rm -f "$input"
+        echo "Created $output"
+    fi
+}
+
+export -f remove_file
+export -f to_archive
+
+find ~/Downloads -name '*.qif' -exec bash -c 'remove_file "$0"' {} \;
+find ~/Downloads -name 'Lohnsets*' -exec bash -c 'to_archive "$0" "Intact-Lohn"' {} \;
+to_homebank 'meinElba*1_suche.csv' 'Girokonto'
+to_homebank 'meinElba*7_suche.csv' 'Sparbuch'
 #+end_src
 
 * Emacs
