@@ -44,7 +44,7 @@ emacs -Q --batch -l org --eval '(org-babel-tangle-file "~/Projects/website/conte
 <pre class="src src-conf">[user]
   email = mail@florianwinkelbauer.com
   name = Florian Winkelbauer
-  signingKey = ~/.ssh/git-commit.ed25519.pub
+  signingKey = key::ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGNtvxcmXUsGJJ152xMSHJdro/P41CIYtfwFUOXYbQlS git-commits
 
 [gpg]
   format = ssh
@@ -86,21 +86,11 @@ emacs -Q --batch -l org --eval '(org-babel-tangle-file "~/Projects/website/conte
 <h2 id="orga1ddc48">Chunkyard</h2>
 <div class="outline-text-2" id="text-orga1ddc48">
 <p>
-A utility script to access my backup:
-</p>
-
-<div class="org-src-container">
-<pre class="src src-sh">chunkyard "$@" --repository ~/.chunkyard --password 'Libsecret'
-</pre>
-</div>
-
-<p>
 Create new backup:
 </p>
 
 <div class="org-src-container">
 <pre class="src src-sh">directories=(
-    ~/.ssh
     ~/Documents
     ~/Music
     ~/Pictures
@@ -121,9 +111,6 @@ Restore the latest backup:
 
 <div class="org-src-container">
 <pre class="src src-sh">chunkyard restore --repository ~/.chunkyard --directory ~/ --password 'Libsecret' "$@"
-
-chmod 700 ~/.ssh
-chmod 600 ~/.ssh/*
 </pre>
 </div>
 
@@ -160,27 +147,6 @@ done
 </div>
 </div>
 
-<div id="outline-container-org2bd4739" class="outline-2">
-<h2 id="org2bd4739">Homebank</h2>
-<div class="outline-text-2" id="text-org2bd4739">
-<p>
-A script to turn my bank statements into csv files that I can import into
-Homebank:
-</p>
-
-<div class="org-src-container">
-<pre class="src src-sh">input=$(find ~/Downloads -name 'meinElba*.csv')
-output=~/Downloads/homebank.csv
-
-awk '{ FS=";"; gsub("\"", ""); print $1 ";8;;;" $2 ";" $4 ";;" }' "$input" &gt; "$output"
-rm "$input"
-read -rp "Press Enter to delete $output: "
-rm "$output"
-</pre>
-</div>
-</div>
-</div>
-
 <div id="outline-container-org1f6e440" class="outline-2">
 <h2 id="org1f6e440">Emacs</h2>
 <div class="outline-text-2" id="text-org1f6e440">
@@ -211,20 +177,8 @@ rm "$output"
 (show-paren-mode t)
 (pixel-scroll-precision-mode t)
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
-(add-hook 'before-save-hook #'delete-trailing-whitespace)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 (set-face-attribute 'default nil :family "JetBrains Mono" :foundry "JB" :slant 'normal :weight 'medium :height 120 :width 'normal)
-
-(defun fw/split-window-vertically ()
-  "Split the selected window into two vertical windows."
-  (interactive)
-  (split-window-vertically)
-  (other-window 1))
-
-(defun fw/split-window-horizontally ()
-  "Split the selected window into two horizontal windows."
-  (interactive)
-  (split-window-horizontally)
-  (other-window 1))
 
 (use-package dired
   :hook (dired-mode . dired-hide-details-mode)
@@ -235,15 +189,18 @@ rm "$output"
 
 (use-package org
   :hook (org-mode . (lambda () (electric-indent-local-mode -1)))
+  :bind (("C-c c" . fw/org-overview)
+         ("C-c i" . org-capture))
   :config
   (setq org-directory "~/Documents/org/"
         org-default-notes-file (concat org-directory "inbox.org")
         org-agenda-files (list org-directory)
-        org-edit-src-content-indentation 0)
+        org-edit-src-content-indentation 0
+        fw/org-default-diary-file (concat org-directory "diary.org"))
 
   (setq org-capture-bookmark nil
-        org-capture-templates '(("i" "Inbox" entry (file org-default-notes-file)
-                                 "* %?" :empty-lines-before 1)))
+        org-capture-templates '(("i" "Inbox" entry (file org-default-notes-file) "* %?" :empty-lines-before 1)
+                                ("d" "Diary" entry (file fw/org-default-diary-file) "* %?\n%u" :empty-lines-before 1)))
 
   (setq org-agenda-custom-commands
         '(("." "Overview"
@@ -292,11 +249,6 @@ rm "$output"
                             (holiday-fixed 12 26 "Zweiter Weihnachtstag (frei)"))
         parse-time-weekdays '(("so" . 0) ("mo" . 1) ("di" . 2) ("mi" . 3) ("do" . 4) ("fr" . 5) ("sa" . 6)))
 
-  (defun fw/org-capture-inbox ()
-    "Opens my `org-capture' inbox template."
-    (interactive)
-    (org-capture nil "i"))
-
   (defun fw/org-overview ()
     "Show my inbox and custom org-agenda."
     (interactive)
@@ -315,7 +267,7 @@ rm "$output"
   :ensure t
   :config
   (vertico-mode)
-  (keymap-set vertico-map "DEL" #'vertico-directory-delete-char))
+  (keymap-set vertico-map "DEL" 'vertico-directory-delete-char))
 
 (use-package orderless
   :ensure t
@@ -325,11 +277,18 @@ rm "$output"
 
 (use-package embark
   :ensure t
+  :bind (("C-." . embark-act))
   :custom
-  (prefix-help-command #'embark-prefix-help-command))
+  (prefix-help-command 'embark-prefix-help-command))
 
 (use-package consult
   :ensure t
+  :bind (("C-x f" . find-file)
+         ("C-x b" . consult-buffer)
+         ("C-x k" . kill-current-buffer)
+         ("C-c s" . consult-line)
+         ("C-c f" . fw/find-file)
+         ("C-c g" . fw/grep))
   :config
   (defun fw/find-file ()
     "Find files in current project or directory."
@@ -353,51 +312,7 @@ rm "$output"
   :config
   (load-theme 'modus-operandi-tinted t))
 
-(bind-keys :prefix "&lt;menu&gt;"
-           :prefix-map fw/main-map
-           ("RET" . embark-act)
-           ("w" . save-buffer)
-           ("f" . find-file)
-           ("s" . consult-line)
-           ("q" . query-replace)
-           ("l" . consult-goto-line)
-           ("k" . kill-current-buffer)
-           ("b" . consult-buffer)
-           ("h" . mark-whole-buffer)
-           ("0" . delete-window)
-           ("1" . delete-other-windows)
-           ("2" . fw/split-window-vertically)
-           ("3" . fw/split-window-horizontally)
-           ("o" . other-window)
-           ("." . highlight-symbol-at-point)
-           ("r" . highlight-regexp)
-           ("u" . unhighlight-regexp)
-           ("SPC" . rectangle-mark-mode)
-           ("t" . string-rectangle)
-           ("d" . delete-rectangle)
-           ("?" . count-words-region))
-
-(bind-keys :prefix "&lt;menu&gt; g"
-           :prefix-map fw/project-map
-           ("f" . fw/find-file)
-           ("s" . fw/grep)
-           ("d" . magit-file-dispatch)
-           ("g" . magit-status))
-
-(bind-keys :prefix "&lt;menu&gt; c"
-           :prefix-map fw/org-map
-           ("c" . fw/org-overview)
-           ("i" . fw/org-capture-inbox)
-           ("l" . org-insert-link)
-           ("t" . org-todo)
-           ("s" . org-schedule)
-           ("d" . org-deadline)
-           ("." . org-time-stamp)
-           (":" . org-time-stamp-inactive)
-           ("m" . org-insert-structure-template)
-           ("b" . org-babel-tangle))
-
-(bind-key* "C-z" 'undo)
+(bind-key "C-z" 'undo)
 </pre>
 </div>
 </div>
