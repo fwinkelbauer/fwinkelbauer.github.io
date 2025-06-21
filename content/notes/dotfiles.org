@@ -181,6 +181,7 @@ to_homebank 'meinElba*7_suche.csv' 'Sparbuch'
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (set-face-attribute 'default nil :family "JetBrains Mono" :foundry "JB" :slant 'normal :weight 'medium :height 120 :width 'normal)
+(set-locale-environment "de_DE.UTF-8")
 
 (use-package dired
   :hook (dired-mode . dired-hide-details-mode)
