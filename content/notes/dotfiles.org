@@ -183,6 +183,8 @@ to_homebank 'meinElba*7_suche.csv' 'Sparbuch'
 (set-face-attribute 'default nil :family "JetBrains Mono" :foundry "JB" :slant 'normal :weight 'medium :height 120 :width 'normal)
 (set-locale-environment "de_DE.UTF-8")
 
+(bind-key "C-z" 'undo)
+
 (use-package dired
   :hook (dired-mode . dired-hide-details-mode)
   :custom
@@ -278,12 +280,6 @@ to_homebank 'meinElba*7_suche.csv' 'Sparbuch'
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles partial-completion)))))
 
-(use-package embark
-  :ensure t
-  :bind (("C-." . embark-act))
-  :custom
-  (prefix-help-command 'embark-prefix-help-command))
-
 (use-package consult
   :ensure t
   :bind (("C-x f" . find-file)
@@ -307,6 +303,12 @@ to_homebank 'meinElba*7_suche.csv' 'Sparbuch'
         (consult-git-grep)
       (consult-grep))))
 
+(use-package embark
+  :ensure t
+  :bind (("C-." . embark-act))
+  :custom
+  (prefix-help-command 'embark-prefix-help-command))
+
 (use-package embark-consult
   :ensure t)
 
@@ -314,6 +316,4 @@ to_homebank 'meinElba*7_suche.csv' 'Sparbuch'
   :ensure t
   :config
   (load-theme 'modus-operandi-tinted t))
-
-(bind-key "C-z" 'undo)
 #+end_src
