@@ -183,8 +183,6 @@ to_homebank 'meinElba*7_suche.csv' 'Sparbuch'
 (set-face-attribute 'default nil :family "JetBrains Mono" :foundry "JB" :slant 'normal :weight 'medium :height 120 :width 'normal)
 (set-locale-environment "de_DE.UTF-8")
 
-(bind-key "C-z" 'undo)
-
 (use-package dired
   :hook (dired-mode . dired-hide-details-mode)
   :custom
@@ -287,7 +285,8 @@ to_homebank 'meinElba*7_suche.csv' 'Sparbuch'
          ("C-x k" . kill-current-buffer)
          ("C-c s" . consult-line)
          ("C-c f" . fw/find-file)
-         ("C-c g" . fw/grep))
+         ("C-c g" . fw/grep)
+         ("C-z" . undo))
   :config
   (defun fw/find-file ()
     "Find files in current project or directory."
