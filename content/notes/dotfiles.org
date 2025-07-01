@@ -74,11 +74,15 @@ includes=(
 )
 
 chunkyard store --directory "${directories[@]}" --include "${includes[@]}" --repository ~/.chunkyard --password 'Libsecret' "$@"
+
+my-copy
 #+end_src
 
 Restore the latest backup:
 
 #+begin_src sh :shebang "#!/bin/bash -eu" :tangle "~/.local/bin/my-restore"
+my-copy
+
 chunkyard restore --repository ~/.chunkyard --directory ~/ --password 'Libsecret' "$@"
 #+end_src
 
@@ -146,6 +150,7 @@ export -f to_archive
 
 find ~/Downloads -name '*.qif' -exec bash -c 'remove_file "$0"' {} \;
 find ~/Downloads -name 'Lohnsets*' -exec bash -c 'to_archive "$0" "Intact-Lohn"' {} \;
+find ~/Downloads -name 'Rechnung_38*.1_*.pdf' -exec bash -c 'to_archive "$0" "A1-Rechnung"' {} \;
 to_homebank 'meinElba*1_suche.csv' 'Girokonto'
 to_homebank 'meinElba*7_suche.csv' 'Sparbuch'
 #+end_src
