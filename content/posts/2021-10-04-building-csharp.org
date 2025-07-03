@@ -15,7 +15,7 @@ which deals with all my build tasks? The advantages are rather nice:
   process
 - I can install and use NuGet packages (e.g. [[https://github.com/commandlineparser/commandline][commandlineparser]] to create CLIs)
 
-[[https://github.com/fwinkelbauer/chunkyard/blob/3d2b94035931c3852882a2dc00dde3e58e63bbfc/build/Chunkyard.Build/Cli/Commands.cs][Here's an example]] of a class which contains all command line interface verbs
+Here is an [[https://github.com/fwinkelbauer/chunkyard/blob/3d2b94035931c3852882a2dc00dde3e58e63bbfc/build/Chunkyard.Build/Cli/Commands.cs][example]] of a class which contains all command line interface verbs
 such as ~clean~, ~build~, or ~test~. Most of the methods found in this class
 simply call the ~git~ or the ~dotnet~ CLI with parameters. You can run the tool
 using ~dotnet run~:

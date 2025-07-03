@@ -45,4 +45,4 @@ private static void Git(params string[] arguments)
 }
 #+end_src
 
-You can find the code [[https://github.com/fwinkelbauer/chunkyard/blob/8c3c58efabb351296d46e6eab35c611d35a1a3ce/src/Chunkyard.Build/Commands.cs][here]].
+You can find the code in this [[https://github.com/fwinkelbauer/chunkyard/blob/8c3c58efabb351296d46e6eab35c611d35a1a3ce/src/Chunkyard.Build/Commands.cs][repository]].

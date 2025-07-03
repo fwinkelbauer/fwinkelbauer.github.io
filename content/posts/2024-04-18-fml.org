@@ -15,8 +15,11 @@ Well, good news! [[https://store.steampowered.com/app/1349230/5D_Chess_With_Mult
 explain git. Be the star at any party while explaining concepts such as non-fast
 forward merges, cherry-picks, rebases or more advanced commands like git rerere.
 
-And for the people who crave more, [[https://www.youtube.com/watch?v=M75aENmuzmo][here]] and [[https://www.youtube.com/watch?v=WtUCZYyv-_w][here]] are two videos about more fancy
-git features.
+And for the people who crave more, here are two more videos about more fancy git
+features:
+
+- [[https://www.youtube.com/watch?v=WtUCZYyv-_w][Git Hidden Gems (Enrico Campidoglio)]]
+- [[https://www.youtube.com/watch?v=M75aENmuzmo][Jedi Mind Tricks for Git (Johan Abildskov & Jan Krag)]]
 
 My personal favorites include:
 
