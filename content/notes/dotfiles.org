@@ -114,43 +114,42 @@ for remote in "${remotes[@]}"; do
 done
 #+end_src
 
+Move files to an archive:
+
+#+begin_src sh :shebang "#!/bin/bash -eu" :tangle "~/.local/bin/my-archive"
+file="$1"
+name="$2"
+
+archive=~/Documents/archive
+year=$(date -r "$file" '+%Y')
+date=$(date -r "$file" '+%Y-%m-%d')
+dir="$archive/$year"
+base=$(basename "$file")
+output="$dir/$date-$name.${base##*.}"
+mkdir -p "$dir"
+mv "$file" "$output"
+echo "Archived $output"
+#+end_src
+
 Manipulate files based on some rules:
 
 #+begin_src sh :shebang "#!/bin/bash -eu" :tangle "~/.local/bin/my-curator"
-remove_file ()  {
-    rm -f "$1"
-    echo "Removed $1"
-}
-
-to_archive () {
-    archive=~/Documents/archive
-    year=$(date -r "$1" '+%Y')
-    date=$(date -r "$1" '+%Y-%m-%d')
-    dir="$archive/$year"
-    base=$(basename "$1")
-    output="$dir/$date-$2.${base##*.}"
-    mkdir -p "$dir"
-    mv "$1" "$output"
-    echo "Archived $output"
-}
-
 to_homebank () {
-    input=$(find ~/Downloads -name "$1")
+    pattern="$1"
+    account="$2"
+    input=$(find ~/Downloads -name "$pattern")
     if [ -f "$input" ]; then
         dir=~/Downloads
-        output="$dir/$2.qif"
-        awk -v acc="$2" '{ print "!Account\nN" acc "\n^\n!Type:Bank"; FS=";"; sub(/^\xef\xbb\xbf/, ""); gsub("\"", ""); print "D" $1 "\nM" $2 "\nT" $4 "\n^" }' "$input" > "$output"
+        output="$dir/$account.qif"
+        awk -v acc="$account" '{ print "!Account\nN" acc "\n^\n!Type:Bank"; FS=";"; sub(/^\xef\xbb\xbf/, ""); gsub("\"", ""); print "D" $1 "\nM" $2 "\nT" $4 "\n^" }' "$input" > "$output"
         rm -f "$input"
         echo "Created $output"
     fi
 }
 
-export -f remove_file
-export -f to_archive
-
-find ~/Downloads -name '*.qif' -exec bash -c 'remove_file "$0"' {} \;
-find ~/Downloads -name 'Lohnsets*' -exec bash -c 'to_archive "$0" "Intact-Lohn"' {} \;
-find ~/Downloads -name 'Rechnung_38*.1_*.pdf' -exec bash -c 'to_archive "$0" "A1-Rechnung"' {} \;
+find ~/Downloads -name '*.qif' -exec rm -f {} \;
+find ~/Downloads -name 'Lohnsets*' -exec my-archive {} 'Intact-Lohn' \;
+find ~/Downloads -name 'Rechnung_38*.1_*.pdf' -exec my-archive {} 'A1-Rechnung' \;
 to_homebank 'meinElba*1_suche.csv' 'Girokonto'
 to_homebank 'meinElba*7_suche.csv' 'Sparbuch'
 #+end_src
