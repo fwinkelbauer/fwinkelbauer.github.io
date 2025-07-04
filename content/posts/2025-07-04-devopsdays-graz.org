@@ -1,5 +1,6 @@
 #+TITLE: DevOpsDays Graz 2025
 #+DATE: [2025-07-04]
 
-I'll be doing a workshop at [[https://www.devopsdays.at/events/devopsdays-graz-2025][DevOpsDays Graz]] about what makes learning how to
-write automated tests difficult. I'm looking forward to the conference!
+I'm going to do a workshop at [[https://www.devopsdays.at/events/devopsdays-graz-2025][DevOpsDays Graz]] about what makes learning how to
+write automated tests difficult. The workshop will walk you through an example
+code base which we will extend and redesign using tests.
