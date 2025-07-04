@@ -12,4 +12,5 @@ git -C "$artifacts" restore --staged .
 emacs -Q --script publish.el
 
 cd "$artifacts"
-git commit -am '.'
+git add -A
+git commit -m '.'
