@@ -1681,16 +1681,6 @@ https://www.youtube.com/watch?v=rdJXUN4YV_M
 - Use automation to augment what we do. Transform automation from a "bad
   colleague" to a collaborative team player
 
-* Automated Test Resources
-
-- https://testdesiderata.com/
-- https://blog.ploeh.dk/2022/10/17/stubs-and-mocks-break-encapsulation/
-- https://www.jamesshore.com/v2/projects/nullables/testing-without-mocks
-- https://www.youtube.com/watch?v=wEhu57pih5w&list=PLD0011D00849E1B79
-- https://www.youtube.com/watch?v=L9sXk0t8Iro
-- https://www.youtube.com/watch?v=vzr4HiQZhdY
-- https://www.youtube.com/watch?v=IN9lftH0cJc
-
 * Communicating in Types (Kris Jenkins)
 
 https://www.youtube.com/watch?v=SOz66dcsuT8
