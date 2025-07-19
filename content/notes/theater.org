@@ -15,4 +15,4 @@ Here's the full list:
 - Musical course 2014 ([[https://www.flickr.com/photos/126800534@N02/albums/72157646988529981][Photos]], [[https://vimeo.com/106218588][Video]])
 
 *Note:* The above Vimeo links will greet you with a "Video is not rated. Log in
-to watch" message, but you can still download all of the videos.
+to watch" message, but you can still download all of them.
