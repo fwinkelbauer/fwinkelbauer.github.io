@@ -151,6 +151,7 @@ to_homebank () {
 find ~/Downloads -name '*.qif' -exec rm -f {} \;
 find ~/Downloads -name 'Lohnsets*' -exec my-archive {} 'Intact-Lohn' \;
 find ~/Downloads -name 'Rechnung_38*.1_*.pdf' -exec my-archive {} 'A1-Rechnung' \;
+find ~/Downloads -name 'ZS*.pdf' -exec my-archive {} 'Leibnitzerfeld-Rechnung' \;
 to_homebank 'meinElba*1_suche.csv' 'Girokonto'
 to_homebank 'meinElba*7_suche.csv' 'Sparbuch'
 #+end_src
