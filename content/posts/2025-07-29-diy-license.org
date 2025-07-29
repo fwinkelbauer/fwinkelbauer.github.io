@@ -1,0 +1,36 @@
+#+TITLE: DIY License Management
+#+DATE: [2025-07-29]
+
+When it comes to software projects you should probably just grab your wallet and
+buy an off-the-shelf solution to track licenses across third party
+packages/dependencies. But that wouldn't be fun, right? Let's explore how
+license tracking works in .NET.
+
+The default package manager for C# is NuGet. Every package contains a ~*.nuspec~
+specification file which outlines information such as package name, version
+number, a summary and optional license information. We currently have three
+different properties to track this information:
+
+- ~<licenseUrl>~ (deprecated): Contains a URL to the license
+- ~<license type="file">~: A relative path to a license file that is part of the
+  package
+- ~<license type="expression">~: An [[https://spdx.dev/learn/handling-license-info/][SPDX license]] identifier
+
+Both ~<license type="...">~ tags also populate ~<licenseUrl>~, but based on the
+documentation this is only done to support older tooling, so let's try to ignore
+it. To fetch all license information we need to follow a workflow that looks
+something like this:
+
+- Find all NuGet packages that we use in our application
+  - You can use ~dotnet list package --format json~ to do this
+- Read the ~*.nuspec~ file for each package. Every installed package can also be
+  found in the local cache ~~/.nuget/packages~
+- If ~<license type="file">~ exists: Read the license
+- Else if ~<license type="expression">~ exists: Look up the SPDX identifier,
+  using a website like https://licenses.nuget.org
+  - Keep in mind that this tag supports license expressions/combinations, e.g.
+    https://licenses.nuget.org/MS-PL%20OR%20Apache-2.0
+- Else if ~<licenseUrl>~: Download the page
+  - This approach may or may not work reliably
+- Else: Fall back to manual research using your favourite search tool and track
+  the license yourself
