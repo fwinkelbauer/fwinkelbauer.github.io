@@ -100,7 +100,6 @@ remotes=(
 
 for remote in "${remotes[@]}"; do
     if ! [ -d "$remote" ]; then
-        echo "Missing: $remote"
         continue
     fi
 
