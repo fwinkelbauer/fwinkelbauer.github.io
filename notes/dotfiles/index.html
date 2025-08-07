@@ -26,7 +26,7 @@ This is my setup script for Linux Mint 22.1:
 
 <div class="org-src-container">
 <pre class="src src-sh">sudo apt update
-sudo apt install -y emacs fonts-jetbrains-mono git homebank keepassxc
+sudo apt install -y ripgrep fd-find fonts-jetbrains-mono git emacs homebank keepassxc
 
 sudo locale-gen 'de_DE.UTF-8'
 
@@ -134,7 +134,6 @@ remotes=(
 
 for remote in "${remotes[@]}"; do
     if ! [ -d "$remote" ]; then
-        echo "Missing: $remote"
         continue
     fi
 
@@ -191,6 +190,7 @@ Manipulate files based on some rules:
 find ~/Downloads -name '*.qif' -exec rm -f {} \;
 find ~/Downloads -name 'Lohnsets*' -exec my-archive {} 'Intact-Lohn' \;
 find ~/Downloads -name 'Rechnung_38*.1_*.pdf' -exec my-archive {} 'A1-Rechnung' \;
+find ~/Downloads -name 'ZS*.pdf' -exec my-archive {} 'Leibnitzerfeld-Rechnung' \;
 to_homebank 'meinElba*1_suche.csv' 'Girokonto'
 to_homebank 'meinElba*7_suche.csv' 'Sparbuch'
 </pre>
@@ -333,23 +333,10 @@ to_homebank 'meinElba*7_suche.csv' 'Sparbuch'
          ("C-x b" . consult-buffer)
          ("C-x k" . kill-current-buffer)
          ("C-c s" . consult-line)
-         ("C-c f" . fw/find-file)
-         ("C-c g" . fw/grep)
-         ("C-z" . undo))
-  :config
-  (defun fw/find-file ()
-    "Find files in current project or directory."
-    (interactive)
-    (if (project-current)
-        (project-find-file)
-      (consult-find)))
-
-  (defun fw/grep ()
-    "Run grep in current project or directory."
-    (interactive)
-    (if (project-current)
-        (consult-git-grep)
-      (consult-grep))))
+         ("C-c f" . consult-fd)
+         ("C-c g" . consult-ripgrep)
+         ("M-g g" . consult-goto-line)
+         ("C-z" . undo)))
 
 (use-package embark
   :ensure t
