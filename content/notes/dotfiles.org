@@ -291,6 +291,7 @@ to_homebank 'meinElba*7_suche.csv' 'Sparbuch'
          ("C-c s" . consult-line)
          ("C-c f" . consult-fd)
          ("C-c g" . consult-ripgrep)
+         ("M-g g" . consult-goto-line)
          ("C-z" . undo)))
 
 (use-package embark
