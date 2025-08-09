@@ -1550,3 +1550,14 @@ a plan, on top of ruins" - Ellen Ullman
 - Rich type systems can give you context
   - ~OrderID -> UserId -> Db Invoice~, or even better
   - ~OrderID -> UserId -> DbRead Invoice~
+
+* .NET supply chain: Protecting against hidden threats ([[https://www.youtube.com/watch?v=eifBCQB71l8][Tom van den Berg]])
+
+- [[https://github.com/tom171296/ChainGuardian.DotNetNuGet][Example]]
+- NuGet audit
+- Package source mapping
+- Trusted signers
+- Package lock file
+- NuGet cache
+- [[https://github.com/dotnet/reproducible-builds][Reproducible builds]]
+- [[https://github.com/aquasecurity/trivy][License scanning]]
