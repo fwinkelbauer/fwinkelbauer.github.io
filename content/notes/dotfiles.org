@@ -193,6 +193,7 @@ to_homebank 'meinElba*7_suche.csv' 'Sparbuch'
   :custom
   (dired-auto-revert-buffer t)
   (dired-dwim-target t)
+  (dired-free-space nil)
   (dired-listing-switches "-alhv --time-style=+%Y-%m-%d --group-directories-first"))
 
 (use-package org
