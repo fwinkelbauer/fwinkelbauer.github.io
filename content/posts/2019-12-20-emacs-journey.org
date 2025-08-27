@@ -26,7 +26,7 @@ I have to live with for now.
 
 One of my biggest pain points was setting up spell checking on Windows. It might
 sound too simple, but it took me several attempts before I pulled it off. Thanks
-[[https://florianwinkelbauer.com/posts/2019-04-10-emacs-wsl/][WSL]].
+[[/posts/2019-04-10-emacs-wsl][WSL]].
 
 * Literate Dotfiles
 
