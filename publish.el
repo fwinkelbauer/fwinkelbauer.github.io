@@ -3,19 +3,19 @@
 
 (require 'ox-publish)
 
-(defun fw.com/join-lines (&rest strings)
+(defun fw/join (&rest strings)
   "Join all non-nil strings."
   (string-join (remq nil strings) "\n"))
 
-(defun fw.com/postamble (info)
+(defun fw/postamble (info)
   "Create a custom postamble."
   (let ((date (org-export-data (org-export-get-date info "%Y-%m-%d") info)))
-    (fw.com/join-lines (unless (string-empty-p date) (concat "<p class=\"date\">Published: " date "</p>"))
-                       "<footer>"
-                       "<p>Copyright 2025, Florian Winkelbauer. All rights reserved.</p>"
-                       "</footer>")))
+    (fw/join (unless (string-empty-p date) (concat "<p class=\"date\">Published: " date "</p>"))
+             "<footer>"
+             "<p>Copyright 2025, Florian Winkelbauer. All rights reserved.</p>"
+             "</footer>")))
 
-(defun fw.com/sitemap-format-entry (entry style project)
+(defun fw/sitemap-format-entry (entry style project)
   "Add date to a sitemap entry."
   (cond ((not (directory-name-p entry))
          (format "%s - [[file:%s][%s]]"
@@ -25,7 +25,7 @@
         ((eq style 'tree) (file-name-nondirectory (directory-file-name entry)))
         (t entry)))
 
-(defun fw.com/get-article-output-path (org-file pub-dir)
+(defun fw/get-article-output-path (org-file pub-dir)
   "Ensure an output path."
   (let ((article-dir (concat pub-dir
                              (downcase
@@ -40,7 +40,7 @@
           (make-directory article-dir t))
         article-dir))))
 
-(defun fw.com/org-html-link (link contents info)
+(defun fw/org-html-link (link contents info)
   "Removes file extension and changes the path into lowercase file:// links."
   (when (and (string= 'file (org-element-property :type link))
              (string= "org" (file-name-extension (org-element-property :path link))))
@@ -62,9 +62,9 @@
               contents))
      (t (org-export-with-backend 'html link contents info)))))
 
-(defun fw.com/org-html-publish-to-html (plist filename pub-dir)
+(defun fw/org-html-publish-to-html (plist filename pub-dir)
   "Publish an org file to HTML, using the FILENAME as the output directory."
-  (let ((article-path (fw.com/get-article-output-path filename pub-dir)))
+  (let ((article-path (fw/get-article-output-path filename pub-dir)))
     (cl-letf (((symbol-function 'org-export-output-file-name)
                (lambda (extension &optional subtreep pub-dir)
                  ;; The 404 page is a special case, it must be named "404.html"
@@ -78,20 +78,20 @@
                           plist
                           article-path))))
 
-(defun fw.com/publish-website ()
+(defun fw/publish-website ()
   "Publish my website"
   (let ((org-publish-project-alist
          `(("content"
             :base-directory "content/"
             :publishing-directory "artifacts/"
-            :publishing-function fw.com/org-html-publish-to-html
+            :publishing-function fw/org-html-publish-to-html
             :recursive nil)
 
            ("notes"
             :auto-sitemap t
             :base-directory "content/notes/"
             :publishing-directory "artifacts/notes/"
-            :publishing-function fw.com/org-html-publish-to-html
+            :publishing-function fw/org-html-publish-to-html
             :recursive t
             :sitemap-filename "index.org"
             :sitemap-title "Notes")
@@ -100,11 +100,11 @@
             :auto-sitemap t
             :base-directory "content/posts/"
             :publishing-directory "artifacts/posts/"
-            :publishing-function fw.com/org-html-publish-to-html
+            :publishing-function fw/org-html-publish-to-html
             :recursive t
             :sitemap-filename "index.org"
             :sitemap-sort-files anti-chronologically
-            :sitemap-format-entry fw.com/sitemap-format-entry
+            :sitemap-format-entry fw/sitemap-format-entry
             :sitemap-title "Posts")
 
            ("static"
@@ -122,22 +122,22 @@
         (org-html-doctype "html5")
         (org-html-html5-fancy t)
         (org-html-head
-         (fw.com/join-lines "<meta name=\"author\" content=\"Florian Winkelbauer\">"
-                            "<link rel=\"stylesheet\" href=\"/site.css\" type=\"text/css\">"))
+         (fw/join "<meta name=\"author\" content=\"Florian Winkelbauer\">"
+                  "<link rel=\"stylesheet\" href=\"/site.css\" type=\"text/css\">"))
         (org-html-head-include-default-style nil)
         (org-html-head-include-scripts nil)
         (org-html-mathjax-template "")
-        (org-html-postamble 'fw.com/postamble)
+        (org-html-postamble 'fw/postamble)
         (org-html-preamble
-         (fw.com/join-lines "<nav>"
-                            "<a href=\"/\">Home</a>"
-                            "<a href=\"/notes\">Notes</a>"
-                            "<a href=\"/posts\">Posts</a>"
-                            "<a href=\"/projects\">Projects</a>"
-                            "</nav>"))
+         (fw/join "<nav>"
+                  "<a href=\"/\">Home</a>"
+                  "<a href=\"/notes\">Notes</a>"
+                  "<a href=\"/posts\">Posts</a>"
+                  "<a href=\"/projects\">Projects</a>"
+                  "</nav>"))
         (org-html-validation-link nil)
         (org-publish-timestamp-directory ".org-timestamps/"))
     (org-publish "florianwinkelbauer.com" t)))
 
-(org-export-define-derived-backend 'site-html 'html :translate-alist '((link . fw.com/org-html-link)))
-(fw.com/publish-website)
+(org-export-define-derived-backend 'site-html 'html :translate-alist '((link . fw/org-html-link)))
+(fw/publish-website)
