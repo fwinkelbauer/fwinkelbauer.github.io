@@ -1,3 +1,0 @@
-#+TITLE: 404: Page Not Found
-
-Unfortunately, this page does not exist.
