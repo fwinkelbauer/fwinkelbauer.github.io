@@ -5,6 +5,9 @@ Sometimes, you discover something, that others have known for a long time. Last
 week, I've discovered how useful a ~~/bin~ directory can be.
 
 * Linux
+:PROPERTIES:
+:CUSTOM_ID: linux
+:END:
 
 After creating a ~~/bin~ directory on my Ubuntu machine, the directory is
 already part of the ~PATH~ variable. Any executable or script put in the ~~/bin~
@@ -19,6 +22,9 @@ chmod +x ~/bin/script
 #+end_src
 
 * Windows
+:PROPERTIES:
+:CUSTOM_ID: windows
+:END:
 
 I had to manually add ~~/bin~ to the ~PATH~ variable:
 
@@ -53,6 +59,9 @@ Running ~foo~ in:
 - a PowerShell session will execute ~foo.ps1~ (or ~foo.cmd~ if ~foo.ps1~ cannot be found)
 
 * Usage Examples
+:PROPERTIES:
+:CUSTOM_ID: usage-examples
+:END:
 
 So we've got our bin directory set up, now what? Well, here's a short list of
 scripts which I'm using on my machines:

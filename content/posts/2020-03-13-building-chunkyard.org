@@ -10,6 +10,9 @@ this post I'd like to highlight a few topics that came up while figuring out how
 to implement Chunkyard.
 
 * Encryption
+:PROPERTIES:
+:CUSTOM_ID: encryption
+:END:
 
 To encrypt a piece of data, algorithms such as AES need a key and an
 initialization vector (IV). While the key must be kept private, we need to store
@@ -30,6 +33,9 @@ files. Chunkyard creates IVs based on the relative file name, which limits the
 re-usage on a file based level.
 
 * Compression
+:PROPERTIES:
+:CUSTOM_ID: compression
+:END:
 
 The data ingestion process can be seen as a pipeline. We throw in a file and we
 get out chunks which are encrypted and compressed. The specific order of these
@@ -43,6 +49,9 @@ chunk, but this would only be feasible for "larger chunks". The "correct"
 strategy depends on the given data.
 
 * Language Split
+:PROPERTIES:
+:CUSTOM_ID: language-split
+:END:
 
 I am using the FastCDC algorithm to perform the actual chunking. I could not
 find any C# library which implements this algorithm (or any other chunking
@@ -59,6 +68,9 @@ with a few sub optimal choices:
 Right now I am relying on a combination of the first two strategies.
 
 * Open Questions
+:PROPERTIES:
+:CUSTOM_ID: open-questions
+:END:
 
 - How can we support "branches" so that we can still benefit from encryption and
   deduplication?

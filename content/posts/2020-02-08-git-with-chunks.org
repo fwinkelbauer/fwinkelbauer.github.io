@@ -28,6 +28,9 @@ a "CDC based Git clone" would offer some interesting possibilities. We could:
   NextCloud or Syncthing
 
 * Design Ideas
+:PROPERTIES:
+:CUSTOM_ID: design-ideas
+:END:
 
 Git uses four components to build its internal data structure:
 

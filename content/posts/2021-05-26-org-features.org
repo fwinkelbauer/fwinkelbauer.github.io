@@ -4,6 +4,9 @@
 This post builds upon a previous post about [[/posts/2019-01-30-emacs-orglink][org-mode links]].
 
 * Custom Links
+:PROPERTIES:
+:CUSTOM_ID: custom-links
+:END:
 
 The in-buffer setting
 
@@ -21,6 +24,9 @@ can also be written in elisp like this:
 #+end_src
 
 * Smart Browser Selection
+:PROPERTIES:
+:CUSTOM_ID: smart-browser-selection
+:END:
 
 Clicking a URL inside of org-mode opens your default browser. This behavior can
 be customized using the variable ~browse-url-browser-function~, which is handy

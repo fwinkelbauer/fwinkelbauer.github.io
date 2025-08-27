@@ -3,6 +3,9 @@
 A collection of recipes (in German) that my wife and I tend to look up.
 
 * Becherkuchen
+:PROPERTIES:
+:CUSTOM_ID: becherkuchen
+:END:
 
 - 1 Becher Sauerrahm
 - 1 Becher geriebene Nüsse
@@ -30,6 +33,9 @@ Zubereitung:
 - Nachdem er ausgekühlt ist, den Kuchen mit Staubzucker bestäuben.
 
 * Brownie
+:PROPERTIES:
+:CUSTOM_ID: brownie
+:END:
 
 - 100g Butter
 - 200g dunkle Schokolade
@@ -58,6 +64,9 @@ Zubereitung:
 - Brownie aus dem Ofen nehmen und kurz abkühlen lassen.
 
 * Chai Sirup
+:PROPERTIES:
+:CUSTOM_ID: chai-sirup
+:END:
 
 - 3 Tassen (600ml) Wasser
 - 1 Tasse brauner Zucker
@@ -82,6 +91,9 @@ Zubereitung:
 - Abkühlen lassen und in eine Flasche füllen
 
 * Cheesecake
+:PROPERTIES:
+:CUSTOM_ID: cheesecake
+:END:
 
 - 180 g Butterkekse
 - 50 g Butter, zerlassen
@@ -126,6 +138,9 @@ Zubereitung:
   öffnet.
 
 * Glüh-Gin
+:PROPERTIES:
+:CUSTOM_ID: glüh-gin
+:END:
 
 - 2 cm Ingwer
 - 800 ml Birnensaft
@@ -146,6 +161,9 @@ Zubereitung:
   servieren.
 
 * Grillbrot
+:PROPERTIES:
+:CUSTOM_ID: grillbrot
+:END:
 
 - 300g Milch
 - 500g Weizenmehl, glatt
@@ -167,6 +185,9 @@ Zubereitung:
 - Das Grillbrot im Topf ca. 20 Minuten backen.
 
 * Haferflockensuppe
+:PROPERTIES:
+:CUSTOM_ID: haferflockensuppe
+:END:
 
 - Scharlotten in Butter glasig werden lassen.
 - Haferflocken dazu geben und anrösten.
@@ -175,6 +196,9 @@ Zubereitung:
 - 10-15 Minuten kochen.
 
 * Kekse
+:PROPERTIES:
+:CUSTOM_ID: kekse
+:END:
 
 - 200g Margarine (zerlassen)
 - 180g Zucker
@@ -187,12 +211,18 @@ Zubereitung:
 - Vorgeheizter Ofen, 180 Grad (10-15min)
 
 * Lasagne Bechamelsauce
+:PROPERTIES:
+:CUSTOM_ID: lasagne-bechamelsauce
+:END:
 
 - Mehl mit kalter Milch vermischen.
 - Butter in einem Topf anbraten und die Sauce darüber geben.
 - Gewürze (Suppengewürz, Oregano, Salz, Pfeffer, ...) dazu.
 
 * Paprikageschnetzeltes
+:PROPERTIES:
+:CUSTOM_ID: paprikageschnetzeltes
+:END:
 
 - 1/2kg Schweineschnitzel
 - 2 EL Mehl
@@ -225,6 +255,9 @@ Zubereitung:
 - Geschnetzeltes mit Reis, Nudeln oder Röstis servieren.
 
 * Schmarn
+:PROPERTIES:
+:CUSTOM_ID: schmarn
+:END:
 
 https://www.youtube.com/watch?v=47akp5h5_u0
 
@@ -241,6 +274,9 @@ https://www.youtube.com/watch?v=47akp5h5_u0
 - 200 Grad 25% Dampf 16 Minuten backen
 
 * Topfenkuchen
+:PROPERTIES:
+:CUSTOM_ID: topfenkuchen
+:END:
 
 - 3 Eier
 - 2 Packungen Vanillepuddingpulver
@@ -252,6 +288,9 @@ https://www.youtube.com/watch?v=47akp5h5_u0
 - Bei 180 Grad 35-40 Minuten goldbraun backen
 
 * Vollkornbrot
+:PROPERTIES:
+:CUSTOM_ID: vollkornbrot
+:END:
 
 - 500 ml warmes Wasser
 - 1 Würfel Germ

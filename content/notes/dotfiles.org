@@ -18,6 +18,9 @@ emacs -Q --batch -l org --eval '(org-babel-tangle-file "~/Projects/website/conte
 #+end_src
 
 * Git
+:PROPERTIES:
+:CUSTOM_ID: git
+:END:
 
 #+begin_src conf :tangle "~/.config/git/config"
 [user]
@@ -59,6 +62,9 @@ emacs -Q --batch -l org --eval '(org-babel-tangle-file "~/Projects/website/conte
 #+end_src
 
 * Bash
+:PROPERTIES:
+:CUSTOM_ID: bash
+:END:
 
 Create new backup:
 
@@ -156,6 +162,9 @@ to_homebank 'meinElba*7_suche.csv' 'Sparbuch'
 #+end_src
 
 * Emacs
+:PROPERTIES:
+:CUSTOM_ID: emacs
+:END:
 
 #+begin_src emacs-lisp :tangle "~/.config/emacs/init.el"
 (setq global-auto-revert-non-file-buffers t

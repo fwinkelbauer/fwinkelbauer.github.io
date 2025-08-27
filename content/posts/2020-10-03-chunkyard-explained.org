@@ -10,6 +10,9 @@ I believe that the overall internal data structure is stable, so I'd like to
 take the time to document how a file is stored.
 
 * Creating The Repository
+:PROPERTIES:
+:CUSTOM_ID: creating-the-repository
+:END:
 
 So let's imagine that we want to store a snapshot of the ~hello-world.txt~ file
 using the command:
@@ -104,6 +107,9 @@ and hashing iterations parameters needed to create our cryptographic key:
 #+end_src
 
 * Create A New Backup
+:PROPERTIES:
+:CUSTOM_ID: create-a-new-backup
+:END:
 
 Let's change the content of our ~hello-world.txt~ example and re-run the
 ~create~ command. Here's what happened to the ~~/chunkyard-repository~ directory:
@@ -169,6 +175,9 @@ And the ~1.json~ file:
 #+end_src
 
 * Restoring Files
+:PROPERTIES:
+:CUSTOM_ID: restoring-files
+:END:
 
 Finally, let's walk through the performed operations when we are restoring a
 snapshot using:
@@ -186,6 +195,9 @@ chunkyard restore -r ~/chunkyard-repository -d ~/chunkyard-restored
 - Decrypt and reconstruct every file in the snapshot
 
 * Closing Thoughts
+:PROPERTIES:
+:CUSTOM_ID: closing-thoughts
+:END:
 
 Chunkyard is by far not as sophisticated as other modern backup tools, but
 building the project helped me to learn more about encryption, chunking and

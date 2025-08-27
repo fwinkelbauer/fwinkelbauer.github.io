@@ -6,6 +6,9 @@ the start of the work week by talking about an interesting link in a humorous
 way. You can find all entries (slightly edited) below:
 
 * FML #1
+:PROPERTIES:
+:CUSTOM_ID: fml-1
+:END:
 
 Welcome to "Fun Monday Links" (FML)! A weekly post about rad tech stuff. Our
 first edition is about our favorite topic: version control!
@@ -31,6 +34,9 @@ My personal favorites include:
 - ~git reflog~ for when I screwed up and I need a hero that I don't deserve
 
 * FML #2
+:PROPERTIES:
+:CUSTOM_ID: fml-2
+:END:
 
 It's Monday! Welcome to FML Episode #2.
 
@@ -63,6 +69,9 @@ The next time you say to yourself "oh cool XYZ only took a couple of minutes",
 think about how many centuries have past for a computer. It's insane.
 
 * FML #3
+:PROPERTIES:
+:CUSTOM_ID: fml-3
+:END:
 
 Another Monday, another FML!
 
@@ -84,6 +93,9 @@ now developing a high performance, low latency messaging queue called [[https://
 Java. Obviously.
 
 * FML #4
+:PROPERTIES:
+:CUSTOM_ID: fml-4
+:END:
 
 Time flies when you love Mondays. Welcome to FML #4!
 
@@ -102,6 +114,9 @@ This [[https://technology.riotgames.com/news/supercharging-data-delivery-new-lea
 Of Legends) uses content defined chunking to ship updates to players/users.
 
 * FML #5
+:PROPERTIES:
+:CUSTOM_ID: fml-5
+:END:
 
 Monday, yay! FML!
 
@@ -125,6 +140,9 @@ And we know what happens in a biological body if stuff (cells) refuse to die,
 right?
 
 * FML #6
+:PROPERTIES:
+:CUSTOM_ID: fml-6
+:END:
 
 It's Monday! Time for another Fun Link. FML #6!
 
@@ -135,6 +153,9 @@ explains how some cool ideas and concepts will shape the next 30-40 years. I
 could say "no spoilers" but we pretty much know "the future"...
 
 * FML #7
+:PROPERTIES:
+:CUSTOM_ID: fml-7
+:END:
 
 Happy New Monday!
 
@@ -145,6 +166,9 @@ inspired me to write my own command line parser. It's a much more narrow, but
 also interesting challenge.
 
 * FML #8
+:PROPERTIES:
+:CUSTOM_ID: fml-8
+:END:
 
 Have a great Monday!
 
@@ -153,12 +177,18 @@ have in common? In her lightning talk (<10min) [[https://vimeo.com/28885655][Chr
 are beneath our dignity. It's a fun watch.
 
 * FML #9
+:PROPERTIES:
+:CUSTOM_ID: fml-9
+:END:
 
 Dear Monday Enjoyers!
 
 Here's a handy page to help you get out of your most recent [[https://ohshitgit.com/][git-upsies]].
 
 * FML #10
+:PROPERTIES:
+:CUSTOM_ID: fml-10
+:END:
 
 'member Napster? 'member KaZaA and others?
 
@@ -167,6 +197,9 @@ platforms, but it turns out that most pirated music was uploaded by a few
 individuals. The book [[https://www.goodreads.com/book/show/23398715-how-music-got-free][How music got free]] tells that story.
 
 * FML #11
+:PROPERTIES:
+:CUSTOM_ID: fml-11
+:END:
 
 Another week, another Monday. Welcome!
 
@@ -175,6 +208,9 @@ science. He talks about hierarchical fractal networks such as mammals, companies
 or cities and how they show sub-linear and super-linear scaling.
 
 * FML #12
+:PROPERTIES:
+:CUSTOM_ID: fml-12
+:END:
 
 Have a great Monday!
 
@@ -189,6 +225,9 @@ This free literature teaches a broad field of useful day-to-day stuff including:
 - Cryptography
 
 * FML #13
+:PROPERTIES:
+:CUSTOM_ID: fml-13
+:END:
 
 Welcome to a non-technical edition of "Fun Monday Links"!
 
@@ -196,6 +235,9 @@ This [[https://waitbutwhy.com/2015/12/the-tail-end.html][blog post]] is nearly 1
 perspective.
 
 * FML #14
+:PROPERTIES:
+:CUSTOM_ID: fml-14
+:END:
 
 Hello Monday My Old Friend!
 
@@ -204,6 +246,9 @@ software too. Have fun watching Dan Luu talk about the horrors that lurk
 below... bugs in [[https://www.deconstructconf.com/2019/dan-luu-files][file systems]].
 
 * FML #15
+:PROPERTIES:
+:CUSTOM_ID: fml-15
+:END:
 
 Happy Monday!
 
@@ -220,6 +265,9 @@ Martin is also the author of [[https://www.oreilly.com/library/view/designing-da
 book!
 
 * FML #16
+:PROPERTIES:
+:CUSTOM_ID: fml-16
+:END:
 
 Oh Monday, how have I missed you!
 
@@ -233,6 +281,9 @@ simulate events such as network partitions or an instance becoming offline. Much
 cool. Very techy. Wow.
 
 * FML #17
+:PROPERTIES:
+:CUSTOM_ID: fml-17
+:END:
 
 I just got complains that FML #17 is missing. Sorry, I've lost sense of time
 since Mondays are just so fantastic.
@@ -254,6 +305,9 @@ goes on to refactor the code into a more functional style while keeping the
 color coding.
 
 * FML #18
+:PROPERTIES:
+:CUSTOM_ID: fml-18
+:END:
 
 Monday, yay!
 
@@ -262,6 +316,9 @@ even worse. Have fun reading the top comments in the [[https://news.ycombinator.
 the largest amount of bad code you have ever seen work?".
 
 * FML #19
+:PROPERTIES:
+:CUSTOM_ID: fml-19
+:END:
 
 Oh look it's Monday!
 
@@ -274,6 +331,9 @@ right? No scanner would do that. I mean why should they, right?! David Kriesel
 has some bad news for you.
 
 * FML #20
+:PROPERTIES:
+:CUSTOM_ID: fml-20
+:END:
 
 I'm happily married to a lovely wife, but as a grown man I still have my overly
 manly crushes on other man. One of them is Rich Hickey.
