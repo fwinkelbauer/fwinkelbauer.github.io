@@ -35,9 +35,9 @@ extracting <a href="https://www.7-zip.org/">7-zip</a> archive. We'll need the fo
 <li><code>build.ps1</code>: The script which will create our target file <code>output/chocolateySetup.exe</code></li>
 </ul>
 
-<div id="outline-container-orgff5d914" class="outline-2">
-<h2 id="orgff5d914">config.txt</h2>
-<div class="outline-text-2" id="text-orgff5d914">
+<div id="outline-container-config-txt" class="outline-2">
+<h2 id="config-txt">config.txt</h2>
+<div class="outline-text-2" id="text-config-txt">
 <p>
 We're using a rather simple configuration, which will:
 </p>
@@ -63,9 +63,9 @@ ExecuteFile="install.bat"
 </div>
 </div>
 
-<div id="outline-container-org3269488" class="outline-2">
-<h2 id="org3269488">install.bat</h2>
-<div class="outline-text-2" id="text-org3269488">
+<div id="outline-container-install-bat" class="outline-2">
+<h2 id="install-bat">install.bat</h2>
+<div class="outline-text-2" id="text-install-bat">
 <p>
 <code>install.bat</code> is a simple wrapper script which calls <code>install.ps1</code>. I found this
 to be more convenient than trying to let the 7-zip SFX module call PowerShell
@@ -81,9 +81,9 @@ PAUSE
 </div>
 </div>
 
-<div id="outline-container-org5b280ae" class="outline-2">
-<h2 id="org5b280ae">install.ps1</h2>
-<div class="outline-text-2" id="text-org5b280ae">
+<div id="outline-container-install-ps1" class="outline-2">
+<h2 id="install-ps1">install.ps1</h2>
+<div class="outline-text-2" id="text-install-ps1">
 <p>
 This script performs the actual installation by calling Chocolatey's
 <code>chocolateyInstall.ps1</code>.
@@ -105,9 +105,9 @@ $root = if ($PSScriptRoot) { $PSScriptRoot } else { Split-Path -Path $psISE.Curr
 </div>
 </div>
 
-<div id="outline-container-org094cbf5" class="outline-2">
-<h2 id="org094cbf5">build.ps1</h2>
-<div class="outline-text-2" id="text-org094cbf5">
+<div id="outline-container-build-ps1" class="outline-2">
+<h2 id="build-ps1">build.ps1</h2>
+<div class="outline-text-2" id="text-build-ps1">
 <p>
 This script does a few things for us. It will:
 </p>
@@ -198,9 +198,9 @@ Get-Content $sfxFile, $configFile, $installerZipFile -Encoding Byte -Read 512 | 
 </div>
 </div>
 
-<div id="outline-container-org403cc9a" class="outline-2">
-<h2 id="org403cc9a">Usage</h2>
-<div class="outline-text-2" id="text-org403cc9a">
+<div id="outline-container-usage" class="outline-2">
+<h2 id="usage">Usage</h2>
+<div class="outline-text-2" id="text-usage">
 <p>
 Given the above files, call <code>build.ps1</code> to create <code>output\chocolateySetup.exe</code>.
 Run the setup file, confirm the UAC prompt and the "Do you want to install Chocolatey?"
