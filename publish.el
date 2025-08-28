@@ -25,6 +25,27 @@
         ((eq style 'tree) (file-name-nondirectory (directory-file-name entry)))
         (t entry)))
 
+(defun fw/org-html-link (link contents info)
+  "Removes file extension and changes the path into lowercase file:// links."
+  (when (and (string= 'file (org-element-property :type link))
+             (string= "org" (file-name-extension (org-element-property :path link))))
+    (org-element-put-property link :path
+                              (downcase
+                               (file-name-sans-extension
+                                (org-element-property :path link)))))
+  (let ((exported-link (org-export-custom-protocol-maybe link contents 'html info)))
+    (cond
+     (exported-link exported-link)
+     ((equal contents nil)
+      (format "<a href=\"%s\">%s</a>"
+              (org-element-property :raw-link link)
+              (org-element-property :raw-link link)))
+     ((string-prefix-p "/" (org-element-property :raw-link link))
+      (format "<a href=\"%s\">%s</a>"
+              (org-element-property :raw-link link)
+              contents))
+     (t (org-export-with-backend 'html link contents info)))))
+
 (defun fw/get-article-output-path (org-file pub-dir)
   "Ensure an output path."
   (let ((article-dir (concat pub-dir
@@ -39,28 +60,6 @@
         (unless (file-directory-p article-dir)
           (make-directory article-dir t))
         article-dir))))
-
-(defun fw/org-html-link (link contents info)
-  "Removes file extension and changes the path into lowercase file:// links."
-  (when (and (string= 'file (org-element-property :type link))
-             (string= "org" (file-name-extension (org-element-property :path link))))
-    (org-element-put-property link :path
-                              (downcase
-                               (file-name-sans-extension
-                                (org-element-property :path link)))))
-
-  (let ((exported-link (org-export-custom-protocol-maybe link contents 'html info)))
-    (cond
-     (exported-link exported-link)
-     ((equal contents nil)
-      (format "<a href=\"%s\">%s</a>"
-              (org-element-property :raw-link link)
-              (org-element-property :raw-link link)))
-     ((string-prefix-p "/" (org-element-property :raw-link link))
-      (format "<a href=\"%s\">%s</a>"
-              (org-element-property :raw-link link)
-              contents))
-     (t (org-export-with-backend 'html link contents info)))))
 
 (defun fw/org-html-publish-to-html (plist filename pub-dir)
   "Publish an org file to HTML, using the FILENAME as the output directory."
