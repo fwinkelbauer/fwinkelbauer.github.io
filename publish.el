@@ -134,6 +134,7 @@
                   "<a href=\"/posts\">Posts</a>"
                   "<a href=\"/projects\">Projects</a>"
                   "</nav>"))
+        (org-html-self-link-headlines t)
         (org-html-validation-link nil)
         (org-publish-timestamp-directory ".org-timestamps/"))
     (org-publish "florianwinkelbauer.com" t)))

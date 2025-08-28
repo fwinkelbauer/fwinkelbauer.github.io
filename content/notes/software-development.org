@@ -250,10 +250,12 @@ Employee satisfaction can indicate the performance of an organization. Ask:
 - Category theory is not too important in your day-to-day use of functional
   patterns
 
-* Pilot Decision Management ([[https://www.youtube.com/watch?v=QNA9EExd8lQ][Clifford Agius]])
+* Pilot Decision Management (Clifford Agius)
 :PROPERTIES:
 :CUSTOM_ID: pilot-decision-management
 :END:
+
+Found on [[https://www.youtube.com/watch?v=QNA9EExd8lQ][YouTube]].
 
 The TDODAR framework:
 
@@ -311,10 +313,12 @@ Assign tasks to the members of the team.
 - Quickly repeat TDODAR to see if actions have changed the answer
 - Is it still a good decision?
 
-* Sharpening the Tools ([[https://www.infoq.com/presentations/Sharpening-the-Tools][Dan North]])
+* Sharpening the Tools (Dan North)
 :PROPERTIES:
 :CUSTOM_ID: sharpening-the-tools
 :END:
+
+Found on [[https://www.infoq.com/presentations/Sharpening-the-Tools][InfoQ]].
 
 *Novice Programmer*
 
@@ -341,10 +345,12 @@ become useful. "How can I make this better?"
 You are operating of instinct. You don't think about rules, you "just know".
 This is critical: You don't know how you come up with your decision.
 
-* Learn to love meetings ([[https://www.youtube.com/watch?v=ppfLUFO-hwc][Dr. Neil Roodyn]])
+* Learn to love meetings (Dr. Neil Roodyn)
 :PROPERTIES:
 :CUSTOM_ID: learn-to-love-meetings
 :END:
+
+Found on [[https://www.youtube.com/watch?v=ppfLUFO-hwc][YouTube]].
 
 - Have a timeline and an agenda
 - "Check-in": Say your name, how you feel and your expectations at the beginning
@@ -359,10 +365,12 @@ This is critical: You don't know how you come up with your decision.
   was spent (e.g. fiddling with the projector, actual discussions and so on)
 - Lean Coffee
 
-* Preventing the Collapse of Civilization ([[https://www.youtube.com/watch?v=pW-SOdj4Kkk][Jonathan Blow]])
+* Preventing the Collapse of Civilization (Jonathan Blow)
 :PROPERTIES:
 :CUSTOM_ID: preventing-the-collapse-of-civilization
 :END:
+
+Found on [[https://www.youtube.com/watch?v=pW-SOdj4Kkk][YouTube]].
 
 - Technology on its own will degrade. It needs constant effort to improve and
   not lose technology
@@ -378,10 +386,12 @@ This is critical: You don't know how you come up with your decision.
 - Only a handful of people *really* know how a CPU works
 - Our tools change our thought process
 
-* Don't Walk Away from Complexity, Run ([[https://www.youtube.com/watch?v=4MEKu2TcEHM][Venkat Subramaniam]])
+* Don't Walk Away from Complexity, Run (Venkat Subramaniam)
 :PROPERTIES:
 :CUSTOM_ID: dont-walk-away-from-complexity-run
 :END:
+
+Found on [[https://www.youtube.com/watch?v=4MEKu2TcEHM][YouTube]].
 
 - Two kinds of code frustrate him:
   - One that won't work
@@ -389,10 +399,12 @@ This is critical: You don't know how you come up with your decision.
 - Shared mutability is the devil's work
 - Using a library is like dating, using a framework is like getting married
 
-* Transactions - Myths, Suprises and Opportunities ([[https://www.youtube.com/watch?v=5ZjhNTM8XU8][Martin Kleppmann]])
+* Transactions - Myths, Suprises and Opportunities (Martin Kleppmann)
 :PROPERTIES:
 :CUSTOM_ID: transactions-myths-suprises-and-opportunities
 :END:
+
+Found on [[https://www.youtube.com/watch?v=5ZjhNTM8XU8][YouTube]].
 
 ACID is more or less a marketing term, it isn't too precise.
 
@@ -462,10 +474,12 @@ Databases have different default and maximum isolation levels. These levels are:
   - "By the time the write is committed, the premise of the decision is no
     longer true"
 
-* How did we end up here ([[https://www.youtube.com/watch?v=oxjT7veKi9c][Todd Montgomery & Martin Thompson]])
+* How did we end up here (Todd Montgomery & Martin Thompson)
 :PROPERTIES:
 :CUSTOM_ID: how-did-we-end-up-here
 :END:
+
+Found on [[https://www.youtube.com/watch?v=oxjT7veKi9c][YouTube]].
 
 - Focus on the fundamentals. Master them and understand them before you try
   to change them
@@ -487,10 +501,12 @@ Databases have different default and maximum isolation levels. These levels are:
 - Farley's second law: "As soon as you realize that most people don't know what
   they are doing the world makes a lot more sense"
 
-* It's about time ([[https://www.youtube.com/watch?v=Nhhm5yC2HCo][Christin Gorman]])
+* It's about time (Christin Gorman)
 :PROPERTIES:
 :CUSTOM_ID: its-about-time
 :END:
+
+Found on [[https://www.youtube.com/watch?v=Nhhm5yC2HCo][YouTube]].
 
 The basic time library in your favorite programming language might be horrible.
 Why? Because they tend to mix two very different concepts:
@@ -531,10 +547,12 @@ Coding advice:
 - Make date ranges *inclusive* from and *exclusive* to (start <= value <
   end)
 
-* PID Loops and the Art of Keeping Systems Stable ([[https://www.youtube.com/watch?v=3AxSwCC7I4s][Colm MacCárthaigh]])
+* PID Loops and the Art of Keeping Systems Stable (Colm MacCárthaigh)
 :PROPERTIES:
 :CUSTOM_ID: pid-loops-and-the-art-of-keeping-systems-stable
 :END:
+
+Found on [[https://www.youtube.com/watch?v=3AxSwCC7I4s][YouTube]].
 
 Control theory:
 
@@ -584,10 +602,12 @@ Implementing edge triggered systems imply, that you have solved the "deliver
 just once" problem. Level triggered (and idempotent) systems seem to be a
 simpler solution.
 
-* Big Numbers and the 1Hz CPU ([[https://www.youtube.com/watch?v=pDBOC6I3K8g][Tom Hudson]])
+* Big Numbers and the 1Hz CPU (Tom Hudson)
 :PROPERTIES:
 :CUSTOM_ID: big-numbers-and-the-1hz-cpu
 :END:
+
+Found on [[https://www.youtube.com/watch?v=pDBOC6I3K8g][YouTube]].
 
 We do not have a good intuition for how fast different parts of a computer are.
 
@@ -612,10 +632,12 @@ All these values seem "low enough", but let's but them into perspective using a
 - HDD: 9 months
 - SSD: 1 day
 
-* Design, Composition, and Performance ([[https://www.youtube.com/watch?v=MCZ3YgeEUPg][Rich Hickey]])
+* Design, Composition, and Performance (Rich Hickey)
 :PROPERTIES:
 :CUSTOM_ID: design-composition-and-performance
 :END:
+
+Found on [[https://www.youtube.com/watch?v=MCZ3YgeEUPg][YouTube]].
 
 - Design is taking things apart so you can put them back together
 - An instrument is a tool for an expert
@@ -632,10 +654,12 @@ All these values seem "low enough", but let's but them into perspective using a
 - Constraint is a driver for creativity
 - Design is making decisions. It's about saying no
 
-* Thinking Fast and Slow ([[https://www.youtube.com/watch?v=XjbTLIqnq-o][Linda Rising]])
+* Thinking Fast and Slow (Linda Rising)
 :PROPERTIES:
 :CUSTOM_ID: thinking-fast-and-slow
 :END:
+
+Found on [[https://www.youtube.com/watch?v=XjbTLIqnq-o][YouTube]].
 
 *System 1*
 
@@ -695,10 +719,12 @@ about essential tasks such as breathing.
   after a break
 - 10 minute break before important decisions
 
-* Mistakes and Discoveries While Cultivating Ownership ([[https://www.youtube.com/watch?v=ddOGmao_cnA][Aaron Blohowiak]])
+* Mistakes and Discoveries While Cultivating Ownership (Aaron Blohowiak)
 :PROPERTIES:
 :CUSTOM_ID: mistakes-and-discoveries-while-cultivating-ownership
 :END:
+
+Found on [[https://www.youtube.com/watch?v=ddOGmao_cnA][YouTube]].
 
 *Netflix Culture*
 
@@ -725,19 +751,23 @@ about essential tasks such as breathing.
 - Different ideas about which level we should be at
 - Not being explicit when levels change
 
-* Changing your Habits & Environment to get more Professional Productivity ([[https://www.youtube.com/watch?v=mrHjHdyRDNY][Linda Rising]])
+* Changing your Habits & Environment to get more Professional Productivity (Linda Rising)
 :PROPERTIES:
 :CUSTOM_ID: changing-your-habits-and-environment-to-get-more-professional-productivity
 :END:
+
+Found on [[https://www.youtube.com/watch?v=mrHjHdyRDNY][YouTube]].
 
 - We sit too much and move too little
 - Lying down can improve your problem solving skills
 - Try to have meetings while walking
 
-* Functional data that adapts to change ([[https://www.youtube.com/watch?v=us4dp7Ksly0][Don Syme]])
+* Functional data that adapts to change (Don Syme)
 :PROPERTIES:
 :CUSTOM_ID: functional-data-that-adapts-to-change
 :END:
+
+Found on [[https://www.youtube.com/watch?v=us4dp7Ksly0][YouTube]].
 
 - Classic UIs are built using the MVVM pattern
 - A different approach to building UI is called MVU: Model, View, Update
@@ -751,10 +781,12 @@ about essential tasks such as breathing.
   go together. The key to making it work is "incremental functional
   programming", which is related to event sourcing
 
-* A Cheap Effective Method for Dealing with Stressful Situations ([[https://www.youtube.com/watch?v=ODpq_6qcPIA][Linda Rising]])
+* A Cheap Effective Method for Dealing with Stressful Situations (Linda Rising)
 :PROPERTIES:
 :CUSTOM_ID: a-cheap-effective-method-for-dealing-with-stressful-situations
 :END:
+
+Found on [[https://www.youtube.com/watch?v=ODpq_6qcPIA][YouTube]].
 
 - The pandemic has created a very stressful environment
 - Long periods of anxiety compromises our immune system
@@ -780,10 +812,12 @@ about essential tasks such as breathing.
 - Writing before stressful situations (e.g. test taking, presentations, surgery,
   ...) can also be beneficial
 
-* If (domain logic) then CQRS, or Saga ([[https://www.youtube.com/watch?v=fWU8ZK0Dmxs][Udi Dahan]])
+* If (domain logic) then CQRS, or Saga (Udi Dahan)
 :PROPERTIES:
 :CUSTOM_ID: if-domain-logic-then-cqrs-or-saga
 :END:
+
+Found on [[https://www.youtube.com/watch?v=fWU8ZK0Dmxs][YouTube]].
 
 - Hard deletes are painful as they can lead to cascading deletes (e.g. deleting
   a product may delete user purchases)
@@ -806,10 +840,12 @@ about essential tasks such as breathing.
   Don't confuse this with technical eventual consistency (e.g. updating read
   models)
 
-* Cultivating Architecture ([[https://www.youtube.com/watch?v=MZnrxjw602E][Martin Fowler, Birgitta Böckeler]])
+* Cultivating Architecture (Martin Fowler, Birgitta Böckeler)
 :PROPERTIES:
 :CUSTOM_ID: cultivating-architecture
 :END:
+
+Found on [[https://www.youtube.com/watch?v=MZnrxjw602E][YouTube]].
 
 - Good architecture can accelerate a team as it can keep the cost of change down
 - Software delivery performance correlates with organizational performance
@@ -823,18 +859,22 @@ about essential tasks such as breathing.
   What do we want to get rid of?
 - Document any decisions. A simple markdown file might be enough
 
-* What I learned from three years of sciencing the crap out of DevOps ([[https://www.youtube.com/watch?v=kr08zSnyU20][Jez Humble]])
+* What I learned from three years of sciencing the crap out of DevOps (Jez Humble)
 :PROPERTIES:
 :CUSTOM_ID: what-i-learned-from-three-years-of-sciencing-the-crap-out-of-devops
 :END:
 
+Found on [[https://www.youtube.com/watch?v=kr08zSnyU20][YouTube]].
+
 - Job satisfaction is the biggest indicator for organization performance
 - IT companies with high throughput perform better in terms of stability
 
-* Files ([[https://www.deconstructconf.com/2019/dan-luu-files][Dan Luu]])
+* Files (Dan Luu)
 :PROPERTIES:
 :CUSTOM_ID: files
 :END:
+
+Found on [[https://www.deconstructconf.com/2019/dan-luu-files][Deconstruct]].
 
 - We believe that file systems are a solved problem and that they share a common
   abstraction, but that is not true
@@ -849,10 +889,12 @@ about essential tasks such as breathing.
   all
 - Computers don't work
 
-* Optimize For Time ([[https://www.youtube.com/watch?v=fBr8BKPW5tc][Andy Walker]])
+* Optimize For Time (Andy Walker)
 :PROPERTIES:
 :CUSTOM_ID: optimize-for-time
 :END:
+
+Found on [[https://www.youtube.com/watch?v=fBr8BKPW5tc][YouTube]].
 
 - High performing teams seem to have more time to get things done. They don't
   hurry. They hit their deadlines
@@ -875,10 +917,12 @@ about essential tasks such as breathing.
   - Your plan is not the outcome
   - Recover quickly
 
-* Conversational Transformation ([[https://www.youtube.com/watch?v=RMT_Tqzf_vc][Jeffrey Fredrick, Douglas Squirrel]])
+* Conversational Transformation (Jeffrey Fredrick, Douglas Squirrel)
 :PROPERTIES:
 :CUSTOM_ID: conversational-transformation
 :END:
+
+Found on [[https://www.youtube.com/watch?v=RMT_Tqzf_vc][YouTube]].
 
 Conversational Analysis with The 4 Rs
 
@@ -895,10 +939,12 @@ Conversational Analysis with The 4 Rs
 - (Repeat)
 - (Role-reversal)
 
-* Continuous Retrospectives ([[https://www.youtube.com/watch?v=1wzedZcSmKY][Linda Rising]])
+* Continuous Retrospectives (Linda Rising)
 :PROPERTIES:
 :CUSTOM_ID: continuous-retrospectives
 :END:
+
+Found on [[https://www.youtube.com/watch?v=1wzedZcSmKY][YouTube]].
 
 - In times like COVID we cannot even remember what day it is. How can we then
   have a meaningful discussion (retrospective) about a long project?
@@ -916,10 +962,12 @@ Conversational Analysis with The 4 Rs
   - Iteration: what should we do now? (tactical)
   - Continuous: small experiments
 
-* Solving Problems the Clojure Way ([[https://www.youtube.com/watch?v=vK1DazRK_a0][Rafal Dittwald]])
+* Solving Problems the Clojure Way (Rafal Dittwald)
 :PROPERTIES:
 :CUSTOM_ID: solving-problems-the-clojure-way
 :END:
+
+Found on [[https://www.youtube.com/watch?v=vK1DazRK_a0][YouTube]].
 
 - Imperative code spreads state, mutation and side effects, which makes larger
   programs harder to understand and change
@@ -940,10 +988,12 @@ Conversational Analysis with The 4 Rs
   separated by pushing it down as far as we can. The FP approach would be to put
   all the state into the root node
 
-* Persistent Data Structures and Managed References ([[https://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey][Rich Hickey]])
+* Persistent Data Structures and Managed References (Rich Hickey)
 :PROPERTIES:
 :CUSTOM_ID: persistent-data-structures-and-managed-references
 :END:
+
+Found on [[https://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey][InfoQ]].
 
 - Pure functions have no notion of time and no effect on the world
 - Concurrency breaks variables badly
@@ -960,10 +1010,12 @@ Conversational Analysis with The 4 Rs
   - The future is a function of the past (and doesn't change it)
   - Co-located entities can observe each other without cooperation
 
-* End to end functional tests that can run in milliseconds ([[https://www.youtube.com/watch?v=Fk4rCn4YLLU][Nat Pryce]])
+* End to end functional tests that can run in milliseconds (Nat Pryce)
 :PROPERTIES:
 :CUSTOM_ID: end-to-end-functional-tests-that-can-run-in-milliseconds
 :END:
+
+Found on [[https://www.youtube.com/watch?v=Fk4rCn4YLLU][YouTube]].
 
 - They applied the hexagonal architecture model in combination with
   "screenplays"
@@ -983,10 +1035,12 @@ Conversational Analysis with The 4 Rs
   - Explain what has gone wrong
   - Restore the system to a good state
 
-* Design Microservice Architectures the Right Way ([[https://www.youtube.com/watch?v=j6ow-UemzBc][Michael Bryzek]])
+* Design Microservice Architectures the Right Way (Michael Bryzek)
 :PROPERTIES:
 :CUSTOM_ID: design-microservice-architectures-the-right-way
 :END:
+
+Found on [[https://www.youtube.com/watch?v=j6ow-UemzBc][YouTube]].
 
 - Describe APIs/Events/Databases (e.g. by using JSON) and invest in tooling
   - Create custom linters to ensure that common naming conventions are used
@@ -1004,10 +1058,12 @@ Conversational Analysis with The 4 Rs
 - Enable teams to write amazing and simple tests
   - Drives quality, streamlines maintenance, enables continuous delivery
 
-* Entity Component Systems and You: They're Not Just For Game Developers ([[https://www.youtube.com/watch?v=SFKR5rZBu-8][Paris Buttfield-Addison, Mars Geldard, Tim Nugent]])
+* Entity Component Systems and You: They're Not Just For Game Developers (Paris Buttfield-Addison, Mars Geldard, Tim Nugent)
 :PROPERTIES:
 :CUSTOM_ID: entity-component-systems-and-you-theyre-not-just-for-game-developers
 :END:
+
+Found on [[https://www.youtube.com/watch?v=SFKR5rZBu-8][YouTube]].
 
 - A paradigm/architecture which is commonly used in the game industry
 - ECS separate data and logic
@@ -1031,18 +1087,22 @@ Conversational Analysis with The 4 Rs
   - Hard to keep everything in your head
   - No clear starting point
 
-* Programming Is The Easy Part ([[https://www.youtube.com/watch?v=SbGiSH_8UGk][J. B. Rainsberger]])
+* Programming Is The Easy Part (J. B. Rainsberger)
 :PROPERTIES:
 :CUSTOM_ID: programming-is-the-easy-part
 :END:
 
+Found on [[https://www.youtube.com/watch?v=SbGiSH_8UGk][YouTube]].
+
 A lot of high level software design principles boil down to a linear combination
 of "remove duplication" and "improve names".
 
-* Modern SQL A lot has changed since SQL 92 ([[https://www.youtube.com/watch?v=rpw_x8TtqTo][Markus Winand]])
+* Modern SQL A lot has changed since SQL 92 (Markus Winand)
 :PROPERTIES:
 :CUSTOM_ID: modern-sql-a-lot-has-changed-since-sql-92
 :END:
+
+Found on [[https://www.youtube.com/watch?v=rpw_x8TtqTo][YouTube]].
 
 SQL has changed a lot, though most developers only know the 1992 standard
 
@@ -1060,10 +1120,12 @@ SQL has changed a lot, though most developers only know the 1992 standard
 - *System Versioning*: Can be used to show tables at a given time. Adds audit
   features to destructive changes such as INSERT, UPDATE or DELETE
 
-* Testing as an equal 1st class citizen to coding ([[https://www.youtube.com/watch?v=1u6DdiFFH6Q][Jon Jagger]])
+* Testing as an equal 1st class citizen to coding (Jon Jagger)
 :PROPERTIES:
 :CUSTOM_ID: testing-as-an-equal-1st-class-citizen-to-coding
 :END:
+
+Found on [[https://www.youtube.com/watch?v=1u6DdiFFH6Q][YouTube]].
 
 - The Equilibrium law: stable systems tend to oppose their own proper function
 - All changes can be understood as the effort to maintain some constancy, and
@@ -1073,10 +1135,12 @@ SQL has changed a lot, though most developers only know the 1992 standard
 - Tests act like brakes when developing software
 - Are you confident enough to delete "dead" code?
 
-* Technical Leadership and Glue Work ([[https://www.youtube.com/watch?v=KClAPipnKqw][Tanya Reilly]])
+* Technical Leadership and Glue Work (Tanya Reilly)
 :PROPERTIES:
 :CUSTOM_ID: technical-leadership-and-glue-work
 :END:
+
+Found on [[https://www.youtube.com/watch?v=KClAPipnKqw][YouTube]].
 
 - Glue work
   - is work that makes the whole teams better
@@ -1089,10 +1153,12 @@ SQL has changed a lot, though most developers only know the 1992 standard
 - What do you want to get better at?
 - The vast majority of our learning happens at our job
 
-* The Only Unbreakable Law ([[https://www.youtube.com/watch?v=5IUj1EZwpJY][Casey Muratori]])
+* The Only Unbreakable Law (Casey Muratori)
 :PROPERTIES:
 :CUSTOM_ID: the-only-unbreakable-law
 :END:
+
+Found on [[https://www.youtube.com/watch?v=5IUj1EZwpJY][YouTube]].
 
 - Conway's law states that a piece of software tends to reflect a company's
   communication structures (its org chart)
@@ -1108,10 +1174,12 @@ SQL has changed a lot, though most developers only know the 1992 standard
   class hierarchies so they can divide a problem which they cannot keep in their
   head. Just like org charts, they might be too complicated or inefficient
 
-* Improving eBay's Development Velocity ([[https://www.youtube.com/watch?v=Qgjs0IA114E][Randy Shoup and Mark Weinberg]])
+* Improving eBay's Development Velocity (Randy Shoup and Mark Weinberg)
 :PROPERTIES:
 :CUSTOM_ID: improving-ebays-development-velocity
 :END:
+
+Found on [[https://www.youtube.com/watch?v=Qgjs0IA114E][YouTube]].
 
 - Randy and Mark used the Accelerate book
 - Used DORA metrics to track progress
@@ -1121,10 +1189,12 @@ SQL has changed a lot, though most developers only know the 1992 standard
   holding us back
 - CEO: "The most important initiative at the company. Go faster!"
 
-* Uncoupling ([[https://www.youtube.com/watch?v=mAw4ygX1c-4][Michael Nygard]])
+* Uncoupling (Michael Nygard)
 :PROPERTIES:
 :CUSTOM_ID: uncoupling
 :END:
+
+Found on [[https://www.youtube.com/watch?v=mAw4ygX1c-4][YouTube]].
 
 *Coupling*
 
@@ -1147,10 +1217,12 @@ SQL has changed a lot, though most developers only know the 1992 standard
 - Is inversely proportional to the number of interfaces
 - Is inversely proportional to the number of data types
 
-* Make Impacts Not Software ([[https://www.youtube.com/watch?v=GnK_n9Udhhs][Gojko Adzic]])
+* Make Impacts Not Software (Gojko Adzic)
 :PROPERTIES:
 :CUSTOM_ID: make-impacts-not-software
 :END:
+
+Found on [[https://www.youtube.com/watch?v=GnK_n9Udhhs][YouTube]].
 
 - Typical software road maps are better described as tunnels, since these "maps"
   typically only contain a single road/approach
@@ -1171,10 +1243,12 @@ SQL has changed a lot, though most developers only know the 1992 standard
   is not evidence of absence
 - https://www.impactmapping.org/
 
-* Protect Yourself Against Supply Chain Attacks ([[https://www.youtube.com/watch?v=00R1JGBQEJg][Rob Bos]])
+* Protect Yourself Against Supply Chain Attacks (Rob Bos)
 :PROPERTIES:
 :CUSTOM_ID: protect-yourself-against-supply-chain-attacks
 :END:
+
+Found on [[https://www.youtube.com/watch?v=00R1JGBQEJg][YouTube]].
 
 - Libraries used by your application and tooling used to build your application
 - Supply Chain Confusion (typo squatting, namespace shadowing, configuration
@@ -1196,10 +1270,12 @@ SQL has changed a lot, though most developers only know the 1992 standard
   - OWASP Software Component Verification Standard (SCVS)
   - Supply Chain Levels for Software Artifacts (SLSA)
 
-* Monitoring Is Not Observability ([[https://www.youtube.com/watch?v=fBDI7F9PjlI][Baron Schwartz]])
+* Monitoring Is Not Observability (Baron Schwartz)
 :PROPERTIES:
 :CUSTOM_ID: monitoring-is-not-observability
 :END:
+
+Found on [[https://www.youtube.com/watch?v=fBDI7F9PjlI][YouTube]].
 
 - Definitions
   - Observability: an attribute of a system
@@ -1217,10 +1293,12 @@ SQL has changed a lot, though most developers only know the 1992 standard
   - Little's law
   - Universal scalability law
 
-* Working at the Center of the Cyclone ([[https://www.youtube.com/watch?v=3ZP98stDUf0][Dr. Richard Cook]])
+* Working at the Center of the Cyclone (Dr. Richard Cook)
 :PROPERTIES:
 :CUSTOM_ID: working-at-the-center-of-the-cyclone
 :END:
+
+Found on [[https://www.youtube.com/watch?v=3ZP98stDUf0][YouTube]].
 
 - Complexity is change
 - It's not surprising that your system sometimes fail. What is surprising that
@@ -1243,10 +1321,12 @@ SQL has changed a lot, though most developers only know the 1992 standard
 - Incidents are bits of wisdom. They show you where your mental model differs
   from "the system"
 
-* Resilience In Complex Adaptive Systems ([[https://www.youtube.com/watch?v=PGLYEDpNu60][Dr. Richard Cook]])
+* Resilience In Complex Adaptive Systems (Dr. Richard Cook)
 :PROPERTIES:
 :CUSTOM_ID: resilience-in-complex-adaptive-systems
 :END:
+
+Found on [[https://www.youtube.com/watch?v=PGLYEDpNu60][YouTube]].
 
 - Rasmussen's system model
   - Economic failure boundary
@@ -1264,10 +1344,12 @@ SQL has changed a lot, though most developers only know the 1992 standard
   conservative? We are "flirting" with the margin
 - Resilience: monitoring, reacting, anticipating and learning activities
 
-* How Complex Systems Fail ([[https://www.youtube.com/watch?v=2S0k12uZR14][Dr. Richard Cook]])
+* How Complex Systems Fail (Dr. Richard Cook)
 :PROPERTIES:
 :CUSTOM_ID: how-complex-systems-fail
 :END:
+
+Found on [[https://www.youtube.com/watch?v=2S0k12uZR14][YouTube]].
 
 - https://how.complexsystems.fail
 - We have the "as imagined" and the "as found" world. These are pretty different
@@ -1303,10 +1385,12 @@ SQL has changed a lot, though most developers only know the 1992 standard
   - Commit resources to discovering, understanding and supporting resilience
     through the system life-cycle
 
-* Sleeping with the enemy ([[https://www.youtube.com/watch?v=hIMwTzAAQ-w][Gojko Adzic]])
+* Sleeping with the enemy (Gojko Adzic)
 :PROPERTIES:
 :CUSTOM_ID: sleeping-with-the-enemy
 :END:
+
+Found on [[https://www.youtube.com/watch?v=hIMwTzAAQ-w][YouTube]].
 
 - Manual testing is a bottleneck
 - Let developers watch testers so that they can build understanding and trust
@@ -1328,10 +1412,12 @@ Some quotes:
   is. I don't care about lines of code, tests cases produced...What is the
   outcome?"
 
-* Diagrams as Code 2.0 ([[https://www.youtube.com/watch?v=Za1-v4Zkq5E][Simon Brown]])
+* Diagrams as Code 2.0 (Simon Brown)
 :PROPERTIES:
 :CUSTOM_ID: diagrams-as-code-2-0
 :END:
+
+Found on [[https://www.youtube.com/watch?v=Za1-v4Zkq5E][YouTube]].
 
 - Simon is the author of https://c4model.com
 - The C4 model describes a set of abstractions which can be used to create
@@ -1344,10 +1430,12 @@ Some quotes:
 - Simon was created open source tooling to describe an architecture model using
   the [[https://github.com/structurizr/dsl][Structurizr DSL]]
 
-* Software Architecture, Team Topologies and Complexity Science ([[https://www.youtube.com/watch?v=uAwJEFLJunk][James Lewis]])
+* Software Architecture, Team Topologies and Complexity Science (James Lewis)
 :PROPERTIES:
 :CUSTOM_ID: software-architecture-team-topologies-and-complexity-science
 :END:
+
+Found on [[https://www.youtube.com/watch?v=uAwJEFLJunk][YouTube]].
 
 - The book "Team Topologies" outlines the four fundamental teams you need to
   build software fast:
@@ -1372,10 +1460,12 @@ Some quotes:
   - Sub-linear: road length, number of petrol stations and restaurants, water
     pipes, electricity cables (hierarchical network)
 
-* Automation Is Hard & We Are Doing It Wrong ([[https://www.youtube.com/watch?v=JU5niXIrK3Y][Johan Abildskov]])
+* Automation Is Hard & We Are Doing It Wrong (Johan Abildskov)
 :PROPERTIES:
 :CUSTOM_ID: automation-is-hard-and-we-are-doing-it-wrong
 :END:
+
+Found on [[https://www.youtube.com/watch?v=JU5niXIrK3Y][YouTube]].
 
 - What is DevOps? One Definition: Culture, Automation, Lean, Measuring, Sharing
 - Automation is not a luxury. It's a permission to play
@@ -1408,10 +1498,12 @@ Some quotes:
   areas)
 - Automation is way more than cost-down
 
-* Engineering Documentation ([[https://www.youtube.com/watch?v=Z5OrR99OpiY][Lorna Jane Mitchell]])
+* Engineering Documentation (Lorna Jane Mitchell)
 :PROPERTIES:
 :CUSTOM_ID: engineering-documentation
 :END:
+
+Found on [[https://www.youtube.com/watch?v=Z5OrR99OpiY][YouTube]].
 
 - Documentation enables customer success
 - An investment that scales
@@ -1420,18 +1512,22 @@ Some quotes:
 - Use the same tools and workflows as for code
 - Prose linter https://vale.sh/
 
-* Kinder, es tut mir undendlich leid ([[https://www.youtube.com/watch?v=dpQOKwYOhLQ][Martin Leyrer]])
+* Kinder, es tut mir undendlich leid (Martin Leyrer)
 :PROPERTIES:
 :CUSTOM_ID: kinder-es-tut-mir-undendlich-leid
 :END:
 
+Found on [[https://www.youtube.com/watch?v=dpQOKwYOhLQ][YouTube]].
+
 "We build our computer (systems) the way we build our cities: Over time, without
 a plan, on top of ruins" - Ellen Ullman
 
-* An Introduction to Residuality Theory ([[https://www.youtube.com/watch?v=0wcUG2EV-7E][Barry O'Reilly]])
+* An Introduction to Residuality Theory (Barry O'Reilly)
 :PROPERTIES:
 :CUSTOM_ID: an-introduction-to-residuality-theory
 :END:
+
+Found on [[https://www.youtube.com/watch?v=0wcUG2EV-7E][YouTube]].
 
 - How can we apply complexity theory to software development?
 - Creating software can be boiled down to a two step algorithm:
@@ -1450,10 +1546,12 @@ a plan, on top of ruins" - Ellen Ullman
 - The presenter also shows a concrete example using the architecture of a
   business around charging electric cars
 
-* The Case for Technical Excellence ([[https://www.youtube.com/watch?v=LLEXAdO3X1o][Kevlin Henney]])
+* The Case for Technical Excellence (Kevlin Henney)
 :PROPERTIES:
 :CUSTOM_ID: the-case-for-technical-excellence
 :END:
+
+Found on [[https://www.youtube.com/watch?v=LLEXAdO3X1o][YouTube]].
 
 - Some organizations seem to believe that feature work and technical work are
   mutual exclusive and that they can choose to focus on either. Features are
@@ -1466,10 +1564,12 @@ a plan, on top of ruins" - Ellen Ullman
   change?
 - Technical neglect is the cause of technical debt
 
-* A New Era for Database Design with TigerBeetle ([[https://www.youtube.com/watch?v=_jfOk4L7CiY][Joran Greef]])
+* A New Era for Database Design with TigerBeetle (Joran Greef)
 :PROPERTIES:
 :CUSTOM_ID: a-new-era-for-database-design-with-tigerbeetle
 :END:
+
+Found on [[https://www.youtube.com/watch?v=_jfOk4L7CiY][YouTube]].
 
 - TigerBeetle is a new type of database to track financial transactions
 - Databases still have room for innovation and improvement
@@ -1480,10 +1580,12 @@ a plan, on top of ruins" - Ellen Ullman
 - Storage faults force us to reconsider database design
 - We need to move beyond a crash safety (power loss) model
 
-* It's a Noisy World Out There ([[https://www.youtube.com/watch?v=k8LxUKx85X0][Linda Rising]])
+* It's a Noisy World Out There (Linda Rising)
 :PROPERTIES:
 :CUSTOM_ID: its-a-noisy-world-out-there
 :END:
+
+Found on [[https://www.youtube.com/watch?v=k8LxUKx85X0][YouTube]].
 
 - Humans are terrible at decision making. Flipping a coin is often an easier
   solution than "analyzing data" or "trusting your gut". We have known this
@@ -1514,20 +1616,24 @@ a plan, on top of ruins" - Ellen Ullman
   forecasts
 - Intuition is still critical in decision-making. Don't eliminate it, delay it!
 
-* Hibernate Should Be To Programmers What Cake Mixes Are To Bakers ([[https://vimeo.com/28885655][Christin Gorman]])
+* Hibernate Should Be To Programmers What Cake Mixes Are To Bakers (Christin Gorman)
 :PROPERTIES:
 :CUSTOM_ID: hibernate-should-be-to-programmers-what-cake-mixes-are-to-bakers
 :END:
+
+Found on [[https://vimeo.com/28885655][Vimeo]].
 
 - Gordon Ramsay doesn't use cake mixes
 - Cake mixes are full of stuff that you don't want, don't save you any time and
   often taste worse
 - Frameworks are the cake mixes of software development
 
-* Trust Deterministic Execution to Scale & Simplify Your Systems ([[https://www.youtube.com/watch?v=siEtKc6Sq2Y][Frank Yu]])
+* Trust Deterministic Execution to Scale & Simplify Your Systems (Frank Yu)
 :PROPERTIES:
 :CUSTOM_ID: trust-deterministic-execution-to-scale-and-simplify-your-systems
 :END:
+
+Found on [[https://www.youtube.com/watch?v=siEtKc6Sq2Y][YouTube]].
 
 - Ordered Inputs + Deterministic Execution = Same State and Outputs
 - Sequenced Requests + Determinism = Replicated State and Events
@@ -1536,10 +1642,12 @@ a plan, on top of ruins" - Ellen Ullman
 - You can enable/disable behavior using inputs/request instead of using
   configuration files
 
-* The Most Dangerous Phrase ([[https://www.youtube.com/watch?v=WPCrGYjrJ1Y][Daniel Terhorst-North]])
+* The Most Dangerous Phrase (Daniel Terhorst-North)
 :PROPERTIES:
 :CUSTOM_ID: the-most-dangerous-phrase
 :END:
+
+Found on [[https://www.youtube.com/watch?v=WPCrGYjrJ1Y][YouTube]].
 
 - Why do we do what we do?
   - Out of habit, because it is "obviously right", because this is the way I was
@@ -1557,10 +1665,12 @@ a plan, on top of ruins" - Ellen Ullman
   - Deployment is a technical decision, release is a commercial one
   - Daily steering is about what is left, not what is done
 
-* Continuous Delivery: Sounds Great But It Won't Work Here ([[https://www.youtube.com/watch?v=IvWr29afDF8][Jez Humble]])
+* Continuous Delivery: Sounds Great But It Won't Work Here (Jez Humble)
 :PROPERTIES:
 :CUSTOM_ID: continuous-delivery-sounds-great-but-it-wont-work-here
 :END:
+
+Found on [[https://www.youtube.com/watch?v=IvWr29afDF8][YouTube]].
 
 - In 2008 HP had some quality issues
 - They used activity accounting
@@ -1577,10 +1687,12 @@ a plan, on top of ruins" - Ellen Ullman
 - Costs went down, quality went up, time to market went down. Continuous
   delivery works. Even when building firmware
 
-* You Keep Using That Word ([[https://www.youtube.com/watch?v=rZxIzrjvSGg][Sam Newman]])
+* You Keep Using That Word (Sam Newman)
 :PROPERTIES:
 :CUSTOM_ID: you-keep-using-that-word
 :END:
+
+Found on [[https://www.youtube.com/watch?v=rZxIzrjvSGg][YouTube]].
 
 - "You keep using that word. I do not think it means what you think it means."
 - What does asynchronous and synchronous communication actually mean?
@@ -1589,10 +1701,12 @@ a plan, on top of ruins" - Ellen Ullman
   - How fast should something be?
   - What if the client crashes?
 
-* TDD Isn't Hard, It's Something Else ([[https://www.youtube.com/watch?v=WDFN_u5FTyM][Dave Farley]])
+* TDD Isn't Hard, It's Something Else (Dave Farley)
 :PROPERTIES:
 :CUSTOM_ID: tdd-isnt-hard-its-something-else
 :END:
+
+Found on [[https://www.youtube.com/watch?v=WDFN_u5FTyM][YouTube]].
 
 - Designing is the hard bit
 - TDD exposes us to our own design choices
@@ -1600,10 +1714,12 @@ a plan, on top of ruins" - Ellen Ullman
 - Use tests to define/explain the public API of your code
 - Tests specify your objectives
 
-* Der Faktor Mensch in der Softwareentwicklung ([[https://www.youtube.com/watch?v=Eh-UaaxBYDk][David Tielke]])
+* Der Faktor Mensch in der Softwareentwicklung (David Tielke)
 :PROPERTIES:
 :CUSTOM_ID: der-faktor-mensch-in-der-softwareentwicklung
 :END:
+
+Found on [[https://www.youtube.com/watch?v=Eh-UaaxBYDk][YouTube]].
 
 - We focus too much on technical skills
 - Instead we should also consider areas such as
@@ -1613,10 +1729,12 @@ a plan, on top of ruins" - Ellen Ullman
   - Problem solving
   - Time management
 
-* Practical DOD ([[https://vimeo.com/649009599][Andrew Kelley]])
+* Practical DOD (Andrew Kelley)
 :PROPERTIES:
 :CUSTOM_ID: practical-dod
 :END:
+
+Found on [[https://vimeo.com/649009599][Vimeo]].
 
 - Every couple of years I look back at my code and think "oh wow that's crap".
   That stopped after 10 years
@@ -1625,10 +1743,12 @@ a plan, on top of ruins" - Ellen Ullman
   with main memory!
 - Reduce memory footprint
 
-* The Art of Destroying Software ([[https://www.youtube.com/watch?v=1FPsJ-if2RU][Greg Young]])
+* The Art of Destroying Software (Greg Young)
 :PROPERTIES:
 :CUSTOM_ID: the-art-of-destroying-software
 :END:
+
+Found on [[https://www.youtube.com/watch?v=1FPsJ-if2RU][YouTube]].
 
 - Doesn't it feel good to have a pull request that deletes more code than it
   adds?
@@ -1642,10 +1762,12 @@ a plan, on top of ruins" - Ellen Ullman
 - Changing existing code is hard if the overall model does not fit your new
   thing
 
-* Testing the Hard Stuff and Staying Sane ([[https://www.youtube.com/watch?v=zi0rHwfiX1Q][John Hughes]])
+* Testing the Hard Stuff and Staying Sane (John Hughes)
 :PROPERTIES:
 :CUSTOM_ID: testing-the-hard-stuff-and-staying-sane
 :END:
+
+Found on [[https://www.youtube.com/watch?v=zi0rHwfiX1Q][YouTube]].
 
 - Property based testing: find more bugs with less effort
 - AUTOSAR theory: car manufactures can buy code from different providers and
@@ -1654,20 +1776,24 @@ a plan, on top of ruins" - Ellen Ullman
 - Are you having a bug that only shows up every couple of months? That smells
   like a race condition, doesn't it?
 
-* Legacy ([[https://www.youtube.com/watch?v=YruzQgWdv48][Chad Fowler]])
+* Legacy (Chad Fowler)
 :PROPERTIES:
 :CUSTOM_ID: legacy
 :END:
+
+Found on [[https://www.youtube.com/watch?v=YruzQgWdv48][YouTube]].
 
 - In the real world "legacy" is a good thing
 - In software "legacy" has this bad taste
 - Micheal Feathers on how to create legacy software: fear, stasis, difficult to
   change
 
-* The Sociotechnical Path to High-Performing Teams ([[https://www.youtube.com/watch?v=oV8VSBSBrr4][Charity Majors]])
+* The Sociotechnical Path to High-Performing Teams (Charity Majors)
 :PROPERTIES:
 :CUSTOM_ID: the-sociotechnical-path-to-high-performing-teams
 :END:
+
+Found on [[https://www.youtube.com/watch?v=oV8VSBSBrr4][YouTube]].
 
 - How do you build high-performing teams?
 - False: "Just hire the best engineers and you'll get the best team"
@@ -1678,10 +1804,12 @@ a plan, on top of ruins" - Ellen Ullman
 - The next generation of systems won't be built and run by burned out, exhausted
   people, or command-and-control teams just following orders
 
-* Deprecating Simplicity 3.0 ([[https://www.youtube.com/watch?v=JfT9UxcEcOE][Casey Rosenthal]])
+* Deprecating Simplicity 3.0 (Casey Rosenthal)
 :PROPERTIES:
 :CUSTOM_ID: deprecating-simplicity-3-0
 :END:
+
+Found on [[https://www.youtube.com/watch?v=JfT9UxcEcOE][YouTube]].
 
 - All components could be 100% correct and yet the system can exhibit
   undesirable behavior
@@ -1695,10 +1823,12 @@ a plan, on top of ruins" - Ellen Ullman
   - Reversibility
 - Software engineering: the bureaucratic profession
 
-* Agile & Scrum Don't Work ([[https://www.youtube.com/watch?v=hxXmTnb3mFU][Allen Holub]])
+* Agile & Scrum Don't Work (Allen Holub)
 :PROPERTIES:
 :CUSTOM_ID: agile-and-scrum-dont-work
 :END:
+
+Found on [[https://www.youtube.com/watch?v=hxXmTnb3mFU][YouTube]].
 
 - Agile has came to mean "half of scrum doing badly and using Jira"
 - The word "Agile" has changed over the time
@@ -1708,10 +1838,12 @@ a plan, on top of ruins" - Ellen Ullman
   development
 - https://www.thisamericanlife.org/561/nummi-2015
 
-* Increasing Team Velocity While Improving Quality ([[https://www.youtube.com/watch?v=65YhzYSL5Hw][Kent Beck]])
+* Increasing Team Velocity While Improving Quality (Kent Beck)
 :PROPERTIES:
 :CUSTOM_ID: increasing-team-velocity-while-improving-quality
 :END:
+
+Found on [[https://www.youtube.com/watch?v=65YhzYSL5Hw][YouTube]].
 
 - His mission: make geeks feel save in the world
 - Extreme programming's foundation: communication, feedback, courage and respect
@@ -1724,20 +1856,24 @@ a plan, on top of ruins" - Ellen Ullman
   that the change becomes easy (Warning: this might be hard) and then do the
   easy change
 
-* Repeatable Execution ([[https://www.youtube.com/watch?v=Ak1hGQuGBhY][Mark Seemann]])
+* Repeatable Execution (Mark Seemann)
 :PROPERTIES:
 :CUSTOM_ID: repeatable-execution
 :END:
+
+Found on [[https://www.youtube.com/watch?v=Ak1hGQuGBhY][YouTube]].
 
 - Favor pure functions over impure actions
 - Make impure actions polymorphic
 - Log with decorators
 - Use logs to enable replay
 
-* Moving IO to the edges of your app: Functional Core, Imperative Shell ([[https://www.youtube.com/watch?v=P1vES9AgfC4][Scott Wlaschin]])
+* Moving IO to the edges of your app: Functional Core, Imperative Shell (Scott Wlaschin)
 :PROPERTIES:
 :CUSTOM_ID: moving-io-to-the-edges-of-your-app-functional-core-imperative-shell
 :END:
+
+Found on [[https://www.youtube.com/watch?v=P1vES9AgfC4][YouTube]].
 
 - Traditional layered architecture has the database at the bottom
 - If you map out a request that travels through your layers the database is in
@@ -1752,10 +1888,12 @@ a plan, on top of ruins" - Ellen Ullman
 - Don't mock classes if they are pure
 - Dependency injection can lead to interface creep
 
-* Exploring the Unintended Consequences of Automation in Software ([[https://www.youtube.com/watch?v=rdJXUN4YV_M][Courtney Nash]])
+* Exploring the Unintended Consequences of Automation in Software (Courtney Nash)
 :PROPERTIES:
 :CUSTOM_ID: exploring-the-unintended-consequences-of-automation-in-software
 :END:
+
+Found on [[https://www.youtube.com/watch?v=rdJXUN4YV_M][YouTube]].
 
 - Ironies of automation
   - Humans design the automation and then also deal with its unanticipated, often negatie consequences
@@ -1773,10 +1911,12 @@ a plan, on top of ruins" - Ellen Ullman
 - Use automation to augment what we do. Transform automation from a "bad
   colleague" to a collaborative team player
 
-* Communicating in Types ([[https://www.youtube.com/watch?v=SOz66dcsuT8][Kris Jenkins]])
+* Communicating in Types (Kris Jenkins)
 :PROPERTIES:
 :CUSTOM_ID: communicating-in-types
 :END:
+
+Found on [[https://www.youtube.com/watch?v=SOz66dcsuT8][YouTube]].
 
 - A good type system let's you describe things, relationships and context
 - Most languages have "and" types (e.g. records) and "or" types (e.g. enums) but
@@ -1786,10 +1926,12 @@ a plan, on top of ruins" - Ellen Ullman
   - ~OrderID -> UserId -> Db Invoice~, or even better
   - ~OrderID -> UserId -> DbRead Invoice~
 
-* .NET supply chain: Protecting against hidden threats ([[https://www.youtube.com/watch?v=eifBCQB71l8][Tom van den Berg]])
+* .NET supply chain: Protecting against hidden threats (Tom van den Berg)
 :PROPERTIES:
 :CUSTOM_ID: net-supply-chain-protecting-against-hidden-threats
 :END:
+
+Found on [[https://www.youtube.com/watch?v=eifBCQB71l8][YouTube]].
 
 - [[https://github.com/tom171296/ChainGuardian.DotNetNuGet][Example]]
 - NuGet audit

@@ -16,6 +16,11 @@ h1 {
     margin: 0;
 }
 
+h2 a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
 blockquote {
     background: #9494940f;
     border-left: 4px solid #047bc2;
