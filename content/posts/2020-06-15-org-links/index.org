@@ -1,7 +1,7 @@
 #+TITLE: Even Better Emacs Org-Mode Links
 #+DATE: [2020-06-15]
 
-In a [[/posts/2019-01-30-emacs-orglink][previous blog post]] I talked about how I am using org-mode links
+In a [[../2019-01-30-emacs-orglink/index.org][previous blog post]] I talked about how I am using org-mode links
 to create shortcuts for accessing my projects. The outlined solution was using
 link shortcuts with custom elisp code. While this is a valid solution, clicking
 such a link prompts you for a "would you like to run this code?" confirmation,

@@ -4,7 +4,7 @@
 Having your own [[https://github.com/fwinkelbauer/chunkyard][pet project]] gives you the great possibility to try things you
 would not want to explore in a serious project. One of my latest experiments
 made me rethink how I create build scripts (which I have mentioned before in a
-[[/posts/2020-04-04-dotnet-build][previous blog post]]): What if I would use C# as a "scripting language" in order
+[[../2020-04-04-dotnet-build/index.org][previous blog post]]): What if I would use C# as a "scripting language" in order
 to create a build script. Or even better: What if I could create a CLI tool
 which deals with all my build tasks? The advantages are rather nice:
 

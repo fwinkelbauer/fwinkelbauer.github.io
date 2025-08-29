@@ -16,7 +16,7 @@ git clean -dfx -e .vs/ -e *.user -e launchSettings.json
 #+end_src
 
 These expressions looked similar to the content of a ~.gitignore~ file to me, so
-I added a function to my [[/posts/2021-10-04-building-csharp][C# build tool]] which feeds the content of a
+I added a function to my [[../2021-10-04-building-csharp/index.org][C# build tool]] which feeds the content of a
 ~.cleanignore~ file into ~git clean~:
 
 #+begin_src text
