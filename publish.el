@@ -1,6 +1,8 @@
 (when (version< emacs-version "28.1")
   (error "Unsupported version of Emacs"))
 
+(require 'ox-publish)
+
 (defun fw/join (&rest strings)
   "Join all non-nil strings."
   (string-join (remq nil strings) "\n"))
@@ -98,5 +100,4 @@
         (org-publish-timestamp-directory ".org-timestamps/"))
     (org-publish "florianwinkelbauer.com" t)))
 
-(require 'ox-publish)
 (fw/publish-website)
