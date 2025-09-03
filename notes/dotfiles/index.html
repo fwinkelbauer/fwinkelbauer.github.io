@@ -170,29 +170,33 @@ echo "Archived $output"
 </div>
 
 <p>
+Translate bank .csv files to import them into Homebank:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">file="$1"
+account="$2"
+
+dir=~/Downloads
+output="$dir/$account.qif"
+awk -v acc="$account" '{ print "!Account\nN" acc "\n^\n!Type:Bank"; FS=";"; sub(/^\xef\xbb\xbf/, ""); gsub("\"", ""); print "D" $1 "\nM" $2 "\nT" $4 "\n^" }' "$file" &gt; "$output"
+rm -f "$file"
+echo "Created $output"
+</pre>
+</div>
+
+<p>
 Manipulate files based on some rules:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">to_homebank () {
-    pattern="$1"
-    account="$2"
-    input=$(find ~/Downloads -name "$pattern")
-    if [ -f "$input" ]; then
-        dir=~/Downloads
-        output="$dir/$account.qif"
-        awk -v acc="$account" '{ print "!Account\nN" acc "\n^\n!Type:Bank"; FS=";"; sub(/^\xef\xbb\xbf/, ""); gsub("\"", ""); print "D" $1 "\nM" $2 "\nT" $4 "\n^" }' "$input" &gt; "$output"
-        rm -f "$input"
-        echo "Created $output"
-    fi
-}
-
-find ~/Downloads -name '*.qif' -exec rm -f {} \;
+<pre class="src src-sh">find ~/Downloads -name '*.qif' -exec rm -f {} \;
+find ~/Downloads -name '*.bin' -exec rm -f {} \;
 find ~/Downloads -name 'Lohnsets*' -exec my-archive {} 'Intact-Lohn' \;
 find ~/Downloads -name 'Rechnung_38*.1_*.pdf' -exec my-archive {} 'A1-Rechnung' \;
 find ~/Downloads -name 'ZS*.pdf' -exec my-archive {} 'Leibnitzerfeld-Rechnung' \;
-to_homebank 'meinElba*1_suche.csv' 'Girokonto'
-to_homebank 'meinElba*7_suche.csv' 'Sparbuch'
+find ~/Downloads -name 'meinElba*1_suche.csv' -exec my-homebank {} 'Girokonto' \;
+find ~/Downloads -name 'meinElba*7_suche.csv' -exec my-homebank {} 'Sparbuch' \;
 </pre>
 </div>
 </div>
