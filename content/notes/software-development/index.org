@@ -1941,3 +1941,23 @@ Found on [[https://www.youtube.com/watch?v=eifBCQB71l8][YouTube]].
 - NuGet cache
 - [[https://github.com/dotnet/reproducible-builds][Reproducible builds]]
 - [[https://github.com/aquasecurity/trivy][License scanning]]
+
+* Re-wiring Your Brain - with Test Driven Thinking (Phil Nash)
+:PROPERTIES:
+:CUSTOM_ID: rewiring-your-brain-with-test-driven-thinking
+:END:
+
+Found on [[https://www.youtube.com/watch?v=9viBYAm-JqA][YouTube]].
+
+- Habits
+  - cue, reward, behaviour
+- Dopamine
+  - Confers motivational salience
+  - Levels can stay high if we don't find a pattern in an activity
+- TDD is its own habit
+  - Red, green, refactor
+  - Running tests might give unexpected results. You want to find out what why
+    your expectations weren't met
+- Our brains work on open loops
+  - We externalise our brains by interacting with others
+  - Writing things down can have the same effect
