@@ -1961,3 +1961,14 @@ Found on [[https://www.youtube.com/watch?v=9viBYAm-JqA][YouTube]].
 - Our brains work on open loops
   - We externalise our brains by interacting with others
   - Writing things down can have the same effect
+
+* 1000x: The Power of an Interface for Performance (Joran Dirk Greef)
+:PROPERTIES:
+:CUSTOM_ID: 1000x-the-power-of-an-interface-for-performance
+:END:
+
+- This is honestly one of the most entertaining conference talks I've seen. Well done!
+- What is the upper limit (transactions per second) on Postgres based on it's
+  interface (client side locking)
+- What performance characteristics would different interfaces have?
+- Even the biggest cloud offerings can't outrun Amdahl's law
