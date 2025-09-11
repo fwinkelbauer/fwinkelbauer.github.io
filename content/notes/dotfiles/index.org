@@ -6,7 +6,7 @@ This is my setup script for Linux Mint 22.1:
 
 #+begin_src sh
 sudo apt update
-sudo apt install -y ripgrep fonts-jetbrains-mono git emacs homebank keepassxc
+sudo apt install -y fonts-jetbrains-mono git emacs homebank keepassxc
 
 sudo locale-gen 'de_DE.UTF-8'
 
@@ -301,7 +301,7 @@ find ~/Downloads -name 'meinElba*7_suche.csv' -exec my-homebank {} 'Sparbuch' \;
          ("C-x k" . kill-current-buffer)
          ("C-c s" . consult-line)
          ("C-c f" . project-find-file)
-         ("C-c g" . consult-ripgrep)
+         ("C-c g" . consult-git-grep)
          ("M-g g" . consult-goto-line)
          ("C-z" . undo)))
 
