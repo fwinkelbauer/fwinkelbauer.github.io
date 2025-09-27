@@ -1972,3 +1972,21 @@ Found on [[https://www.youtube.com/watch?v=9viBYAm-JqA][YouTube]].
   interface (client side locking)
 - What performance characteristics would different interfaces have?
 - Even the biggest cloud offerings can't outrun Amdahl's law
+
+* Confessions of a Public Speaker (Scott Berkun)
+
+- Stage fright is real and normal
+  - Your interpretation makes all the difference
+  - Do sports in the morning
+- Consider your audience
+  - Make it interesting for you
+  - Make it interesting for them
+- Play the part. Be bigger than you are
+  - Larger stages make it necessary to use larger gestures
+  - Take strong positions
+- Practice your material!
+- Provide rythm
+  - Tell people your plan and stick to it
+  - People can pay attention (roughly) for 5-10 minutes
+  - Consider your pace and when to introduce new ideas
+- End your talk early
