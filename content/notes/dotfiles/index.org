@@ -14,7 +14,7 @@ git clone https://github.com/fwinkelbauer/chunkyard ~/Projects/chunkyard
 git clone https://github.com/fwinkelbauer/conferences ~/Projects/conferences
 git clone https://github.com/fwinkelbauer/fwinkelbauer.github.io.git ~/Projects/website
 
-emacs -Q --batch -l org --eval '(org-babel-tangle-file "~/Projects/website/content/notes/dotfiles.org")'
+emacs -Q --batch -l org --eval '(org-babel-tangle-file "~/Projects/website/content/notes/dotfiles/index.org")'
 #+end_src
 
 * Git
