@@ -1974,6 +1974,9 @@ Found on [[https://www.youtube.com/watch?v=9viBYAm-JqA][YouTube]].
 - Even the biggest cloud offerings can't outrun Amdahl's law
 
 * Confessions of a Public Speaker (Scott Berkun)
+:PROPERTIES:
+:CUSTOM_ID: confessions-of-a-public-speaker
+:END:
 
 - Stage fright is real and normal
   - Your interpretation makes all the difference
