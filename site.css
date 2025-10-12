@@ -21,16 +21,9 @@ h2 a {
     text-decoration: inherit;
 }
 
-blockquote {
-    background: #9494940f;
-    border-left: 4px solid #047bc2;
-    padding: 1px 1.5em;
-}
-
 .org-src-container pre, code {
     background: #94949426;
     opacity: .75;
-    border-radius: 2px;
     padding: .2em .4em;
     overflow-x: auto;
 }
@@ -41,21 +34,6 @@ a {
 
 nav a {
     margin-right: .5em;
-}
-
-table {
-    box-shadow: 0 0 0 1px #9494941f inset;
-    border-spacing: 1px;
-    width: 100%;
-}
-
-tr:hover, tr:nth-child(odd) td {
-    background: #94949410;
-}
-
-th, td {
-    box-shadow: 0 0 0 1px #9494941f;
-    padding: .5em 1em;
 }
 
 footer {
