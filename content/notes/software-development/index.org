@@ -517,12 +517,10 @@ Why? Because they tend to mix two very different concepts:
 What time is it? 1532428776. No, I mean what time is it? Well, that depends.
 Which epoch do you mean?
 
-| Environment | Start      |
-|-------------+------------|
-| .NET        | 1 Jan 0001 |
-| Windows     | 1 Jan 1601 |
-| Unix        | 1 Jan 1970 |
-| GPS         | 5 Jan 1980 |
+- .NET: 1 Jan 0001
+- Windows: 1 Jan 1601
+- Unix: 1 Jan 1970
+- GPS: 5 Jan 1980
 
 A timestamp on Windows means something completely different than a timestamp on
 Unix!
@@ -532,8 +530,8 @@ guarantee, that the system time increases monotonically. So you shouldn't use
 it. Instead, use something different like the current tick count, or use your
 own sequence number.
 
-UTC (which stands for Coordinated Universal Time) is an effort to create a
-system on which we can all agree.
+UTC (Coordinated Universal Time) is an effort to create a system on which we can
+all agree.
 
 Coding advice:
 
