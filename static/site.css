@@ -1,15 +1,10 @@
 body {
     font-family: sans-serif;
-    font-size: 16px;
     font-size: calc(0.8rem + 0.25vw);
-    line-height: 1.65;
+    line-height: 1.6;
     padding: 1.5em;
-}
-
-@media (min-width: 40em) {
-    body {
-        padding: 1.5em calc(34% - 12rem);
-    }
+    max-width: min(80ch, 100% - 4rem);
+    margin-inline: auto;
 }
 
 h1 {
@@ -21,7 +16,7 @@ h2 a {
     text-decoration: inherit;
 }
 
-.org-src-container pre, code {
+pre, code {
     background: #94949426;
     opacity: .75;
     padding: .2em .4em;
@@ -37,7 +32,6 @@ nav a {
 }
 
 footer {
-    margin-top: 25px;
     font-size: 11px;
     text-align: center;
 }
