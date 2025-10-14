@@ -18,8 +18,8 @@ h2 a {
 
 pre, code {
     background: #94949426;
-    opacity: .75;
-    padding: .2em .4em;
+    opacity: 0.75;
+    padding: 0.2em 0.4em;
     overflow-x: auto;
 }
 
@@ -28,7 +28,7 @@ a {
 }
 
 nav a {
-    margin-right: .5em;
+    margin-right: 0.5em;
 }
 
 footer {
