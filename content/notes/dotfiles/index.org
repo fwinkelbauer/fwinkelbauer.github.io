@@ -66,6 +66,16 @@ emacs -Q --batch -l org --eval '(org-babel-tangle-file "~/Projects/website/conte
 :CUSTOM_ID: bash
 :END:
 
+Create a backup of my projects:
+
+#+begin_src sh :shebang "#!/bin/bash -eu" :tangle "~/.local/bin/my-bundle"
+for project in ~/Projects/*; do
+     cd "$project"
+     name="${project##*/}"
+     git bundle create "$HOME/Documents/archive/$name.bundle" --all
+done
+#+end_src
+
 Create new backup:
 
 #+begin_src sh :shebang "#!/bin/bash -eu" :tangle "~/.local/bin/my-store"
