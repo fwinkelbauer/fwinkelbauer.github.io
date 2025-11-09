@@ -21,7 +21,7 @@
 <header>
 <h1 class="title">Dotfiles</h1>
 </header><p>
-This is my setup script for Linux Mint 22.1:
+This is my setup script for Linux Mint 22.2:
 </p>
 
 <div class="org-src-container">
@@ -86,6 +86,19 @@ emacs -Q --batch -l org --eval '(org-babel-tangle-file "~/Projects/website/conte
 <div id="outline-container-bash" class="outline-2">
 <h2 id="bash"><a href="#bash">Bash</a></h2>
 <div class="outline-text-2" id="text-bash">
+<p>
+Create a backup of my projects:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">for project in ~/Projects/*; do
+     cd "$project"
+     name="${project##*/}"
+     git bundle create "$HOME/Documents/archive/$name.bundle" --all
+done
+</pre>
+</div>
+
 <p>
 Create new backup:
 </p>
@@ -194,7 +207,6 @@ Manipulate files based on some rules:
 find ~/Downloads -name '*.bin' -exec rm -f {} \;
 find ~/Downloads -name 'Lohnsets*' -exec my-archive {} 'Intact-Lohn' \;
 find ~/Downloads -name 'Rechnung_38*.1_*.pdf' -exec my-archive {} 'A1-Rechnung' \;
-find ~/Downloads -name 'ZS*.pdf' -exec my-archive {} 'Leibnitzerfeld-Rechnung' \;
 find ~/Downloads -name 'meinElba*1_suche.csv' -exec my-homebank {} 'Girokonto' \;
 find ~/Downloads -name 'meinElba*7_suche.csv' -exec my-homebank {} 'Sparbuch' \;
 </pre>
@@ -277,7 +289,6 @@ find ~/Downloads -name 'meinElba*7_suche.csv' -exec my-homebank {} 'Sparbuch' \;
             (todo "*"
                   ((org-agenda-overriding-header "\nSonstiges\n")
                    (org-agenda-block-separator nil)
-                   (org-agenda-sorting-strategy '(todo-state-up))
                    (org-agenda-todo-ignore-deadlines 'all)
                    (org-agenda-todo-ignore-scheduled 'all)))))))
 
