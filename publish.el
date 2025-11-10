@@ -81,6 +81,7 @@
         (org-export-with-toc nil)
         (org-html-doctype "html5")
         (org-html-html5-fancy t)
+        (org-html-htmlize-output-type nil)
         (org-html-head
          (fw/join "<meta name=\"author\" content=\"Florian Winkelbauer\">"
                   "<link rel=\"stylesheet\" href=\"/site.css\" type=\"text/css\">"))
