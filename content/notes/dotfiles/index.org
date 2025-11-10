@@ -327,3 +327,9 @@ find ~/Downloads -name 'meinElba*7_suche.csv' -exec my-homebank {} 'Sparbuch' \;
   :config
   (load-theme 'modus-operandi-tinted t))
 #+end_src
+
+Use spell checking in org-mode:
+
+#+begin_src emacs-lisp :tangle "~/Projects/.dir-locals.el"
+((org-mode . ((eval . (flyspell-mode)))))
+#+end_src
