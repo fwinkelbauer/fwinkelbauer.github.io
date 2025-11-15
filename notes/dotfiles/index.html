@@ -56,25 +56,12 @@ emacs -Q --batch -l org --eval '(org-babel-tangle-file "~/Projects/website/conte
 [tag]
   gpgSign = true
 
-[fetch]
-  prune = true
-  pruneTags = true
-
 [push]
   followTags = true
 
 [merge]
   ff = only
   conflictStyle = zdiff3
-
-[tag]
-  sort = version:refname
-
-[log]
-  date = iso
-
-[init]
-  defaultBranch = main
 
 [url "git@github.com:fwinkelbauer/"]
   insteadOf = "https://github.com/fwinkelbauer/"
@@ -94,7 +81,11 @@ Create a backup of my projects:
 <pre class="src src-sh">for project in ~/Projects/*; do
      cd "$project"
      name="${project##*/}"
+
+     echo "$name"
+     echo '============================================================'
      git bundle create "$HOME/Documents/archive/$name.bundle" --all
+     echo ''
 done
 </pre>
 </div>
@@ -163,26 +154,6 @@ done
 </div>
 
 <p>
-Move files to an archive:
-</p>
-
-<div class="org-src-container">
-<pre class="src src-sh">file="$1"
-name="$2"
-
-archive=~/Documents/archive
-year=$(date -r "$file" '+%Y')
-date=$(date -r "$file" '+%Y-%m-%d')
-dir="$archive/$year"
-base=$(basename "$file")
-output="$dir/$date-$name.${base##*.}"
-mkdir -p "$dir"
-mv "$file" "$output"
-echo "Archived $output"
-</pre>
-</div>
-
-<p>
 Translate bank .csv files to import them into Homebank:
 </p>
 
@@ -205,10 +176,9 @@ Manipulate files based on some rules:
 <div class="org-src-container">
 <pre class="src src-sh">find ~/Downloads -name '*.qif' -exec rm -f {} \;
 find ~/Downloads -name '*.bin' -exec rm -f {} \;
-find ~/Downloads -name 'Lohnsets*' -exec my-archive {} 'Intact-Lohn' \;
-find ~/Downloads -name 'Rechnung_38*.1_*.pdf' -exec my-archive {} 'A1-Rechnung' \;
 find ~/Downloads -name 'meinElba*1_suche.csv' -exec my-homebank {} 'Girokonto' \;
 find ~/Downloads -name 'meinElba*7_suche.csv' -exec my-homebank {} 'Sparbuch' \;
+find ~/Downloads -name 'meinElba*3_suche.csv' -exec my-homebank {} 'Max' \;
 </pre>
 </div>
 </div>
