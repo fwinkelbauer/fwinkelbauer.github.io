@@ -37,25 +37,12 @@ emacs -Q --batch -l org --eval '(org-babel-tangle-file "~/Projects/website/conte
 [tag]
   gpgSign = true
 
-[fetch]
-  prune = true
-  pruneTags = true
-
 [push]
   followTags = true
 
 [merge]
   ff = only
   conflictStyle = zdiff3
-
-[tag]
-  sort = version:refname
-
-[log]
-  date = iso
-
-[init]
-  defaultBranch = main
 
 [url "git@github.com:fwinkelbauer/"]
   insteadOf = "https://github.com/fwinkelbauer/"
@@ -66,35 +53,10 @@ emacs -Q --batch -l org --eval '(org-babel-tangle-file "~/Projects/website/conte
 :CUSTOM_ID: bash
 :END:
 
-Create a backup of my projects:
-
-#+begin_src sh :shebang "#!/bin/bash -eu" :tangle "~/.local/bin/my-bundle"
-for project in ~/Projects/*; do
-     cd "$project"
-     name="${project##*/}"
-
-     echo "$name"
-     echo '============================================================'
-     git bundle create "$HOME/Documents/archive/$name.bundle" --all
-     echo ''
-done
-#+end_src
-
 Create new backup:
 
 #+begin_src sh :shebang "#!/bin/bash -eu" :tangle "~/.local/bin/my-store"
-directories=(
-    ~/Documents
-    ~/Music
-    ~/Pictures
-    ~/Videos
-)
-
-includes=(
-    '!\~$'
-)
-
-chunkyard store --directory "${directories[@]}" --include "${includes[@]}" --repository ~/.chunkyard --password 'Libsecret' "$@"
+chunkyard store --repository ~/.chunkyard --directory ~/Documents ~/Downloads --include '!\~$' --password 'Libsecret' "$@"
 
 my-copy
 #+end_src
@@ -134,46 +96,25 @@ for remote in "${remotes[@]}"; do
 done
 #+end_src
 
-Move files to an archive:
-
-#+begin_src sh :shebang "#!/bin/bash -eu" :tangle "~/.local/bin/my-archive"
-file="$1"
-name="$2"
-
-archive=~/Documents/archive
-year=$(date -r "$file" '+%Y')
-date=$(date -r "$file" '+%Y-%m-%d')
-dir="$archive/$year"
-base=$(basename "$file")
-output="$dir/$date-$name.${base##*.}"
-mkdir -p "$dir"
-mv "$file" "$output"
-echo "Archived $output"
-#+end_src
-
-Translate bank .csv files to import them into Homebank:
+Transform bank .csv files to import them into Homebank:
 
 #+begin_src sh :shebang "#!/bin/bash -eu" :tangle "~/.local/bin/my-homebank"
-file="$1"
-account="$2"
+homebank() {
+    file="$1"
+    account="$2"
 
-dir=~/Downloads
-output="$dir/$account.qif"
-awk -v acc="$account" '{ print "!Account\nN" acc "\n^\n!Type:Bank"; FS=";"; sub(/^\xef\xbb\xbf/, ""); gsub("\"", ""); print "D" $1 "\nM" $2 "\nT" $4 "\n^" }' "$file" > "$output"
-rm -f "$file"
-echo "Created $output"
-#+end_src
+    dir=~/Downloads
+    output="$dir/$account.qif"
+    awk -v acc="$account" '{ print "!Account\nN" acc "\n^\n!Type:Bank"; FS=";"; sub(/^\xef\xbb\xbf/, ""); gsub("\"", ""); print "D" $1 "\nM" $2 "\nT" $4 "\n^" }' "$file" > "$output"
+    rm -f "$file"
+    echo "Created $output"
+}
 
-Manipulate files based on some rules:
+export -f homebank
 
-#+begin_src sh :shebang "#!/bin/bash -eu" :tangle "~/.local/bin/my-curator"
-find ~/Downloads -name '*.qif' -exec rm -f {} \;
-find ~/Downloads -name '*.bin' -exec rm -f {} \;
-find ~/Downloads -name 'Lohnsets*' -exec my-archive {} 'Intact-Lohn' \;
-find ~/Downloads -name 'Rechnung_38*.1_*.pdf' -exec my-archive {} 'A1-Rechnung' \;
-find ~/Downloads -name 'meinElba*1_suche.csv' -exec my-homebank {} 'Girokonto' \;
-find ~/Downloads -name 'meinElba*7_suche.csv' -exec my-homebank {} 'Sparbuch' \;
-find ~/Downloads -name 'meinElba*3_suche.csv' -exec my-homebank {} 'Max' \;
+find ~/Downloads -name 'meinElba*1_suche.csv' -exec bash -c 'homebank "$0" Girokonto' {} \;
+find ~/Downloads -name 'meinElba*7_suche.csv' -exec bash -c 'homebank "$0" Sparbuch' {} \;
+find ~/Downloads -name 'meinElba*3_suche.csv' -exec bash -c 'homebank "$0" Max' {} \;
 #+end_src
 
 * Emacs
@@ -331,10 +272,4 @@ find ~/Downloads -name 'meinElba*3_suche.csv' -exec my-homebank {} 'Max' \;
   :ensure t
   :config
   (load-theme 'modus-operandi-tinted t))
-#+end_src
-
-Use spell checking in org-mode:
-
-#+begin_src emacs-lisp :tangle "~/Projects/.dir-locals.el"
-((org-mode . ((eval . (flyspell-mode)))))
 #+end_src
