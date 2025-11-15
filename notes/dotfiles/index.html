@@ -74,23 +74,6 @@ emacs -Q --batch -l org --eval '(org-babel-tangle-file "~/Projects/website/conte
 <h2 id="bash"><a href="#bash">Bash</a></h2>
 <div class="outline-text-2" id="text-bash">
 <p>
-Create a backup of my projects:
-</p>
-
-<div class="org-src-container">
-<pre class="src src-sh">for project in ~/Projects/*; do
-     cd "$project"
-     name="${project##*/}"
-
-     echo "$name"
-     echo '============================================================'
-     git bundle create "$HOME/Documents/archive/$name.bundle" --all
-     echo ''
-done
-</pre>
-</div>
-
-<p>
 Create new backup:
 </p>
 
