@@ -72,7 +72,11 @@ Create a backup of my projects:
 for project in ~/Projects/*; do
      cd "$project"
      name="${project##*/}"
+
+     echo "$name"
+     echo '============================================================'
      git bundle create "$HOME/Documents/archive/$name.bundle" --all
+     echo ''
 done
 #+end_src
 
