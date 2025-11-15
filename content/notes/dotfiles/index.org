@@ -173,6 +173,7 @@ find ~/Downloads -name 'Lohnsets*' -exec my-archive {} 'Intact-Lohn' \;
 find ~/Downloads -name 'Rechnung_38*.1_*.pdf' -exec my-archive {} 'A1-Rechnung' \;
 find ~/Downloads -name 'meinElba*1_suche.csv' -exec my-homebank {} 'Girokonto' \;
 find ~/Downloads -name 'meinElba*7_suche.csv' -exec my-homebank {} 'Sparbuch' \;
+find ~/Downloads -name 'meinElba*3_suche.csv' -exec my-homebank {} 'Max' \;
 #+end_src
 
 * Emacs
