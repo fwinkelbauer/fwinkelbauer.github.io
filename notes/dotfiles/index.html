@@ -126,7 +126,7 @@ done
 </div>
 
 <p>
-Translate bank .csv files to import them into Homebank:
+Transform bank .csv files to import them into Homebank:
 </p>
 
 <div class="org-src-container">
@@ -146,9 +146,7 @@ Manipulate files based on some rules:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">find ~/Downloads -name '*.qif' -exec rm -f {} \;
-find ~/Downloads -name '*.bin' -exec rm -f {} \;
-find ~/Downloads -name 'meinElba*1_suche.csv' -exec my-homebank {} 'Girokonto' \;
+<pre class="src src-sh">find ~/Downloads -name 'meinElba*1_suche.csv' -exec my-homebank {} 'Girokonto' \;
 find ~/Downloads -name 'meinElba*7_suche.csv' -exec my-homebank {} 'Sparbuch' \;
 find ~/Downloads -name 'meinElba*3_suche.csv' -exec my-homebank {} 'Max' \;
 </pre>
