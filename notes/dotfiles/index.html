@@ -130,25 +130,22 @@ Transform bank .csv files to import them into Homebank:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">file="$1"
-account="$2"
+<pre class="src src-sh">homebank() {
+    file="$1"
+    account="$2"
 
-dir=~/Downloads
-output="$dir/$account.qif"
-awk -v acc="$account" '{ print "!Account\nN" acc "\n^\n!Type:Bank"; FS=";"; sub(/^\xef\xbb\xbf/, ""); gsub("\"", ""); print "D" $1 "\nM" $2 "\nT" $4 "\n^" }' "$file" &gt; "$output"
-rm -f "$file"
-echo "Created $output"
-</pre>
-</div>
+    dir=~/Downloads
+    output="$dir/$account.qif"
+    awk -v acc="$account" '{ print "!Account\nN" acc "\n^\n!Type:Bank"; FS=";"; sub(/^\xef\xbb\xbf/, ""); gsub("\"", ""); print "D" $1 "\nM" $2 "\nT" $4 "\n^" }' "$file" &gt; "$output"
+    rm -f "$file"
+    echo "Created $output"
+}
 
-<p>
-Manipulate files based on some rules:
-</p>
+export -f homebank
 
-<div class="org-src-container">
-<pre class="src src-sh">find ~/Downloads -name 'meinElba*1_suche.csv' -exec my-homebank {} 'Girokonto' \;
-find ~/Downloads -name 'meinElba*7_suche.csv' -exec my-homebank {} 'Sparbuch' \;
-find ~/Downloads -name 'meinElba*3_suche.csv' -exec my-homebank {} 'Max' \;
+find ~/Downloads -name 'meinElba*1_suche.csv' -exec bash -c 'homebank "$0" Girokonto' {} \;
+find ~/Downloads -name 'meinElba*7_suche.csv' -exec bash -c 'homebank "$0" Sparbuch' {} \;
+find ~/Downloads -name 'meinElba*3_suche.csv' -exec bash -c 'homebank "$0" Max' {} \;
 </pre>
 </div>
 </div>
