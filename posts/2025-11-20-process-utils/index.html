@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Handy Process Utils</title>
+<meta name="generator" content="Org Mode" />
+<meta name="author" content="Florian Winkelbauer">
+<link rel="stylesheet" href="/site.css" type="text/css">
+</head>
+<body>
+<div id="preamble" class="status">
+<nav>
+<a href="/">Home</a>
+<a href="/notes">Notes</a>
+<a href="/posts">Posts</a>
+<a href="/projects">Projects</a>
+</nav>
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">Handy Process Utils</h1>
+</header><p>
+One of the coolest new features of .NET this year has to be <code>dotnet run app.cs</code>
+(see the <a href="https://devblogs.microsoft.com/dotnet/announcing-dotnet-run-app">announcement</a>). It's a nice alternative for scripts if you are trying to
+avoid writing PowerShell or Bash. But most of the time those scripts interact
+with other processes or operate on their output. So you always end up writing
+some sort of <code>Process</code> related utility methods to make your life easier. Here's
+my own version of said utilities that I always come back to in one way or the
+other. Feel free to copy and adapt:<a href="https://devblogs.microsoft.com/dotnet/announcing-dotnet-run-app/">announcementt</a>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-csharp">namespace MyNamespace;
+
+using System.Diagnostics;
+
+public static class ProcessUtils
+{
+    public static void StartAndWait(
+        string fileName,
+        string arguments,
+        Action&lt;ProcessStartInfo&gt;? configure = null,
+        Func&lt;int, bool&gt;? successExitFunc = null)
+    {
+        var info = new ProcessStartInfo(fileName, arguments);
+        configure?.Invoke(info);
+
+        using var process = Process.Start(info)!;
+
+        process.WaitForSuccess(successExitFunc);
+    }
+
+    public static string[] ReadAndWait(
+        string fileName,
+        string arguments,
+        Action&lt;ProcessStartInfo&gt;? configure = null,
+        Func&lt;int, bool&gt;? successExitFunc = null)
+    {
+        var info = new ProcessStartInfo(fileName, arguments);
+        configure?.Invoke(info);
+        info.RedirectStandardOutput = true;
+
+        using var process = Process.Start(info)!;
+
+        var lines = process.StandardOutput.ReadLines();
+
+        try
+        {
+            process.WaitForSuccess(successExitFunc);
+        }
+        catch (Exception e)
+        {
+            throw new InvalidOperationException(
+                string.Join(Environment.NewLine, lines),
+                e);
+        }
+
+        return lines;
+    }
+}
+
+public static class ProcessExtensions
+{
+    public static string[] ReadLines(this StreamReader reader)
+    {
+        var lines = new List&lt;string&gt;();
+        string? line;
+
+        while ((line = reader.ReadLine()) != null)
+        {
+            lines.Add(line);
+        }
+
+        return lines.ToArray();
+    }
+
+    public static void WaitForSuccess(
+        this Process process,
+        Func&lt;int, bool&gt;? successExitFunc = null)
+    {
+        process.WaitForExit();
+
+        successExitFunc ??= (exitCode) =&gt; exitCode == 0;
+
+        if (!successExitFunc(process.ExitCode))
+        {
+            throw new InvalidOperationException(
+                $"Exit code of '{process.StartInfo.FileName}' was {process.ExitCode}");
+        }
+    }
+}
+</pre>
+</div>
+
+<p>
+Which can be used like this:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-csharp">// Wait for a process to finish successfully
+ProcessUtils.StartAndWait("git", "rev-parse --show-toplevel");
+
+// Same as above but redirects standard output to an array
+var root = ProcessUtils.ReadAndWait("git", "rev-parse --show-toplevel").First();
+
+// Customize the process
+ProcessUtils.StartAndWait("dotnet", "build", startInfo =&gt; startInfo.WorkingDirectory = root);
+
+// Change what "successful" means
+ProcessUtils.StartAndWait("git", "foo", successExitFunc: exitCode =&gt; exitCode &lt; 2);
+</pre>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Published: 2025-11-20</p>
+<footer>
+<p>© 2025 Florian Winkelbauer</p>
+</footer>
+</div>
+</body>
+</html>
