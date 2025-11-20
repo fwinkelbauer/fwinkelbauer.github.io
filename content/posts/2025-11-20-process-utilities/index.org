@@ -1,0 +1,108 @@
+#+TITLE: Process Utilities in C#
+#+DATE: [2025-11-20]
+
+One of the coolest new features of .NET this year has to be ~dotnet run app.cs~
+(see the [[https://devblogs.microsoft.com/dotnet/announcing-dotnet-run-app][announcement]]). It's a nice alternative for scripts if you are trying to
+avoid writing PowerShell or Bash. But most of the time those scripts interact
+with other processes or operate on their output. So you always end up writing
+some sort of ~Process~ related utility methods to make your life easier. Here's
+my own version of said utilities that I always come back to in one way or the
+other. Feel free to copy and adapt:
+
+#+begin_src csharp
+namespace MyNamespace;
+
+using System.Diagnostics;
+
+public static class ProcessUtils
+{
+    public static void Run(
+        string fileName,
+        string arguments,
+        Action<ProcessStartInfo>? configure = null,
+        Func<int, bool>? successExitFunc = null)
+    {
+        var info = new ProcessStartInfo(fileName, arguments);
+        configure?.Invoke(info);
+
+        using var process = Process.Start(info)!;
+
+        process.WaitForSuccess(successExitFunc);
+    }
+
+    public static string[] Read(
+        string fileName,
+        string arguments,
+        Action<ProcessStartInfo>? configure = null,
+        Func<int, bool>? successExitFunc = null)
+    {
+        var info = new ProcessStartInfo(fileName, arguments);
+        configure?.Invoke(info);
+        info.RedirectStandardOutput = true;
+
+        using var process = Process.Start(info)!;
+
+        var lines = process.StandardOutput.ReadLines();
+
+        try
+        {
+            process.WaitForSuccess(successExitFunc);
+        }
+        catch (Exception e)
+        {
+            throw new InvalidOperationException(
+                string.Join(Environment.NewLine, lines),
+                e);
+        }
+
+        return lines;
+    }
+}
+
+public static class ProcessExtensions
+{
+    public static string[] ReadLines(this StreamReader reader)
+    {
+        var lines = new List<string>();
+        string? line;
+
+        while ((line = reader.ReadLine()) != null)
+        {
+            lines.Add(line);
+        }
+
+        return lines.ToArray();
+    }
+
+    public static void WaitForSuccess(
+        this Process process,
+        Func<int, bool>? successExitFunc = null)
+    {
+        process.WaitForExit();
+
+        successExitFunc ??= (exitCode) => exitCode == 0;
+
+        if (!successExitFunc(process.ExitCode))
+        {
+            throw new InvalidOperationException(
+                $"Exit code of '{process.StartInfo.FileName}' was {process.ExitCode}");
+        }
+    }
+}
+#+end_src
+
+Which can be used like this:
+
+#+begin_src csharp
+// Wait for a process to finish successfully
+ProcessUtils.Run("git", "rev-parse --show-toplevel");
+
+// Same as above but redirects standard output to an array
+var root = ProcessUtils.Read("git", "rev-parse --show-toplevel").First();
+
+// Customize the process
+ProcessUtils.Run("dotnet", "build", startInfo => startInfo.WorkingDirectory = root);
+
+// Change what "successful" means
+ProcessUtils.Run("git", "foo", successExitFunc: exitCode => exitCode < 2);
+#+end_src
