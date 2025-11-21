@@ -187,23 +187,11 @@ find ~/Downloads -name 'meinElba*3_suche.csv' -exec bash -c 'homebank "$0" Max' 
 
 (use-package dired
   :hook (dired-mode . dired-hide-details-mode)
-  :bind (("C-c j a" . fw/dired-archive)
-         ("C-c j d" . fw/dired-downloads))
   :custom
   (dired-auto-revert-buffer t)
   (dired-dwim-target t)
   (dired-free-space nil)
-  (dired-listing-switches "-alhv --time-style=+%Y-%m-%d --group-directories-first")
-  :config
-  (defun fw/dired-archive ()
-    "Open my archive"
-    (interactive)
-    (dired "~/Documents/archive"))
-
-  (defun fw/dired-downloads ()
-    "Open my downloads"
-    (interactive)
-    (dired "~/Downloads")))
+  (dired-listing-switches "-alhv --time-style=+%Y-%m-%d --group-directories-first"))
 
 (use-package org
   :hook (org-mode . (lambda () (electric-indent-local-mode -1)))

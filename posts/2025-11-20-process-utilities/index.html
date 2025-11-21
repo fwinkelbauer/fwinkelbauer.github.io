@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Handy Process Utils</title>
+<title>Process Utilities in C#</title>
 <meta name="generator" content="Org Mode" />
 <meta name="author" content="Florian Winkelbauer">
 <link rel="stylesheet" href="/site.css" type="text/css">
@@ -19,7 +19,7 @@
 </div>
 <div id="content" class="content">
 <header>
-<h1 class="title">Handy Process Utils</h1>
+<h1 class="title">Process Utilities in C#</h1>
 </header><p>
 One of the coolest new features of .NET this year has to be <code>dotnet run app.cs</code>
 (see the <a href="https://devblogs.microsoft.com/dotnet/announcing-dotnet-run-app">announcement</a>). It's a nice alternative for scripts if you are trying to
@@ -27,7 +27,7 @@ avoid writing PowerShell or Bash. But most of the time those scripts interact
 with other processes or operate on their output. So you always end up writing
 some sort of <code>Process</code> related utility methods to make your life easier. Here's
 my own version of said utilities that I always come back to in one way or the
-other. Feel free to copy and adapt:<a href="https://devblogs.microsoft.com/dotnet/announcing-dotnet-run-app/">announcementt</a>
+other. Feel free to copy and adapt:
 </p>
 
 <div class="org-src-container">
@@ -35,9 +35,9 @@ other. Feel free to copy and adapt:<a href="https://devblogs.microsoft.com/dotne
 
 using System.Diagnostics;
 
-public static class ProcessUtils
+public static class ProcessUtilities
 {
-    public static void StartAndWait(
+    public static void Run(
         string fileName,
         string arguments,
         Action&lt;ProcessStartInfo&gt;? configure = null,
@@ -51,7 +51,7 @@ public static class ProcessUtils
         process.WaitForSuccess(successExitFunc);
     }
 
-    public static string[] ReadAndWait(
+    public static string[] Read(
         string fileName,
         string arguments,
         Action&lt;ProcessStartInfo&gt;? configure = null,
@@ -119,16 +119,16 @@ Which can be used like this:
 
 <div class="org-src-container">
 <pre class="src src-csharp">// Wait for a process to finish successfully
-ProcessUtils.StartAndWait("git", "rev-parse --show-toplevel");
+ProcessUtils.Run("git", "rev-parse --show-toplevel");
 
 // Same as above but redirects standard output to an array
-var root = ProcessUtils.ReadAndWait("git", "rev-parse --show-toplevel").First();
+var root = ProcessUtils.Read("git", "rev-parse --show-toplevel").First();
 
 // Customize the process
-ProcessUtils.StartAndWait("dotnet", "build", startInfo =&gt; startInfo.WorkingDirectory = root);
+ProcessUtils.Run("dotnet", "build", startInfo =&gt; startInfo.WorkingDirectory = root);
 
 // Change what "successful" means
-ProcessUtils.StartAndWait("git", "foo", successExitFunc: exitCode =&gt; exitCode &lt; 2);
+ProcessUtils.Run("git", "foo", successExitFunc: exitCode =&gt; exitCode &lt; 2);
 </pre>
 </div>
 </div>
