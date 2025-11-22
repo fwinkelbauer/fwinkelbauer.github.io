@@ -1,7 +1,6 @@
 #!/bin/bash -eu
 
-script=$(readlink -f "${BASH_SOURCE[0]}")
-directory=$(dirname "$script")
+directory=$(dirname $BASH_SOURCE)
 artifacts="artifacts/"
 
 cd "$directory"
