@@ -1,9 +1,9 @@
 #+TITLE: Florian Winkelbauer
 
 Hi, welcome to my website! I blog about my opinions and experiences on software
-development and about whatever else seems to catch my interest. In my free time
-I like to tinker with [[./projects/index.org][small projects]]. In the past I have been a clown on more
-than one occasion. [[./notes/theater/index.org][Literally]].
+development and whatever else seems to catch my interest. In my free time I like
+to tinker with [[./projects/index.org][small projects]]. In the past I have been a clown on more than one
+occasion. [[./notes/theater/index.org][Literally]].
 
 I am currently working at [[https://intact-systems.com/][Intact]] where I try to automate whatever I can get my
 hands on.
