@@ -115,7 +115,6 @@ for remote in "${remotes[@]}"; do
 
     if ! [ -x "$(command -v chunkyard)" ]; then
         cp "$remote/chunkyard" ~/.local/bin/
-        chmod +x ~/.local/bin/chunkyard
     fi
 
     echo "Synchronizing with: $remote"
