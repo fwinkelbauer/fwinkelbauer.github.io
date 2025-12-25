@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Open With Emacs</title>
+<meta name="generator" content="Org Mode" />
+<meta name="author" content="Florian Winkelbauer">
+<link rel="stylesheet" href="/site.css" type="text/css">
+</head>
+<body>
+<div id="preamble" class="status">
+<nav>
+<a href="/">Home</a>
+<a href="/notes">Notes</a>
+<a href="/posts">Posts</a>
+<a href="/projects">Projects</a>
+</nav>
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">Open With Emacs</h1>
+</header><p>
+I have finally found a decent solution to use Emacs when interacting with the
+"Open with" context menu option on Windows.
+</p>
+
+<p>
+Basic idea:
+</p>
+
+<ul class="org-ul">
+<li>Run Emacs in server-mode</li>
+<li>Use <a href="https://www.autohotkey.com">AutoHotkey</a> to create a binary that either starts Emacs or connects to it
+using <code>emacsclient</code></li>
+</ul>
+
+<p>
+Steps:
+</p>
+
+<ul class="org-ul">
+<li>Create a new <code>.ahk</code> script and paste the content from below</li>
+<li>Adapt the bin directory path to your needs</li>
+<li>Use <a href="https://github.com/AutoHotkey/Ahk2Exe">Ahk2Exe</a> to turn the script into a binary
+<ul class="org-ul">
+<li><b>Note:</b> Make sure you select the correct base file (to support AutoHotkey v2
+instead of v2)</li>
+</ul></li>
+<li>Copy the binary to a directory that is on <code>PATH</code> (or add a new entry)</li>
+<li>You can now choose your new binary as an "Open with" option when opening files</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-ahk">path := A_Args[1]
+bin := "C:\ProgramData\Emacs\bin"
+command := Format("{1}\emacsclientw.exe --no-wait --alternate-editor={1}\runemacs.exe {2}", bin, path)
+Run command
+</pre>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Published: 2025-12-25</p>
+<footer>
+<p>© 2025 Florian Winkelbauer</p>
+</footer>
+</div>
+</body>
+</html>
