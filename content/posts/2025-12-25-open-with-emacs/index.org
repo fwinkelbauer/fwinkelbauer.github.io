@@ -1,0 +1,28 @@
+#+TITLE: Open With Emacs
+#+DATE: [2025-12-25]
+
+I have finally found a decent solution to use Emacs when interacting with the
+"Open with" context menu option on Windows.
+
+Basic idea:
+
+- Run Emacs in server-mode
+- Use [[https://www.autohotkey.com][AutoHotkey]] to create a binary that either starts Emacs or connects to it
+  using ~emacsclient~
+
+Steps:
+
+- Create a new ~.ahk~ script based on the content below
+- Adapt the bin directory variable to your needs
+- Use [[https://github.com/AutoHotkey/Ahk2Exe][Ahk2Exe]] to turn the script into a binary
+  - *Note:* Make sure you select the correct base file (to support AutoHotkey v2
+    instead of v1)
+- Copy the binary to a directory that is on ~PATH~ (or add a new entry)
+- You can now choose your new binary as an "Open with" option when opening files
+
+#+begin_src ahk
+path := A_Args[1]
+bin := "C:\ProgramData\Emacs\bin"
+command := Format("{1}\emacsclientw.exe --no-wait --alternate-editor={1}\runemacs.exe {2}", bin, path)
+Run command
+#+end_src
