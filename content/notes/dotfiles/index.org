@@ -35,7 +35,7 @@ emacs -Q --batch -l org --eval '(org-babel-tangle-file "~/Projects/website/conte
   conflictStyle = zdiff3
 
 [url "git@github.com:fwinkelbauer/"]
-  insteadOf = "https://github.com/fwinkelbauer/"
+  pushInsteadOf = "https://github.com/fwinkelbauer/"
 #+end_src
 
 * Bash
