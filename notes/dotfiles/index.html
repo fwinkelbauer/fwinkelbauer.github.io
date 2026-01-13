@@ -54,7 +54,7 @@ emacs -Q --batch -l org --eval '(org-babel-tangle-file "~/Projects/website/conte
   conflictStyle = zdiff3
 
 [url "git@github.com:fwinkelbauer/"]
-  insteadOf = "https://github.com/fwinkelbauer/"
+  pushInsteadOf = "https://github.com/fwinkelbauer/"
 </pre>
 </div>
 </div>
@@ -101,10 +101,6 @@ remotes=(
 for remote in "${remotes[@]}"; do
     if ! [ -d "$remote" ]; then
         continue
-    fi
-
-    if ! [ -x "$(command -v chunkyard)" ]; then
-        cp "$remote/chunkyard" ~/.local/bin/
     fi
 
     echo "Synchronizing with: $remote"
