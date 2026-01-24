@@ -27,7 +27,7 @@
 (defun fw/filter-local-links (link backend info)
   "Filter that removes all the /index.html postfixes from links."
   (if (org-export-derived-backend-p backend 'html)
-	  (replace-regexp-in-string "/index.html" "" link)))
+      (replace-regexp-in-string "/index.html" "" link)))
 
 (defun fw/publish-website ()
   "Publish my website."
