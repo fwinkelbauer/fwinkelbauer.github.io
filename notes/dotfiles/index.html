@@ -174,7 +174,6 @@ find ~/Downloads -name 'meinElba*3_suche.csv' -exec bash -c 'homebank "$0" Max' 
   :hook (dired-mode . dired-hide-details-mode)
   :custom
   (dired-auto-revert-buffer t)
-  (dired-dwim-target t)
   (dired-free-space nil)
   (dired-listing-switches "-alhv --time-style=+%Y-%m-%d --group-directories-first"))
 
@@ -250,7 +249,6 @@ find ~/Downloads -name 'meinElba*3_suche.csv' -exec bash -c 'homebank "$0" Max' 
   :ensure t
   :custom
   (magit-display-buffer-function 'magit-display-buffer-same-window-except-diff-v1)
-  (magit-save-repository-buffers 'dontask)
   (magit-repository-directories '(("~/Projects" . 1))))
 
 (use-package vertico
