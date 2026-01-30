@@ -46,9 +46,6 @@ emacs -Q --batch -l org --eval '(org-babel-tangle-file "~/Projects/website/conte
   email = mail@florianwinkelbauer.com
   name = Florian Winkelbauer
 
-[push]
-  followTags = true
-
 [merge]
   ff = only
   conflictStyle = zdiff3
@@ -141,7 +138,6 @@ find ~/Downloads -name 'meinElba*3_suche.csv' -exec bash -c 'homebank "$0" Max' 
 <div class="outline-text-2" id="text-emacs">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(setq global-auto-revert-non-file-buffers t
-      gc-cons-threshold (* 64 1024 1024)
       use-short-answers t
       backup-inhibited t
       auto-save-default nil
