@@ -43,7 +43,7 @@ emacs -Q --batch -l org --eval '(org-babel-tangle-file "~/Projects/website/conte
 Create new backup:
 
 #+begin_src sh :shebang "#!/bin/bash -eu" :tangle "~/.local/bin/my-store"
-chunkyard store --repository ~/.chunkyard --directory ~/Documents ~/Downloads --include '!\~$' --password 'Libsecret' "$@"
+chunkyard store --repository ~/.chunkyard --directory ~/Documents --include '!\~$' "$@"
 
 my-copy
 #+end_src
@@ -53,7 +53,7 @@ Restore the latest backup:
 #+begin_src sh :shebang "#!/bin/bash -eu" :tangle "~/.local/bin/my-restore"
 my-copy
 
-chunkyard restore --repository ~/.chunkyard --directory ~/ --password 'Libsecret' "$@"
+chunkyard restore --repository ~/.chunkyard --directory ~/Documents "$@"
 #+end_src
 
 Copy local backup data from/to external devices:
@@ -73,8 +73,8 @@ for remote in "${remotes[@]}"; do
     fi
 
     echo "Synchronizing with: $remote"
-    chunkyard copy --repository "$local" --destination "$remote" --password 'Libsecret' --last 20 "$@"
-    chunkyard copy --repository "$remote" --destination "$local" --password 'Libsecret' --last 20 "$@"
+    chunkyard copy --repository "$local" --destination "$remote" "$@"
+    chunkyard copy --repository "$remote" --destination "$local" "$@"
 done
 #+end_src
 
