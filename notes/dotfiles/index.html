@@ -65,7 +65,7 @@ Create new backup:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">chunkyard store --repository ~/.chunkyard --directory ~/Documents ~/Downloads --include '!\~$' --password 'Libsecret' "$@"
+<pre class="src src-sh">chunkyard store --repository ~/.chunkyard --directory ~/Documents ~/Downloads --include '!\~$' "$@"
 
 my-copy
 </pre>
@@ -78,7 +78,7 @@ Restore the latest backup:
 <div class="org-src-container">
 <pre class="src src-sh">my-copy
 
-chunkyard restore --repository ~/.chunkyard --directory ~/ --password 'Libsecret' "$@"
+chunkyard restore --repository ~/.chunkyard --directory ~/ "$@"
 </pre>
 </div>
 
