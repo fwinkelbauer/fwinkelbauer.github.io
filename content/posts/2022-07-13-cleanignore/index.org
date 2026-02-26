@@ -16,8 +16,8 @@ git clean -dfx -e .vs/ -e *.user -e launchSettings.json
 #+end_src
 
 These expressions looked similar to the content of a ~.gitignore~ file to me, so
-I added a function to my [[../2021-10-04-building-csharp/index.org][C# build tool]] which feeds the content of a
-~.cleanignore~ file into ~git clean~:
+I added a function to my build tool which feeds the content of a ~.cleanignore~
+file into ~git clean~:
 
 #+begin_src text
 # My .cleanignore file
@@ -34,8 +34,7 @@ public static void Clean()
         .Where(l => !string.IsNullOrEmpty(l) && !l.StartsWith("#"))
         .Select(l => $"-e {l}");
 
-    Git(
-        "clean -dfx",
+    Git("clean -dfx",
         string.Join(' ', expressions));
 }
 
@@ -44,5 +43,3 @@ private static void Git(params string[] arguments)
     // Run git using Process.Start
 }
 #+end_src
-
-You can find the code in this [[https://github.com/fwinkelbauer/chunkyard/blob/8c3c58efabb351296d46e6eab35c611d35a1a3ce/src/Chunkyard.Build/Commands.cs][repository]].
