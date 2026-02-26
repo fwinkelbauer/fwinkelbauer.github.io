@@ -39,8 +39,8 @@ for a specific user. You can exclude these files from <code>git clean</code> usi
 
 <p>
 These expressions looked similar to the content of a <code>.gitignore</code> file to me, so
-I added a function to my <a href="../2021-10-04-building-csharp">C# build tool</a> which feeds the content of a
-<code>.cleanignore</code> file into <code>git clean</code>:
+I added a function to my build tool which feeds the content of a <code>.cleanignore</code>
+file into <code>git clean</code>:
 </p>
 
 <div class="org-src-container">
@@ -59,8 +59,7 @@ launchSettings.json
         .Where(l =&gt; !string.IsNullOrEmpty(l) &amp;&amp; !l.StartsWith("#"))
         .Select(l =&gt; $"-e {l}");
 
-    Git(
-        "clean -dfx",
+    Git("clean -dfx",
         string.Join(' ', expressions));
 }
 
@@ -70,10 +69,6 @@ private static void Git(params string[] arguments)
 }
 </pre>
 </div>
-
-<p>
-You can find the code in this <a href="https://github.com/fwinkelbauer/chunkyard/blob/8c3c58efabb351296d46e6eab35c611d35a1a3ce/src/Chunkyard.Build/Commands.cs">repository</a>.
-</p>
 </div>
 <div id="postamble" class="status">
 <p class="date">Published: 2022-07-13</p>
