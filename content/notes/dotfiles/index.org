@@ -43,7 +43,7 @@ emacs -Q --batch -l org --eval '(org-babel-tangle-file "~/Projects/website/conte
 Create new backup:
 
 #+begin_src sh :shebang "#!/bin/bash -eu" :tangle "~/.local/bin/my-store"
-chunkyard store --repository ~/.chunkyard --directory ~/Documents --include '!\~$' "$@"
+chunkyard store --repository ~/.chunkyard --directory ~/Documents "$@"
 
 my-copy
 #+end_src
