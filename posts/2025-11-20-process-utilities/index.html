@@ -31,9 +31,9 @@ other. Feel free to copy and adapt:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-csharp">namespace MyNamespace;
+<pre class="src src-csharp">using System.Diagnostics;
 
-using System.Diagnostics;
+namespace MyNamespace;
 
 public static class ProcessUtils
 {
@@ -63,7 +63,21 @@ public static class ProcessUtils
 
         using var process = Process.Start(info)!;
 
-        var lines = process.StandardOutput.ReadLines();
+        var syncLock = new object();
+        var lines = new List&lt;string&gt;();
+
+        process.OutputDataReceived += (_, e) =&gt;
+        {
+            if (e.Data != null)
+            {
+                lock (syncLock)
+                {
+                    lines.Add(e.Data);
+                }
+            }
+        };
+
+        process.BeginOutputReadLine();
 
         try
         {
@@ -76,25 +90,12 @@ public static class ProcessUtils
                 e);
         }
 
-        return lines;
+        return lines.ToArray();
     }
 }
 
 public static class ProcessExtensions
 {
-    public static string[] ReadLines(this StreamReader reader)
-    {
-        var lines = new List&lt;string&gt;();
-        string? line;
-
-        while ((line = reader.ReadLine()) != null)
-        {
-            lines.Add(line);
-        }
-
-        return lines.ToArray();
-    }
-
     public static void WaitForSuccess(
         this Process process,
         Func&lt;int, bool&gt;? successExitFunc = null)
