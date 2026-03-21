@@ -68,13 +68,10 @@ remotes=(
 )
 
 for remote in "${remotes[@]}"; do
-    if ! [ -d "$remote" ]; then
-        continue
+    if [ -d "$remote" ]; then
+        echo "Synchronizing with: $remote"
+        chunkyard sync --first "$local" --second "$remote"
     fi
-
-    echo "Synchronizing with: $remote"
-    chunkyard copy --repository "$local" --destination "$remote" "$@"
-    chunkyard copy --repository "$remote" --destination "$local" "$@"
 done
 #+end_src
 
