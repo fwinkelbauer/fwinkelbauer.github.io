@@ -96,13 +96,10 @@ remotes=(
 )
 
 for remote in "${remotes[@]}"; do
-    if ! [ -d "$remote" ]; then
-        continue
+    if [ -d "$remote" ]; then
+        echo "Synchronizing with: $remote"
+        chunkyard sync --first "$local" --second "$remote"
     fi
-
-    echo "Synchronizing with: $remote"
-    chunkyard copy --repository "$local" --destination "$remote" "$@"
-    chunkyard copy --repository "$remote" --destination "$local" "$@"
 done
 </pre>
 </div>
@@ -147,8 +144,7 @@ find ~/Downloads -name 'meinElba*3_suche.csv' -exec bash -c 'homebank "$0" Max' 
       initial-scratch-message nil
       column-number-mode t
       sentence-end-double-space nil
-      require-final-newline t
-      uniquify-buffer-name-style 'forward)
+      require-final-newline t)
 
 (setq-default fill-column 80
               indent-tabs-mode nil)
@@ -181,12 +177,10 @@ find ~/Downloads -name 'meinElba*3_suche.csv' -exec bash -c 'homebank "$0" Max' 
   (setq org-directory "~/Documents/org/"
         org-default-notes-file (concat org-directory "inbox.org")
         org-agenda-files (list org-directory)
-        org-edit-src-content-indentation 0
-        fw/org-default-diary-file (concat org-directory "diary.org"))
+        org-edit-src-content-indentation 0)
 
   (setq org-capture-bookmark nil
-        org-capture-templates '(("i" "Inbox" entry (file org-default-notes-file) "* %?" :empty-lines-before 1)
-                                ("d" "Diary" entry (file fw/org-default-diary-file) "* %?\n%u" :empty-lines-before 1)))
+        org-capture-templates '(("i" "Inbox" entry (file org-default-notes-file) "* %?" :empty-lines-before 1)))
 
   (setq org-agenda-custom-commands
         '(("." "Overview"
