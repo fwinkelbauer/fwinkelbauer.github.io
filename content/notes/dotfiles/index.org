@@ -146,12 +146,10 @@ find ~/Downloads -name 'meinElba*3_suche.csv' -exec bash -c 'homebank "$0" Max' 
   (setq org-directory "~/Documents/org/"
         org-default-notes-file (concat org-directory "inbox.org")
         org-agenda-files (list org-directory)
-        org-edit-src-content-indentation 0
-        fw/org-default-diary-file (concat org-directory "diary.org"))
+        org-edit-src-content-indentation 0)
 
   (setq org-capture-bookmark nil
-        org-capture-templates '(("i" "Inbox" entry (file org-default-notes-file) "* %?" :empty-lines-before 1)
-                                ("d" "Diary" entry (file fw/org-default-diary-file) "* %?\n%u" :empty-lines-before 1)))
+        org-capture-templates '(("i" "Inbox" entry (file org-default-notes-file) "* %?" :empty-lines-before 1)))
 
   (setq org-agenda-custom-commands
         '(("." "Overview"
