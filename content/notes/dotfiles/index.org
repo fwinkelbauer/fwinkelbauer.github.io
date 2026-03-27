@@ -228,8 +228,6 @@ find ~/Downloads -name 'meinElba*3_suche.csv' -exec bash -c 'homebank "$0" Max' 
          ("C-x b" . consult-buffer)
          ("C-x k" . kill-current-buffer)
          ("C-c s" . consult-line)
-         ("C-c f" . project-find-file)
-         ("C-c g" . consult-git-grep)
          ("M-g g" . consult-goto-line)
          ("C-z" . undo)))
 
