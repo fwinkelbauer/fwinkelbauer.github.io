@@ -1,0 +1,9 @@
+<Project>
+
+  <PropertyGroup>
+    <Nullable>enable</Nullable>
+    <AnalysisMode>All</AnalysisMode>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+</Project>

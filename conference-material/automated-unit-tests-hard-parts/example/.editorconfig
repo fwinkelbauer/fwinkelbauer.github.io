@@ -1,0 +1,19 @@
+root = true
+
+[*]
+charset = utf-8
+
+[*.cs]
+dotnet_diagnostic.CA1062.severity = none
+dotnet_diagnostic.CA1303.severity = none
+dotnet_diagnostic.CA1307.severity = none
+dotnet_diagnostic.CA1308.severity = none
+dotnet_diagnostic.CA1309.severity = none
+dotnet_diagnostic.CA1310.severity = none
+dotnet_diagnostic.CA1707.severity = none
+
+dotnet_diagnostic.IDE0028.severity = none
+dotnet_diagnostic.IDE0290.severity = none
+dotnet_diagnostic.IDE0300.severity = none
+dotnet_diagnostic.IDE0301.severity = none
+dotnet_diagnostic.IDE0305.severity = none

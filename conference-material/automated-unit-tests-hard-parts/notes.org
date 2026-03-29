@@ -1,0 +1,94 @@
+#+TITLE: Notes
+
+* Introduction
+
+- Hi, I'm Florian!
+  - Software developer @ Intact GmbH
+  - https://florianwinkelbauer.com
+- This content is available on GitHub
+  - https://github.com/fwinkelbauer/fwinkelbauer.github.io
+
+* Tasks
+
+Let's refactor and extend a backup tool with testing in mind:
+
+- [ ] Test existing code
+- [ ] Implement & test
+  - "restore backup"
+  - "check backup"
+- [ ] Design a dry-run mode
+
+* Agenda
+
+- [ ] What are pure/impure functions and side effects?
+- [ ] Managing side effects
+  - Push side effect closer to the entry point of your applications or
+  - Manage side effects through interfaces and dependency injection
+- [ ] Highlighting side effects
+  - Architecture view
+  - Timeline view
+- [ ] Test structure
+  - AAA / GWT
+  - Snapshot and round-trip tests
+  - Make sure a test can fail
+  - Readability
+  - Essentials
+- [ ] Add behaviour using decorators
+- [ ] Bonus
+  - Snapshot testing tools
+  - Test data builder
+  - Testing side effects
+  - Code duplication and architecture changes
+  - Mocks VS hand-written code
+  - Legacy systems
+  - Testing beyond the pyramid
+
+* Additional Resources
+
+Start here:
+
+- [[../home-cooked-software/README.org][Home-cooked Software: A Backup Tale (Florian Winkelbauer)]]
+  - If you want to see a "real" backup application with tests
+- [[https://www.youtube.com/watch?v=wEhu57pih5w&list=PLD0011D00849E1B79][The Clean Code Talks - Unit Testing (Misko Hevery)]]
+  - Also available as a [[https://github.com/mhevery/guide-to-testable-code][written guide]]
+- [[https://www.youtube.com/watch?v=EZ05e7EMOLM][TDD, Where Did It All Go Wrong (Ian Cooper)]]
+- [[https://www.youtube.com/watch?v=IN9lftH0cJc][TDD Revisited (Ian Cooper)]]
+- [[https://testdesiderata.com/][TestDesiderata (Kent Beck)]]
+- [[https://www.youtube.com/watch?v=WDFN_u5FTyM][TDD Isn't Hard, It's Something Else (Dave Farley)]]
+- [[https://blog.ploeh.dk/2025/10/27/empirical-test-after-development][Empirical test-after development (Mark Seemann)]]
+
+Advanced topics:
+
+- [[https://www.youtube.com/watch?v=L9sXk0t8Iro][Effective Test Automation for Developers (Aki Salmi)]]
+- [[https://www.youtube.com/watch?v=Fk4rCn4YLLU][End to end functional tests that can run in milliseconds (Nat Pryce)]]
+- [[https://www.youtube.com/watch?v=1u6DdiFFH6Q][Testing as an equal 1st class citizen (Jon Jagger)]]
+- [[https://www.youtube.com/watch?v=hIMwTzAAQ-w][Sleeping with the enemy (Gojko Adzic)]]
+- [[https://www.youtube.com/watch?v=Ak1hGQuGBhY][Repeatable Execution (Mark Seemann)]]
+- [[https://blog.ploeh.dk/2022/10/17/stubs-and-mocks-break-encapsulation/][Stubs and mocks break encapsulation (Mark Seemann)]]
+- [[https://www.youtube.com/watch?v=vzr4HiQZhdY][Building Operable Software with TDD (Martin Thwaites)]]
+- [[https://www.youtube.com/watch?v=8hQG7QlcLBk][Advanced Testing with Go (Mitchell Hashimoto)]]
+- [[https://www.youtube.com/watch?v=MqC3tudPH6w][Can we test it? Yes, we can! (Mitchell Hashimoto)]]
+- [[https://www.youtube.com/watch?v=X4rxi9jStLo][Go Testing By Example (Russ Cox)]]
+
+Functional techniques:
+
+- [[https://www.youtube.com/watch?v=yTkzNHF6rMs][Boundaries (Gary Bernhardt)]]
+- [[https://www.youtube.com/watch?v=vK1DazRK_a0][Solving Problems the Clojure Way (Rafal Dittwald)]]
+- [[https://www.youtube.com/watch?v=P1vES9AgfC4][Moving IO to the edges of your app (Scott Wlaschin)]]
+
+Database testing:
+
+- [[https://www.infoq.com/articles/Testing-With-Persistence-Layers/][The Fundamentals of Testing with Persistence Layers]]
+- [[https://www.fusonic.net/en/blog/fast-unit-tests-with-databases-part-1][Fast unit tests with databases: A primer]]
+- [[https://calpaterson.com/against-database-teardown.html][The argument against clearing the database between tests]]
+
+Property-based testing:
+
+- [[https://www.youtube.com/watch?v=zi0rHwfiX1Q][Testing the Hard Stuff and Staying Sane (John Hughes)]]
+- [[https://fsharpforfunandprofit.com/posts/property-based-testing-2/][Choosing properties for property-based testing]]
+
+Working with legacy code:
+
+- Working Effectively with Legacy Code (Michael Feathers)
+- [[https://haacked.com/archive/2016/01/20/scientist][Scientist]]
+- [[https://florianwinkelbauer.com/posts/2024-08-10-dotnet-coverage][Manual code coverage]]

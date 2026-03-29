@@ -1,0 +1,39 @@
+#+TITLE: Talks
+
+* Home-cooked Software: A Backup Tale
+
+- [[https://www.linuxtage.at/en][Grazer Linuxtage]] ([[https://media.ccc.de/v/glt25-512-home-cooked-software-a-backup-tale][media.ccc.de]] & [[https://www.youtube.com/watch?v=iLKW6-UIvTM][youtube.com]]) [2025-04-26]
+- [[https://github.com/fwinkelbauer/fwinkelbauer.github.io/tree/main/conference-material/home-cooked-software][Slides]]
+
+[[https://github.com/fwinkelbauer/chunkyard][Chunkyard]] is a backup tool that I have been building for myself over the last
+five years. It's a hobby project with which I can follow my curiosity to learn
+and enjoy different aspects of software development. Since I am the only real
+user, I can do whatever I feel like. In this talk I am going to share what I
+have learned over the years while building this tiny piece of "home-cooked
+software". Stories include:
+
+- Learning more about encryption, content-defined chunking and
+  content-addressable storage
+- Doing "stupid" things like using a text editor and a terminal instead of an
+  IDE
+- Deepening my knowledge about automated tests by going "all in"
+- Building my own command line parser just for fun
+- Complaining about performance because I have no idea how computers work
+- That C# is a decent language/environment, even on Linux
+- The joy and fulfilment that hobby projects can give
+
+* Automated Unit Tests: The Hard Parts
+
+- [[https://www.devopsdays.at][DevOpsDays Graz]] [2025-09-05]
+- [[https://www.developer-world.de/ddc][DDC Cologne]] [2025-11-27]
+- [[https://github.com/fwinkelbauer/fwinkelbauer.github.io/tree/main/conference-material/automated-unit-tests-hard-parts][Slides]]
+
+The introduction tutorials for automated test frameworks make it look so easy.
+Write some code, write a few tests and you're done. But when dealing with
+production code we often run into problems and learn, that the real world is
+different. This workshop explores challenges and solutions to create a suite of
+automated tests in C#:
+
+- Learn new aspects of how to think about code
+- Try different testing strategies
+- Explore techniques to make tests readable and fun

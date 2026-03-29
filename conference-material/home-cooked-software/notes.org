@@ -1,0 +1,97 @@
+* Home-cooked software: a backup tale
+
+- Hi, I'm Florian
+  - Software developer @ Intact GmbH
+  - https://florianwinkelbauer.com
+- Home-cooked software
+  - https://www.robinsloan.com/notes/home-cooked-app
+- I develop ~chunkyard~ as a hobby
+  - https://github.com/fwinkelbauer/chunkyard
+  - Cross-platform backup tool (C#)
+
+* Trying out ~restic~
+
+- ~rsync~ & ~robocopy~ -> https://restic.net
+- Symmetric encryption
+- Repository
+  - Version history
+- Deduplication
+  - Content addressable storage
+  - Content defined chunking
+- Detect broken hardware
+
+* How ~chunkyard~ was born
+
+- Didn't understand parts of ~restic~
+- How hard can it be?
+  - https://restic.readthedocs.io
+  - Started ~chunkyard~ in 2020
+  - Over 1500 (tiny) commits
+- Please use ~restic~
+  - https://github.com/restic/others
+
+* Use hobby projects to be
+
+- Foolish: No IDE
+- Curious: Learn with purpose
+- Bold: No manual tests
+- Humble: I have no idea how computers work
+
+* Foolish: No IDE
+
+- No Visual Studio
+  - No auto-complete or error highlighting
+  - No debugger
+- Syntax highlighting
+  - I'm not an animal
+- Editor + terminal
+  - ~dotnet~ command line tool
+  - Target Windows and Linux at the same time
+
+* Curious: Learn with purpose
+
+- Opposing forces
+  - Encryption
+  - Deduplication
+- Reading list
+  - https://craftinginterpreters.com
+  - Write own command line parser
+
+* Bold: No manual tests
+
+- Writing tests is like staying fit
+  - Maybe tomorrow
+- Do a change. Green tests? Ship it!
+  - Trust
+  - Near miss: Parallelism
+- The happy place
+
+* Humble: I have no idea how computers work
+
+- How fast can ~chunykard~ go?
+- Approaches
+  - Single core/thread
+  - Use all cores
+  - Use some cores
+  - Lock-free circular buffers
+- Letting go
+
+* Work-related side effects
+
+- Simple performance tricks
+- The "command line guy"
+  - Better automation & pipelines
+- "Expert"
+  - Encryption
+  - Automated tests
+
+* Home-cooked software: a backup tale
+
+- Hi, I'm Florian
+  - Software developer @ Intact GmbH
+  - https://florianwinkelbauer.com
+- Home-cooked software
+  - https://www.robinsloan.com/notes/home-cooked-app
+- I develop ~chunkyard~ as a hobby
+  - https://github.com/fwinkelbauer/chunkyard
+  - Cross-platform backup tool (C#)

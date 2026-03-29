@@ -1,6 +1,5 @@
 #+TITLE: Projects
 
 - [[https://github.com/fwinkelbauer/chunkyard][Chunkyard]]: A backup tool which uses an encrypted content addressable storage
-- [[https://github.com/fwinkelbauer/conferences][Conferences]]: Contains all slides or workshop material presented at conferences
 - [[https://configure.zsa.io/moonlander/layouts/rXlOQ/latest/0][Keyboard Layout]]: My layout for the Moonlander Mark 1 keyboard
 - [[https://github.com/fwinkelbauer/fwinkelbauer.github.io][Website]]: The source files needed to generate this website

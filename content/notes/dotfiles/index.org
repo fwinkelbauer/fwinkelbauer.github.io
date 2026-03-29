@@ -11,7 +11,6 @@ sudo apt install -y fonts-jetbrains-mono git emacs homebank keepassxc
 sudo locale-gen 'de_DE.UTF-8'
 
 git clone https://github.com/fwinkelbauer/chunkyard ~/Projects/chunkyard
-git clone https://github.com/fwinkelbauer/conferences ~/Projects/conferences
 git clone https://github.com/fwinkelbauer/fwinkelbauer.github.io.git ~/Projects/website
 
 emacs -Q --batch -l org --eval '(org-babel-tangle-file "~/Projects/website/content/notes/dotfiles/index.org")'
