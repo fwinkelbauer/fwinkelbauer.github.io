@@ -31,7 +31,6 @@ sudo apt install -y fonts-jetbrains-mono git emacs homebank keepassxc
 sudo locale-gen 'de_DE.UTF-8'
 
 git clone https://github.com/fwinkelbauer/chunkyard ~/Projects/chunkyard
-git clone https://github.com/fwinkelbauer/conferences ~/Projects/conferences
 git clone https://github.com/fwinkelbauer/fwinkelbauer.github.io.git ~/Projects/website
 
 emacs -Q --batch -l org --eval '(org-babel-tangle-file "~/Projects/website/content/notes/dotfiles/index.org")'
@@ -144,7 +143,8 @@ find ~/Downloads -name 'meinElba*3_suche.csv' -exec bash -c 'homebank "$0" Max' 
       initial-scratch-message nil
       column-number-mode t
       sentence-end-double-space nil
-      require-final-newline t)
+      require-final-newline t
+      uniquify-buffer-name-style 'forward)
 
 (setq-default fill-column 80
               indent-tabs-mode nil)
@@ -259,8 +259,6 @@ find ~/Downloads -name 'meinElba*3_suche.csv' -exec bash -c 'homebank "$0" Max' 
          ("C-x b" . consult-buffer)
          ("C-x k" . kill-current-buffer)
          ("C-c s" . consult-line)
-         ("C-c f" . project-find-file)
-         ("C-c g" . consult-git-grep)
          ("M-g g" . consult-goto-line)
          ("C-z" . undo)))
 
