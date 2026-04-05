@@ -6,13 +6,11 @@ This is my setup script for Linux Mint 22.2:
 
 #+begin_src sh
 sudo apt update
-sudo apt install -y fonts-jetbrains-mono git emacs homebank keepassxc
+sudo apt install -y fonts-jetbrains-mono restic git emacs homebank keepassxc
 
 sudo locale-gen 'de_DE.UTF-8'
 
-git clone https://github.com/fwinkelbauer/chunkyard ~/Projects/chunkyard
 git clone https://github.com/fwinkelbauer/fwinkelbauer.github.io.git ~/Projects/website
-
 emacs -Q --batch -l org --eval '(org-babel-tangle-file "~/Projects/website/content/notes/dotfiles/index.org")'
 #+end_src
 
@@ -39,37 +37,24 @@ emacs -Q --batch -l org --eval '(org-babel-tangle-file "~/Projects/website/conte
 :CUSTOM_ID: bash
 :END:
 
-Create new backup:
+Create local backup and synchronize with external devices:
 
-#+begin_src sh :shebang "#!/bin/bash -eu" :tangle "~/.local/bin/my-store"
-chunkyard store --repository ~/.chunkyard --directory ~/Documents "$@"
+#+begin_src sh :shebang "#!/bin/bash -eu" :tangle "~/.local/bin/my-backup"
+local=~/Restic
 
-my-copy
-#+end_src
-
-Restore the latest backup:
-
-#+begin_src sh :shebang "#!/bin/bash -eu" :tangle "~/.local/bin/my-restore"
-my-copy
-
-chunkyard restore --repository ~/.chunkyard --directory ~/Documents "$@"
-#+end_src
-
-Copy local backup data from/to external devices:
-
-#+begin_src sh :shebang "#!/bin/bash -eu" :tangle "~/.local/bin/my-copy"
-local=~/.chunkyard
+restic --repo "$local" backup ~/Documents --no-scan --no-cache
 
 remotes=(
-    /media/florian/Backup1/Florian/main.chunkyard
-    /media/florian/Backup2/Florian/main.chunkyard
-    /media/florian/DORA1/main.chunkyard
+    "/media/$USER/Backup1/Florian/Restic"
+    "/media/$USER/Backup2/Florian/Restic"
+    "/media/$USER/DORA1/Restic"
 )
 
 for remote in "${remotes[@]}"; do
     if [ -d "$remote" ]; then
         echo "Synchronizing with: $remote"
-        chunkyard sync --first "$local" --second "$remote"
+        restic --repo "$remote" copy --from-repo "$local" -q
+        restic --repo "$local" copy --from-repo "$remote" -q
     fi
 done
 #+end_src
