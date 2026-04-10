@@ -1876,7 +1876,8 @@ Found on [[https://www.youtube.com/watch?v=P1vES9AgfC4][YouTube]].
 - Traditional layered architecture has the database at the bottom
 - If you map out a request that travels through your layers the database is in
   the middle (since you go down the layers and up again)
-- Instead we want to have our domain logic in the middle and our I/O at the edges
+- Instead we want to have our domain logic in the middle and our I/O at the
+  edges
 - "Good design": pure functions (deterministic functions that have input and
   output without side effects)
 - "Bad design": anything that uses I/O
@@ -1894,14 +1895,16 @@ Found on [[https://www.youtube.com/watch?v=P1vES9AgfC4][YouTube]].
 Found on [[https://www.youtube.com/watch?v=rdJXUN4YV_M][YouTube]].
 
 - Ironies of automation
-  - Humans design the automation and then also deal with its unanticipated, often negatie consequences
+  - Humans design the automation and then also deal with its unanticipated,
+    often negative consequences
   - Human operators have to monitor that the automation is working properly
   - The amount of knowledge required to make things right again is likely to be
     greater than that required during normal operations
   - Automation designers' intention is to train humans in following instructions
     ("Use the run book!") and put them in a system that requires them to provide
     intelligence outside or beyond those instructions
-- 75% of the time, humans have to intervene to resolve automation-involved incidents
+- 75% of the time, humans have to intervene to resolve automation-involved
+  incidents
 - Automation plays multiple roles in (the same) incident
 - Automation can unexpectedly make things worse
 - Human intervention remains essential to resolve issues
@@ -1965,7 +1968,6 @@ Found on [[https://www.youtube.com/watch?v=9viBYAm-JqA][YouTube]].
 :CUSTOM_ID: 1000x-the-power-of-an-interface-for-performance
 :END:
 
-- This is honestly one of the most entertaining conference talks I've seen. Well done!
 - What is the upper limit (transactions per second) on Postgres based on it's
   interface (client side locking)
 - What performance characteristics would different interfaces have?
@@ -1986,8 +1988,23 @@ Found on [[https://www.youtube.com/watch?v=9viBYAm-JqA][YouTube]].
   - Larger stages make it necessary to use larger gestures
   - Take strong positions
 - Practice your material!
-- Provide rythm
+- Provide rhythm
   - Tell people your plan and stick to it
   - People can pay attention (roughly) for 5-10 minutes
   - Consider your pace and when to introduce new ideas
 - End your talk early
+
+* Frictionless (Nicole Forsgren PhD, Abi Noda)
+:PROPERTIES:
+:CUSTOM_ID: frictionless
+:END:
+
+- Three elements of effective developer experience
+  - Fast feedback loops
+  - Flow state
+  - Cognitive load
+- Make developer experience sustainable
+  - Adopt a product mindset
+  - Use balanced standardization (golden paths) that preserve space for
+    innovation
+  - Manage technical debt to prevent compounding friction
