@@ -142,7 +142,7 @@ Zubereitung:
 :CUSTOM_ID: haferflockensuppe
 :END:
 
-- Scharlotten in Butter glasig werden lassen.
+- Zwiebeln mit etwas Öl glasig werden lassen.
 - Haferflocken dazu geben und anrösten.
 - Mit Suppe aufgießen.
 - Karotten dazu geben.
