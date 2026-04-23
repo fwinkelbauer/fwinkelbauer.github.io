@@ -1,6 +1,9 @@
 #+TITLE: Talks
 
 * Home-cooked Software: A Backup Tale
+:PROPERTIES:
+:CUSTOM_ID: home-cooked-software
+:END:
 
 - [[https://www.linuxtage.at/en][Grazer Linuxtage]] ([[https://media.ccc.de/v/glt25-512-home-cooked-software-a-backup-tale][media.ccc.de]] & [[https://www.youtube.com/watch?v=iLKW6-UIvTM][youtube.com]]) [2025-04-26]
 - [[https://github.com/fwinkelbauer/fwinkelbauer.github.io/tree/main/conference-material/home-cooked-software][Slides]]
@@ -23,6 +26,9 @@ software". Stories include:
 - The joy and fulfilment that hobby projects can give
 
 * Automated Unit Tests: The Hard Parts
+:PROPERTIES:
+:CUSTOM_ID: automated-unit-tests
+:END:
 
 - [[https://www.devopsdays.at][DevOpsDays Graz]] [2025-09-05]
 - [[https://www.developer-world.de/ddc][DDC Cologne]] [2025-11-27]
