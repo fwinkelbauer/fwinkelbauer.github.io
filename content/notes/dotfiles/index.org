@@ -126,13 +126,6 @@ find ~/Downloads -name 'meinElba*3_suche.csv' -exec bash -c 'homebank "$0" Max' 
 
   (icomplete-vertical-mode t))
 
-(use-package dired
-  :hook (dired-mode . dired-hide-details-mode)
-  :custom
-  (dired-auto-revert-buffer t)
-  (dired-free-space nil)
-  (dired-listing-switches "-alhv --time-style=+%Y-%m-%d --group-directories-first"))
-
 (use-package org
   :hook (org-mode . (lambda () (electric-indent-local-mode -1)))
   :bind (("C-c c" . fw/org-overview))
