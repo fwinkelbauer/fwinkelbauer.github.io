@@ -113,19 +113,6 @@ find ~/Downloads -name 'meinElba*3_suche.csv' -exec bash -c 'homebank "$0" Max' 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (set-face-attribute 'default nil :family "JetBrains Mono" :height 120)
 
-(bind-keys
- ("C-x f" . find-file)
- ("C-x k" . kill-current-buffer)
- ("C-z" . undo))
-
-(use-package icomplete
-  :config
-  (setq icomplete-scroll t
-        icomplete-show-matches-on-no-input t
-        completion-auto-help nil)
-
-  (icomplete-vertical-mode t))
-
 (use-package org
   :hook (org-mode . (lambda () (electric-indent-local-mode -1)))
   :bind (("C-c c" . fw/org-overview))
@@ -193,7 +180,29 @@ find ~/Downloads -name 'meinElba*3_suche.csv' -exec bash -c 'homebank "$0" Max' 
 (use-package magit
   :ensure t
   :custom
+  (magit-display-buffer-function 'magit-display-buffer-same-window-except-diff-v1)
   (magit-repository-directories '(("~/Projects" . 1))))
+
+(use-package vertico
+  :ensure t
+  :config
+  (vertico-mode)
+  (keymap-set vertico-map "DEL" 'vertico-directory-delete-char))
+
+(use-package orderless
+  :ensure t
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles partial-completion)))))
+
+(use-package consult
+  :ensure t
+  :bind (("C-x f" . find-file)
+         ("C-x b" . consult-buffer)
+         ("C-x k" . kill-current-buffer)
+         ("C-c s" . consult-line)
+         ("M-g g" . consult-goto-line)
+         ("C-z" . undo)))
 
 (use-package modus-themes
   :ensure t
