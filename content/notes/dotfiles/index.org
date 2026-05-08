@@ -2,11 +2,11 @@
 #+STARTUP: content
 #+PROPERTY: header-args :mkdirp yes
 
-This is my setup script for Linux Mint 22.2:
+This is my setup script for Linux Mint:
 
 #+begin_src sh
 sudo apt update
-sudo apt install -y fonts-jetbrains-mono restic git emacs homebank keepassxc
+sudo apt install -y emacs fonts-jetbrains-mono git homebank keepassxc restic
 
 sudo locale-gen 'de_DE.UTF-8'
 
@@ -23,9 +23,6 @@ emacs -Q --batch -l org --eval '(org-babel-tangle-file "~/Projects/website/conte
 [user]
   email = mail@florianwinkelbauer.com
   name = Florian Winkelbauer
-
-[merge]
-  ff = only
 
 [url "git@github.com:fwinkelbauer/"]
   pushInsteadOf = "https://github.com/fwinkelbauer/"
@@ -52,8 +49,8 @@ remotes=(
 for remote in "${remotes[@]}"; do
     if [ -d "$remote" ]; then
         echo "Synchronizing with: $remote"
-        restic --repo "$remote" copy --from-repo "$local" -q
-        restic --repo "$local" copy --from-repo "$remote" -q
+        restic --repo "$remote" copy --from-repo "$local" --quiet
+        restic --repo "$local" copy --from-repo "$remote" --quiet
     fi
 done
 #+end_src
