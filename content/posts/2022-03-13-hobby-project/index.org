@@ -2,7 +2,7 @@
 #+DATE: [2022-03-13]
 
 It has been two years since I have started to work on my hobby project
-[[https://github.com/fwinkelbauer/chunkyard][Chunkyard]]. Over these years I have used this project to test out different ideas
+[[https://codeberg.org/fwinkelbauer/chunkyard][Chunkyard]]. Over these years I have used this project to test out different ideas
 and concepts, which is something that you cannot always do in a professional
 environment. This post highlights a few topics which I have explored.
 

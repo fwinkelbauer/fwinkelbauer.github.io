@@ -4,9 +4,8 @@
 
 - Hi, I'm Florian!
   - Software developer @ Intact GmbH
-  - https://florianwinkelbauer.com
-- This content is available on GitHub
-  - https://github.com/fwinkelbauer/fwinkelbauer.github.io
+- This content is can be found here
+  - https://florianwinkelbauer.com/notes/talks/
 
 * Tasks
 

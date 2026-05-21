@@ -6,7 +6,7 @@ artifacts="artifacts/"
 cd "$directory"
 rm -rf "$artifacts"
 git worktree prune
-git worktree add --no-checkout -B gh-pages "$artifacts" origin/gh-pages
+git worktree add --no-checkout -B gh-pages "$artifacts" github/gh-pages
 git -C "$artifacts" restore --staged .
 emacs -Q --script publish.el
 

@@ -6,7 +6,7 @@
 - Home-cooked software
   - https://www.robinsloan.com/notes/home-cooked-app
 - I develop ~chunkyard~ as a hobby
-  - https://github.com/fwinkelbauer/chunkyard
+  - https://codeberg.org/fwinkelbauer/chunkyard
   - Cross-platform backup tool (C#)
 
 * Trying out ~restic~
@@ -93,5 +93,5 @@
 - Home-cooked software
   - https://www.robinsloan.com/notes/home-cooked-app
 - I develop ~chunkyard~ as a hobby
-  - https://github.com/fwinkelbauer/chunkyard
+  - https://codeberg.org/fwinkelbauer/chunkyard
   - Cross-platform backup tool (C#)
