@@ -10,12 +10,10 @@ Emacs offers a function ~fill-paragraph~, which breaks a given line before a
 specific column width. This might look like this:
 
 #+begin_src text
-A [common
-advice](https://github.com/Wookai/paper-tips-and-tricks#one-sentence-per-line)
-I've read in the past suggests, that we should write text documents (like LaTeX
-documents or Markdown documentation) in a way, so that each sentence is put on
-its own line. This gives us an easier time to create diffs of documents which
-are created in a collaborative fashion.
+A common advice I've read in the past suggests, that we should write text
+documents (like LaTeX documents or Markdown documentation) in a way, so that
+each sentence is put on its own line. This gives us an easier time to create
+diffs of documents which are created in a collaborative fashion.
 #+end_src
 
 ~fill-paragraph~ looks decent, but it can create massive diffs which are hard to
