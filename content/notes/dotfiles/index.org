@@ -38,9 +38,9 @@ local=~/Restic
 restic --repo "$local" backup ~/Documents --no-scan --no-cache
 
 remotes=(
+    "/media/$USER/DORA1/Restic"
     "/media/$USER/Backup1/Florian/Restic"
     "/media/$USER/Backup2/Florian/Restic"
-    "/media/$USER/DORA1/Restic"
 )
 
 for remote in "${remotes[@]}"; do
