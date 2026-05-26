@@ -1996,7 +1996,7 @@ Found on [[https://www.youtube.com/watch?v=9viBYAm-JqA][YouTube]].
   - Consider your pace and when to introduce new ideas
 - End your talk early
 
-** Frictionless (Nicole Forsgren PhD, Abi Noda)
+* Frictionless (Nicole Forsgren PhD, Abi Noda)
 :PROPERTIES:
 :CUSTOM_ID: frictionless
 :END:
