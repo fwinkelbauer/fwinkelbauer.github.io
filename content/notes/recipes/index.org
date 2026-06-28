@@ -63,33 +63,6 @@ Zubereitung:
   nicht vorgeheizt).
 - Brownie aus dem Ofen nehmen und kurz abkühlen lassen.
 
-* Chai Sirup
-:PROPERTIES:
-:CUSTOM_ID: chai-sirup
-:END:
-
-- 3 Tassen (600ml) Wasser
-- 1 Tasse brauner Zucker
-- 3 Beutel Schwarztee
-- 2 Zimtstangen
-- 2 Sternanis
-- 1 Vanilleschote
-- 10 Kapseln Kardamom
-- 10 Nelkenstifte
-- ca. 1cm frischer Ingwer in Scheiben geschnitten
-- wenige bunte Pfefferkörner
-- 1 Prise geriebener Muskat
-- 1 Teelöffel gemahlener Zimt
-
-Zubereitung:
-
-- Wasser und Zucker in einen Topf verrühren und aufkochen
-- Teebeutel in den Sirup hängen
-- Gewürze in den Topf geben und 20 Minuten leicht köcheln. Teebeutel nach der
-  Hälfte der Zeit entfernen
-- Sirup durch ein Sieb gießen
-- Abkühlen lassen und in eine Flasche füllen
-
 * Glüh-Gin
 :PROPERTIES:
 :CUSTOM_ID: glüh-gin
@@ -112,41 +85,6 @@ Zubereitung:
 - Abseihen und in hitzebeständige Gläser oder Häferl füllen. Jeweils einen guten
   Schuss Gin hinzufügen und den Glüh-Gin mit einer Zimtstange garniert
   servieren.
-
-* Grillbrot
-:PROPERTIES:
-:CUSTOM_ID: grillbrot
-:END:
-
-- 300g Milch
-- 500g Weizenmehl, glatt
-- 10g Salz
-- 10g Germ, frisch
-- 30g Butter, zimmerwarm
-
-Zubereitung:
-
-- Milch in eine Rührschüssel geben, Mehl und Salz beifügen. Die Germ direkt auf
-  das Mehl bröseln und zuletzt die Butter zugeben. Alles zu einem glatten Teig
-  kneten (Knetzeit ca. 7 Minuten). Den Teig zugedeckt ca. 20 Minuten gehn
-  lassen.
-- Backofen auf 210° C Heißluft vorheizen.
-- Teig in Teile zu je 100g aufteilen, diese zu Kugeln formen, mit Butter
-  einstreichen und in einem Topf schlichten. 10 Minuten rasten lassen.
-- Erneut mit Butter einstreichen und mit fein geschnittenem Schnittlauch
-  bestreuen.
-- Das Grillbrot im Topf ca. 20 Minuten backen.
-
-* Haferflockensuppe
-:PROPERTIES:
-:CUSTOM_ID: haferflockensuppe
-:END:
-
-- Zwiebeln mit etwas Öl glasig werden lassen.
-- Haferflocken dazu geben und anrösten.
-- Mit Suppe aufgießen.
-- Karotten dazu geben.
-- 10-15 Minuten kochen.
 
 * Kekse
 :PROPERTIES:

@@ -24,6 +24,9 @@ Create local backup and synchronize with external devices:
 #+begin_src sh :shebang "#!/bin/bash -eu" :tangle "~/.local/bin/my-backup"
 local=~/Restic
 
+echo "Creating backup"
+echo "----------------------------------------"
+
 restic --repo "$local" backup ~/Documents --no-scan --no-cache
 
 remotes=(
@@ -34,9 +37,15 @@ remotes=(
 
 for remote in "${remotes[@]}"; do
     if [ -d "$remote" ]; then
-        echo "Synchronizing with: $remote"
-        restic --repo "$remote" copy --from-repo "$local" --quiet
-        restic --repo "$local" copy --from-repo "$remote" --quiet
+        echo ""
+        echo "Pushing to: $remote"
+        echo "----------------------------------------"
+        restic --repo "$remote" copy --from-repo "$local" --no-cache
+
+        echo ""
+        echo "Pulling from: $remote"
+        echo "----------------------------------------"
+        restic --repo "$local" copy --from-repo "$remote" --no-cache
     fi
 done
 #+end_src
