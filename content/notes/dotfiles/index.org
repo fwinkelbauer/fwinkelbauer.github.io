@@ -24,6 +24,11 @@ Create local backup and synchronize with external devices:
 #+begin_src sh :shebang "#!/bin/bash -eu" :tangle "~/.local/bin/my-backup"
 local=~/Restic
 
+read -s -p "Password: " RESTIC_PASSWORD
+echo ""
+export RESTIC_PASSWORD
+export RESTIC_FROM_PASSWORD=$RESTIC_PASSWORD
+
 echo "Creating backup"
 echo "----------------------------------------"
 
