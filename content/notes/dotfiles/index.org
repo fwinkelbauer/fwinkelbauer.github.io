@@ -43,14 +43,18 @@ remotes=(
 for remote in "${remotes[@]}"; do
     if [ -d "$remote" ]; then
         echo ""
-        echo "Pushing to: $remote"
-        echo "----------------------------------------"
-        restic --repo "$remote" copy --from-repo "$local" --no-cache
-
-        echo ""
         echo "Pulling from: $remote"
         echo "----------------------------------------"
         restic --repo "$local" copy --from-repo "$remote" --no-cache
+    fi
+done
+
+for remote in "${remotes[@]}"; do
+    if [ -d "$remote" ]; then
+        echo ""
+        echo "Pushing to: $remote"
+        echo "----------------------------------------"
+        restic --repo "$remote" copy --from-repo "$local" --no-cache
     fi
 done
 #+end_src
