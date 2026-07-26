@@ -6,9 +6,9 @@
 :END:
 
 - [[https://www.linuxtage.at/en][Grazer Linuxtage]] ([[https://media.ccc.de/v/glt25-512-home-cooked-software-a-backup-tale][media.ccc.de]] & [[https://www.youtube.com/watch?v=iLKW6-UIvTM][youtube.com]]) [2025-04-26]
-- [[https://codeberg.org/fwinkelbauer/pages/src/branch/main/conference-material/home-cooked-software][Slides]]
+- [[https://github.com/fwinkelbauer/fwinkelbauer.github.io/tree/main/conference-material/home-cooked-software][Slides]]
 
-[[https://codeberg.org/fwinkelbauer/chunkyard][Chunkyard]] is a backup tool that I have been building for myself over the last
+[[https://github.com/fwinkelbauer/chunkyard][Chunkyard]] is a backup tool that I have been building for myself over the last
 five years. It's a hobby project with which I can follow my curiosity to learn
 and enjoy different aspects of software development. Since I am the only real
 user, I can do whatever I feel like. In this talk I am going to share what I
@@ -32,7 +32,7 @@ software". Stories include:
 
 - [[https://www.devopsdays.at][DevOpsDays Graz]] [2025-09-05]
 - [[https://www.developer-world.de/ddc][DDC Cologne]] [2025-11-27]
-- [[https://codeberg.org/fwinkelbauer/pages/src/branch/main/conference-material/automated-unit-tests-hard-parts][Slides]]
+- [[https://github.com/fwinkelbauer/fwinkelbauer.github.io/tree/main/conference-material/automated-unit-tests-hard-parts][Slides]]
 
 The introduction tutorials for automated test frameworks make it look so easy.
 Write some code, write a few tests and you're done. But when dealing with

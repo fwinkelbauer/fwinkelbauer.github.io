@@ -21,7 +21,7 @@ git push --set-upstream origin master
 #+end_src
 
 I have recently experimented with storing such repositories using my backup tool
-[[https://codeberg.org/fwinkelbauer/chunkyard][Chunkyard]]. After restoring one of these repositories I was surprised that I
+[[https://github.com/fwinkelbauer/chunkyard][Chunkyard]]. After restoring one of these repositories I was surprised that I
 could not clone the bare repository:
 
 #+begin_src sh

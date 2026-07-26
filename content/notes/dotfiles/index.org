@@ -10,7 +10,7 @@ sudo apt install -y emacs fonts-jetbrains-mono git homebank keepassxc restic
 
 sudo locale-gen 'de_DE.UTF-8'
 
-git clone https://codeberg.org/fwinkelbauer/pages ~/Projects/website
+git clone https://github.com/fwinkelbauer/fwinkelbauer.github.io ~/Projects/website
 emacs -Q --batch -l org --eval '(org-babel-tangle-file "~/Projects/website/content/notes/dotfiles/index.org")'
 #+end_src
 

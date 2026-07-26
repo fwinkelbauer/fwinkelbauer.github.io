@@ -5,7 +5,7 @@ C# offers a wide range of command line interface (CLI) parsers as NuGet
 packages. The package [[https://github.com/commandlineparser/commandline][commandlineparser]] has sparked joy for a long time, but
 recently I've been looking for something different. I could have tried one of
 several other CLI parsers (such as the prerelease package [[https://github.com/dotnet/command-line-api][System.Commandline]]),
-but in the end I decided to write my own. Just for fun. [[https://codeberg.org/fwinkelbauer/chunkyard][Chunkyard]] only had one
+but in the end I decided to write my own. Just for fun. [[https://github.com/fwinkelbauer/chunkyard][Chunkyard]] only had one
 package dependency left anyway, so why not decrement that number once more?
 
 The starting point for this little side-project came after I read the first half
