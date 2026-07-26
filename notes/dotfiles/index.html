@@ -30,7 +30,7 @@ sudo apt install -y emacs fonts-jetbrains-mono git homebank keepassxc restic
 
 sudo locale-gen 'de_DE.UTF-8'
 
-git clone https://codeberg.org/fwinkelbauer/pages ~/Projects/website
+git clone https://github.com/fwinkelbauer/fwinkelbauer.github.io ~/Projects/website
 emacs -Q --batch -l org --eval '(org-babel-tangle-file "~/Projects/website/content/notes/dotfiles/index.org")'
 </pre>
 </div>
@@ -45,6 +45,14 @@ Create local backup and synchronize with external devices:
 <div class="org-src-container">
 <pre class="src src-sh">local=~/Restic
 
+read -s -p "Password: " RESTIC_PASSWORD
+echo ""
+export RESTIC_PASSWORD
+export RESTIC_FROM_PASSWORD=$RESTIC_PASSWORD
+
+echo "Creating backup"
+echo "----------------------------------------"
+
 restic --repo "$local" backup ~/Documents --no-scan --no-cache
 
 remotes=(
@@ -55,9 +63,19 @@ remotes=(
 
 for remote in "${remotes[@]}"; do
     if [ -d "$remote" ]; then
-        echo "Synchronizing with: $remote"
-        restic --repo "$remote" copy --from-repo "$local" --quiet
-        restic --repo "$local" copy --from-repo "$remote" --quiet
+        echo ""
+        echo "Pulling from: $remote"
+        echo "----------------------------------------"
+        restic --repo "$local" copy --from-repo "$remote" --no-cache
+    fi
+done
+
+for remote in "${remotes[@]}"; do
+    if [ -d "$remote" ]; then
+        echo ""
+        echo "Pushing to: $remote"
+        echo "----------------------------------------"
+        restic --repo "$remote" copy --from-repo "$local" --no-cache
     fi
 done
 </pre>
