@@ -399,9 +399,9 @@ Found on [[https://www.youtube.com/watch?v=4MEKu2TcEHM][YouTube]].
 - Shared mutability is the devil's work
 - Using a library is like dating, using a framework is like getting married
 
-* Transactions - Myths, Suprises and Opportunities (Martin Kleppmann)
+* Transactions - Myths, Surprises and Opportunities (Martin Kleppmann)
 :PROPERTIES:
-:CUSTOM_ID: transactions-myths-suprises-and-opportunities
+:CUSTOM_ID: transactions-myths-surprises-and-opportunities
 :END:
 
 Found on [[https://www.youtube.com/watch?v=5ZjhNTM8XU8][YouTube]].
@@ -1510,7 +1510,7 @@ Found on [[https://www.youtube.com/watch?v=Z5OrR99OpiY][YouTube]].
 - Use the same tools and workflows as for code
 - Prose linter https://vale.sh/
 
-* Kinder, es tut mir undendlich leid (Martin Leyrer)
+* Kinder, es tut mir unendlich leid (Martin Leyrer)
 :PROPERTIES:
 :CUSTOM_ID: kinder-es-tut-mir-undendlich-leid
 :END:
@@ -1896,7 +1896,7 @@ Found on [[https://www.youtube.com/watch?v=rdJXUN4YV_M][YouTube]].
 
 - Ironies of automation
   - Humans design the automation and then also deal with its unanticipated,
-    often negatie consequences
+    often negative consequences
   - Human operators have to monitor that the automation is working properly
   - The amount of knowledge required to make things right again is likely to be
     greater than that required during normal operations
