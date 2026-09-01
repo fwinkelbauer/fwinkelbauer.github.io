@@ -98,8 +98,8 @@ find ~/Downloads -name 'meinElba*3_suche.csv' -exec bash -c 'homebank "$0" Max' 
       require-final-newline t
       uniquify-buffer-name-style 'forward)
 
-(setq-default fill-column 80
-              indent-tabs-mode nil)
+(setopt fill-column 80
+        indent-tabs-mode nil)
 
 (menu-bar-mode -1)
 (tool-bar-mode -1)
