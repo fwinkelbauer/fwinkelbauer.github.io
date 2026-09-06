@@ -87,13 +87,12 @@ find ~/Downloads -name 'meinElba*3_suche.csv' -exec bash -c 'homebank "$0" Max' 
 
 #+begin_src emacs-lisp :tangle "~/.config/emacs/init.el"
 (setq use-short-answers t
-      backup-inhibited t
+      make-backup-files nil
       auto-save-default nil
       create-lockfiles nil
       visible-bell t
       inhibit-startup-message t
       initial-scratch-message nil
-      column-number-mode t
       sentence-end-double-space nil
       require-final-newline t
       uniquify-buffer-name-style 'forward)
@@ -107,7 +106,7 @@ find ~/Downloads -name 'meinElba*3_suche.csv' -exec bash -c 'homebank "$0" Max' 
 (blink-cursor-mode -1)
 (global-auto-revert-mode t)
 (delete-selection-mode t)
-(show-paren-mode t)
+(column-number-mode t)
 (pixel-scroll-precision-mode t)
 (add-hook 'window-setup-hook 'toggle-frame-maximized)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
