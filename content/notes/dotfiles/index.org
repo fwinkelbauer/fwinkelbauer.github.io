@@ -113,13 +113,11 @@ find ~/Downloads -name 'meinElba*3_suche.csv' -exec bash -c 'homebank "$0" Max' 
 (set-face-attribute 'default nil :family "JetBrains Mono" :height 120)
 
 (use-package org
-  :hook (org-mode . (lambda () (electric-indent-local-mode -1)))
   :bind (("C-c c" . fw/org-overview))
   :config
   (set-locale-environment "de_DE.UTF-8")
 
   (setq org-directory "~/Documents/org/"
-        org-default-notes-file (concat org-directory "inbox.org")
         org-agenda-files (list org-directory)
         org-edit-src-content-indentation 0)
 
@@ -173,7 +171,7 @@ find ~/Downloads -name 'meinElba*3_suche.csv' -exec bash -c 'homebank "$0" Max' 
     "Show my inbox and custom org-agenda."
     (interactive)
     (delete-other-windows)
-    (find-file org-default-notes-file)
+    (find-file (concat org-directory "inbox.org"))
     (org-agenda nil ".")))
 
 (use-package magit
