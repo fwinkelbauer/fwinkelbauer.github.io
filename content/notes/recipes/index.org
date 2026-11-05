@@ -101,6 +101,20 @@ Zubereitung:
 - 200g Schoko, verrühren
 - Vorgeheizter Ofen, 180 Grad (10-15min)
 
+* Kombi Frites
+:PROPERTIES:
+:CUSTOM_ID: frites
+:END:
+
+https://www.youtube.com/watch?v=Bx4bDAPfYGA
+
+- Mehlige Kartoffeln, daumendick schneiden
+- 2 EL Öl
+- 2 Prisen Paprikapulver
+- 1 EL Kartoffel- oder Maisstärke
+- Vorgeheizter Ofen, 210 Grad 25% Dampf (20-30min)
+- Salzen
+
 * Lasagne Bechamelsauce
 :PROPERTIES:
 :CUSTOM_ID: lasagne-bechamelsauce
@@ -162,4 +176,21 @@ https://www.youtube.com/watch?v=47akp5h5_u0
 - Eier kurz durchrühren
 - tiefes Backblech vorwärmen und mit Butter einschmieren
 - Teig in heißes Backblech, Rosinen dazu
-- 200 Grad 25% Dampf 16 Minuten backen
+- 200 Grad 25% Dampf (16min)
+
+* Semmelknödel
+:PROPERTIES:
+:CUSTOM_ID: semmel
+:END:
+
+https://www.youtube.com/watch?v=k2gDfCOzugg
+
+- 250g Knödelbrot
+- 350ml Milch
+- 2 Eier
+- 1 Zwiebel, in Butter angeschwitzt
+- 2 TL Petersilie
+- 2 Prisen Salz
+- 2 Prisen Pfeffer
+- 5min ziehen lassen
+- 95 Grad 100% Dampf (25min)
