@@ -33,6 +33,7 @@ echo "Creating backup"
 echo "----------------------------------------"
 
 restic --repo "$local" backup ~/Documents --no-scan --no-cache
+restic --repo "$local" check --read-data-subset=5% --no-cache
 
 remotes=(
     "/media/$USER/DORA1/Restic"
@@ -55,6 +56,7 @@ for remote in "${remotes[@]}"; do
         echo "Pushing to: $remote"
         echo "----------------------------------------"
         restic --repo "$remote" copy --from-repo "$local" --no-cache
+        restic --repo "$remote" check --read-data-subset=5% --no-cache
     fi
 done
 #+end_src
