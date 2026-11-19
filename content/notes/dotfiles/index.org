@@ -32,7 +32,8 @@ export RESTIC_FROM_PASSWORD=$RESTIC_PASSWORD
 echo "Creating backup"
 echo "----------------------------------------"
 
-restic --repo "$local" backup ~/Documents --no-scan --no-cache
+restic --repo "$local" backup ~/Documents --no-scan --cleanup-cache
+restic --repo "$local" check --read-data-subset=5% --cleanup-cache
 
 remotes=(
     "/media/$USER/DORA1/Restic"
@@ -45,7 +46,7 @@ for remote in "${remotes[@]}"; do
         echo ""
         echo "Pulling from: $remote"
         echo "----------------------------------------"
-        restic --repo "$local" copy --from-repo "$remote" --no-cache
+        restic --repo "$local" copy --from-repo "$remote" --cleanup-cache
     fi
 done
 
@@ -54,7 +55,8 @@ for remote in "${remotes[@]}"; do
         echo ""
         echo "Pushing to: $remote"
         echo "----------------------------------------"
-        restic --repo "$remote" copy --from-repo "$local" --no-cache
+        restic --repo "$remote" copy --from-repo "$local" --cleanup-cache
+        restic --repo "$remote" check --read-data-subset=5% --cleanup-cache
     fi
 done
 #+end_src
