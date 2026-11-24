@@ -18,8 +18,14 @@ h2 a {
 
 pre, code {
     background: #94949426;
-    opacity: 0.75;
+}
+
+code {
     padding: 0.2em 0.4em;
+}
+
+pre {
+    padding: 0.8em 1em 1.2em;
     overflow-x: auto;
 }
 
