@@ -12,7 +12,7 @@
   (let ((date (org-export-data (org-export-get-date info "%Y-%m-%d") info)))
     (fw/join (unless (string-empty-p date) (concat "<p class=\"date\">Published: " date "</p>"))
              "<footer>"
-             "<p>© 2026 Florian Winkelbauer</p>"
+             (concat "<p>© " (format-time-string "%Y") " Florian Winkelbauer</p>")
              "</footer>")))
 
 (defun fw/sitemap-format-entry (entry style project)
@@ -36,8 +36,7 @@
          `(("content"
             :base-directory "content/"
             :publishing-directory "artifacts/"
-            :publishing-function org-html-publish-to-html
-            :recursive nil)
+            :publishing-function org-html-publish-to-html)
 
            ("notes"
             :auto-sitemap t
@@ -64,8 +63,7 @@
            ("projects"
             :base-directory "content/projects/"
             :publishing-directory "artifacts/projects/"
-            :publishing-function org-html-publish-to-html
-            :sitemap-filename "index.org")
+            :publishing-function org-html-publish-to-html)
 
            ("static"
             :base-directory "static/"
